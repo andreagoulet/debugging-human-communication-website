@@ -19,8 +19,9 @@ const homepageCollection = defineCollection({
     ctaText: z.string().optional(),
     ctaSubtext: z.string().optional(),
 
-    // Opening narrative
+    // Opening narrative / Meet Andrea intro
     opener: z.string().optional(),
+    intro: z.string().optional(),
     paragraphs: z.union([
       z.array(z.string()),
       z.array(paragraphSchema),

@@ -22,6 +22,7 @@ const openingNarrative = content['02-opening-narrative'].data;
 const realProblem = content['03-the-real-problem'].data;
 const answer = content['04-the-answer'].data;
 const methodology = content['05-methodology'].data;
+const meetAndrea = content['05b-meet-andrea'].data;
 const findYourLever = content['06-find-your-lever'].data;
 const pricing = content['07-pricing'].data;
 const faq = content['08-faq'].data;
@@ -166,6 +167,18 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
             Book Your Discovery Session →
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- Meet Andrea -->
+    <section class="py-20 px-6 bg-white">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-6 text-center">{meetAndrea.title}</h2>
+        <p class="text-xl text-teal-800 text-center mb-10">{meetAndrea.intro}</p>
+
+        {meetAndrea.paragraphs?.map((p) => (
+          <p class="text-lg text-teal-900 mb-6">{p}</p>
+        ))}
       </div>
     </section>
 

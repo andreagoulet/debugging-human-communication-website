@@ -1,5 +1,4 @@
 ---
-# PLACEHOLDER - Andrea to rewrite
 title: "A Guide Who Speaks Your Language"
 intro: "Hi! I'm Andrea Goulet."
 paragraphs:
