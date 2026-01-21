@@ -1,5 +1,5 @@
 ---
 headline: "Engineer Effective Conversations"
-subheadline: "You've mastered complex systems. Now master the conversations that drive your career forward."
+subheadline: "If technical systems are easy and peopling is hard — this is the program for you."
 ctaText: "Book Your Discovery Session →"
 ---
