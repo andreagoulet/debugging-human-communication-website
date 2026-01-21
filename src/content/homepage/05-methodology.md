@@ -20,6 +20,9 @@ approaches:
     paragraphs:
       - "You won't get handed a one-size-fits-all playbook. Instead, you'll work with a guide who understands the nuance of human systems and can help you design experiments to discover what actually works for you."
       - "Think of it as co-creation: I bring the structure, accountability, and deep expertise — you bring your context and curiosity. Together, we'll navigate the complexity and arrive at solutions that fit your life."
+    testimonial:
+      quote: "She sees what I can't see on my own, and helps me build a mental model for whatever I'm facing. What felt chaotic suddenly has structure."
+      author: "Lada Kesseler"
   - title: "Discover the Transformative Power of Community Learning"
     paragraphs:
       - "You've probably felt it—the loneliness of being the person who communicates differently. The code-switching. The holding back. The quiet embarrassment of not navigating social situations the way your colleagues seem to."
