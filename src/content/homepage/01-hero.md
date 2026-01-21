@@ -1,5 +1,5 @@
 ---
-headline: "Engineer Effective Conversations"
-subheadline: "If technical systems are easy and peopling is hard — this is the program for you."
+headline: "Debug Your Communication"
+subheadline: "Technical systems make sense. People don't. Let's fix that."
 ctaText: "Book Your Discovery Session →"
 ---
