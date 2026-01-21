@@ -1,5 +1,5 @@
 ---
-title: "The Real Problem"
+title: "It's Not a Personality Problem"
 paragraphs:
   - text: "You weren't taught communication as a learnable skill."
     emphasis: "bold"

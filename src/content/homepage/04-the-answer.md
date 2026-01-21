@@ -1,5 +1,5 @@
 ---
-title: "The Answer"
+title: "Communication Is a System. Reverse Engineer It."
 paragraphs:
   - text: "Communication is a system. It can be analyzed, understood, and systematically improved."
     emphasis: "bold"

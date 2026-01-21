@@ -1,0 +1,13 @@
+---
+# PLACEHOLDER - Andrea to rewrite
+title: "A Guide Who Speaks Your Language"
+intro: "Hi! I'm Andrea Goulet."
+paragraphs:
+  - "You don't need someone who's going to tell you to \"just be more confident\" or \"smile more.\" You need someone who gets that your brain works differently — and sees that as a strength."
+  - "I get it because I've been there. As a kid, social situations baffled me. I couldn't figure out what everyone else seemed to know instinctively. Then I discovered linguistics, business communication, and copywriting and one thing became crystal clear. Human interaction has patterns, structures, even computational principles. It's not magic. It's a system — and I wanted to figure out the mechanics. Take it apart like you would a clock to see exactly what makes it tick. 
+  - What started as curiosity has turned into a 25 year obsession. And I've used my particular set of skills to help Fortune 500 companies navigate billion-dollar turnarounds, facilitate workshops with Smithsonian scientists, and bootstrap and scale a software consultancy by treating empathy as a technical skill.
+  - When I started sharing my ideas publicly, I was surprised at just how many technologists became enthusiastic about my work. "Finally," they told me, "messy human systems make sense!" 
+  - Soon, the stages became bigger and keynote invitations poured in. I launched communities and podcasts like Legacy Code Rocks and Empathy in Tech. These projects were incredibly rewarding but not necessarily fulfilling. What lights me up with joy is connecting with individuals to dive deep into the details and find the most elegant solution to a problem.
+  - What started out as a passion has turned into the program you're reading about right now. And if you've made it this far on the website... chances are you are the person I built this program for. You're smart. Inquisitive. Deeply compassionate. And you want to learn from someone who knows how to teach to you — not preach at you. You don't want someone who just regurgitates another methodology that doesn't resonate. You want to discover what works for you by understanding the fundamental principles and patterns that enable you to thrive in your beautifully technical context.
+  - You're not broken. The system is broken. Effective communication isn't about changing who you are. It's about building the environment, skills, and tools you need to reach your potential without burning out. I've helped countless people just like you figure out success on their terms — and I hope to earn the chance to help you, too.
+---

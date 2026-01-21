@@ -1,5 +1,5 @@
 ---
-title: "What Makes This Different"
+title: "The Technical Manual for Human Interaction"
 subtitle: "This isn't generic \"soft skills\" training. It's a methodology built specifically for analytical minds."
 approaches:
   - title: "Decode the Hidden Systems that Underpin Human Interaction"
@@ -19,8 +19,7 @@ approaches:
   - title: "Develop Your Skills with Expert Guidance"
     paragraphs:
       - "Most communication coaches come from HR or psychology backgrounds. I come from systems thinking."
-      - "I didn't stumble into communication late in my career—I've been obsessed with it for 25 years. As a kid, social situations baffled me. Then I discovered linguistics, business communication, and copywriting, and I saw that human interaction has patterns, structures, even computational principles. It's not magic. It's a system."
-      - "I've spent my career operating at that intersection—helping Fortune 500 companies turn around from billions in losses, facilitating workshops with Smithsonian scientists, bootstrapping a software consultancy where empathy was our competitive advantage."
+      - "You'll work with someone who understands how analytical minds process information — and who can translate communication principles into frameworks that actually stick."
   - title: "Discover the Transformative Power of Community Learning"
     paragraphs:
       - "You've probably felt it—the loneliness of being the person who communicates differently. The code-switching. The holding back. The quiet embarrassment of not navigating social situations the way your colleagues seem to."
