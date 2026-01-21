@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Brand Colors */
+@theme {
+  --color-teal-950: #003640;
+  --color-teal-900: #012B34;
+  --color-teal-800: #05A8A7;
+  --color-teal-600: #54D3D8;
+  --color-teal-400: #86E0DD;
+  --color-teal-200: #C8EDE4;
+  --color-teal-50: #F6F6F6;
+
+  --color-coral: #FE646C;
+  --color-yellow: #FFCB03;
+  --color-purple: #AE7FF9;
+  --color-green: #00DA9D;
+  --color-blue: #049BD1;
+
+  /* Typography */
+  --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-teal-950);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
