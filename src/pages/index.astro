@@ -1,7 +1,40 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import MethodologyCard from '../components/MethodologyCard.astro';
+import ChallengeCard from '../components/ChallengeCard.astro';
+import PricingCard from '../components/PricingCard.astro';
+import FAQItem from '../components/FAQItem.astro';
+import ClarificationCard from '../components/ClarificationCard.astro';
+import FitList from '../components/FitList.astro';
 
 const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
+
+// Get all homepage content, sorted by filename
+const allContent = await getCollection('homepage');
+const content = Object.fromEntries(
+  allContent.map(entry => [entry.slug, entry])
+);
+
+// Extract each section's data (all from frontmatter now)
+const hero = content['01-hero'].data;
+const openingNarrative = content['02-opening-narrative'].data;
+const realProblem = content['03-the-real-problem'].data;
+const answer = content['04-the-answer'].data;
+const methodology = content['05-methodology'].data;
+const findYourLever = content['06-find-your-lever'].data;
+const pricing = content['07-pricing'].data;
+const faq = content['08-faq'].data;
+const whatThisIsNot = content['09-what-this-is-not'].data;
+const whoThisIsFor = content['10-who-this-is-for'].data;
+const finalCta = content['11-final-cta'].data;
+const footer = content['12-footer'].data;
+
+// Helper to render paragraph with optional emphasis
+const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic' }) => {
+  if (typeof p === 'string') return p;
+  return p;
+};
 ---
 
 <Layout title="Debugging Human Communication | Communication Coaching for Engineers">
@@ -26,16 +59,16 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <section class="bg-gradient-to-b from-teal-200 to-teal-50 py-20 px-6">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-teal-950 mb-6">
-          Engineer Effective Conversations
+          {hero.headline}
         </h1>
         <p class="text-xl md:text-2xl text-teal-900 mb-10 max-w-2xl mx-auto">
-          You've mastered complex systems. Now master the conversations that drive your career forward.
+          {hero.subheadline}
         </p>
         <a
           href={calendlyUrl}
           class="inline-block bg-coral text-white font-bold text-lg px-8 py-4 rounded-lg hover:bg-coral/90 transition-colors shadow-lg hover:shadow-xl"
         >
-          Book Your Discovery Session →
+          {hero.ctaText}
         </a>
       </div>
     </section>
@@ -43,201 +76,86 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <!-- Opening Narrative -->
     <section class="py-20 px-6 bg-white">
       <div class="max-w-3xl mx-auto">
-        <p class="text-xl text-teal-950 mb-6 font-medium">You know that moment.</p>
+        <p class="text-xl text-teal-950 mb-6 font-medium">{openingNarrative.opener}</p>
 
-        <p class="text-lg text-teal-900 mb-6">
-          You're in a meeting, explaining why the architecture decision matters, and you can see eyes glazing over. You're not wrong—you're just lost in implementation details when they wanted to hear about impact.
-        </p>
+        {openingNarrative.paragraphs?.map((p) => (
+          <p class="text-lg text-teal-900 mb-6">{typeof p === 'string' ? p : p.text}</p>
+        ))}
 
-        <p class="text-lg text-teal-900 mb-6">
-          Or you're at a conference, coffee in hand, scanning the room. Everyone else seems to be connecting effortlessly. You're calculating the least awkward time to leave.
-        </p>
-
-        <p class="text-lg text-teal-900 mb-8">
-          Or you're preparing for a 1:1 with your skip-level manager. You have ideas. Ambitions. But when they ask "what do you want?", your mind goes blank.
-        </p>
-
-        <p class="text-lg text-teal-950 font-medium mb-6">Sound familiar? Maybe it's one of these:</p>
+        <p class="text-lg text-teal-950 font-medium mb-6">{openingNarrative.painPointsIntro}</p>
 
         <ul class="space-y-4 text-lg text-teal-900 mb-8">
-          <li class="flex items-start gap-3">
-            <span class="text-teal-600 mt-1">•</span>
-            <span>You rehearse a difficult conversation for days, then say something completely different in the moment</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-teal-600 mt-1">•</span>
-            <span>You get feedback that you're "too in the weeds" but nobody explains what the right altitude looks like</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-teal-600 mt-1">•</span>
-            <span>You watch colleagues with half your technical skill get promoted while you're passed over</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-teal-600 mt-1">•</span>
-            <span>You dread the "let's go around and introduce ourselves" portion of any meeting</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-teal-600 mt-1">•</span>
-            <span>You've been told to "build relationships" but that feels vague and slightly manipulative</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-teal-600 mt-1">•</span>
-            <span>You have good ideas that die in committee because you can't get stakeholder buy-in</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-teal-600 mt-1">•</span>
-            <span>You avoid certain people at work because you don't know how to repair a conversation that went sideways</span>
-          </li>
+          {openingNarrative.painPoints?.map((point) => (
+            <li class="flex items-start gap-3">
+              <span class="text-teal-600 mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
         </ul>
 
-        <p class="text-lg text-teal-900 mb-6">
-          You've read books. Watched TED talks. Maybe sat through a corporate training where you role-played with strangers.
-        </p>
-
-        <p class="text-lg text-teal-900 mb-6">
-          None of it stuck—because none of it matched how your brain works.
-        </p>
-
-        <p class="text-xl text-teal-950 font-semibold">
-          What you want is a technical manual for human conversation. A debugger for communication. A way to approach these situations with the same systematic confidence you bring to technical problems.
-        </p>
-
-        <p class="text-xl text-teal-800 font-bold mt-4">That's what this is.</p>
+        {openingNarrative.closingParagraphs?.map((p, i) => {
+          const isLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 1;
+          const isSecondToLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 2;
+          return isSecondToLast ? (
+            <p class="text-xl text-teal-950 font-semibold">{p}</p>
+          ) : isLast ? (
+            <p class="text-xl text-teal-800 font-bold mt-4">{p}</p>
+          ) : (
+            <p class="text-lg text-teal-900 mb-6">{p}</p>
+          );
+        })}
       </div>
     </section>
 
     <!-- The Real Problem -->
     <section class="py-20 px-6 bg-teal-200">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-8">The Real Problem</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-8">{realProblem.title}</h2>
 
-        <p class="text-xl text-teal-950 font-semibold mb-6">You weren't taught communication as a learnable skill.</p>
-
-        <p class="text-lg text-teal-900 mb-6">
-          That's the gap. Not some personality defect. Not a lack of empathy. Not being "too logical."
-        </p>
-
-        <p class="text-lg text-teal-900 mb-6">
-          You learned to code. You learned system design. You learned to debug problems by tracing them to root causes.
-        </p>
-
-        <p class="text-lg text-teal-900 mb-6">
-          But communication? That was supposed to just... happen. Osmosis. Watching how other people do it. Picking up on unwritten rules nobody explained.
-        </p>
-
-        <p class="text-lg text-teal-900 mb-6">
-          Some people did pick it up. You've watched them navigate politics, build relationships, get promoted.
-        </p>
-
-        <p class="text-xl text-teal-950 font-medium italic">
-          And you've quietly wondered: What do they know that I don't?
-        </p>
+        {realProblem.paragraphs?.map((p) => {
+          const para = typeof p === 'string' ? { text: p } : p;
+          return para.emphasis === 'bold' ? (
+            <p class="text-xl text-teal-950 font-semibold mb-6">{para.text}</p>
+          ) : para.emphasis === 'italic' ? (
+            <p class="text-xl text-teal-950 font-medium italic">{para.text}</p>
+          ) : (
+            <p class="text-lg text-teal-900 mb-6">{para.text}</p>
+          );
+        })}
       </div>
     </section>
 
     <!-- The Answer -->
     <section class="py-20 px-6 bg-white">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-8">The Answer</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-8">{answer.title}</h2>
 
-        <p class="text-2xl text-teal-800 font-bold mb-8">
-          Communication is a system. It can be analyzed, understood, and systematically improved.
-        </p>
-
-        <p class="text-lg text-teal-900 mb-6">
-          When a conversation goes wrong, there's a reason. And like any system, you can form a hypothesis, test an approach, and iterate based on what you learn.
-        </p>
-
-        <p class="text-lg text-teal-900 mb-6">
-          That's how you already work. You don't expect code to be perfect on the first try. You ship, observe, adjust.
-        </p>
-
-        <p class="text-lg text-teal-900">
-          Debugging Human Communication applies that same experimental mindset to conversations. Try something. See what happens. Refine your approach. Get better over time—not through abstract theory, but through real practice with real feedback.
-        </p>
+        {answer.paragraphs?.map((p) => {
+          const para = typeof p === 'string' ? { text: p } : p;
+          return para.emphasis === 'bold' ? (
+            <p class="text-2xl text-teal-800 font-bold mb-8">{para.text}</p>
+          ) : (
+            <p class="text-lg text-teal-900 mb-6">{para.text}</p>
+          );
+        })}
       </div>
     </section>
 
-    <!-- What Makes This Different -->
+    <!-- What Makes This Different (Methodology) -->
     <section class="py-20 px-6 bg-teal-50">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-4 text-center">What Makes This Different</h2>
-        <p class="text-xl text-teal-800 text-center mb-16">This isn't generic "soft skills" training. It's a methodology built specifically for analytical minds.</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-4 text-center">{methodology.title}</h2>
+        <p class="text-xl text-teal-800 text-center mb-16">{methodology.subtitle}</p>
 
         <div class="space-y-16">
-          <!-- Pillar 1 -->
-          <div class="bg-white rounded-2xl p-8 shadow-sm">
-            <div class="flex items-start gap-4 mb-4">
-              <span class="bg-teal-600 text-white font-bold text-xl w-10 h-10 rounded-full flex items-center justify-center shrink-0">1</span>
-              <h3 class="text-2xl font-bold text-teal-950">Decode the Hidden Systems that Underpin Human Interaction</h3>
-            </div>
-            <p class="text-lg text-teal-900 mb-6">
-              Communication has patterns, principles, structures—but nobody taught you what they are. You've been trying to navigate without a map.
-            </p>
-            <p class="text-lg text-teal-900 mb-6">
-              Once you understand how conversations actually work—why some land and others don't, what's really happening when someone gets defensive, how influence actually builds—things click into place.
-            </p>
-            <blockquote class="border-l-4 border-teal-600 pl-6 italic text-teal-800">
-              "I finally feel like I have patterns and structures to understand conversations, not just random advice that doesn't fit how I think. Andrea's approach treats communication like the learnable skill it is."
-              <footer class="mt-2 text-teal-950 font-medium not-italic">— Lada Kesseler</footer>
-            </blockquote>
-          </div>
-
-          <!-- Pillar 2 -->
-          <div class="bg-white rounded-2xl p-8 shadow-sm">
-            <div class="flex items-start gap-4 mb-4">
-              <span class="bg-teal-600 text-white font-bold text-xl w-10 h-10 rounded-full flex items-center justify-center shrink-0">2</span>
-              <h3 class="text-2xl font-bold text-teal-950">Design Easy-to-Implement Experiments for Rapid Results</h3>
-            </div>
-            <p class="text-lg text-teal-900 mb-6">
-              Understanding isn't enough. You also need an approach you can actually execute.
-            </p>
-            <p class="text-lg text-teal-900 mb-6">
-              Instead of forcing yourself into someone else's system, we design experiments around what you're already doing. The goal: find the smallest tweak that creates disproportionate results.
-            </p>
-            <blockquote class="border-l-4 border-teal-600 pl-6 italic text-teal-800">
-              "You spotted assumptions I didn't even know I had. This experiment seems so easy and I can already see how impactful it will be."
-              <footer class="mt-2 text-teal-950 font-medium not-italic">— Client on designing experiments</footer>
-            </blockquote>
-          </div>
-
-          <!-- Pillar 3 -->
-          <div class="bg-white rounded-2xl p-8 shadow-sm">
-            <div class="flex items-start gap-4 mb-4">
-              <span class="bg-teal-600 text-white font-bold text-xl w-10 h-10 rounded-full flex items-center justify-center shrink-0">3</span>
-              <h3 class="text-2xl font-bold text-teal-950">Develop Your Skills with Expert Guidance</h3>
-            </div>
-            <p class="text-lg text-teal-900 mb-6">
-              Most communication coaches come from HR or psychology backgrounds. I come from systems thinking.
-            </p>
-            <p class="text-lg text-teal-900 mb-6">
-              I didn't stumble into communication late in my career—I've been obsessed with it for 25 years. As a kid, social situations baffled me. Then I discovered linguistics, business communication, and copywriting, and I saw that human interaction has patterns, structures, even computational principles. It's not magic. It's a system.
-            </p>
-            <p class="text-lg text-teal-900">
-              I've spent my career operating at that intersection—helping Fortune 500 companies turn around from billions in losses, facilitating workshops with Smithsonian scientists, bootstrapping a software consultancy where empathy was our competitive advantage.
-            </p>
-          </div>
-
-          <!-- Pillar 4 -->
-          <div class="bg-white rounded-2xl p-8 shadow-sm">
-            <div class="flex items-start gap-4 mb-4">
-              <span class="bg-teal-600 text-white font-bold text-xl w-10 h-10 rounded-full flex items-center justify-center shrink-0">4</span>
-              <h3 class="text-2xl font-bold text-teal-950">Discover the Transformative Power of Community Learning</h3>
-            </div>
-            <p class="text-lg text-teal-900 mb-6">
-              You've probably felt it—the loneliness of being the person who communicates differently. The code-switching. The holding back. The quiet embarrassment of not navigating social situations the way your colleagues seem to.
-            </p>
-            <p class="text-lg text-teal-900 mb-6">
-              In this community, you don't have to translate yourself. You can think out loud in detail and schematics. You can be direct without apology.
-            </p>
-            <p class="text-lg text-teal-900 mb-6">
-              And you'll discover you're not alone. Others are working through the same challenges—and they're eager to share what's working. Members swap experiments like recipes, excited to let each other in on what they've found.
-            </p>
-            <blockquote class="border-l-4 border-teal-600 pl-6 italic text-teal-800">
-              "After working with Andrea, I went to a conference and actually enjoyed meeting people. I had a framework for starting conversations and knew how to exit gracefully when needed."
-              <footer class="mt-2 text-teal-950 font-medium not-italic">— Ellis Lempriere</footer>
-            </blockquote>
-          </div>
+          {methodology.approaches?.map((approach, index) => (
+            <MethodologyCard
+              number={index + 1}
+              title={approach.title}
+              paragraphs={approach.paragraphs}
+              testimonial={approach.testimonial}
+            />
+          ))}
         </div>
 
         <div class="text-center mt-12">
@@ -254,73 +172,33 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <!-- Find Your Lever -->
     <section class="py-20 px-6 bg-teal-950 text-white">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Find Your Lever</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">{findYourLever.title}</h2>
 
-        <blockquote class="text-xl text-teal-200 text-center mb-8 italic">
-          "Give me a lever long enough and a fulcrum on which to place it, and I shall move the world."
-          <footer class="mt-2 text-teal-400 not-italic">— Archimedes</footer>
-        </blockquote>
+        {findYourLever.epigraph && (
+          <blockquote class="text-xl text-teal-200 text-center mb-8 italic">
+            "{findYourLever.epigraph.quote}"
+            <footer class="mt-2 text-teal-400 not-italic">— {findYourLever.epigraph.author}</footer>
+          </blockquote>
+        )}
 
-        <p class="text-lg text-teal-100 mb-6 text-center max-w-2xl mx-auto">
-          Most people focus on the lever—working harder, doing more. But the real power is in the fulcrum: <em>where</em> you place it.
-        </p>
-
-        <p class="text-lg text-teal-100 mb-12 text-center max-w-2xl mx-auto">
-          That's what we do together. We find your tipping point—the place in your habits, schedule, mindset, or messaging where a small shift creates outsized results.
-        </p>
-
-        <p class="text-xl text-teal-200 font-medium text-center mb-12">
-          Most clients come wrestling with one of these four challenges—and leave with small shifts that made a big impact.
-        </p>
+        <div class="text-lg text-teal-100 mb-12 text-center max-w-2xl mx-auto space-y-6">
+          {findYourLever.introParagraphs?.map((p) => (
+            <p set:html={p.replace(/\*([^*]+)\*/g, '<em>$1</em>')} />
+          ))}
+        </div>
 
         <div class="grid md:grid-cols-2 gap-8">
-          <!-- Challenge 1 -->
-          <div class="bg-teal-900/50 rounded-2xl p-6">
-            <h3 class="text-xl font-bold text-teal-400 mb-3">Conversation Flow</h3>
-            <p class="text-teal-100 mb-4">
-              You know what you want to say, but it comes out wrong. You rehearse for days, then freeze in the moment. You replay conversations wondering what you should have said differently.
-            </p>
-            <p class="text-teal-200 text-sm">
-              <strong class="text-teal-400">Try this:</strong> Before your next difficult conversation, write down what you want the other person to <em>feel</em> when it's over—not what you want to say. Let that guide your words.
-            </p>
-          </div>
-
-          <!-- Challenge 2 -->
-          <div class="bg-teal-900/50 rounded-2xl p-6">
-            <h3 class="text-xl font-bold text-teal-400 mb-3">Stakeholder Buy-In</h3>
-            <p class="text-teal-100 mb-4">
-              You have good ideas, but you can't get traction. You're told you're "too in the weeds" but nobody explains what the right altitude looks like. Your proposals die in committee.
-            </p>
-            <p class="text-teal-200 text-sm">
-              <strong class="text-teal-400">Try this:</strong> Before your next proposal, ask yourself: "What problem does this solve that they already care about?" Lead with that, not the solution.
-            </p>
-          </div>
-
-          <!-- Challenge 3 -->
-          <div class="bg-teal-900/50 rounded-2xl p-6">
-            <h3 class="text-xl font-bold text-teal-400 mb-3">Community & Belonging</h3>
-            <p class="text-teal-100 mb-4">
-              You feel like you don't fit in anywhere. Networking feels performative. You're tired of code-switching just to connect with colleagues.
-            </p>
-            <p class="text-teal-200 text-sm">
-              <strong class="text-teal-400">Try this:</strong> At your next event, forget "working the room." Set a goal of having one genuine conversation. Give yourself permission to leave after that.
-            </p>
-          </div>
-
-          <!-- Challenge 4 -->
-          <div class="bg-teal-900/50 rounded-2xl p-6">
-            <h3 class="text-xl font-bold text-teal-400 mb-3">Career Growth</h3>
-            <p class="text-teal-100 mb-4">
-              You keep getting passed over and you don't know why. You're told to "be more visible" but self-promotion feels gross. You want to grow without playing games.
-            </p>
-            <p class="text-teal-200 text-sm">
-              <strong class="text-teal-400">Try this:</strong> Next time you finish something you're proud of, share what you learned—not what you accomplished. It feels less like bragging.
-            </p>
-          </div>
+          {findYourLever.challenges?.map((challenge) => (
+            <ChallengeCard
+              title={challenge.title}
+              description={challenge.description}
+              tip={challenge.tip}
+            />
+          ))}
         </div>
 
         <div class="text-center mt-12">
-          <p class="text-xl text-teal-200 mb-6">Ready to find your lever?</p>
+          <p class="text-xl text-teal-200 mb-6">{findYourLever.closingText}</p>
           <a
             href={calendlyUrl}
             class="inline-block bg-coral text-white font-bold text-lg px-8 py-4 rounded-lg hover:bg-coral/90 transition-colors shadow-lg hover:shadow-xl"
@@ -334,52 +212,31 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <!-- Pricing -->
     <section class="py-20 px-6 bg-white">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-4 text-center">Start Here</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-4 text-center">{pricing.title}</h2>
 
-        <!-- Discovery Session - Featured -->
-        <div class="bg-gradient-to-br from-teal-600 to-teal-800 rounded-2xl p-8 md:p-10 text-white mb-12 shadow-xl">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <h3 class="text-2xl md:text-3xl font-bold mb-2">Discovery Session</h3>
-              <p class="text-4xl font-extrabold text-teal-200 mb-4">$129</p>
-              <p class="text-teal-100 text-lg mb-4">
-                A 30-minute 1:1 session where we dig into your specific challenge and design your first experiment together. You'll also get access to the community so you can connect with others on the same path.
-              </p>
-              <p class="text-teal-200 font-medium">
-                If you don't feel like you've gotten your money's worth, I'll refund you completely.
-              </p>
-            </div>
-            <div class="shrink-0">
-              <a
-                href={calendlyUrl}
-                class="inline-block bg-coral text-white font-bold text-lg px-8 py-4 rounded-lg hover:bg-coral/90 transition-colors shadow-lg hover:shadow-xl whitespace-nowrap"
-              >
-                Book Now →
-              </a>
-            </div>
-          </div>
-        </div>
+        {pricing.tiers?.filter(tier => tier.featured).map((tier) => (
+          <PricingCard
+            title={tier.title}
+            price={tier.price}
+            description={tier.description}
+            featured={true}
+            guarantee={tier.guarantee}
+            ctaText={tier.ctaText}
+            ctaUrl={calendlyUrl}
+          />
+        ))}
 
-        <h3 class="text-2xl font-bold text-teal-950 mb-8 text-center">Ways to Keep Going</h3>
+        <h3 class="text-2xl font-bold text-teal-950 mb-8 text-center">{pricing.continuationTitle}</h3>
 
         <div class="grid md:grid-cols-2 gap-8">
-          <!-- Group Coaching -->
-          <div class="border-2 border-teal-200 rounded-2xl p-6 hover:border-teal-400 transition-colors">
-            <h4 class="text-xl font-bold text-teal-950 mb-2">Group Coaching</h4>
-            <p class="text-3xl font-extrabold text-teal-800 mb-4">$225<span class="text-lg font-normal text-teal-600">/month</span></p>
-            <p class="text-teal-900">
-              Weekly calls, small cohort, async access to me between sessions. For people who want structured learning with direct support.
-            </p>
-          </div>
-
-          <!-- Private Coaching -->
-          <div class="border-2 border-teal-200 rounded-2xl p-6 hover:border-teal-400 transition-colors">
-            <h4 class="text-xl font-bold text-teal-950 mb-2">Private Coaching</h4>
-            <p class="text-3xl font-extrabold text-teal-800 mb-4">$895<span class="text-lg font-normal text-teal-600">/month</span></p>
-            <p class="text-teal-900">
-              1:1 sessions, unlimited async access, personalized frameworks. For senior leaders or urgent situations.
-            </p>
-          </div>
+          {pricing.tiers?.filter(tier => !tier.featured).map((tier) => (
+            <PricingCard
+              title={tier.title}
+              price={tier.price}
+              period={tier.period}
+              description={tier.description}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -387,29 +244,12 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <!-- FAQ -->
     <section class="py-20 px-6 bg-teal-50">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-12 text-center">Common Questions</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-12 text-center">{faq.title}</h2>
 
         <div class="space-y-8">
-          <div>
-            <h3 class="text-xl font-bold text-teal-950 mb-3">"I've tried other communication training. Why would this be different?"</h3>
-            <p class="text-lg text-teal-900">
-              Those programs were probably designed for everyone. This one is designed for <em>you</em>—someone who thinks in systems, values evidence, and wants frameworks they can apply consistently. The methodology matches how your brain already works.
-            </p>
-          </div>
-
-          <div>
-            <h3 class="text-xl font-bold text-teal-950 mb-3">"I don't have time for this."</h3>
-            <p class="text-lg text-teal-900">
-              This isn't additional work. It's a different approach to conversations you're already having. The time you spend stewing over an email, replaying a meeting, or avoiding a difficult conversation—that's the time this reclaims.
-            </p>
-          </div>
-
-          <div>
-            <h3 class="text-xl font-bold text-teal-950 mb-3">"Is it worth the investment?"</h3>
-            <p class="text-lg text-teal-900">
-              Consider the cost of staying stuck. Missed promotions. Stalled projects because you couldn't get buy-in. Relationships damaged by miscommunication. One successful difficult conversation can change your career trajectory. Soumya got 7 headcount during a freeze. What would that kind of result be worth to you?
-            </p>
-          </div>
+          {faq.questions?.map((item) => (
+            <FAQItem question={item.question} answer={item.answer} />
+          ))}
         </div>
       </div>
     </section>
@@ -417,29 +257,13 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <!-- What This Is NOT -->
     <section class="py-20 px-6 bg-white">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-8 text-center">What This Is NOT</h2>
-        <p class="text-lg text-teal-800 text-center mb-12">Let me be direct about fit.</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-8 text-center">{whatThisIsNot.title}</h2>
+        <p class="text-lg text-teal-800 text-center mb-12">{whatThisIsNot.subtitle}</p>
 
         <div class="grid sm:grid-cols-2 gap-6">
-          <div class="bg-teal-50 rounded-xl p-6">
-            <p class="font-bold text-teal-950 mb-2">This is not therapy.</p>
-            <p class="text-teal-800">It can complement therapy, but the focus is practical skill-building, not emotional processing.</p>
-          </div>
-
-          <div class="bg-teal-50 rounded-xl p-6">
-            <p class="font-bold text-teal-950 mb-2">This is not a personality makeover.</p>
-            <p class="text-teal-800">You don't need to become an extrovert. Your analytical nature is an asset—we build on it.</p>
-          </div>
-
-          <div class="bg-teal-50 rounded-xl p-6">
-            <p class="font-bold text-teal-950 mb-2">This is not corporate role-playing.</p>
-            <p class="text-teal-800">No awkward exercises with strangers. Real practice with real conversations.</p>
-          </div>
-
-          <div class="bg-teal-50 rounded-xl p-6">
-            <p class="font-bold text-teal-950 mb-2">This is not abstract theory.</p>
-            <p class="text-teal-800">Everything is applicable immediately to situations you're actually facing.</p>
-          </div>
+          {whatThisIsNot.items?.map((item) => (
+            <ClarificationCard title={item.title} description={item.description} />
+          ))}
         </div>
       </div>
     </section>
@@ -447,56 +271,11 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <!-- Who This Is For -->
     <section class="py-20 px-6 bg-teal-200">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-12 text-center">Who This Is For</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-teal-950 mb-12 text-center">{whoThisIsFor.title}</h2>
 
         <div class="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-xl font-bold text-teal-950 mb-4 flex items-center gap-2">
-              <span class="text-green">✓</span> This is for you if:
-            </h3>
-            <ul class="space-y-3 text-teal-900">
-              <li class="flex items-start gap-2">
-                <span class="text-green mt-1">✓</span>
-                <span>You've built your career on technical excellence and now need communication skills to match</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green mt-1">✓</span>
-                <span>You've tried books and videos but can't seem to apply the advice in the moment</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green mt-1">✓</span>
-                <span>You want frameworks, not platitudes</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green mt-1">✓</span>
-                <span>You're willing to practice and iterate, not just learn concepts</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-green mt-1">✓</span>
-                <span>You're ready for conversations to stop being the hardest part of your job</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="text-xl font-bold text-teal-950 mb-4 flex items-center gap-2">
-              <span class="text-coral">✗</span> This is NOT for you if:
-            </h3>
-            <ul class="space-y-3 text-teal-900">
-              <li class="flex items-start gap-2">
-                <span class="text-coral mt-1">✗</span>
-                <span>You're looking for quick tricks or manipulation tactics</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-coral mt-1">✗</span>
-                <span>You want someone to tell you what to say without understanding why</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-coral mt-1">✗</span>
-                <span>You're not willing to try things differently</span>
-              </li>
-            </ul>
-          </div>
+          <FitList type="good" items={whoThisIsFor.goodFit || []} />
+          <FitList type="bad" items={whoThisIsFor.notGoodFit || []} />
         </div>
       </div>
     </section>
@@ -504,33 +283,25 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <!-- Final CTA -->
     <section class="py-20 px-6 bg-teal-950 text-white">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-8">The Next Step</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">{finalCta.title}</h2>
 
-        <p class="text-lg text-teal-100 mb-6">
-          You could keep doing what you've been doing. Replay conversations. Wonder why your ideas don't land. Calculate the least awkward time to leave.
-        </p>
-
-        <p class="text-lg text-teal-100 mb-6">
-          Or you could approach communication the way you approach any system: learn how it works, practice deliberately, improve systematically.
-        </p>
-
-        <p class="text-xl text-teal-200 font-medium mb-8">
-          The conversations you're avoiding aren't going away. The stakeholders you need to influence are still waiting. The career ceiling you've hit is still there.
-        </p>
-
-        <p class="text-2xl text-white font-bold mb-8">But it doesn't have to be.</p>
+        {finalCta.paragraphs?.map((p) => {
+          const para = typeof p === 'string' ? { text: p } : p;
+          return para.emphasis === 'bold' ? (
+            <p class="text-2xl text-white font-bold mb-8">{para.text}</p>
+          ) : (
+            <p class="text-lg text-teal-100 mb-6">{para.text}</p>
+          );
+        })}
 
         <a
           href={calendlyUrl}
           class="inline-block bg-coral text-white font-bold text-xl px-10 py-5 rounded-lg hover:bg-coral/90 transition-colors shadow-lg hover:shadow-xl mb-6"
         >
-          Book Your Discovery Session →
+          {finalCta.ctaText}
         </a>
 
-        <p class="text-teal-200">
-          In 30 minutes, we'll dig into your specific challenge and design your first experiment together.<br>
-          $129, fully refundable if you don't find it valuable.
-        </p>
+        <p class="text-teal-200">{finalCta.ctaSubtext}</p>
       </div>
     </section>
 
@@ -538,10 +309,10 @@ const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
     <footer class="py-8 px-6 bg-teal-950 border-t border-teal-900">
       <div class="max-w-4xl mx-auto text-center">
         <p class="text-teal-400 mb-4">
-          Questions before booking? Email <a href="mailto:andrea@debugginghumancommunication.com" class="text-teal-200 hover:text-white underline">andrea@debugginghumancommunication.com</a>
+          Questions before booking? Email <a href={`mailto:${footer.contactEmail}`} class="text-teal-200 hover:text-white underline">{footer.contactEmail}</a>
         </p>
         <p class="text-teal-600 text-sm">
-          © 2026 Debugging Human Communication. All rights reserved.
+          {footer.copyright}
         </p>
       </div>
     </footer>

@@ -1,0 +1,48 @@
+---
+interface Props {
+  title: string;
+  price: number;
+  period?: string;
+  description: string;
+  featured?: boolean;
+  guarantee?: string;
+  ctaText?: string;
+  ctaUrl?: string;
+}
+
+const { title, price, period, description, featured, guarantee, ctaText, ctaUrl } = Astro.props;
+---
+
+{featured ? (
+  <div class="bg-gradient-to-br from-teal-600 to-teal-800 rounded-2xl p-8 md:p-10 text-white mb-12 shadow-xl">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h3 class="text-2xl md:text-3xl font-bold mb-2">{title}</h3>
+        <p class="text-4xl font-extrabold text-teal-200 mb-4">${price}</p>
+        <p class="text-teal-100 text-lg mb-4">{description}</p>
+        {guarantee && (
+          <p class="text-teal-200 font-medium">{guarantee}</p>
+        )}
+      </div>
+      {ctaText && ctaUrl && (
+        <div class="shrink-0">
+          <a
+            href={ctaUrl}
+            class="inline-block bg-coral text-white font-bold text-lg px-8 py-4 rounded-lg hover:bg-coral/90 transition-colors shadow-lg hover:shadow-xl whitespace-nowrap"
+          >
+            {ctaText}
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+) : (
+  <div class="border-2 border-teal-200 rounded-2xl p-6 hover:border-teal-400 transition-colors">
+    <h4 class="text-xl font-bold text-teal-950 mb-2">{title}</h4>
+    <p class="text-3xl font-extrabold text-teal-800 mb-4">
+      ${price}
+      {period && <span class="text-lg font-normal text-teal-600">{period}</span>}
+    </p>
+    <p class="text-teal-900">{description}</p>
+  </div>
+)}

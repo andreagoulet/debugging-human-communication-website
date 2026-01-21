@@ -1,0 +1,26 @@
+---
+interface Props {
+  type: 'good' | 'bad';
+  items: string[];
+}
+
+const { type, items } = Astro.props;
+const isGood = type === 'good';
+const icon = isGood ? '✓' : '✗';
+const iconColor = isGood ? 'text-green' : 'text-coral';
+const title = isGood ? 'This is for you if:' : 'This is NOT for you if:';
+---
+
+<div>
+  <h3 class="text-xl font-bold text-teal-950 mb-4 flex items-center gap-2">
+    <span class={iconColor}>{icon}</span> {title}
+  </h3>
+  <ul class="space-y-3 text-teal-900">
+    {items.map((item) => (
+      <li class="flex items-start gap-2">
+        <span class={`${iconColor} mt-1`}>{icon}</span>
+        <span>{item}</span>
+      </li>
+    ))}
+  </ul>
+</div>

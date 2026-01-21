@@ -1,0 +1,13 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div>
+  <h3 class="text-xl font-bold text-teal-950 mb-3">{question}</h3>
+  <p class="text-lg text-teal-900" set:html={answer.replace(/\*([^*]+)\*/g, '<em>$1</em>')} />
+</div>

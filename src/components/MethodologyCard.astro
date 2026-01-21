@@ -1,0 +1,35 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  paragraphs: string[];
+  testimonial?: {
+    quote: string;
+    author: string;
+  };
+}
+
+const { number, title, paragraphs, testimonial } = Astro.props;
+---
+
+<div class="bg-white rounded-2xl p-8 shadow-sm">
+  <div class="flex items-start gap-4 mb-4">
+    <span class="bg-teal-600 text-white font-bold text-xl w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+      {number}
+    </span>
+    <h3 class="text-2xl font-bold text-teal-950">{title}</h3>
+  </div>
+
+  {paragraphs.map((paragraph, index) => (
+    <p class={`text-lg text-teal-900 ${index < paragraphs.length - 1 || testimonial ? 'mb-6' : ''}`}>
+      {paragraph}
+    </p>
+  ))}
+
+  {testimonial && (
+    <blockquote class="border-l-4 border-teal-600 pl-6 italic text-teal-800">
+      "{testimonial.quote}"
+      <footer class="mt-2 text-teal-950 font-medium not-italic">— {testimonial.author}</footer>
+    </blockquote>
+  )}
+</div>
