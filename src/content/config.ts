@@ -37,6 +37,7 @@ const homepageCollection = defineCollection({
       testimonial: z.object({
         quote: z.string(),
         author: z.string(),
+        role: z.string().optional(),
       }).optional(),
     })).optional(),
 
