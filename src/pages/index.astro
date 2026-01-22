@@ -237,6 +237,9 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <section class="section bg-white">
       <div class="container-md">
         <h2 class="heading-section mb-4 text-center">{pricing.title}</h2>
+        {pricing.subtitle && (
+          <p class="text-xl text-teal-900 text-center mb-12 container-sm mx-auto">{pricing.subtitle}</p>
+        )}
 
         {pricing.tiers?.filter(tier => tier.featured).map((tier) => (
           <PricingCard
