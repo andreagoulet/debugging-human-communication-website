@@ -21,6 +21,8 @@ questions:
     answer: "Community is a one-time $129 fee — pay once and you're in for as long as the community is in operation. Group coaching has a 3-month minimum, private coaching 6 months. After that, cancel anytime. Once you've paid, you keep community access even if you stop coaching. The only exception: if you request a refund after the discovery call, you lose access to the online community. That's it."
   - question: "\"Can I use my professional development budget?\""
     answer: "Yes — many members do. Communication skills directly impact team effectiveness, stakeholder relationships, and leadership capacity. If your company invests in training, this qualifies. Need help making the case? We can work together to craft documentation you need."
+  - question: "\"What's up with the moth?\""
+    answer: "In 1947, a team working on the Mark II computer couldn't figure out why the heck things weren't working as expected. After hours of searching, they decided to check deeply into the bowels of the computer and soon found the problem. A moth had made its way into the machine.\n\nIn the team's logbook, Grace Murray Hopper taped the bug to the page and commented that it was the \"first actual case of a bug found,\" and we've been fixing bugs ever since.\n\nThis story reminds us that many times the solutions to our challenges aren't always obvious. When we keep an open mind and are willing to look beyond the obvious, that's where we can find the small and often surprising solutions that have a big impact. It also reminds us of the value of emergence and documenting our learnings."
   - question: "\"Can I get a discount?\""
-    answer: "You read all the way to the bottom of the FAQ? That's the kind of thoroughness I appreciate. Use code READTHEFAQ for 25% off your discovery call."
+    answer: "You read all the way to the bottom of the FAQ? That's the kind of thoroughness I appreciate. Use code READTHEFAQ for 10% off your discovery call."
 ---
