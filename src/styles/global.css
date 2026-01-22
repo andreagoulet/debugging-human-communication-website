@@ -37,3 +37,82 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
 }
+
+/* ========================================
+   Button Components
+   ======================================== */
+.btn-primary {
+  @apply inline-block bg-coral text-white font-bold text-lg
+         px-8 py-4 rounded-lg hover:bg-coral/90
+         transition-colors shadow-lg hover:shadow-xl;
+}
+
+.btn-primary-sm {
+  @apply inline-block bg-coral text-white font-semibold
+         px-5 py-2.5 rounded-lg hover:bg-coral/90 transition-colors;
+}
+
+.btn-primary-lg {
+  @apply inline-block bg-coral text-white font-bold text-xl
+         px-10 py-5 rounded-lg hover:bg-coral/90
+         transition-colors shadow-lg hover:shadow-xl;
+}
+
+/* ========================================
+   Layout Components
+   ======================================== */
+.section {
+  @apply py-20 px-6;
+}
+
+.container-lg {
+  @apply max-w-6xl mx-auto;
+}
+
+.container-md {
+  @apply max-w-4xl mx-auto;
+}
+
+.container-sm {
+  @apply max-w-3xl mx-auto;
+}
+
+.container-xs {
+  @apply max-w-2xl mx-auto;
+}
+
+/* ========================================
+   Card Components
+   ======================================== */
+.card {
+  @apply rounded-2xl p-8 shadow-sm;
+}
+
+.card-compact {
+  @apply rounded-2xl p-6;
+}
+
+.card-featured {
+  @apply rounded-2xl p-8 md:p-10 shadow-xl;
+}
+
+.card-simple {
+  @apply rounded-xl p-6;
+}
+
+/* ========================================
+   Typography Components (Fluid Scaling)
+   ======================================== */
+.heading-hero {
+  font-size: clamp(2.25rem, 5vw + 1rem, 3.75rem);
+  @apply font-extrabold text-teal-950;
+}
+
+.heading-section {
+  font-size: clamp(1.875rem, 3vw + 0.5rem, 2.25rem);
+  @apply font-bold text-teal-950;
+}
+
+.heading-card {
+  @apply text-2xl font-bold text-teal-950;
+}

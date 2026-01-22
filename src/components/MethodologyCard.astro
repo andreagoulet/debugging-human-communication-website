@@ -14,12 +14,12 @@ interface Props {
 const { number, title, paragraphs, testimonial } = Astro.props;
 ---
 
-<div class="bg-white rounded-2xl p-8 shadow-sm">
+<div class="card bg-white">
   <div class="flex items-start gap-4 mb-4">
     <span class="bg-teal-600 text-white font-bold text-xl w-10 h-10 rounded-full flex items-center justify-center shrink-0">
       {number}
     </span>
-    <h3 class="text-2xl font-bold text-teal-950">{title}</h3>
+    <h3 class="heading-card">{title}</h3>
   </div>
 
   {paragraphs.map((paragraph, index) => (

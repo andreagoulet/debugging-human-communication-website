@@ -9,7 +9,7 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<div class="bg-teal-50 rounded-xl p-6">
+<div class="card-simple bg-teal-50">
   <p class="font-bold text-teal-950 mb-2">{title}</p>
   <p class="text-teal-800" set:html={formatMarkdown(description)} />
 </div>
