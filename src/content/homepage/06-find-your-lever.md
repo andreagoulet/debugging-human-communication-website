@@ -20,5 +20,5 @@ challenges:
   - title: "Career Growth"
     description: "You keep getting passed over and you don't know why. You're told to \"be more visible\" but self-promotion feels gross. You want to grow without playing games."
     tip: "Think of someone you respect but haven't talked to in months. Send them a short note. Career-changing conversations often start with a simple 'how are you?'"
-closingText: "Ready to find your lever?"
+closingText: "Ready to find your leverage point?"
 ---
