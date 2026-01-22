@@ -14,31 +14,33 @@ const { title, price, period, description, featured, guarantee, ctaText, ctaUrl 
 ---
 
 {featured ? (
-  <div class="card-featured bg-gradient-to-br from-teal-600 to-teal-800 text-white mb-12">
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      <div>
-        <h3 class="heading-card !text-white mb-2">{title}</h3>
-        <p class="text-4xl font-extrabold text-teal-200 mb-4">${price}</p>
-        <p class="text-teal-100 text-lg mb-4">{description}</p>
-        {guarantee && (
-          <p class="text-teal-200 font-medium">{guarantee}</p>
+  <div class="card-featured bg-gradient-to-br from-teal-600 to-teal-800 mb-12">
+    <div class="bg-white/95 rounded-xl p-6 md:p-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <h3 class="heading-card mb-2">{title}</h3>
+          <p class="text-4xl font-extrabold text-teal-950 mb-4">${price}</p>
+          <p class="text-teal-900 text-lg mb-4">{description}</p>
+          {guarantee && (
+            <p class="text-teal-950 font-medium">{guarantee}</p>
+          )}
+        </div>
+        {ctaText && ctaUrl && (
+          <div class="shrink-0">
+            <a href={ctaUrl} class="btn-primary whitespace-nowrap">
+              {ctaText}
+            </a>
+          </div>
         )}
       </div>
-      {ctaText && ctaUrl && (
-        <div class="shrink-0">
-          <a href={ctaUrl} class="btn-primary whitespace-nowrap">
-            {ctaText}
-          </a>
-        </div>
-      )}
     </div>
   </div>
 ) : (
   <div class="card-compact border-2 border-teal-200 hover:border-teal-400 transition-colors">
     <h4 class="text-xl font-bold text-teal-950 mb-2">{title}</h4>
-    <p class="text-3xl font-extrabold text-teal-800 mb-4">
+    <p class="text-3xl font-extrabold text-teal-950 mb-4">
       ${price}
-      {period && <span class="text-lg font-normal text-teal-600">{period}</span>}
+      {period && <span class="text-lg font-normal text-teal-900">{period}</span>}
     </p>
     <p class="text-teal-900">{description}</p>
   </div>

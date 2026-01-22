@@ -84,7 +84,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         <ul class="space-y-4 text-lg text-teal-900 mb-8">
           {openingNarrative.painPoints?.map((point) => (
             <li class="flex items-start gap-3">
-              <span class="text-teal-600 mt-1">•</span>
+              <span class="text-teal-950 mt-1">•</span>
               <span>{point}</span>
             </li>
           ))}
@@ -96,7 +96,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
           return isSecondToLast ? (
             <p class="text-xl text-teal-950 font-semibold" set:html={formatMarkdown(p)} />
           ) : isLast ? (
-            <p class="text-xl text-teal-800 font-bold mt-4" set:html={formatMarkdown(p)} />
+            <p class="text-xl text-teal-950 font-bold mt-4" set:html={formatMarkdown(p)} />
           ) : (
             <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(p)} />
           );
@@ -130,7 +130,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         {answer.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
           return para.emphasis === 'bold' ? (
-            <p class="text-2xl text-teal-800 font-bold mb-8" set:html={formatMarkdown(para.text)} />
+            <p class="text-2xl text-teal-950 font-bold mb-8" set:html={formatMarkdown(para.text)} />
           ) : (
             <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
           );
@@ -142,7 +142,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <section class="section bg-teal-50">
       <div class="container-md">
         <h2 class="heading-section mb-4 text-center">{methodology.title}</h2>
-        <p class="text-xl text-teal-800 text-center mb-16">{methodology.subtitle}</p>
+        <p class="text-xl text-teal-900 text-center mb-16">{methodology.subtitle}</p>
 
         <div class="space-y-16">
           {methodology.approaches?.map((approach, index) => (
@@ -167,7 +167,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <section class="section bg-white">
       <div class="container-sm">
         <h2 class="heading-section mb-6 text-center">{meetAndrea.title}</h2>
-        <p class="text-xl text-teal-800 text-center mb-10">{meetAndrea.intro}</p>
+        <p class="text-xl text-teal-900 text-center mb-10">{meetAndrea.intro}</p>
 
         {meetAndrea.paragraphs?.map((p) => (
           <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
@@ -179,15 +179,15 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <section class="section bg-teal-200">
       <div class="container-md">
         <h2 class="heading-section mb-4 text-center">{framework.title}</h2>
-        <p class="text-xl text-teal-800 text-center mb-6">{framework.subtitle}</p>
+        <p class="text-xl text-teal-900 text-center mb-6">{framework.subtitle}</p>
         <p class="text-lg text-teal-900 text-center mb-12 container-sm">{framework.introText}</p>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {framework.steps?.map((step) => (
             <div class="bg-white rounded-lg p-6 shadow-sm">
-              <div class="text-3xl font-bold text-teal-600 mb-2">{step.number}</div>
+              <div class="text-3xl font-bold text-teal-950 mb-2">{step.number}</div>
               <h3 class="text-lg font-semibold text-teal-950 mb-3">{step.title}</h3>
-              <p class="text-teal-800 text-sm">{step.description}</p>
+              <p class="text-teal-900 text-sm">{step.description}</p>
             </div>
           ))}
         </div>
@@ -282,7 +282,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <section class="section bg-white">
       <div class="container-sm">
         <h2 class="heading-section mb-8 text-center">{whatThisIsNot.title}</h2>
-        <p class="text-lg text-teal-800 text-center mb-12">{whatThisIsNot.subtitle}</p>
+        <p class="text-lg text-teal-900 text-center mb-12">{whatThisIsNot.subtitle}</p>
 
         <div class="grid sm:grid-cols-2 gap-6">
           {whatThisIsNot.items?.map((item) => (
@@ -332,7 +332,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         <p class="text-teal-400 mb-4">
           Questions before booking? Email <a href={`mailto:${footer.contactEmail}`} class="text-teal-200 hover:text-white underline">{footer.contactEmail}</a>
         </p>
-        <p class="text-teal-600 text-sm">
+        <p class="text-teal-400 text-sm">
           {footer.copyright}
         </p>
       </div>
