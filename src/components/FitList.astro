@@ -1,4 +1,6 @@
 ---
+import { formatMarkdown } from '../utils/formatMarkdown';
+
 interface Props {
   type: 'good' | 'bad';
   items: string[];
@@ -19,7 +21,7 @@ const title = isGood ? 'This is for you if:' : 'This is NOT for you if:';
     {items.map((item) => (
       <li class="flex items-start gap-2">
         <span class={`${iconColor} mt-1`}>{icon}</span>
-        <span>{item}</span>
+        <span set:html={formatMarkdown(item)} />
       </li>
     ))}
   </ul>

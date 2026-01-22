@@ -7,6 +7,7 @@ import PricingCard from '../components/PricingCard.astro';
 import FAQItem from '../components/FAQItem.astro';
 import ClarificationCard from '../components/ClarificationCard.astro';
 import FitList from '../components/FitList.astro';
+import { formatMarkdown } from '../utils/formatMarkdown';
 
 const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
 
@@ -80,7 +81,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         <p class="text-xl text-teal-950 mb-6 font-medium">{openingNarrative.opener}</p>
 
         {openingNarrative.paragraphs?.map((p) => (
-          <p class="text-lg text-teal-900 mb-6">{typeof p === 'string' ? p : p.text}</p>
+          <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
         ))}
 
         <p class="text-lg text-teal-950 font-medium mb-6">{openingNarrative.painPointsIntro}</p>
@@ -98,11 +99,11 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
           const isLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 1;
           const isSecondToLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 2;
           return isSecondToLast ? (
-            <p class="text-xl text-teal-950 font-semibold">{p}</p>
+            <p class="text-xl text-teal-950 font-semibold" set:html={formatMarkdown(p)} />
           ) : isLast ? (
-            <p class="text-xl text-teal-800 font-bold mt-4">{p}</p>
+            <p class="text-xl text-teal-800 font-bold mt-4" set:html={formatMarkdown(p)} />
           ) : (
-            <p class="text-lg text-teal-900 mb-6">{p}</p>
+            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(p)} />
           );
         })}
       </div>
@@ -116,11 +117,11 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         {realProblem.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
           return para.emphasis === 'bold' ? (
-            <p class="text-xl text-teal-950 font-semibold mb-6">{para.text}</p>
+            <p class="text-xl text-teal-950 font-semibold mb-6" set:html={formatMarkdown(para.text)} />
           ) : para.emphasis === 'italic' ? (
-            <p class="text-xl text-teal-950 font-medium italic">{para.text}</p>
+            <p class="text-xl text-teal-950 font-medium italic" set:html={formatMarkdown(para.text)} />
           ) : (
-            <p class="text-lg text-teal-900 mb-6">{para.text}</p>
+            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
           );
         })}
       </div>
@@ -134,9 +135,9 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         {answer.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
           return para.emphasis === 'bold' ? (
-            <p class="text-2xl text-teal-800 font-bold mb-8">{para.text}</p>
+            <p class="text-2xl text-teal-800 font-bold mb-8" set:html={formatMarkdown(para.text)} />
           ) : (
-            <p class="text-lg text-teal-900 mb-6">{para.text}</p>
+            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
           );
         })}
       </div>
@@ -177,7 +178,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         <p class="text-xl text-teal-800 text-center mb-10">{meetAndrea.intro}</p>
 
         {meetAndrea.paragraphs?.map((p) => (
-          <p class="text-lg text-teal-900 mb-6">{p}</p>
+          <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
         ))}
       </div>
     </section>
@@ -196,7 +197,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
 
         <div class="text-lg text-teal-100 mb-12 text-center max-w-2xl mx-auto space-y-6">
           {findYourLever.introParagraphs?.map((p) => (
-            <p set:html={p.replace(/\*([^*]+)\*/g, '<em>$1</em>')} />
+            <p set:html={formatMarkdown(p)} />
           ))}
         </div>
 
@@ -301,9 +302,9 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         {finalCta.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
           return para.emphasis === 'bold' ? (
-            <p class="text-2xl text-white font-bold mb-8">{para.text}</p>
+            <p class="text-2xl text-white font-bold mb-8" set:html={formatMarkdown(para.text)} />
           ) : (
-            <p class="text-lg text-teal-100 mb-6">{para.text}</p>
+            <p class="text-lg text-teal-100 mb-6" set:html={formatMarkdown(para.text)} />
           );
         })}
 

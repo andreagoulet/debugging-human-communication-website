@@ -1,4 +1,6 @@
 ---
+import { formatMarkdown } from '../utils/formatMarkdown';
+
 interface Props {
   number: number;
   title: string;
@@ -21,9 +23,7 @@ const { number, title, paragraphs, testimonial } = Astro.props;
   </div>
 
   {paragraphs.map((paragraph, index) => (
-    <p class={`text-lg text-teal-900 ${index < paragraphs.length - 1 || testimonial ? 'mb-6' : ''}`}>
-      {paragraph}
-    </p>
+    <p class={`text-lg text-teal-900 ${index < paragraphs.length - 1 || testimonial ? 'mb-6' : ''}`} set:html={formatMarkdown(paragraph)} />
   ))}
 
   {testimonial && (
