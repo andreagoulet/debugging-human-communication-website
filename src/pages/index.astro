@@ -360,8 +360,13 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         <p class="text-teal-400 mb-4">
           Questions before booking? Email <a href={`mailto:${footer.contactEmail}`} class="text-teal-200 hover:text-white underline">{footer.contactEmail}</a>
         </p>
-        <p class="text-teal-400 text-sm">
+        <p class="text-teal-400 text-sm mb-2">
           {footer.copyright}
+        </p>
+        <p class="text-teal-500 text-sm">
+          <a href={footer.termsUrl} class="hover:text-teal-300 underline">Terms & Conditions</a>
+          <span class="mx-2">|</span>
+          <a href={footer.privacyUrl} class="hover:text-teal-300 underline">Privacy Policy</a>
         </p>
       </div>
     </footer>

@@ -100,6 +100,8 @@ const homepageCollection = defineCollection({
     // Footer
     contactEmail: z.string().optional(),
     copyright: z.string().optional(),
+    termsUrl: z.string().optional(),
+    privacyUrl: z.string().optional(),
   }),
 });
 
