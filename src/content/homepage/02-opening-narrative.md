@@ -3,7 +3,7 @@ opener: "You crack hard problems for a living. So why is communicating with peop
 paragraphs:
   - "You're in a meeting, giving lots of detail to help people see your vision. Instead of the enthusiasm you were expecting, you watch everyone else's eyes glaze over."
   - "Or you're at a conference, coffee in hand, scanning the room. Everyone else seems to be connecting effortlessly. You're calculating the least awkward time to leave."
-  - "Or you're at your computer, eager to share your ideas with the world — but you don't publish anything. Your brain is blocked. Somehow, you too much to say and nothing to say — all at the same time."
+  - "Or you're at your computer, eager to share your ideas with the world — but you don't publish anything. Your brain is blocked. Somehow, you have too much to say and nothing to say — all at the same time."
 painPointsIntro: "These aren't one-off events. Small miscommunications like this seem to happen every day."
 painPoints:
   - "Watching someone's eyes glaze over mid-sentence"
