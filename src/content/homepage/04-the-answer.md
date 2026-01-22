@@ -1,5 +1,5 @@
 ---
-title: "Communication Is a System. Reverse Engineer It."
+title: "Communication Is a System.<br>Reverse Engineer It."
 paragraphs:
   - text: "Miscommunications are bugs in a human system. Just like you find and fix bugs in your code, you can learn to analyze, understand, and systematically improve your interactions with others."
     emphasis: "bold"
