@@ -74,6 +74,13 @@ const homepageCollection = defineCollection({
     })).optional(),
     continuationTitle: z.string().optional(),
 
+    // Featured testimonial
+    testimonial: z.object({
+      quote: z.string(),
+      author: z.string(),
+      role: z.string().optional(),
+    }).optional(),
+
     // FAQ
     questions: z.array(z.object({
       question: z.string(),

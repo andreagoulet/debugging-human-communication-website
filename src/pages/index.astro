@@ -7,6 +7,7 @@ import PricingCard from '../components/PricingCard.astro';
 import FAQItem from '../components/FAQItem.astro';
 import ClarificationCard from '../components/ClarificationCard.astro';
 import FitList from '../components/FitList.astro';
+import FeaturedTestimonial from '../components/FeaturedTestimonial.astro';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
 const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
@@ -24,6 +25,7 @@ const realProblem = content['03-the-real-problem'].data;
 const answer = content['04-the-answer'].data;
 const methodology = content['05-methodology'].data;
 const meetAndrea = content['05b-meet-andrea'].data;
+const featuredTestimonial = content['05d-featured-testimonial'].data;
 const framework = content['05c-framework'].data;
 const findYourLever = content['06-find-your-lever'].data;
 const pricing = content['07-pricing'].data;
@@ -168,6 +170,21 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         {meetAndrea.paragraphs?.map((p) => (
           <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
         ))}
+      </div>
+    </section>
+
+    <!-- Featured Testimonial -->
+    <section class="section bg-teal-100">
+      <div class="container-md">
+        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(featuredTestimonial.title || '')} />
+
+        {featuredTestimonial.testimonial && (
+          <FeaturedTestimonial
+            quote={featuredTestimonial.testimonial.quote}
+            author={featuredTestimonial.testimonial.author}
+            role={featuredTestimonial.testimonial.role}
+          />
+        )}
       </div>
     </section>
 
