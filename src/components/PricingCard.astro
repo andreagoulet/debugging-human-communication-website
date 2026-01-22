@@ -1,4 +1,6 @@
 ---
+import { formatMarkdown } from '../utils/formatMarkdown';
+
 interface Props {
   title: string;
   price: number;
@@ -20,9 +22,9 @@ const { title, price, period, description, featured, guarantee, ctaText, ctaUrl 
         <div>
           <h3 class="heading-card mb-2">{title}</h3>
           <p class="text-4xl font-extrabold text-teal-950 mb-4">${price}</p>
-          <p class="text-teal-900 text-lg mb-4">{description}</p>
+          <p class="text-teal-900 text-lg mb-4" set:html={formatMarkdown(description)} />
           {guarantee && (
-            <p class="text-teal-950 font-medium">{guarantee}</p>
+            <p class="text-teal-950 font-medium" set:html={formatMarkdown(guarantee)} />
           )}
         </div>
         {ctaText && ctaUrl && (
@@ -42,6 +44,6 @@ const { title, price, period, description, featured, guarantee, ctaText, ctaUrl 
       ${price}
       {period && <span class="text-lg font-normal text-teal-900">{period}</span>}
     </p>
-    <p class="text-teal-900">{description}</p>
+    <p class="text-teal-900" set:html={formatMarkdown(description)} />
   </div>
 )}

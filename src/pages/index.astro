@@ -58,12 +58,8 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Hero Section -->
     <section class="section bg-gradient-to-b from-teal-200 to-teal-50">
       <div class="container-md text-center">
-        <h1 class="heading-hero mb-6">
-          {hero.headline}
-        </h1>
-        <p class="text-xl md:text-2xl text-teal-900 mb-10 container-xs">
-          {hero.subheadline}
-        </p>
+        <h1 class="heading-hero mb-6" set:html={formatMarkdown(hero.headline || '')} />
+        <p class="text-xl md:text-2xl text-teal-900 mb-10 container-xs" set:html={formatMarkdown(hero.subheadline || '')} />
         <a href={calendlyUrl} class="btn-primary">
           {hero.ctaText}
         </a>
@@ -73,19 +69,19 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Opening Narrative -->
     <section class="section bg-white">
       <div class="container-sm">
-        <p class="text-xl text-teal-950 mb-6 font-medium">{openingNarrative.opener}</p>
+        <p class="text-xl text-teal-950 mb-6 font-medium text-center" set:html={formatMarkdown(openingNarrative.opener || '')} />
 
         {openingNarrative.paragraphs?.map((p) => (
           <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
         ))}
 
-        <p class="text-lg text-teal-950 font-medium mb-6">{openingNarrative.painPointsIntro}</p>
+        <p class="text-lg text-teal-950 font-medium mb-6" set:html={formatMarkdown(openingNarrative.painPointsIntro || '')} />
 
         <ul class="space-y-4 text-lg text-teal-900 mb-8">
           {openingNarrative.painPoints?.map((point) => (
             <li class="flex items-start gap-3">
               <span class="text-teal-950 mt-1">•</span>
-              <span>{point}</span>
+              <span set:html={formatMarkdown(point)} />
             </li>
           ))}
         </ul>
@@ -107,7 +103,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- The Real Problem -->
     <section class="section bg-teal-200">
       <div class="container-sm">
-        <h2 class="heading-section mb-8">{realProblem.title}</h2>
+        <h2 class="heading-section mb-8" set:html={formatMarkdown(realProblem.title || '')} />
 
         {realProblem.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
@@ -125,7 +121,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- The Answer -->
     <section class="section bg-white">
       <div class="container-sm">
-        <h2 class="heading-section mb-8">{answer.title}</h2>
+        <h2 class="heading-section mb-8" set:html={formatMarkdown(answer.title || '')} />
 
         {answer.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
@@ -141,8 +137,8 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- What Makes This Different (Methodology) -->
     <section class="section bg-teal-50">
       <div class="container-md">
-        <h2 class="heading-section mb-4 text-center">{methodology.title}</h2>
-        <p class="text-xl text-teal-900 text-center mb-16">{methodology.subtitle}</p>
+        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(methodology.title || '')} />
+        <p class="text-xl text-teal-900 text-center mb-16" set:html={formatMarkdown(methodology.subtitle || '')} />
 
         <div class="space-y-16">
           {methodology.approaches?.map((approach, index) => (
@@ -166,8 +162,8 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Meet Andrea -->
     <section class="section bg-white">
       <div class="container-sm">
-        <h2 class="heading-section mb-6 text-center">{meetAndrea.title}</h2>
-        <p class="text-xl text-teal-900 text-center mb-10">{meetAndrea.intro}</p>
+        <h2 class="heading-section mb-6 text-center" set:html={formatMarkdown(meetAndrea.title || '')} />
+        <p class="text-xl text-teal-900 text-center mb-10" set:html={formatMarkdown(meetAndrea.intro || '')} />
 
         {meetAndrea.paragraphs?.map((p) => (
           <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
@@ -178,33 +174,33 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Framework -->
     <section class="section bg-teal-200">
       <div class="container-md">
-        <h2 class="heading-section mb-4 text-center">{framework.title}</h2>
-        <p class="text-xl text-teal-900 text-center mb-6">{framework.subtitle}</p>
-        <p class="text-lg text-teal-900 text-center mb-12 container-sm">{framework.introText}</p>
+        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(framework.title || '')} />
+        <p class="text-xl text-teal-900 text-center mb-6" set:html={formatMarkdown(framework.subtitle || '')} />
+        <p class="text-lg text-teal-900 text-center mb-12 container-sm" set:html={formatMarkdown(framework.introText || '')} />
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {framework.steps?.map((step) => (
             <div class="bg-white rounded-lg p-6 shadow-sm">
               <div class="text-3xl font-bold text-teal-950 mb-2">{step.number}</div>
-              <h3 class="text-lg font-semibold text-teal-950 mb-3">{step.title}</h3>
-              <p class="text-teal-900 text-sm">{step.description}</p>
+              <h3 class="text-lg font-semibold text-teal-950 mb-3" set:html={formatMarkdown(step.title)} />
+              <p class="text-teal-900 text-sm" set:html={formatMarkdown(step.description)} />
             </div>
           ))}
         </div>
 
-        <p class="text-lg text-teal-950 font-medium text-center mt-12">{framework.closingText}</p>
+        <p class="text-lg text-teal-950 font-medium text-center mt-12" set:html={formatMarkdown(framework.closingText || '')} />
       </div>
     </section>
 
     <!-- Find Your Lever -->
     <section class="section bg-teal-950 text-white">
       <div class="container-md">
-        <h2 class="heading-section !text-white mb-8 text-center">{findYourLever.title}</h2>
+        <h2 class="heading-section !text-white mb-8 text-center" set:html={formatMarkdown(findYourLever.title || '')} />
 
         {findYourLever.epigraph && (
           <blockquote class="border-l-4 border-teal-400 pl-6 py-4 mb-10 bg-teal-900/30 rounded-r-lg">
-            <p class="text-2xl text-teal-100 italic mb-2">"{findYourLever.epigraph.quote}"</p>
-            <footer class="text-teal-400">— {findYourLever.epigraph.author}</footer>
+            <p class="text-2xl text-teal-100 italic mb-2" set:html={`"${formatMarkdown(findYourLever.epigraph.quote)}"`} />
+            <footer class="text-teal-400" set:html={`— ${formatMarkdown(findYourLever.epigraph.author)}`} />
           </blockquote>
         )}
 
@@ -225,7 +221,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         </div>
 
         <div class="text-center mt-12">
-          <p class="text-xl text-teal-200 mb-6">{findYourLever.closingText}</p>
+          <p class="text-xl text-teal-200 mb-6" set:html={formatMarkdown(findYourLever.closingText || '')} />
           <a href={calendlyUrl} class="btn-primary">
             Book Your Discovery Session →
           </a>
@@ -236,9 +232,9 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Pricing -->
     <section class="section bg-white">
       <div class="container-md">
-        <h2 class="heading-section mb-4 text-center">{pricing.title}</h2>
+        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(pricing.title || '')} />
         {pricing.subtitle && (
-          <p class="text-xl text-teal-900 text-center mb-12 container-sm mx-auto">{pricing.subtitle}</p>
+          <p class="text-xl text-teal-900 text-center mb-12 container-sm mx-auto" set:html={formatMarkdown(pricing.subtitle)} />
         )}
 
         {pricing.tiers?.filter(tier => tier.featured).map((tier) => (
@@ -253,7 +249,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
           />
         ))}
 
-        <h3 class="heading-card mb-8 text-center">{pricing.continuationTitle}</h3>
+        <h3 class="heading-card mb-8 text-center" set:html={formatMarkdown(pricing.continuationTitle || '')} />
 
         <div class="grid md:grid-cols-2 gap-8">
           {pricing.tiers?.filter(tier => !tier.featured).map((tier) => (
@@ -271,7 +267,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- FAQ -->
     <section class="section bg-teal-50">
       <div class="container-sm">
-        <h2 class="heading-section mb-12 text-center">{faq.title}</h2>
+        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(faq.title || '')} />
 
         <div class="space-y-8">
           {faq.questions?.map((item) => (
@@ -284,8 +280,8 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- What This Is NOT -->
     <section class="section bg-white">
       <div class="container-sm">
-        <h2 class="heading-section mb-8 text-center">{whatThisIsNot.title}</h2>
-        <p class="text-lg text-teal-900 text-center mb-12">{whatThisIsNot.subtitle}</p>
+        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(whatThisIsNot.title || '')} />
+        <p class="text-lg text-teal-900 text-center mb-12" set:html={formatMarkdown(whatThisIsNot.subtitle || '')} />
 
         <div class="grid sm:grid-cols-2 gap-6">
           {whatThisIsNot.items?.map((item) => (
@@ -298,7 +294,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Who This Is For -->
     <section class="section bg-teal-200">
       <div class="container-sm">
-        <h2 class="heading-section mb-12 text-center">{whoThisIsFor.title}</h2>
+        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(whoThisIsFor.title || '')} />
 
         <div class="grid md:grid-cols-2 gap-8">
           <FitList type="good" items={whoThisIsFor.goodFit || []} />
@@ -310,7 +306,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Final CTA -->
     <section class="section bg-teal-950 text-white">
       <div class="container-sm">
-        <h2 class="heading-section !text-white mb-10 text-center">{finalCta.title}</h2>
+        <h2 class="heading-section !text-white mb-10 text-center" set:html={formatMarkdown(finalCta.title || '')} />
 
         <div class="bg-white rounded-xl p-8 md:p-10 shadow-lg">
           {finalCta.intro && (
@@ -337,7 +333,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
           </div>
         </div>
 
-        <p class="text-teal-200 text-sm text-center mt-6">{finalCta.ctaSubtext}</p>
+        <p class="text-teal-200 text-sm text-center mt-6" set:html={formatMarkdown(finalCta.ctaSubtext || '')} />
       </div>
     </section>
 

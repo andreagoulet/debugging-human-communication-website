@@ -1,7 +1,7 @@
 ---
 title: "How Small Shifts Create Big Changes"
-subtitle: "An experiment-driven approach to communication — designed for how analytical minds actually learn."
-introText: "You don't need to overhaul your personality. You need a systematic way to find what's not working and fix it. This eight-step framework turns real conversations into a lab where you can test, observe, and iterate."
+subtitle: "**An experiment-driven approach to communication — <br>designed for how analytical minds actually learn.**"
+introText: "You don't need to overhaul your personality. You need a systematic way to find what's not working and fix it. **My eight-step, experiment-driven coaching framework turns real conversations into a lab where you can test, observe, and iterate.**"
 steps:
   - number: 1
     title: "Find a Friction Point"
