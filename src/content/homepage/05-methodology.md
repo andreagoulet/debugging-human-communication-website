@@ -14,7 +14,7 @@ approaches:
       - "Understanding isn't enough. You also need an approach you can actually execute."
       - "Instead of forcing yourself into someone else's system, we design experiments around what you're already doing. The goal: find the smallest tweak that creates disproportionate results."
     testimonial:
-      quote: "Andrea's coaching is effective because she helps me spot assumptions I didn't even know I had. She helps me design communication experiments that feel way to easy to have such a big impact."
+      quote: "Andrea's coaching is effective because she helps me spot assumptions I didn't even know I had. She helps me design communication experiments that feel way too easy to have such a big impact."
       author: "Ted Y. - Private coaching client"
   - title: "Develop Your Skills with Expert Guidance"
     paragraphs:
