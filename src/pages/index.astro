@@ -199,16 +199,16 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Find Your Lever -->
     <section class="section bg-teal-950 text-white">
       <div class="container-md">
-        <h2 class="heading-section !text-white mb-6 text-center">{findYourLever.title}</h2>
+        <h2 class="heading-section !text-white mb-8 text-center">{findYourLever.title}</h2>
 
         {findYourLever.epigraph && (
-          <blockquote class="text-xl text-teal-200 text-center mb-8 italic">
-            "{findYourLever.epigraph.quote}"
-            <footer class="mt-2 text-teal-400 not-italic">— {findYourLever.epigraph.author}</footer>
+          <blockquote class="border-l-4 border-teal-400 pl-6 py-4 mb-10 bg-teal-900/30 rounded-r-lg">
+            <p class="text-2xl text-teal-100 italic mb-2">"{findYourLever.epigraph.quote}"</p>
+            <footer class="text-teal-400">— {findYourLever.epigraph.author}</footer>
           </blockquote>
         )}
 
-        <div class="text-lg text-teal-100 mb-12 text-center container-xs space-y-6">
+        <div class="text-lg text-teal-100 mb-12 space-y-4">
           {findYourLever.introParagraphs?.map((p) => (
             <p set:html={formatMarkdown(p)} />
           ))}
