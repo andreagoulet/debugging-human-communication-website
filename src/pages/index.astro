@@ -103,7 +103,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- The Real Problem -->
     <section class="section bg-teal-200">
       <div class="container-sm">
-        <h2 class="heading-section mb-8" set:html={formatMarkdown(realProblem.title || '')} />
+        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(realProblem.title || '')} />
 
         {realProblem.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
@@ -121,7 +121,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- The Answer -->
     <section class="section bg-white">
       <div class="container-sm">
-        <h2 class="heading-section mb-8" set:html={formatMarkdown(answer.title || '')} />
+        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(answer.title || '')} />
 
         {answer.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
