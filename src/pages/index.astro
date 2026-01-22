@@ -310,24 +310,26 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
     <!-- Final CTA -->
     <section class="section bg-teal-950 text-white">
       <div class="container-sm">
-        <h2 class="heading-section !text-white mb-8 text-center">{finalCta.title}</h2>
+        <h2 class="heading-section !text-white mb-10 text-center">{finalCta.title}</h2>
 
-        {finalCta.intro && (
-          <p class="text-xl text-teal-100 mb-8" set:html={formatMarkdown(finalCta.intro)} />
-        )}
+        <div class="bg-white rounded-xl p-8 md:p-10 shadow-lg mb-10">
+          {finalCta.intro && (
+            <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(finalCta.intro)} />
+          )}
 
-        {finalCta.paragraphs?.map((p) => {
-          const para = typeof p === 'string' ? { text: p } : p;
-          return para.emphasis === 'bold' ? (
-            <p class="text-2xl text-white font-bold mb-8" set:html={formatMarkdown(para.text)} />
-          ) : (
-            <p class="text-lg text-teal-100 mb-6" set:html={formatMarkdown(para.text)} />
-          );
-        })}
+          {finalCta.paragraphs?.map((p) => {
+            const para = typeof p === 'string' ? { text: p } : p;
+            return para.emphasis === 'bold' ? (
+              <p class="text-2xl text-teal-950 font-bold mb-6" set:html={formatMarkdown(para.text)} />
+            ) : (
+              <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
+            );
+          })}
 
-        {finalCta.closing && (
-          <p class="text-xl text-teal-200 font-medium mb-10" set:html={formatMarkdown(finalCta.closing)} />
-        )}
+          {finalCta.closing && (
+            <p class="text-xl text-teal-950 font-medium" set:html={formatMarkdown(finalCta.closing)} />
+          )}
+        </div>
 
         <div class="text-center">
           <a href={calendlyUrl} class="btn-primary-lg mb-6">
