@@ -1,11 +1,12 @@
 ---
-title: "The Next Step"
+title: "Your Communication Upgrade Starts Here"
+intro: "Imagine walking into your next difficult conversation knowing exactly what to try. Not hoping it goes well — but having a hypothesis to test and a framework for learning from whatever happens."
 paragraphs:
-  - text: "You could keep doing what you've been doing. Replay conversations. Wonder why your ideas don't land. Calculate the least awkward time to leave."
-  - text: "Or you could approach communication the way you approach any system: learn how it works, practice deliberately, improve systematically."
-  - text: "The conversations you're avoiding aren't going away. The stakeholders you need to influence are still waiting. The career ceiling you've hit is still there."
-  - text: "But it doesn't have to be."
+  - text: "That's what this work makes possible. Not perfection — progress. Not scripts — understanding. Not becoming someone else — becoming more effective as yourself."
+  - text: "Your analytical mind is an asset here, not an obstacle."
     emphasis: "bold"
+  - text: "You already know how to debug systems, run experiments, and iterate toward better solutions. Communication works the same way once you have the right framework. And the people who've done this work? They're landing promotions, building stronger relationships, and finally feeling confident in rooms that used to make them want to disappear."
+closing: "One experiment at a time. That's all it takes to start."
 ctaText: "Book Your Discovery Session →"
-ctaSubtext: "In 30 minutes, we'll dig into your specific challenge and design your first experiment together. $129, fully refundable if you don't find it valuable."
+ctaSubtext: "$129 for 30 minutes of focused work on your specific challenge. You'll leave with a concrete experiment to run — and if you don't find it valuable, you get a full refund."
 ---

@@ -309,8 +309,12 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
 
     <!-- Final CTA -->
     <section class="section bg-teal-950 text-white">
-      <div class="container-sm text-center">
-        <h2 class="heading-section !text-white mb-8">{finalCta.title}</h2>
+      <div class="container-sm">
+        <h2 class="heading-section !text-white mb-8 text-center">{finalCta.title}</h2>
+
+        {finalCta.intro && (
+          <p class="text-xl text-teal-100 mb-8" set:html={formatMarkdown(finalCta.intro)} />
+        )}
 
         {finalCta.paragraphs?.map((p) => {
           const para = typeof p === 'string' ? { text: p } : p;
@@ -321,11 +325,17 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
           );
         })}
 
-        <a href={calendlyUrl} class="btn-primary-lg mb-6">
-          {finalCta.ctaText}
-        </a>
+        {finalCta.closing && (
+          <p class="text-xl text-teal-200 font-medium mb-10" set:html={formatMarkdown(finalCta.closing)} />
+        )}
 
-        <p class="text-teal-200">{finalCta.ctaSubtext}</p>
+        <div class="text-center">
+          <a href={calendlyUrl} class="btn-primary-lg mb-6">
+            {finalCta.ctaText}
+          </a>
+
+          <p class="text-teal-200">{finalCta.ctaSubtext}</p>
+        </div>
       </div>
     </section>
 

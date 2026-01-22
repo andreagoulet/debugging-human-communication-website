@@ -60,6 +60,7 @@ const homepageCollection = defineCollection({
       tip: z.string(),
     })).optional(),
     closingText: z.string().optional(),
+    closing: z.string().optional(),
 
     // Pricing
     tiers: z.array(z.object({
