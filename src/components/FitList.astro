@@ -13,14 +13,14 @@ const iconColor = isGood ? 'text-green' : 'text-coral';
 const title = isGood ? 'This is for you if:' : 'This is NOT for you if:';
 ---
 
-<div>
-  <h3 class="text-xl font-bold text-teal-950 mb-4 flex items-center gap-2">
+<div class="bg-white rounded-xl p-8 shadow-sm h-full">
+  <h3 class="text-xl font-bold text-teal-950 mb-6 flex items-center gap-2">
     <span class={iconColor}>{icon}</span> {title}
   </h3>
-  <ul class="space-y-3 text-teal-900">
+  <ul class="space-y-4 text-teal-900">
     {items.map((item) => (
       <li class="flex items-start gap-2">
-        <span class={`${iconColor} mt-1`}>{icon}</span>
+        <span class={`${iconColor} mt-1 flex-shrink-0`}>{icon}</span>
         <span set:html={formatMarkdown(item)} />
       </li>
     ))}
