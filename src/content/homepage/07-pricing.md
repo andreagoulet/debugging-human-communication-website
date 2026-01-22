@@ -11,10 +11,10 @@ tiers:
   - title: "Group Coaching"
     price: 225
     period: "/month"
-    description: "Weekly calls, small cohort, documented findings. For people who want structured learning in community."
+    description: "Weekly calls, small cohort, documented findings, and community access. For people who want structured learning in community."
   - title: "Private Coaching"
     price: 895
     period: "/month"
-    description: "1:1 sessions, unlimited async access, personalized frameworks. For people with a goal they're ready to achieve."
+    description: "1:1 sessions, customized experiments, unlimited private chat messages with me, and documentation of your progress. Plus weekly group coaching and community access. For people with a goal they're ready to achieve."
 continuationTitle: "Ways to Keep Going"
 ---
