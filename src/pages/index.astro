@@ -24,6 +24,7 @@ const realProblem = content['03-the-real-problem'].data;
 const answer = content['04-the-answer'].data;
 const methodology = content['05-methodology'].data;
 const meetAndrea = content['05b-meet-andrea'].data;
+const framework = content['05c-framework'].data;
 const findYourLever = content['06-find-your-lever'].data;
 const pricing = content['07-pricing'].data;
 const faq = content['08-faq'].data;
@@ -171,6 +172,27 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         {meetAndrea.paragraphs?.map((p) => (
           <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
         ))}
+      </div>
+    </section>
+
+    <!-- Framework -->
+    <section class="section bg-teal-200">
+      <div class="container-md">
+        <h2 class="heading-section mb-4 text-center">{framework.title}</h2>
+        <p class="text-xl text-teal-800 text-center mb-6">{framework.subtitle}</p>
+        <p class="text-lg text-teal-900 text-center mb-12 container-sm">{framework.introText}</p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {framework.steps?.map((step) => (
+            <div class="bg-white rounded-lg p-6 shadow-sm">
+              <div class="text-3xl font-bold text-teal-600 mb-2">{step.number}</div>
+              <h3 class="text-lg font-semibold text-teal-950 mb-3">{step.title}</h3>
+              <p class="text-teal-800 text-sm">{step.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-950 font-medium text-center mt-12">{framework.closingText}</p>
       </div>
     </section>
 

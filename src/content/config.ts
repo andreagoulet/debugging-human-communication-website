@@ -40,6 +40,14 @@ const homepageCollection = defineCollection({
       }).optional(),
     })).optional(),
 
+    // Framework steps
+    introText: z.string().optional(),
+    steps: z.array(z.object({
+      number: z.number(),
+      title: z.string(),
+      description: z.string(),
+    })).optional(),
+
     // Find your lever
     epigraph: z.object({
       quote: z.string(),
