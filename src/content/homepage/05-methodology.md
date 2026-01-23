@@ -24,8 +24,8 @@ approaches:
       - "Think of it as co-creation: I bring the structure, accountability, and deep expertise — you bring your context and curiosity. Together, we'll navigate the complexity and arrive at solutions that fit your life."
     testimonial:
       quote: "In my Discovery Session, Andrea immediately spotted a tiny detail in how I could frame my message and sent me peer-reviewed papers to back up her claims. When I tried the experiment, I easily persuaded my stakeholders to hire more people for my team — in a hiring freeze!"
-      author: "S. K."
-      role: "Private coaching client"
+      author: "Soumya Kulkarni"
+      role: "MTS, Software Engineering Full Stack - Private Coaching Client"
   - title: "Discover the Transformative Power of Community Learning"
     paragraphs:
       - "You've probably felt it — the loneliness of being the person who communicates differently. The code-switching. The holding back. The quiet embarrassment of not navigating social situations the way your colleagues seem to."
