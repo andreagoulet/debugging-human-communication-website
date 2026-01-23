@@ -35,4 +35,5 @@ All page content lives in `src/content/homepage/*.md` files using Zod-validated 
 ## Rules
 - Follow instructions in each skill's `SKILL.md`
 - Never manually read files in `.claude/skills/`. If a task matches a skill's description, invoke it via the Skill tool. If you find yourself reading `SKILL.md` directly, stop and use the Skill tool instead.
+- Ask strategic and clarifying questions one at a time.
 

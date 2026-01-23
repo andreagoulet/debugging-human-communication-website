@@ -5,7 +5,9 @@
       "Bash(git commit:*)",
       "Bash(git push)",
       "Skill(generate-marketing-copy)",
-      "Skill(generate-marketing-copy:*)"
+      "Skill(generate-marketing-copy:*)",
+      "Bash(git mv:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }
