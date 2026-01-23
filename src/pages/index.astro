@@ -20,20 +20,20 @@ const content = Object.fromEntries(
 
 // Extract each section's data (all from frontmatter now)
 const hero = content['01-hero'].data;
-const openingNarrative = content['02-opening-narrative'].data;
-const realProblem = content['03-the-real-problem'].data;
-const answer = content['04-the-answer'].data;
+const openingNarrative = content['02-narrative'].data;
+const realProblem = content['03-problem'].data;
+const answer = content['04-solution'].data;
 const methodology = content['05-methodology'].data;
-const meetAndrea = content['05b-meet-andrea'].data;
-const featuredTestimonial = content['05d-featured-testimonial'].data;
-const framework = content['05c-framework'].data;
-const findYourLever = content['06-find-your-lever'].data;
-const pricing = content['07-pricing'].data;
-const faq = content['08-faq'].data;
-const whatThisIsNot = content['09-what-this-is-not'].data;
-const whoThisIsFor = content['10-who-this-is-for'].data;
-const finalCta = content['11-final-cta'].data;
-const footer = content['12-footer'].data;
+const meetAndrea = content['06-bio'].data;
+const framework = content['07-framework'].data;
+const featuredTestimonial = content['08-testimonial'].data;
+const findYourLever = content['09-challenges'].data;
+const pricing = content['10-pricing'].data;
+const faq = content['11-faq'].data;
+const whatThisIsNot = content['12-clarifications'].data;
+const whoThisIsFor = content['13-fit'].data;
+const finalCta = content['14-cta'].data;
+const footer = content['15-footer'].data;
 
 // Helper to render paragraph with optional emphasis
 const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic' }) => {
