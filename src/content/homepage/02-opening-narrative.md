@@ -6,14 +6,14 @@ paragraphs:
   - "Or you're at your computer, eager to share your ideas with the world — but you don't publish anything. Your brain is blocked. Somehow, you have too much to say and nothing to say — all at the same time."
 painPointsIntro: "These aren't one-off events. Miscommunications seem to happen every day."
 painPoints:
-  - "**Watching someone's eyes glaze over mid-sentence**"
+  - "**Craving more influence but not knowing how to build it**"
+  - "**Knowing you could lead more, if people knew what you were capable of**"
+  -  "**Watching people check out while you're mid-sentence**"
   - "**Wishing you could break the ice at networking events**"
   - "**Pointing out real risks and being told you're too negative**"
   - "**Seeing funding go to half-baked ideas**"
   - "**Getting communication advice that assumes you're an extrovert**"
   - "**Feeling like everyone else knows unwritten rules you missed**"
-  - "**Craving more influence but not knowing how to build it**"
-  - "**Knowing you could lead more, if people knew what you were capable of**"
 closingParagraphs:
   - "You've read books. Watched TED talks. Maybe sat through a corporate training full of hypotheticals that don't match your actual job."
   - "None of it stuck — because none of it matched how your brain works."
