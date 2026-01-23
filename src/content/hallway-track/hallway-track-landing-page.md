@@ -16,71 +16,71 @@ Join the founding community of Debugging Human Communication
 
 ---
 
-## The Vision: A Perpetual Hallway Track
+## What This Is
 
-You know that feeling at Agile conferences and Open Spaces — the one you get during the hallway conversations, not the scheduled sessions?
+You care about the humans in technical systems. Not just the code, not just the architecture — the people. This community is for others who feel the same way.
 
-That moment when you're talking with someone who *gets it*. The ideas flow. You feel seen. You remember why you fell in love with this work in the first place.
-
-Then the conference ends. Everyone goes home. And slowly, that spark fades back into the daily grind.
-
-**This community exists to keep that spark alive.**
-
-After the Agile conference in Denver, many of us found ourselves asking the same question: *How do we hold onto this?* The Agile Alliance's absorption into PMI left a lot of people uncertain about the future. At meetups and Open Spaces — Seattle Code Crafters, Agile Open Northwest — the conversation kept coming back to the same thing:
-
-*How do we preserve the magic of what Agile and XP were built on?*
-
-I've been here before. In 2015, I helped build Legacy Code Rocks — an online community that sprang from the same desire to maintain connection between conferences. It's still going strong a decade later.
-
-But Legacy Code Rocks serves a narrow audience. This is something broader.
-
-**Because here's what I've come to believe: at the heart of every Agile practice is communication.** It's the unstated undercurrent in the foundational books. It's what separates emergent effectiveness from certification-stamp culture. It's what makes the hallway track magic possible.
-
-That belief is at the core of everything I do with **Debugging Human Communication** — my coaching program for people in technical contexts. And now I'm opening the community side of the program to a small group of founding members.
-
-This community is for people who feel that in their bones — whether you're a developer, an Agile coach, a product manager, a test engineer, or a thought leader who's helped thousands of technologists find their voice. You don't need to write code to belong here. You need to care about the humans in technical systems.
+I run a coaching program called **Debugging Human Communication** for people in technical contexts — community, group coaching, and private coaching. Right now, I'm inviting a small group of founding members into the community side. You're one of them.
 
 ---
 
-## What You're Being Invited Into
+## The Exchange
 
-**A founding member community** — not a product launch.
+Normally, community access costs $129. As a founding member, you're not paying that.
 
-The first people in any community shape its culture. That's why this isn't open to everyone. The people being invited right now are hand-selected by champions I trust deeply — people who, when I see them at a conference, feel like a family reunion.
+But you're not getting it for nothing either. The first people in any community shape its culture. That's what I'm asking: show up, participate, model the behaviors that make spaces feel safe. If that sounds like work you'd do anyway, you're exactly who I'm looking for.
 
-As a founding member, you'll help shape what this becomes. You'll have:
+As a founding member, you'll have:
 
-- **Access to the online community on Heartbeat** — a space for ongoing conversation, questions, and connection between events
-- **An invitation to book a Discovery Session with me** — a condensed version of my private coaching, at no cost
+- **Access to the online community on Heartbeat** — ongoing conversation, questions, and connection
+- **A Discovery Session with me** — a 30-minute 1:1 where we dig into a real challenge you're facing. It's my thank you for helping shape what this becomes.
 - **The opportunity to influence the culture** from day one
-
-All I ask in return is that you show up and participate. A community only works when people are in it together.
 
 ---
 
 ## Who This Is For
 
-This community welcomes people who are embedded in technical contexts — not just those who write code.
+People embedded in technical contexts who believe communication is at the heart of effective collaboration. Developers, coaches, product managers, test engineers, thought leaders — or anyone who feels at home in spaces where deep technical conversations happen.
 
-**You might be:**
-- A software developer who lights up during hallway conversations
-- An Agile coach helping teams communicate more effectively
-- A product manager bridging technical and business worlds
-- A test engineer who sees the human side of quality
-- A thought leader, author, or facilitator respected in technical communities
-- Someone who doesn't call themselves "technical" but feels at home in spaces where deep technical conversations happen
-
-**The common thread:** You believe communication is at the heart of effective collaboration in technical environments. And you want to stay connected to people who feel the same way.
+You don't need to write code. You don't need to be an Agile enthusiast. You just need to care about the humans in technical systems.
 
 ---
 
-## Join the Founding Community
+## Why I'm Building This
 
-You were invited by someone who believes you belong here. If this resonates, I'd love to welcome you.
+At the Agile conference in Denver, there was a Hack for Good session. A room full of developers, stakeholders from a nonprofit focused on eradicating child abuse and neglect, and a shared mission: build something real, together, in a few days.
+
+And we did. Using AI, using Agile methodologies, we deployed software that genuinely makes a difference in people's lives. I watched collaboration happen the way it's supposed to — communication flowing, technical excellence in service of something that matters, people who'd just met working like they'd known each other for years.
+
+That's Agile at its best. That's what I fell in love with.
+
+Afterward, I caught up with Lada Kesseler and Llewellyn Falco, who had led the development side. We talked about how great it had been — and then the conversation turned bittersweet. *Could we replicate that again?* We'd had moments like this at so many Open Spaces and meetups over the years. But they always ended. Everyone goes home.
+
+A few weeks later, Paige Watson invited me to present at Seattle Code Crafters. I talked about empathy and communication, and the discussion afterward wasn't just about the content — it was about *how do we keep this going?* Not just the infrastructure, but the feeling. The connection.
+
+Then I attended two online conferences through Agile Open Northwest. Same conversations. Same questions. Same longing.
+
+I've been here before. In 2015, I helped build Legacy Code Rocks because technical excellence tracks were being deprioritized at conferences. People who cared about code quality and craft needed a place to keep finding each other — even if the conference circuit wasn't going to provide it. That community is still going strong a decade later.
+
+Now the Agile Alliance has been absorbed into PMI, and I'm watching that same uncertainty spread. *Where do we go? How do we hold onto what made this special?*
+
+This isn't the answer for everyone. But it's one contribution I can make. A place where those of us who've loved Agile conferences, Open Spaces, and hallway track conversations can keep them alive. It felt like a natural extension of the coaching work I've been doing — and honestly, I'm just really excited and grateful to be building it.
+
+---
+
+## Going Deeper
+
+The community stands on its own. If you ever want more structured guidance, group and private coaching are available at [debugginghumancommunication.com](https://debugginghumancommunication.com).
+
+---
+
+## Join
+
+You were invited by someone who believes you belong here.
 
 **[Join the Debugging Human Communication Community →]**
 
-Questions? Reach out to andrea@debugginghumancommunication.com
+Questions? andrea@debugginghumancommunication.com
 
 ---
 
