@@ -74,6 +74,11 @@ const homepageCollection = defineCollection({
       ctaText: z.string().optional(),
     })).optional(),
     continuationTitle: z.string().optional(),
+    teamCallout: z.object({
+      text: z.string(),
+      description: z.string(),
+      linkText: z.string(),
+    }).optional(),
 
     // Featured testimonial
     testimonial: z.object({

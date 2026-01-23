@@ -18,4 +18,8 @@ tiers:
     period: "/month"
     description: "1:1 sessions, customized experiments, unlimited private chat messages with me, and documentation of your progress. Plus weekly group coaching and community access. For people with a goal they're ready to achieve."
 continuationTitle: "Ways to Keep Going"
+teamCallout:
+  text: "Want to bring this methodology to your team?"
+  description: "I run private cohorts for companies who want to develop communication skills across their engineering organization."
+  linkText: "Get in touch"
 ---
