@@ -8,7 +8,7 @@ steps:
     description: "Choose one specific challenge. Not \"get better at communication\" — something concrete, like \"my co-worker keeps interrupting me.\""
   - number: 2
     title: "Gather Context"
-    description: "What conditions shape this interaction? Environment, history, power dynamics, timing. The nuance matters."
+    description: "What conditions shape this interaction? Environment, history, power dynamics, motivation, and more. The nuance matters."
   - number: 3
     title: "Identify Variables"
     description: "Name the factors you can actually influence with tactical precision. Your word choice, your mindset, your habits, your timing are just a few of many opportunities to explore."
