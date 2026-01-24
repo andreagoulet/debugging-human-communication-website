@@ -44,7 +44,7 @@ sections:
     title: "Meet Your Community Organizer"
     content:
       - type: paragraph
-        text: "Hi! I'm [Andrea Goulet](https://www.linkedin.com/in/andreamgoulet/). I've been active in the Agile community for over a decade. And like you, I believe that **what makes Agile work is that it's built on a foundation of empathy and effective communication.**"
+        text: "Hi! I'm [Andrea Goulet](https://www.linkedin.com/in/andreamgoulet/). I've been active in the Agile community for over a decade. And like you, I believe that **Agile works because its built on a foundation of empathy and effective communication.**"
 
       - type: paragraph
         text: "That's what holds our community together. A deep commitment to shared learning, experimentation, and psychological safety. Intentionality is what enables us to create spaces where people can share ideas and support each other's struggles."
@@ -56,7 +56,7 @@ sections:
         text: "By following the same model as Legacy Code Rocks, we can craft an online space that is driven by a craving for community and a desire for connection. **Debugging Human Communication is a curated experience that is designed for deep engagement instead of surface level small-talk.**"
 
       - type: paragraph
-        text: "I am deeply committed to the human-centered practices of Agile and XP. Which is why I am honored to have the opportunity to hold space and invest in the communication infrastructure and community management nened for an online space that acts as a perpetual hallway track of the conferences we all love."
+        text: "I am deeply committed to the human-centered practices of Agile and XP. Which is why I am honored to have the opportunity to hold space and invest in the communication infrastructure and community management needed for an online space that acts as a perpetual hallway track of the conferences we all love."
 
       - type: paragraph
         text: "**Community isn't a place. It's the people in that space. People with shared values and vibrant interactions — and that's where you come in.**"
