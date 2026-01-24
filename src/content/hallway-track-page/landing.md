@@ -1,7 +1,7 @@
 ---
 hero:
   headline: "You're Invited"
-  subheadline: "The New **Debugging Human Communication** Community is Now Accepting 30 Founding Members"
+  subheadline: "The **Debugging Human Communication community** is looking for 30 founding members"
 
 sections:
   - id: "what-this-is"
@@ -23,7 +23,7 @@ sections:
         text: "Then the conference ends. Everyone goes home. And slowly, that spark fades back into the daily grind."
 
       - type: paragraph
-        text: "**This community exists to keep the spark of Agile conferences magic alive.**"
+        text: "**This community exists to keep that conference magic alive year-round.**"
 
       - type: paragraph
         text: "It's an intentional online space for people who care about the humans in technical systems. Not just the code, not just the architecture, not just the methodology — the people."
