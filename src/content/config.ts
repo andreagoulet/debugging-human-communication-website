@@ -6,6 +6,75 @@ const paragraphSchema = z.object({
   emphasis: z.enum(['bold', 'italic']).optional(),
 });
 
+// Reusable content block schema for flexible content ordering
+// Supports: paragraph, orderedList, bulletList, divider
+const contentBlockSchema = z.discriminatedUnion('type', [
+  z.object({
+    type: z.literal('paragraph'),
+    text: z.string(),
+    centered: z.boolean().optional(),
+  }),
+  z.object({
+    type: z.literal('orderedList'),
+    items: z.array(z.string()),
+  }),
+  z.object({
+    type: z.literal('bulletList'),
+    items: z.array(z.string()),
+  }),
+  z.object({
+    type: z.literal('divider'),
+  }),
+  z.object({
+    type: z.literal('faq'),
+    questions: z.array(z.object({
+      question: z.string(),
+      answer: z.string(),
+    })),
+  }),
+  z.object({
+    type: z.literal('clarifications'),
+    subtitle: z.string().optional(),
+    items: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+    })),
+  }),
+  z.object({
+    type: z.literal('fit'),
+    goodFit: z.array(z.string()),
+    notGoodFit: z.array(z.string()),
+  }),
+  z.object({
+    type: z.literal('cta'),
+    text: z.string(),
+  }),
+]);
+
+const hallwayTrackCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    hero: z.object({
+      headline: z.string(),
+      subheadline: z.string(),
+    }),
+    sections: z.array(z.object({
+      id: z.string(),
+      title: z.string(),
+      content: z.array(contentBlockSchema),
+    })),
+    cta: z.object({
+      headline: z.string(),
+      text: z.string(),
+      subtext: z.string(),
+      email: z.string(),
+    }),
+    footer: z.object({
+      copyright: z.string(),
+    }),
+  }),
+});
+
 const homepageCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -113,4 +182,5 @@ const homepageCollection = defineCollection({
 
 export const collections = {
   homepage: homepageCollection,
+  'hallway-track-page': hallwayTrackCollection,
 };

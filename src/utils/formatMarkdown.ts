@@ -1,6 +1,6 @@
 /**
  * Converts basic markdown syntax to HTML.
- * Supports: *italic*, **bold**, and ***bold italic***
+ * Supports: *italic*, **bold**, ***bold italic***, and [links](url)
  */
 export function formatMarkdown(text: string): string {
   return text
@@ -9,5 +9,7 @@ export function formatMarkdown(text: string): string {
     // Bold
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     // Italic
-    .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    // Links [text](url)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-teal-700 underline hover:text-teal-900">$1</a>');
 }
