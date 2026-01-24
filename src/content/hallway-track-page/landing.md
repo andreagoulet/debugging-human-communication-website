@@ -146,7 +146,7 @@ sections:
           - question: "How much time does participation require?"
             answer: "Prepare for at least 1 hour per week. You will check in a few times a week, respond to threads that resonate, and share your own experiences when relevant. Think of it like the hallway track itself — you don't need to be there every minute, but you do need to show up."
           - question: "What platform do you use?"
-            answer: "We use Heartbeat, which has Slack-style channels for discussion. It's designed for community engagement rather than just chat, with features that encourage deeper conversation over quick reactions."
+            answer: "We use [Heartbeat](https://www.heartbeat.chat/), which has Slack-style channels for discussion. It's designed for community engagement rather than just chat, with features that encourage deeper conversation over quick reactions."
           - question: "What happens after the founding member period?"
             answer: "Once the community opens to the public, founding members keep their access — no fees, no expiration. Your investment is your participation in building the culture."
           - question: "Is this the same as the coaching program?"
