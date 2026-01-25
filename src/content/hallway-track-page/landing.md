@@ -167,7 +167,7 @@ sections:
           - question: "How is this different from other Slack or Discord communities I've joined and abandoned?"
             answer: "Most online communities optimize for growth and activity metrics. This one optimizes for depth. It's smaller by design, curated intentionally, and built around genuine connection rather than content volume. The founding member model means everyone here is an active participant in making this community healthy — not just a free signup they forgot about."
           - question: "When does the community open to the public?"
-            answer: "Likely by March, but there is no fixed date. The founding member period continues until we've established the culture and rhythms that make this space work. I'd rather take longer and get it right than rush to scale."
+            answer: "Likely April 2026, but there is no fixed date. The founding member period continues until we've established the culture and rhythms that make this space work. I'd rather take longer and get it right than rush to scale."
       - type: divider
       - type: paragraph
         text: "If you have any other questions, please reach out to [andrea@debugginghumancommunication.com](mailto:andrea@debugginghumancommunication.com)."
