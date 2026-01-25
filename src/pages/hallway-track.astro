@@ -73,8 +73,8 @@ const page = allContent[0].data;
                 return (
                   <ol class="space-y-4 text-lg text-teal-900 mb-8 list-none">
                     {block.items.map((item, i) => (
-                      <li class="flex items-start gap-3">
-                        <span class="text-teal-600 mt-1 font-bold">{i + 1}.</span>
+                      <li class="flex items-baseline gap-3">
+                        <span class="text-teal-600 font-bold">{i + 1}.</span>
                         <span set:html={formatMarkdown(item)} />
                       </li>
                     ))}
@@ -85,8 +85,8 @@ const page = allContent[0].data;
                 return (
                   <ul class="space-y-4 text-lg text-teal-900 mb-8">
                     {block.items.map((item) => (
-                      <li class="flex items-start gap-3">
-                        <span class="text-teal-600 mt-1 font-bold">•</span>
+                      <li class="flex items-baseline gap-3">
+                        <span class="text-teal-600 font-bold">•</span>
                         <span set:html={formatMarkdown(item)} />
                       </li>
                     ))}

@@ -84,8 +84,8 @@ sections:
 
       - type: orderedList
         items:
-          - "sounds appealing, and"
-          - "is something you can realistically commit to doing"
+          - "Sounds appealing"
+          - "Something you can realistically commit to doing"
 
       - type: paragraph
         text: "then we hope you consider joining us as a Founding Member."
@@ -103,8 +103,8 @@ sections:
 
       - type: orderedList
         items:
-          - "regularly posting your ideas, experiences, and expertise, and"
-          - "showing up for others by offering support, sharing resources, and modeling psychological safety."
+          - "Regularly posting your ideas, experiences, and expertise"
+          - "Showing up for others by offering support, sharing resources, and modeling psychological safety."
 
       - type: divider
 
