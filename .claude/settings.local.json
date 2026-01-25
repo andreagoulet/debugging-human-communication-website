@@ -9,5 +9,18 @@
       "Bash(git mv:*)",
       "Bash(npm run build:*)"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/check-accessibility.sh"
+          }
+        ]
+      }
+    ]
   }
 }

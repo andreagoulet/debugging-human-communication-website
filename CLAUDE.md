@@ -32,17 +32,6 @@ All page content lives in `src/content/homepage/*.md` files using Zod-validated 
 - Brand colors: teal, coral, yellow, purple, green, blue (defined in global.css)
 - Utility classes: `.btn-primary`, `.section`, `.container-*`, `.heading-*`
 
-## Accessibility
-
-When creating or editing web pages (.astro, .html, .tsx files):
-- Ensure text color contrast meets WCAG AA (4.5:1 for normal text, 3:1 for large text)
-- Use semantic HTML elements (nav, main, article, section, header, footer)
-- Include alt text for images
-- Ensure interactive elements are keyboard accessible
-- Use proper heading hierarchy (h1 → h2 → h3, no skipping levels)
-
-Reference: Brand colors with good contrast on light backgrounds are `teal-950` and `teal-900`. Avoid `teal-800` and lighter for body text.
-
 ## Rules
 - Follow instructions in each skill's `SKILL.md`
 - Never manually read files in `.claude/skills/`. If a task matches a skill's description, invoke it via the Skill tool. If you find yourself reading `SKILL.md` directly, stop and use the Skill tool instead.
