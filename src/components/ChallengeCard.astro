@@ -14,5 +14,5 @@ const { title, description, tip } = Astro.props;
   <h3 class="text-xl font-bold text-teal-950 mb-3">{title}</h3>
   <p class="text-teal-900 mb-4 flex-grow" set:html={formatMarkdown(description)} />
   <hr class="border-teal-200 mb-4" />
-  <p class="text-teal-700" set:html={formatMarkdown(tip)} />
+  <p class="text-teal-900" set:html={formatMarkdown(tip)} />
 </div>
