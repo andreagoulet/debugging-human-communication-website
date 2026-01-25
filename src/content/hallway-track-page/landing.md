@@ -53,7 +53,10 @@ sections:
         text: "Over the past year, I've seen a strong aching in our community for sustained connection. I feel it too. And as one of the founders of [Legacy Code Rocks](https://legacycode.rocks), I know how **a curated online space can be a powerful force for human connection.**"
 
       - type: paragraph
-        text: "By following the same model as Legacy Code Rocks, we can craft an online space that is driven by a craving for community and a desire for connection. **Debugging Human Communication is a curated experience that is designed for deep engagement instead of surface level small-talk.**"
+        text: "By following the same model as Legacy Code Rocks, we can craft an online space that is driven by a craving for community and a desire for connection."
+      
+      - type: paragraph
+        text: "**Debugging Human Communication is a curated experience that is designed for deep engagement instead of surface level small-talk.**"
 
       - type: paragraph
         text: "I am deeply committed to the human-centered practices of Agile and XP. Which is why I am honored to have the opportunity to hold space and invest in the communication infrastructure and community management needed for an online space that acts as a perpetual hallway track of the conferences we all love."
@@ -77,7 +80,7 @@ sections:
         text: "As a founding member, your role would be to help shape the culture of this community. Founding members agree to show up, participate, and model the behaviors of healthy communication that make spaces like this feel safe."
 
       - type: paragraph
-        text: "**If culture building through deep conversations about human connection is something that:**"
+        text: "If culture building through deep conversations about human connection is something that:"
 
       - type: orderedList
         items:
@@ -110,8 +113,8 @@ sections:
 
       - type: bulletList
         items:
-          - "**Access to the online community** — ongoing conversation, questions, and connection"
-          - "**Complimentary Discovery Session** — a 30-minute version of my private coaching sessions.  It's my thank you for helping shape what this becomes."
+          - "**Lifetime access to the online community** — ongoing conversation, questions, and connection"
+          - "**Complimentary 30-minute private coaching session** — It's my thank you for helping shape what this becomes"
           - "**The opportunity to influence the culture** from day one"
 
       - type: cta
@@ -125,10 +128,10 @@ sections:
 
       - type: bulletList
         items:
-          - "Software developers who lights up during hallway conversations"
+          - "Software developers who light up during hallway conversations"
           - "Coaches helping teams code or communicate more effectively"
           - "Product managers bridging technical and business worlds"
-          - "Test engineers who sees the human side of quality"
+          - "Test engineers who see the human side of quality"
           - "Authors and facilitators who are respected in technical communities"
           - 'Someone who doesn''t call themselves "technical" but feels at home in spaces where deep technical conversations happen'
 
