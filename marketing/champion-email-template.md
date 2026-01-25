@@ -24,20 +24,27 @@ You know how at Agile conferences and Open Spaces — or really any gathering of
 
 And then the conference ends and everyone goes home and... that feeling slowly fades.
 
-**I've been part of a community experiment to try to keep the Agile magic alive year round, and I think you'd like it, too..**
+**I've been part of a community experiment to try to keep the Agile magic alive year round, and I think you'd like it, too.**
 
 It's an online community run by my friend, Andrea Goulet. She's a communication coach for people who are craving a technical manual for human conversation and runs a program called **Debugging Human Communication**. (She's also one of the founders of Legacy Code Rocks.) 
 
-For the past several months, she's been working with a small group of us to see if her vision for the community part of the program could also be used to replicate the experience of a "perpetual hallway track." I have to say...she's on to something. I've gotten a lot of value from participating so far. 
+For the past several months, she's been working with a small group of us to see if her vision for the community part of the program could also be used to replicate the experience of a "perpetual hallway track." 
 
-The next step in the community-building process is developing the culture with intention. So Andrea asked us to invite people in our network to be founding members who can commit to showing up, contributing, and modeling healthy communication. In return, founding members will get lifetime access to the community (which will be $129/year when it opens to the public) and a complimentary 30-minute Discovery Session with Andrea.
+I have to say...she's on to something. She found a new platform called Heartbeat that's like Slack or Discord, but it's designed for community engagement and not just chat. I've gotten a lot of value from participating so far. 
+
+The next step in the community-building process is developing the culture with intention. So Andrea is building a group of 30 founding members and asked us to invite a few people in our network who we'd want to be part of it. 
 
 You immediately came to mind because [**personalize: why you thought of them — a conversation you had, something they care about, how they show up in community**].
 
-Here's the thing: she's not opening this to everyone. The first people in a community shape its culture, so she's being intentional about who's invited right now and is limiting the founding member group to 30 members. I have to say, I really respect how she's using the "go well to go fast" philosophy as she builds this out. 
+The commitment is active participation — posting and replying to other people's posts — for at least 6 months. The idea is that the first people in a community shape the culture, which we want to be grounded in healthy communication and psychological safety. 
 
-**If this resonates, here's the page with more details and a video from Andrea:**
-[link to /hallway-track]
+In return, founding members will get lifetime access to the community (which will be $129 when it opens to the public) and a complimentary 30-minute private coaching session with Andrea.
+
+I have to say, I really respect how she's using the "go well to go fast" philosophy as she builds this out. 
+
+**If helping to build out this community resonates, here's where you can get more details:**
+
+https://www.debugginghumancommunication.com/hallway-track
 
 No pressure at all. But I wanted you to know about it because I think you'd add something valuable — and I think you'd get something valuable out of it too.
 
@@ -47,11 +54,11 @@ No pressure at all. But I wanted you to know about it because I think you'd add 
 
 ## Shorter Version (for text/Slack/DM)
 
-Hey — my friend Andrea Goulet runs a program called **Debugging Human Communication** (communication coaching for people in technical contexts — she also founded Legacy Code Rocks). I've been part of a small group helping her shape the community, and now she's inviting 30 founding members. You came to mind immediately.
+Hey — my friend Andrea Goulet runs a program called **Debugging Human Communication** (communication coaching for people who are craving a technical manual for human conversations — she also founded Legacy Code Rocks). I've been part of a small group helping her shape the community, and now she's inviting 30 founding members. You came to mind immediately.
 
 Her vision is to create a "perpetual hallway track" — that sense of connection we get at Agile conferences and Open Spaces, but ongoing. Founding members commit to 6 months of active participation; in return you get lifetime access and a free coaching session with Andrea.
 
-Here's the page if you're curious: [link]
+Here's the page if you're curious: (https://www.debugginghumancommunication.com/hallway-track)
 
 No pressure — just thought you'd want to know about it.
 
