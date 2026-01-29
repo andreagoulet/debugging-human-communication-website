@@ -116,3 +116,19 @@ h1, h2, h3, h4, h5, h6 {
 .heading-card {
   @apply text-2xl font-bold text-teal-950;
 }
+
+/* ========================================
+   Video Player
+   ======================================== */
+.video-wrapper {
+  @apply relative cursor-pointer;
+}
+
+.play-overlay {
+  @apply absolute inset-0 flex items-center justify-center;
+  transition: opacity 0.2s ease;
+}
+
+.play-overlay:hover svg circle {
+  fill: rgba(0, 54, 64, 0.85);
+}

@@ -48,22 +48,46 @@ const page = allContent[0].data;
     <!-- Video Section -->
     <section class="section bg-white">
       <div class="container-sm">
-        <video
-          class="w-full rounded-xl"
-          controls
-          preload="metadata"
-          poster="/videos/hallway-track-invite-poster.jpg"
-          src="/videos/hallway-track-invite.mp4"
-        >
-          <track
-            kind="captions"
-            src="/videos/hallway-track-invite.vtt"
-            srclang="en"
-            label="English"
-            default
-          />
-          Your browser does not support the video tag.
-        </video>
+        <div class="video-wrapper" id="video-wrapper">
+          <video
+            class="w-full rounded-xl"
+            preload="metadata"
+            poster="/videos/hallway-track-invite-poster.jpg"
+            src="/videos/hallway-track-invite.mp4"
+            id="hero-video"
+          >
+            <track
+              kind="captions"
+              src="/videos/hallway-track-invite.vtt"
+              srclang="en"
+              label="English"
+              default
+            />
+            Your browser does not support the video tag.
+          </video>
+          <button class="play-overlay" id="play-overlay" aria-label="Play video">
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="36" cy="36" r="36" fill="rgba(0,54,64,0.7)" />
+              <polygon points="28,20 56,36 28,52" fill="white" />
+            </svg>
+          </button>
+        </div>
+        <script>
+          const wrapper = document.getElementById('video-wrapper');
+          const video = document.getElementById('hero-video') as HTMLVideoElement;
+          const overlay = document.getElementById('play-overlay');
+
+          overlay?.addEventListener('click', () => {
+            video.controls = true;
+            overlay.hidden = true;
+            video.play();
+          });
+
+          video?.addEventListener('ended', () => {
+            video.controls = false;
+            overlay!.hidden = false;
+          });
+        </script>
       </div>
     </section>
 
