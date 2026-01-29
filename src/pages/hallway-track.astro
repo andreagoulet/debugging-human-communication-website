@@ -48,9 +48,22 @@ const page = allContent[0].data;
     <!-- Video Section -->
     <section class="section bg-white">
       <div class="container-sm">
-        <div class="aspect-video bg-teal-100 rounded-xl flex items-center justify-center">
-          <p class="text-teal-600 text-lg">[Video Embed Placeholder]</p>
-        </div>
+        <video
+          class="w-full rounded-xl"
+          controls
+          preload="metadata"
+          poster="/videos/hallway-track-invite-poster.jpg"
+          src="/videos/hallway-track-invite.mp4"
+        >
+          <track
+            kind="captions"
+            src="/videos/hallway-track-invite.vtt"
+            srclang="en"
+            label="English"
+            default
+          />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </section>
 

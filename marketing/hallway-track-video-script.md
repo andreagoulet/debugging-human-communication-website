@@ -9,53 +9,45 @@
 
 Hi! I'm Andrea Goulet.
 
-I'm a communication coach, and I recently launched a program called Debugging Human Communication. It's for people who are craving a technical manual for human conversation.
+You know that feeling at Agile conferences and Open Spaces? You walk in and it's like a family reunion.
 
-If you're watching this, you also care about the humans who work in technical systems — 
+Between the hugs, you're overwhelmed with gratitude — because you're surrounded by people who share your passion for human-centered work.
 
-not just the code, not just the architecture, not just the processes or methodologies — but the people. 
+And while the sessions are great, what you really look forward to is the hallway track. Those unstructured conversations where the real connection happens.
 
-How do I know? Because someone I trust saw that in you and thought you should be here.
-
-**[pause]**
-
-An essential part of this program is a thriving community — 
-
-and that's what you're being invited into as a founding member.
+Then the conference ends. Everyone goes home. And slowly, that spark fades.
 
 **[pause]**
 
-If you choose to become a founding member, you'll have access to the online community — 
+This community exists to keep that hallway track magic alive year-round.
 
-a space for ongoing conversation and connection. 
-
-It's hosted on a platform called Heartbeat which has a similar interface to Slack.
+I started Debugging Human Communication as a coaching program for people who are craving a technical manual for human conversation. And an essential part of that is a thriving community — which is what you're being invited into as a founding member.
 
 **[pause]**
 
-You'll alo get a private Discovery Session with me: a 30-minute version of my private coaching sessions. 
-
-I'm offering these at no charge to founding members as a way of saying thank you for helping shape what this becomes.
-
-Because that's the exchange. The first people in any community set the tone and create the culture. 
+Before the community opens to the public, it's important to build the right culture. The first people in any community set the tone — and that's why you're receiving this invitation. You're someone who naturally embodies what this space is striving for.
 
 **[pause]**
 
-As one of 30 founding members, you commit to active participation in the online community by regularly posting your ideas, experiences, and expertise — 
+We've been experimenting with a small group for about three months now, and we're ready to grow to 30 founding members. You're someone we respect and believe would add immense value, so we hope you consider joining as a founding member.
 
-and showing up for others by offering support, sharing resources, and modeling psychological safety.
+Here's what that would look like: 
 
-If that sounds like something you'd do anyway — then check out the details below. 
+Actively participate in the online community for at least 6 months by regularly posting your ideas, experiences, and expertise, and showing up for others by offering support and modeling psychological safety. You can estimate a time commitment of about an hour a week.
 
-If it sounds interesting, but you have constraints where active contribution isn't realistic, 
+**[pause]**
 
-please politely decline to make space for another person who can. 
+In return, you'd get lifetime access to the community — which will be $129 when it launches publicly — and a complimentary 30-minute private coaching session with me. It's my way of saying thank you for helping shape what this becomes.
+
+**[pause]**
+
+If that sounds like something you'd do anyway — we'd love to have you. Check out the details below.
+
+And if the timing or fit isn't right, that's completely okay. There's no pressure here.
 
 **[warm smile]**
 
-I'm really grateful you're here, and regardless of whether or not you decide to join, 
-
-thanks for all the work you do to ensure that human connection remains at the core of how businesses operate.
+I'm really grateful you're here, and regardless of whether or not you decide to join, thanks for all the work you do to keep human connection at the core of how we build software together.
 
 ---
 
