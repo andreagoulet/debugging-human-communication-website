@@ -71,6 +71,8 @@ const hallwayTrackCollection = defineCollection({
     }),
     footer: z.object({
       copyright: z.string(),
+      termsUrl: z.string(),
+      privacyUrl: z.string(),
     }),
   }),
 });

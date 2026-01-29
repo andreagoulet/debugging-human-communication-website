@@ -214,4 +214,6 @@ cta:
 
 footer:
   copyright: "© 2025 Debugging Human Communication. All rights reserved."
+  termsUrl: "https://andreagoulet.com/terms-and-conditions/"
+  privacyUrl: "https://andreagoulet.com/privacy-policy/"
 ---
