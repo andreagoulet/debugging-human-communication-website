@@ -153,7 +153,7 @@ sections:
           - question: "What happens after the founding member period?"
             answer: "Once the community opens to the public, founding members keep their access — no fees, no expiration. Your investment is your participation in building the culture."
           - question: "Is this the same as the coaching program?"
-            answer: "No. The community is part of the broader Debugging Human Communication ecosystem, but you don't need to be a coaching client to participate. The community stands on its own. If you ever want more structured guidance, group and private coaching are available separately."
+            answer: "No. The community is hosted on the same platform I use for my coaching clients, which is why I feel confident that I can commit to the high-engagement community management that's needed for sustainability and member experience. You don't need to be a coaching client to participate in the community."
           - question: "What if I need to step back for a while?"
             answer: "Life happens. If you need to take a break — for work, family, health, or just bandwidth — that's okay. Let me know, and there's no penalty. The only thing I ask is that you don't disappear without a word. When you're ready to return, you're welcome back."
           - question: "Will there be live events or just async discussion?"
