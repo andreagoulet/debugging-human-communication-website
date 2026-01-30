@@ -11,6 +11,9 @@
 - An invitation I think you'll appreciate
 - A hallway track, but year round
 - This might be your thing
+- Super excited to invite you
+- Personal invitation
+- Thought of you
 
 ---
 
