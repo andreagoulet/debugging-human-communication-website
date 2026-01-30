@@ -9,7 +9,7 @@ approaches:
     testimonial:
       quote: "Andrea understands communication the way I understand code: there are patterns, rules, structure. She sees what I can't see on my own, and helps me build a mental model for whatever I'm facing. What felt chaotic suddenly has structure. Before tactics, she helps me understand myself: what I value, where I stand. Then she gives me a concrete experiment, and the fast feedback loop helps me learn quickly."
       author: "Lada Kesseler"
-      role: "Lead Developer, Logic20/20 — Private coaching client"
+      role: "Lead Developer, Logic20/20"
   - title: "Design Easy-to-Implement Experiments for Rapid Results"
     paragraphs:
       - "Understanding isn't enough. You also need an approach you can actually execute."
@@ -25,7 +25,7 @@ approaches:
     testimonial:
       quote: "In my Discovery Session, Andrea immediately spotted a tiny detail in how I could frame my message and sent me peer-reviewed papers to back up her claims. When I tried the experiment, I easily persuaded my stakeholders to hire more people for my team — in a hiring freeze!"
       author: "Soumya Kulkarni"
-      role: "MTS, Software Engineering Full Stack - Private Coaching Client"
+      role: "MTS, Software Engineering Full Stack"
   - title: "Discover the Transformative Power of Community Learning"
     paragraphs:
       - "You've probably felt it — the loneliness of being the person who communicates differently. The code-switching. The holding back. The quiet embarrassment of not navigating social situations the way your colleagues seem to."
@@ -33,6 +33,6 @@ approaches:
       - "And you'll discover you're not alone. Others are working through the same challenges — and they're eager to share what's working. Members swap experiments like recipes, excited to let each other in on what they've found."
     testimonial:
       quote: "Attending my company's annual conference sounded like hell on earth for my introverted self. Instead, it was one of the most rewarding experiences of the last few months and probably a peak of my entire life in communication. Now that I've rested, all I feel is the joy and energy of connection — a weird sensation for an introvert!"
-      author: "E. L."
-      role: "Group coaching client"
+      author: "Ellis Lempriere"
+      role: "Associate Software Engineer, OpenSesame"
 ---
