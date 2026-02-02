@@ -20,6 +20,6 @@ tiers:
 continuationTitle: "Ways to Keep Going"
 teamCallout:
   text: "Want to bring this methodology to your team?"
-  description: "I run private cohorts for companies who want to develop communication skills across their engineering organization."
+  description: "I run private cohorts for companies who want to develop communication skills across their engineering and leadership teams."
   linkText: "Get in touch"
 ---

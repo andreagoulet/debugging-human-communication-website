@@ -2,6 +2,7 @@
 title: "Who This Is For"
 goodFit:
   - "You've built your career on technical excellence and now need communication skills to match"
+  - "You've moved from building things to leading people — and the communication skills that transition demands weren't part of your training"
   - "You've tried books and videos but can't seem to apply the advice in the moment"
   - "You want frameworks, not platitudes"
   - "You're willing to practice and iterate, not just learn concepts"
