@@ -58,7 +58,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
 
   <main>
     <!-- Hero Section -->
-    <section class="relative bg-teal-950 overflow-hidden">
+    <section class="relative bg-teal-950 overflow-hidden px-6">
       <!-- Full-bleed background image -->
       <div class="absolute inset-0" aria-hidden="true">
         <img src="/images/header-image.jpeg" alt="" role="presentation" class="w-full h-full object-cover object-right" />
@@ -66,7 +66,7 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
       </div>
       <!-- Text content -->
       <div class="container-lg relative z-10 grid md:grid-cols-2">
-        <div class="py-20 md:py-28 px-6 md:pr-12 text-center md:text-left">
+        <div class="py-20 md:py-28 md:pr-12 text-center md:text-left">
           <h1 class="heading-hero !text-white mb-6" set:html={formatMarkdown(hero.headline || '')} />
           <p class="text-xl md:text-2xl text-teal-200 mb-10" set:html={formatMarkdown(hero.subheadline || '')} />
           <a href={calendlyUrl} class="btn-primary">
