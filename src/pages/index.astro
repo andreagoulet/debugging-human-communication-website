@@ -58,35 +58,47 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
 
   <main>
     <!-- Hero Section -->
-    <section class="section bg-gradient-to-b from-teal-200 to-teal-50">
-      <div class="container-md text-center">
-        <h1 class="heading-hero mb-6" set:html={formatMarkdown(hero.headline || '')} />
-        <p class="text-xl md:text-2xl text-teal-900 mb-10 container-xs" set:html={formatMarkdown(hero.subheadline || '')} />
-        <a href={calendlyUrl} class="btn-primary">
-          {hero.ctaText}
-        </a>
+    <section class="relative bg-teal-950 overflow-hidden">
+      <!-- Full-bleed background image -->
+      <div class="absolute inset-0" aria-hidden="true">
+        <img src="/images/header-image.jpeg" alt="" role="presentation" class="w-full h-full object-cover object-right" />
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-950 via-teal-950/80 md:via-teal-950/60 to-transparent"></div>
+      </div>
+      <!-- Text content -->
+      <div class="container-lg relative z-10 grid md:grid-cols-2">
+        <div class="py-20 md:py-28 px-6 md:pr-12 text-center md:text-left">
+          <h1 class="heading-hero !text-white mb-6" set:html={formatMarkdown(hero.headline || '')} />
+          <p class="text-xl md:text-2xl text-teal-200 mb-10" set:html={formatMarkdown(hero.subheadline || '')} />
+          <a href={calendlyUrl} class="btn-primary">
+            {hero.ctaText}
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- Opening Narrative -->
-    <section class="section bg-white">
+    <section class="py-20 px-6 bg-teal-950">
       <div class="container-sm">
-        <p class="text-xl text-teal-950 mb-6 font-medium text-center" set:html={formatMarkdown(openingNarrative.opener || '')} />
+        <h2 class="heading-section !text-white mb-8 text-center" set:html={formatMarkdown(openingNarrative.opener || '')} />
+      </div>
+      <div class="container-sm bg-white rounded-2xl p-8 md:p-12 shadow-xl">
 
         {openingNarrative.paragraphs?.map((p) => (
           <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
         ))}
 
-        <p class="text-lg text-teal-950 font-medium mb-6" set:html={formatMarkdown(openingNarrative.painPointsIntro || '')} />
+        <div class="bg-teal-50 rounded-2xl p-8 my-10">
+          <p class="text-lg text-teal-950 font-medium mb-5" set:html={formatMarkdown(openingNarrative.painPointsIntro || '')} />
 
-        <ul class="space-y-4 text-lg text-teal-900 mb-8">
-          {openingNarrative.painPoints?.map((point) => (
-            <li class="flex items-start gap-3">
-              <span class="text-teal-950 mt-1">•</span>
-              <span set:html={formatMarkdown(point)} />
-            </li>
-          ))}
-        </ul>
+          <ul class="space-y-3 text-lg text-teal-900">
+            {openingNarrative.painPoints?.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="text-coral mt-1">•</span>
+                <span set:html={formatMarkdown(point)} />
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {openingNarrative.closingParagraphs?.map((p, i) => {
           const isLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 1;
@@ -107,16 +119,21 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
       <div class="container-sm">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(realProblem.title || '')} />
 
-        {realProblem.paragraphs?.map((p) => {
-          const para = typeof p === 'string' ? { text: p } : p;
-          return para.emphasis === 'bold' ? (
-            <p class="text-xl text-teal-950 font-semibold mb-6" set:html={formatMarkdown(para.text)} />
-          ) : para.emphasis === 'italic' ? (
-            <p class="text-xl text-teal-950 font-medium italic" set:html={formatMarkdown(para.text)} />
-          ) : (
-            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
-          );
-        })}
+        <div class="bg-white rounded-2xl p-8 md:p-12">
+          {realProblem.paragraphs?.map((p, i) => {
+            const para = typeof p === 'string' ? { text: p } : p;
+            const isLast = i === (realProblem.paragraphs?.length ?? 0) - 1;
+            return isLast ? (
+              <blockquote class="border-l-4 border-coral pl-6 mt-8">
+                <p class="text-xl text-teal-950 italic" set:html={formatMarkdown(para.text)} />
+              </blockquote>
+            ) : para.emphasis === 'bold' ? (
+              <p class="text-xl text-teal-950 font-semibold mb-6" set:html={formatMarkdown(para.text)} />
+            ) : (
+              <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
+            );
+          })}
+        </div>
       </div>
     </section>
 
@@ -125,14 +142,16 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
       <div class="container-sm">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(answer.title || '')} />
 
-        {answer.paragraphs?.map((p) => {
-          const para = typeof p === 'string' ? { text: p } : p;
-          return para.emphasis === 'bold' ? (
-            <p class="text-2xl text-teal-950 font-bold mb-8" set:html={formatMarkdown(para.text)} />
-          ) : (
-            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
-          );
-        })}
+        <div class="bg-white rounded-2xl p-8 md:p-12 border border-teal-200 shadow-sm">
+          {answer.paragraphs?.map((p) => {
+            const para = typeof p === 'string' ? { text: p } : p;
+            return para.emphasis === 'bold' ? (
+              <p class="text-xl text-teal-950 font-semibold mb-6" set:html={formatMarkdown(para.text)} />
+            ) : (
+              <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
+            );
+          })}
+        </div>
       </div>
     </section>
 
@@ -142,14 +161,24 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(methodology.title || '')} />
         <p class="text-xl text-teal-900 text-center mb-16" set:html={formatMarkdown(methodology.subtitle || '')} />
 
-        <div class="space-y-16">
+        <div class="space-y-10">
           {methodology.approaches?.map((approach, index) => (
-            <MethodologyCard
-              number={index + 1}
-              title={approach.title}
-              paragraphs={approach.paragraphs}
-              testimonial={approach.testimonial}
-            />
+            <>
+              <MethodologyCard
+                number={index + 1}
+                title={approach.title}
+                paragraphs={approach.paragraphs}
+              />
+              {approach.testimonial && (
+                <blockquote class="border-l-4 border-purple pl-6 pr-4 py-4 italic text-teal-900 max-w-2xl mx-auto">
+                  "{approach.testimonial.quote}"
+                  <footer class="mt-2 not-italic">
+                    <span class="text-teal-950 font-medium">— {approach.testimonial.author}</span>
+                    {approach.testimonial.role && <span class="text-teal-900 text-sm block mt-1">{approach.testimonial.role}</span>}
+                  </footer>
+                </blockquote>
+              )}
+            </>
           ))}
         </div>
 
@@ -163,13 +192,20 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
 
     <!-- Meet Andrea -->
     <section class="section bg-white">
-      <div class="container-sm">
+      <div class="container-md">
         <h2 class="heading-section mb-6 text-center" set:html={formatMarkdown(meetAndrea.title || '')} />
         <p class="text-xl text-teal-900 text-center mb-10" set:html={formatMarkdown(meetAndrea.intro || '')} />
 
-        {meetAndrea.paragraphs?.map((p) => (
-          <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
-        ))}
+        <div>
+          <!-- Photo -->
+          <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-80 rounded-2xl shadow-sm float-right ml-8 mb-6 hidden md:block" />
+          <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-64 rounded-2xl shadow-sm mx-auto mb-8 md:hidden" />
+
+          <!-- Bio text -->
+          {meetAndrea.paragraphs?.map((p) => (
+            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
+          ))}
+        </div>
       </div>
     </section>
 

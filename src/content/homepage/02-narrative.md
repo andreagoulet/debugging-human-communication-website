@@ -1,5 +1,5 @@
 ---
-opener: "**You crack hard problems for a living. <br> So why is communicating with people so hard?**"
+opener: "Crack the code to human interaction."
 paragraphs:
   - "You're in a meeting, giving lots of detail to help people see your vision. Instead of the enthusiasm you were expecting, you watch everyone else's eyes glaze over."
   - "Or you're at a conference, coffee in hand, scanning the room. Everyone else seems to be connecting effortlessly. You're calculating the least awkward time to leave."
