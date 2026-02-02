@@ -28,7 +28,7 @@ const { number, title, paragraphs, testimonial } = Astro.props;
   ))}
 
   {testimonial && (
-    <blockquote class="border-l-4 border-teal-950 pl-6 italic text-teal-900">
+    <blockquote class="border-l-4 border-purple bg-purple/5 rounded-r-lg pl-6 pr-4 py-4 italic text-teal-900">
       "{testimonial.quote}"
       <footer class="mt-2 not-italic">
         <span class="text-teal-950 font-medium">— {testimonial.author}</span>
