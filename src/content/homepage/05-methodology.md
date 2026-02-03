@@ -16,8 +16,8 @@ approaches:
       - "**Instead of forcing yourself into someone else's system, we design experiments around what you're already doing.** The goal: find the smallest tweak that creates disproportionate results."
     testimonial:
       quote: "Andrea's coaching is effective because she helps me spot assumptions I didn't even know I had. She helps me design communication experiments that feel way too easy to have such a big impact."
-      author: "T. Y."
-      role: "Private coaching client"
+      author: "Ted M. Young"
+      role: "Technical Coach & Creator of JitterTed's TDD Game"
   - title: "Get Expert Advice"
     paragraphs:
       - "You won't get handed a one-size-fits-all playbook. Instead, **you'll work with a guide who understands the nuance of human systems and can help you design experiments to discover what actually works for you.**"
