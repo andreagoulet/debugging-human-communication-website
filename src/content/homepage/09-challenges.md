@@ -1,5 +1,5 @@
 ---
-title: "Effort Won't Fix Communication. Leverage Will."
+title: "Effort Won't Fix Communication.<br>Leverage Will."
 epigraph:
   quote: "Give me a lever long enough and a fulcrum on which to place it, and I shall move the world."
   author: "Archimedes"
