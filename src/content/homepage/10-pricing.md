@@ -1,7 +1,7 @@
 ---
-title: "Bring a challenge.<br>Leave with an experiment.<br>Get results."
+title: "Bring a challenge.<br>Design an experiment.<br>Get results."
 subtitle: "One conversation can change everything."
-pricingIntro: "Here's how it works: Start with a Discovery Session. Bring a specific challenge. Leave with a documented experiment you can run immediately. If you want to keep going, choose the pace that fits — weekly group sessions or private 1:1 coaching."
+pricingIntro: "Every engagement starts with a single session — try the method, try working with me, and see if it's a fit before you commit to anything."
 journeySteps:
   - label: "Discovery Session"
     description: "Bring a challenge, get an experiment"
