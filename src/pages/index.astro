@@ -346,14 +346,12 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
         </div>
 
         {pricing.teamCallout && (
-          <div class="mt-12 pt-10 border-t border-teal-200">
-            <div class="text-center max-w-lg mx-auto">
-              <p class="text-lg font-semibold text-teal-950 mb-2">{pricing.teamCallout.text}</p>
-              <p class="text-teal-900 mb-4">{pricing.teamCallout.description}</p>
-              <a href={`mailto:${footer.contactEmail}`} class="text-teal-600 hover:text-teal-800 underline font-medium">
-                {pricing.teamCallout.linkText} →
-              </a>
-            </div>
+          <div class="mt-12 bg-teal-950 rounded-xl p-8 md:py-10 md:px-16 text-center">
+            <p class="text-xl font-semibold text-white mb-2">{pricing.teamCallout.text}</p>
+            <p class="text-teal-200 mb-6">{pricing.teamCallout.description}</p>
+            <a href={`mailto:${footer.contactEmail}`} class="btn-primary">
+              {pricing.teamCallout.linkText} →
+            </a>
           </div>
         )}
       </div>

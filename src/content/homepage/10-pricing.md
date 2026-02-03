@@ -30,21 +30,21 @@ tiers:
       - "Async access via community platform between sessions"
       - "All session recordings + documented experiments"
       - "Community extras: text channels, book clubs, deliberate practice groups"
-    bestFor: "You've read the books, done the trainings, tried the advice — and it hasn't stuck. You want structured practice and the support of people who've been through the exact same thing."
+    bestFor: "You've read the books, done the trainings, tried the advice. It's helped, but you want less theory and more tactics. You're ready for structured practice and the support of people who share your struggles."
   - title: "Private Coaching"
     price: 895
     period: "/month"
     description: "Dedicated 1:1 coaching tailored to your situation."
     features:
-      - "Monthly 1-hour 1:1 session — an hour of dedicated, concentrated attention on your challenges"
+      - "Monthly 1-hour 1:1 session for dedicated, concentrated attention on your challenges"
       - "Every experiment tailored to your specific situation, your relationships, your goals"
       - "Unlimited async access — when you're stuck, preparing, or celebrating, you're not alone"
       - "All group coaching benefits (weekly calls, recordings, community)"
       - "Support between sessions — low effort to stay involved, high value when you need it"
-    bestFor: "You want everything in group coaching, plus the depth and speed of dedicated 1:1 attention. You're ready to get results."
+    bestFor: "You're focused and have a specific goal you're ready to crush. You want everything in group coaching, plus the depth and speed of dedicated 1:1 attention. You're ready to get results."
 continuationTitle: "Ways to Keep Going"
 teamCallout:
-  text: "Want to bring this methodology to your team?"
-  description: "I run private cohorts for companies who want to develop communication skills across their engineering and leadership teams."
+  text: "Bring your whole team."
+  description: "Private cohorts give your engineering and leadership teams a structured way to problem solve. Run real experiments on real work for real results."
   linkText: "Get in touch"
 ---
