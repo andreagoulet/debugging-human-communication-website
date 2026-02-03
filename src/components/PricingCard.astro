@@ -48,13 +48,14 @@ const { title, price, period, description, features, bestFor, highlight, feature
             </div>
           )}
         </div>
-        {ctaText && ctaUrl && (
-          <div class="shrink-0">
+        <div class="shrink-0 flex flex-col items-center gap-6">
+          {ctaText && ctaUrl && (
             <a href={ctaUrl} class="btn-primary whitespace-nowrap">
               {ctaText}
             </a>
-          </div>
-        )}
+          )}
+          <slot name="extra" />
+        </div>
       </div>
     </div>
   </div>

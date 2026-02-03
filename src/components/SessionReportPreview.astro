@@ -1,0 +1,266 @@
+---
+// Clickable thumbnail preview that opens the session report modal.
+// Renders a scaled-down version of the actual report first page
+// so visitors immediately recognize it as a professional document.
+---
+
+<button
+  id="open-report-preview"
+  type="button"
+  class="report-preview-trigger group"
+  aria-haspopup="dialog"
+  aria-controls="session-report-modal"
+>
+  <!-- Scaled-down page rendering -->
+  <div class="report-preview-frame" aria-hidden="true">
+    <div class="report-preview-page">
+      <div class="preview-content">
+        <!-- Header -->
+        <p class="preview-title">Session Notes</p>
+        <div class="preview-meta">
+          <p><strong>Date:</strong> January 5, 2026</p>
+          <p><strong>Duration:</strong> ~59 min</p>
+          <p><strong>Attendees:</strong> Andrea Goulet, Alex</p>
+        </div>
+
+        <hr class="preview-hr" />
+
+        <!-- Overview -->
+        <p class="preview-heading">Overview</p>
+        <p class="preview-body">Alex spent ~15–16 hours on his blog during the holiday break and feels proud of the progress. The session explored why budgeting 20 hours (vs. 1 hour) shifted his emotional experience from embarrassment to pride, identified a sunk cost fallacy pattern around rabbit holes, and established experiments for estimation and context capture.</p>
+
+        <hr class="preview-hr" />
+
+        <!-- Experimental Design -->
+        <p class="preview-heading">Experimental Design</p>
+
+        <p class="preview-subheading">1. Friction Point</p>
+        <p class="preview-body">Estimating accurately and avoiding rabbit holes that delay launching the blog.</p>
+
+        <p class="preview-subheading">2. Context</p>
+        <table class="preview-table">
+          <thead>
+            <tr><th>Theme</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Previous session</td><td>Felt embarrassed about lack of progress when estimating 1 hour for tasks</td></tr>
+            <tr><td>This session</td><td>Felt proud after budgeting 20 hours and spending ~15–16</td></tr>
+            <tr><td>Work blocks</td><td>Morning sessions continue to be effective; context switching is expensive</td></tr>
+            <tr><td>Documentation</td><td>Writing tickets/documentation "doesn't feel like work," contributing to sunk cost trap</td></tr>
+            <tr><td>Work situation</td><td>Increased estimation requests at work</td></tr>
+          </tbody>
+        </table>
+
+        <p class="preview-subheading">3. Variables</p>
+        <table class="preview-table">
+          <thead>
+            <tr><th>Variable</th><th>Observed Outcome</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Time budget (1 hr vs 20 hrs)</td><td>20 hrs → pride; 1 hr → embarrassment</td></tr>
+            <tr><td>Doom scrolling replacement</td><td>Successfully swapped for blog work multiple times</td></tr>
+            <tr><td>Breaking work into pieces</td><td>Easier to estimate smaller chunks</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Hover overlay -->
+    <div class="preview-overlay">
+      <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        <line x1="11" y1="8" x2="11" y2="14" />
+        <line x1="8" y1="11" x2="14" y2="11" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Label -->
+  <span class="report-preview-label">View Sample Report</span>
+</button>
+
+<style>
+  .report-preview-trigger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  /* The visible frame that clips the scaled content */
+  .report-preview-frame {
+    position: relative;
+    width: 12rem;
+    height: 15.5rem;
+    overflow: hidden;
+    border-radius: 0.375rem;
+    box-shadow:
+      0 1px 3px rgb(0 0 0 / 0.12),
+      0 4px 8px rgb(0 0 0 / 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .report-preview-trigger:hover .report-preview-frame,
+  .report-preview-trigger:focus-visible .report-preview-frame {
+    transform: translateY(-3px);
+    box-shadow:
+      0 4px 12px rgb(0 0 0 / 0.15),
+      0 8px 24px rgb(0 0 0 / 0.08);
+  }
+
+  .report-preview-trigger:focus-visible {
+    outline: none;
+  }
+
+  .report-preview-trigger:focus-visible .report-preview-frame {
+    outline: 2px solid var(--color-teal-600);
+    outline-offset: 2px;
+  }
+
+  /* The "page" that gets scaled down */
+  .report-preview-page {
+    width: 40rem;
+    background: white;
+    transform: scale(0.3);
+    transform-origin: top left;
+  }
+
+  .preview-content {
+    padding: 2rem 2.5rem;
+    font-family: var(--font-sans);
+    color: var(--color-teal-950);
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  /* Typography at full-size (will be scaled to 0.3) */
+  .preview-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  .preview-meta {
+    text-align: left;
+  }
+
+  .preview-meta p {
+    font-size: 0.8rem;
+    color: var(--color-teal-800);
+    margin: 0.1rem 0;
+  }
+
+  .preview-hr {
+    border: none;
+    border-top: 1px solid var(--color-teal-200);
+    margin: 0.75rem 0;
+  }
+
+  .preview-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-align: left;
+  }
+
+  .preview-subheading {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-teal-800);
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    text-align: left;
+  }
+
+  .preview-body {
+    font-size: 0.75rem;
+    margin-bottom: 0.4rem;
+    text-align: left;
+  }
+
+  .preview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.7rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .preview-table {
+    text-align: left;
+  }
+
+  .preview-table th {
+    text-align: left;
+    padding: 0.3rem 0.5rem;
+    background: var(--color-teal-200);
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--color-teal-400);
+  }
+
+  .preview-table td {
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid var(--color-teal-200);
+    vertical-align: top;
+  }
+
+  /* Fade at bottom to suggest continuation */
+  .report-preview-frame::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    background: linear-gradient(to bottom, transparent, white);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Hover overlay */
+  .preview-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 54, 64, 0.5);
+    border-radius: 0.375rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: white;
+    z-index: 2;
+  }
+
+  .report-preview-trigger:hover .preview-overlay,
+  .report-preview-trigger:focus-visible .preview-overlay {
+    opacity: 1;
+  }
+
+  .report-preview-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-teal-800);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+
+  .report-preview-trigger:hover .report-preview-label {
+    color: var(--color-teal-950);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .report-preview-frame {
+      transition: none;
+    }
+    .preview-overlay {
+      transition: none;
+    }
+  }
+</style>
