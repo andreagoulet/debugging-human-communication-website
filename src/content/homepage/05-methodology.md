@@ -1,6 +1,6 @@
 ---
-title: "Wish you had a technical manual for human interaction? This program was built for you."
-subtitle: "**Discover the difference of using a methodology built specifically for analytical minds.**"
+title: "Your technical manual for human interaction"
+subtitle: "**Discover the difference of experiment-driven coaching.**"
 approaches:
   - title: "Decode Hidden Systems"
     paragraphs:

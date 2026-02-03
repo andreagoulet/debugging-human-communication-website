@@ -1,8 +1,8 @@
 ---
-title: "A Guide Who Speaks Your Language"
-intro: "Hi! I'm Andrea Goulet."
+title: "Meet Andrea Goulet"
+intro: "Founder & Lead Coach, Debugging Human Communication"
 paragraphs:
-  - "Let's get one thing straight. I won't tell you to \"just be more confident,\" \"smile more,\" \"maintain eye contact,\" or \"read the room.\" Not only because that advice isn't helpful and in many contexts can backfire — but because **you need someone who gets that your brain works differently — and sees your love for nuance as a strength.**"
+  - "Let's get one thing straight. My coaching style isn't about telling you to \"just be more confident,\" \"smile more,\" \"maintain eye contact,\" or \"read the room.\" Not only because that advice isn't helpful and in many contexts can backfire — but because **you need someone who gets that your brain works differently — and sees your love for nuance as a strength.**"
   - "I get it because I've been there. As a kid, social situations baffled me. I couldn't figure out why I didn't fit in. Then I discovered linguistics, business communication, and copywriting and suddenly everything made sense. **I saw how the whole system worked. Human communication is built on patterns, structures, and computations.** It's not magic. It's a system — and I wanted to figure out the mechanics. Take it apart like you would a clock to see exactly what makes it tick."
   - "**What started as curiosity has turned into a 25-year obsession.** And I've used my particular set of skills to help Fortune 500 companies navigate billion-dollar turnarounds, facilitate workshops with Smithsonian scientists, bootstrap a multi-million dollar software consultancy by treating empathy as a technical skill, and teach over 100,000 people through my courses on LinkedIn Learning."
   - "When I started sharing my ideas publicly, **I was surprised at just how many technologists became enthusiastic about my work. 'Finally,' they told me, 'messy human systems make sense!'**"
