@@ -135,11 +135,19 @@ const homepageCollection = defineCollection({
     closing: z.string().optional(),
 
     // Pricing
+    pricingIntro: z.string().optional(),
+    journeySteps: z.array(z.object({
+      label: z.string(),
+      description: z.string(),
+    })).optional(),
     tiers: z.array(z.object({
       title: z.string(),
       price: z.number(),
       period: z.string().optional(),
       description: z.string(),
+      features: z.array(z.string()).optional(),
+      bestFor: z.string().optional(),
+      highlight: z.string().optional(),
       featured: z.boolean().optional(),
       guarantee: z.string().optional(),
       ctaText: z.string().optional(),

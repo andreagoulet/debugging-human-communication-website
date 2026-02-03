@@ -287,14 +287,37 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
       <div class="container-md">
         <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(pricing.title || '')} />
         {pricing.subtitle && (
-          <p class="text-xl text-teal-900 text-center mb-12 container-sm mx-auto" set:html={formatMarkdown(pricing.subtitle)} />
+          <p class="text-xl text-teal-900 text-center mb-6 container-sm mx-auto" set:html={formatMarkdown(pricing.subtitle)} />
+        )}
+
+        {pricing.pricingIntro && (
+          <p class="text-lg text-teal-900 text-center mb-8 container-sm mx-auto" set:html={formatMarkdown(pricing.pricingIntro)} />
+        )}
+
+        {pricing.journeySteps && pricing.journeySteps.length > 0 && (
+          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-2 mb-12 container-sm mx-auto">
+            {pricing.journeySteps.map((step, i) => (
+              <>
+                <div class="flex flex-col items-center text-center px-3">
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-bold text-sm mb-2">{i + 1}</span>
+                  <span class="font-semibold text-teal-950 text-sm">{step.label}</span>
+                  <span class="text-teal-700 text-xs mt-0.5">{step.description}</span>
+                </div>
+                {i < pricing.journeySteps!.length - 1 && (
+                  <span class="text-teal-400 text-xl hidden md:block">→</span>
+                )}
+              </>
+            ))}
+          </div>
         )}
 
         {pricing.tiers?.filter(tier => tier.featured).map((tier) => (
           <PricingCard
             title={tier.title}
             price={tier.price}
+            period={tier.period}
             description={tier.description}
+            features={tier.features}
             featured={true}
             guarantee={tier.guarantee}
             ctaText={tier.ctaText}
@@ -311,6 +334,9 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
               price={tier.price}
               period={tier.period}
               description={tier.description}
+              features={tier.features}
+              bestFor={tier.bestFor}
+              highlight={tier.highlight}
             />
           ))}
         </div>

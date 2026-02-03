@@ -32,6 +32,18 @@ All page content lives in `src/content/homepage/*.md` files using Zod-validated 
 - Brand colors: teal, coral, yellow, purple, green, blue (defined in global.css)
 - Utility classes: `.btn-primary`, `.section`, `.container-*`, `.heading-*`
 
+## Accessibility
+
+All components and content must conform to WCAG 2.1 AA standards:
+
+- **Color contrast:** Text must meet minimum contrast ratios (4.5:1 for normal text, 3:1 for large text). The brand palette has custom teal values — always verify contrast against `global.css` definitions, not default Tailwind colors.
+- **Semantic HTML:** Use appropriate heading hierarchy, landmark elements, and ARIA attributes.
+- **Interactive elements:** Buttons and links must have accessible names. Icons that are decorative use `aria-hidden="true"`. Icons that convey meaning need accessible text.
+- **Images:** All images must have meaningful `alt` text (or `alt=""` if purely decorative).
+- **Focus management:** Interactive elements must be keyboard-accessible with visible focus indicators.
+
+When creating or modifying any component, verify accessibility before considering the task complete.
+
 ## Rules
 - Follow instructions in each skill's `SKILL.md`
 - Never manually read files in `.claude/skills/`. If a task matches a skill's description, invoke it via the Skill tool. If you find yourself reading `SKILL.md` directly, stop and use the Skill tool instead.

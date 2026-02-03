@@ -1,22 +1,47 @@
 ---
-title: "Let's Run Your First Experiment"
-subtitle: "One conversation can shift everything. Let's find your specific friction point and design something you can try this week."
+title: "Bring a challenge.<br>Leave with an experiment.<br>Get results."
+subtitle: "One conversation can change everything."
+pricingIntro: "Here's how it works: Start with a Discovery Session. Bring a specific challenge. Leave with a documented experiment you can run immediately. If you want to keep going, choose the pace that fits — weekly group sessions or private 1:1 coaching."
+journeySteps:
+  - label: "Discovery Session"
+    description: "Bring a challenge, get an experiment"
+  - label: "Got what you need?"
+    description: "Keep your recording + report"
+  - label: "Want more?"
+    description: "Group Coaching or Private Coaching"
 tiers:
-  - title: "Discovery Session + Community"
+  - title: "Discovery Session"
     price: 129
-    period: one-time payment
-    description: "A 30-minute 1:1 session where we dig into your specific challenge and design your first experiment together. You'll also get access to the online community so you can connect with others on the same path."
+    period: one-time
+    description: "A 30-minute 1:1 session where we dig into your specific challenge and design your first experiment together."
     featured: true
-    guarantee: "If you don't feel like you've gotten your money's worth, I'll refund you completely. No questions asked."
-    ctaText: "Book Now →"
+    features:
+      - "Password-protected session recording"
+      - "Documented experiment report: hypothesis, behavior changes, and your concrete next step"
+    guarantee: "If you don't feel you've gotten your money's worth, I'll refund you completely. Keep the recording and the report — no questions asked."
+    ctaText: "Book Your Session →"
   - title: "Group Coaching"
     price: 225
     period: "/month"
-    description: "Weekly calls, small cohort, documented findings, and community access. For people who want structured learning in community."
+    description: "Structured weekly practice with people who get it."
+    features:
+      - "Weekly 1-hour hot seat calls — bring a challenge, leave with an experiment"
+      - "A cohort of ~12 people who build on each other's ideas (experiments don't just come from me)"
+      - "Async access via community platform between sessions"
+      - "All session recordings + documented experiments"
+      - "Community extras: text channels, book clubs, deliberate practice groups"
+    bestFor: "You've read the books, done the trainings, tried the advice — and it hasn't stuck. You want structured practice and the support of people who've been through the exact same thing."
   - title: "Private Coaching"
     price: 895
     period: "/month"
-    description: "1:1 sessions, customized experiments, unlimited private chat messages with me, and documentation of your progress. Plus weekly group coaching and community access. For people with a goal they're ready to achieve."
+    description: "Dedicated 1:1 coaching tailored to your situation."
+    features:
+      - "Monthly 1-hour 1:1 session — an hour of dedicated, concentrated attention on your challenges"
+      - "Every experiment tailored to your specific situation, your relationships, your goals"
+      - "Unlimited async access — when you're stuck, preparing, or celebrating, you're not alone"
+      - "All group coaching benefits (weekly calls, recordings, community)"
+      - "Support between sessions — low effort to stay involved, high value when you need it"
+    bestFor: "You want everything in group coaching, plus the depth and speed of dedicated 1:1 attention. You're ready to get results."
 continuationTitle: "Ways to Keep Going"
 teamCallout:
   text: "Want to bring this methodology to your team?"
