@@ -1,6 +1,6 @@
 ---
 title: "How Small Shifts Create Big Changes"
-subtitle: "**An experiment-driven approach to communication — <br>designed for how analytical minds actually learn.**"
+subtitle: "**An experiment-driven approach to communication — <br>designed for how technical professionals actually work.**"
 introText: "You don't need to overhaul your personality. You need a systematic way to find what's not working and fix it. **My eight-step, experiment-driven coaching framework turns real conversations into a lab where you can test, observe, and iterate.**"
 steps:
   - number: 1
