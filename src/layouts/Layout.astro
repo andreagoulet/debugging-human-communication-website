@@ -4,9 +4,10 @@ import '../styles/global.css'
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title, description = "Communication coaching for engineers. Learn to navigate conversations with the same systematic confidence you bring to technical problems." } = Astro.props;
+const { title, description = "Communication coaching for engineers. Learn to navigate conversations with the same systematic confidence you bring to technical problems.", noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,6 +20,7 @@ const { title, description = "Communication coaching for engineers. Learn to nav
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <title>{title}</title>
 
     <!-- Open Graph -->

@@ -25,7 +25,7 @@ tiers:
     period: "/month"
     description: "Structured weekly practice with people who get it."
     features:
-      - "Weekly 1-hour hot seat calls — bring a challenge, leave with an experiment"
+      - "Weekly 1-hour group calls — bring a friction point, vote on what to tackle, and work through 3–4 real challenges together"
       - "A cohort of ~12 people who build on each other's ideas (experiments don't just come from me)"
       - "Async access via community platform between sessions"
       - "All session recordings + documented experiments"

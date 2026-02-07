@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { formatMarkdown } from '../utils/formatMarkdown';
+import ReflectionCard from '../components/ReflectionCard.astro';
+import SessionReportPreview from '../components/SessionReportPreview.astro';
+import SessionReportModal from '../components/SessionReportModal.astro';
+
+const allContent = await getCollection('booked-page');
+const page = allContent[0].data;
+
+// Pull pricing tiers from the homepage so they stay in sync
+const homepageContent = await getCollection('homepage');
+const pricingEntry = homepageContent.find(entry => entry.slug === '10-pricing');
+const continuationTiers = pricingEntry?.data.tiers?.filter(tier => !tier.featured) ?? [];
+---
+
+<Layout
+  title="You're Booked! | Debugging Human Communication"
+  description="Your discovery session is confirmed. Here's what to expect and how to prepare for your coaching session."
+  noindex={true}
+>
+  <!-- Header -->
+  <header class="bg-white py-4 px-6 border-b border-teal-200">
+    <nav class="container-lg flex justify-center items-center">
+      <a href="/" class="flex items-center gap-3">
+        <img src="/logo.svg" alt="Debugging Human Communication" class="h-10 w-auto" />
+        <span class="font-bold text-teal-950 text-lg hidden sm:block">Debugging Human Communication</span>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="section bg-gradient-to-b from-teal-200 to-teal-50">
+      <div class="container-sm text-center">
+        <div class="mb-6">
+          <svg class="w-16 h-16 mx-auto" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="32" cy="32" r="32" fill="#00DA9D" fill-opacity="0.15" />
+            <circle cx="32" cy="32" r="22" fill="#00DA9D" fill-opacity="0.3" />
+            <path d="M22 33l7 7 13-14" stroke="#00DA9D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h1 class="heading-hero mb-6" set:html={formatMarkdown(page.hero.headline)} />
+        <p class="text-xl md:text-2xl text-teal-900 mb-6 container-xs mx-auto" set:html={formatMarkdown(page.hero.subheadline)} />
+        {page.hero.paragraphs?.map((paragraph) => (
+          <p class="text-lg text-teal-900 container-xs mx-auto" set:html={formatMarkdown(paragraph)} />
+        ))}
+      </div>
+    </section>
+
+    <!-- What to Expect Section -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-4 text-center">{page.whatToExpect.title}</h2>
+        {page.whatToExpect.intro && (
+          <p class="text-lg text-teal-900 text-center mb-12 container-sm mx-auto" set:html={formatMarkdown(page.whatToExpect.intro)} />
+        )}
+        <div class="grid md:grid-cols-3 gap-8">
+          {page.whatToExpect.items.map((item) => (
+            <div class="bg-teal-50 rounded-2xl p-6 text-center">
+              {item.icon === 'clock' && (
+                <svg class="w-10 h-10 mx-auto mb-4 text-teal-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              )}
+              {item.icon === 'target' && (
+                <svg class="w-10 h-10 mx-auto mb-4 text-teal-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              )}
+              {item.icon === 'experiment' && (
+                <svg class="w-10 h-10 mx-auto mb-4 text-teal-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M9 3h6" />
+                  <path d="M10 3v6.5L5 20h14l-5-10.5V3" />
+                  <path d="M8.5 14h7" />
+                </svg>
+              )}
+              <h3 class="text-lg font-semibold text-teal-950 mb-3">{item.title}</h3>
+              <p class="text-teal-900" set:html={formatMarkdown(item.description)} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Prepare Section -->
+    <section class="section bg-teal-950">
+      <div class="container-md">
+        <h2 class="heading-section !text-white mb-4 text-center">{page.howToPrepare.title}</h2>
+        <p class="text-lg text-teal-200 text-center mb-6 container-sm mx-auto" set:html={formatMarkdown(page.howToPrepare.intro)} />
+        <div class="bg-teal-900/50 rounded-lg p-4 mb-12 container-sm mx-auto text-center">
+          <p class="text-teal-300 text-base italic" set:html={formatMarkdown(page.howToPrepare.disclaimer)} />
+        </div>
+        <div class="space-y-6 container-sm mx-auto">
+          {page.howToPrepare.questions.map((q, i) => (
+            <ReflectionCard
+              number={i + 1}
+              question={q.question}
+              categories={q.categories}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Report Section -->
+    <section class="section bg-teal-50">
+      <div class="container-md">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="heading-section mb-6">{page.yourReport.title}</h2>
+            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(page.yourReport.description)} />
+            <p class="inline-block bg-teal-200 text-teal-950 font-semibold px-4 py-2 rounded-full text-sm">
+              {page.yourReport.timeframe}
+            </p>
+          </div>
+          <div class="flex justify-center">
+            <SessionReportPreview />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Happens After Section -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-4 text-center">{page.whatsNext.title}</h2>
+        <p class="text-lg text-teal-900 text-center mb-12 container-sm mx-auto" set:html={formatMarkdown(page.whatsNext.intro)} />
+        <div class="grid md:grid-cols-2 gap-8">
+          {continuationTiers.map((tier) => (
+            <div class="border border-teal-200 rounded-2xl p-8">
+              <div class="flex items-baseline justify-between mb-2">
+                <h3 class="text-xl font-bold text-teal-950">{tier.title}</h3>
+                <span class="text-teal-900 font-semibold text-sm">
+                  ${tier.price}{tier.period}
+                </span>
+              </div>
+              <p class="text-teal-900 mb-4" set:html={formatMarkdown(tier.description)} />
+              {tier.features && tier.features.length > 0 && (
+                <ul class="space-y-2">
+                  {tier.features.map((feature) => (
+                    <li class="flex items-start gap-2 text-teal-900">
+                      <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
+                      <span set:html={formatMarkdown(feature)} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+        {page.whatsNext.contactText && (
+          <p class="text-teal-900 text-center mt-10 container-sm mx-auto italic" set:html={formatMarkdown(page.whatsNext.contactText)} />
+        )}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-teal-950 border-t border-teal-900">
+      <div class="container-md text-center">
+        <p class="text-teal-200 text-sm mb-4">
+          Questions? Reach out to <a href={`mailto:${page.footer.contactEmail}`} class="text-teal-200 hover:text-white underline">{page.footer.contactEmail}</a>
+        </p>
+        <p class="text-teal-400 text-sm mb-2">
+          {page.footer.copyright}
+        </p>
+        <p class="text-teal-500 text-sm">
+          <a href={page.footer.termsUrl} class="hover:text-teal-300 underline">Terms & Conditions</a>
+          <span class="mx-2">|</span>
+          <a href={page.footer.privacyUrl} class="hover:text-teal-300 underline">Privacy Policy</a>
+        </p>
+      </div>
+    </footer>
+
+    <SessionReportModal />
+  </main>
+</Layout>

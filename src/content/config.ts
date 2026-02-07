@@ -51,6 +51,54 @@ const contentBlockSchema = z.discriminatedUnion('type', [
   }),
 ]);
 
+const bookedPageCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    hero: z.object({
+      headline: z.string(),
+      subheadline: z.string(),
+      paragraphs: z.array(z.string()).optional(),
+    }),
+    whatToExpect: z.object({
+      title: z.string(),
+      intro: z.string().optional(),
+      items: z.array(z.object({
+        icon: z.string(),
+        title: z.string(),
+        description: z.string(),
+      })),
+    }),
+    howToPrepare: z.object({
+      title: z.string(),
+      intro: z.string(),
+      disclaimer: z.string(),
+      questions: z.array(z.object({
+        question: z.string(),
+        categories: z.array(z.object({
+          name: z.string(),
+          examples: z.string(),
+        })),
+      })),
+    }),
+    yourReport: z.object({
+      title: z.string(),
+      description: z.string(),
+      timeframe: z.string(),
+    }),
+    whatsNext: z.object({
+      title: z.string(),
+      intro: z.string(),
+      contactText: z.string().optional(),
+    }),
+    footer: z.object({
+      contactEmail: z.string(),
+      copyright: z.string(),
+      termsUrl: z.string(),
+      privacyUrl: z.string(),
+    }),
+  }),
+});
+
 const hallwayTrackCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -193,4 +241,5 @@ const homepageCollection = defineCollection({
 export const collections = {
   homepage: homepageCollection,
   'hallway-track-page': hallwayTrackCollection,
+  'booked-page': bookedPageCollection,
 };

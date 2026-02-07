@@ -1,0 +1,34 @@
+---
+import { formatMarkdown } from '../utils/formatMarkdown';
+
+interface Category {
+  name: string;
+  examples: string;
+}
+
+interface Props {
+  number: number;
+  question: string;
+  categories: Category[];
+}
+
+const { number, question, categories } = Astro.props;
+---
+
+<div class="bg-white rounded-2xl p-6 md:p-8">
+  <div class="flex items-start gap-4 mb-5">
+    <span class="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-teal-200 text-teal-950 font-bold text-sm" aria-hidden="true">
+      {number}
+    </span>
+    <h3 class="text-lg font-semibold text-teal-950" set:html={formatMarkdown(question)} />
+  </div>
+  <p class="text-base text-teal-900 ml-12 mb-3 italic">For example...</p>
+  <div class="space-y-3 ml-12">
+    {categories.map((category) => (
+      <div class="text-base">
+        <span class="font-semibold text-teal-950">{category.name}:</span>
+        <span class="text-teal-900"> {category.examples}</span>
+      </div>
+    ))}
+  </div>
+</div>
