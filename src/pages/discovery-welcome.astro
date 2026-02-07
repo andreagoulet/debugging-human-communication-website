@@ -41,7 +41,10 @@ const continuationTiers = pricingEntry?.data.tiers?.filter(tier => !tier.feature
             <path d="M22 33l7 7 13-14" stroke="#00DA9D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </div>
-        <h1 class="heading-hero mb-6" set:html={formatMarkdown(page.hero.headline)} />
+        <h1 id="hero-headline" class="heading-hero mb-6" set:html={formatMarkdown(page.hero.headline)} />
+        <p id="session-details" class="text-lg text-teal-950 font-semibold mb-4 hidden">
+          <!-- Populated by client-side JS with session date/time from Calendly -->
+        </p>
         <p class="text-xl md:text-2xl text-teal-900 mb-6 container-xs mx-auto" set:html={formatMarkdown(page.hero.subheadline)} />
         {page.hero.paragraphs?.map((paragraph) => (
           <p class="text-lg text-teal-900 container-xs mx-auto" set:html={formatMarkdown(paragraph)} />
@@ -178,4 +181,41 @@ const continuationTiers = pricingEntry?.data.tiers?.filter(tier => !tier.feature
 
     <SessionReportModal />
   </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const fullName = params.get('invitee_full_name');
+    const startTime = params.get('event_start_time');
+
+    // Personalize headline with first name
+    if (fullName) {
+      const firstName = fullName.split(' ')[0];
+      const headline = document.getElementById('hero-headline');
+      if (headline) {
+        headline.textContent = `You're Booked, ${firstName}!`;
+      }
+    }
+
+    // Show session date and time
+    if (startTime) {
+      const date = new Date(startTime);
+      if (!isNaN(date.getTime())) {
+        const formatted = date.toLocaleDateString(undefined, {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+        });
+        const time = date.toLocaleTimeString(undefined, {
+          hour: 'numeric',
+          minute: '2-digit',
+          timeZoneName: 'short',
+        });
+        const details = document.getElementById('session-details');
+        if (details) {
+          details.textContent = `${formatted} at ${time}`;
+          details.classList.remove('hidden');
+        }
+      }
+    }
+  </script>
 </Layout>
