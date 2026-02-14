@@ -1,6 +1,6 @@
 ---
 title: "What This Is NOT"
-subtitle: "Let me be direct about fit."
+subtitle: "Let's be direct about fit."
 items:
   - title: "This is not therapy."
     description: "It can complement therapy, but the focus is practical skill-building, not deep emotional processing."

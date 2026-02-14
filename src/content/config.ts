@@ -135,6 +135,7 @@ const homepageCollection = defineCollection({
     // Hero specific
     headline: z.string().optional(),
     subheadline: z.string().optional(),
+    heroDescription: z.string().optional(),
     ctaText: z.string().optional(),
     ctaSubtext: z.string().optional(),
 
@@ -230,6 +231,20 @@ const homepageCollection = defineCollection({
     goodFit: z.array(z.string()).optional(),
     notGoodFit: z.array(z.string()).optional(),
 
+    // Bullet highlights (e.g. "what this is" section)
+    highlights: z.array(z.string()).optional(),
+
+    // Who this is for (brief homepage version)
+    traits: z.array(z.string()).optional(),
+    situations: z.array(z.string()).optional(),
+
+    // How we work together
+    engagements: z.array(z.object({
+      icon: z.string(),
+      title: z.string(),
+      description: z.string(),
+    })).optional(),
+
     // Footer
     contactEmail: z.string().optional(),
     copyright: z.string().optional(),
@@ -238,8 +253,20 @@ const homepageCollection = defineCollection({
   }),
 });
 
+const testimonialsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    quote: z.string(),
+    author: z.string(),
+    role: z.string().optional(),
+    featured: z.boolean().optional(),
+    order: z.number(),
+  }),
+});
+
 export const collections = {
   homepage: homepageCollection,
+  testimonials: testimonialsCollection,
   'hallway-track-page': hallwayTrackCollection,
   'booked-page': bookedPageCollection,
 };

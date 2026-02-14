@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import PageCta from '../components/PageCta.astro';
+import ClarificationCard from '../components/ClarificationCard.astro';
+import FitList from '../components/FitList.astro';
+import FAQItem from '../components/FAQItem.astro';
+import { formatMarkdown } from '../utils/formatMarkdown';
+
+const allContent = await getCollection('homepage');
+const content = Object.fromEntries(
+  allContent.map(entry => [entry.slug, entry])
+);
+
+const whatThisIsNot = content['12-clarifications'].data;
+const whoThisIsFor = content['13-fit'].data;
+const faq = content['11-faq'].data;
+const finalCta = content['14-cta'].data;
+const footer = content['15-footer'].data;
+---
+
+<Layout title="Is This Right For You? | Debugging Human Communication" description="Find out if Debugging Human Communication is right for you. See who it's for, what it's not, and answers to frequently asked questions.">
+  <SiteHeader currentPath="/fit" />
+
+  <main>
+    <!-- Page Hero -->
+    <section class="bg-teal-950 px-6">
+      <div class="container-lg">
+        <div class="py-20 md:py-24 max-w-2xl">
+          <h1 class="heading-hero !text-white mb-6">Is This Right For You?</h1>
+          <p class="text-xl md:text-2xl text-teal-200">Honest answers about who this work is for, what it's not, and what to expect.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What This Is NOT -->
+    <section class="section bg-white">
+      <div class="container-sm">
+        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(whatThisIsNot.title || '')} />
+        <p class="text-lg text-teal-900 text-center mb-12" set:html={formatMarkdown(whatThisIsNot.subtitle || '')} />
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          {whatThisIsNot.items?.map((item) => (
+            <ClarificationCard title={item.title} description={item.description} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Who This Is For -->
+    <section class="section bg-teal-200">
+      <div class="container-sm">
+        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(whoThisIsFor.title || '')} />
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <FitList type="good" items={whoThisIsFor.goodFit || []} />
+          <FitList type="bad" items={whoThisIsFor.notGoodFit || []} />
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section bg-teal-50">
+      <div class="container-sm">
+        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(faq.title || '')} />
+
+        <div class="space-y-8">
+          {faq.questions?.map((item) => (
+            <FAQItem question={item.question} answer={item.answer} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <PageCta
+      title={finalCta.title || ''}
+      intro={finalCta.intro}
+      paragraphs={finalCta.paragraphs}
+      closing={finalCta.closing}
+      ctaText={finalCta.ctaText}
+      ctaSubtext={finalCta.ctaSubtext}
+    />
+
+    <SiteFooter
+      contactEmail={footer.contactEmail || ''}
+      copyright={footer.copyright || ''}
+      termsUrl={footer.termsUrl || ''}
+      privacyUrl={footer.privacyUrl || ''}
+    />
+  </main>
+</Layout>

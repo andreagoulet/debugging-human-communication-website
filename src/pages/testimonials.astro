@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import PageCta from '../components/PageCta.astro';
+import FeaturedTestimonial from '../components/FeaturedTestimonial.astro';
+import { formatMarkdown } from '../utils/formatMarkdown';
+
+const allTestimonials = await getCollection('testimonials');
+const sorted = allTestimonials.sort((a, b) => a.data.order - b.data.order);
+const featured = sorted.filter(t => t.data.featured);
+const others = sorted.filter(t => !t.data.featured);
+
+const allHomepage = await getCollection('homepage');
+const homepageContent = Object.fromEntries(
+  allHomepage.map(entry => [entry.slug, entry])
+);
+const finalCta = homepageContent['14-cta'].data;
+const footer = homepageContent['15-footer'].data;
+---
+
+<Layout title="Testimonials | Debugging Human Communication" description="Hear from technical professionals who've used Debugging Human Communication to improve their conversations at work.">
+  <SiteHeader currentPath="/testimonials" />
+
+  <main>
+    <!-- Page Hero -->
+    <section class="bg-teal-950 px-6">
+      <div class="container-lg">
+        <div class="py-20 md:py-24 max-w-2xl">
+          <h1 class="heading-hero !text-white mb-6">Real Results from Real Engineers</h1>
+          <p class="text-xl md:text-2xl text-teal-200">Hear from technical professionals who've transformed their communication — one experiment at a time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Testimonial(s) -->
+    {featured.length > 0 && (
+      <section class="section bg-teal-100">
+        <div class="container-md">
+          {featured.map((t) => (
+            <FeaturedTestimonial
+              quote={t.data.quote}
+              author={t.data.author}
+              role={t.data.role}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- All Other Testimonials -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <div class="grid md:grid-cols-2 gap-8">
+          {others.map((t) => (
+            <blockquote class="bg-teal-50 rounded-xl p-8 border border-teal-200">
+              <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              </svg>
+              <p class="text-lg text-teal-900 italic mb-4" set:html={`"${formatMarkdown(t.data.quote)}"`} />
+              <footer>
+                <p class="text-teal-950 font-semibold">— {t.data.author}</p>
+                {t.data.role && <p class="text-teal-700 text-sm">{t.data.role}</p>}
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <PageCta
+      title={finalCta.title || ''}
+      intro={finalCta.intro}
+      paragraphs={finalCta.paragraphs}
+      closing={finalCta.closing}
+      ctaText={finalCta.ctaText}
+      ctaSubtext={finalCta.ctaSubtext}
+    />
+
+    <SiteFooter
+      contactEmail={footer.contactEmail || ''}
+      copyright={footer.copyright || ''}
+      termsUrl={footer.termsUrl || ''}
+      privacyUrl={footer.privacyUrl || ''}
+    />
+  </main>
+</Layout>

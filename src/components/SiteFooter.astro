@@ -1,0 +1,26 @@
+---
+interface Props {
+  contactEmail: string;
+  copyright: string;
+  termsUrl: string;
+  privacyUrl: string;
+}
+
+const { contactEmail, copyright, termsUrl, privacyUrl } = Astro.props;
+---
+
+<footer class="py-8 px-6 bg-teal-950 border-t border-teal-900">
+  <div class="container-md text-center">
+    <p class="text-teal-400 mb-4">
+      Questions before booking? Email <a href={`mailto:${contactEmail}`} class="text-teal-200 hover:text-white underline">{contactEmail}</a>
+    </p>
+    <p class="text-teal-400 text-sm mb-2">
+      {copyright}
+    </p>
+    <p class="text-teal-500 text-sm">
+      <a href={termsUrl} class="hover:text-teal-300 underline">Terms & Conditions</a>
+      <span class="mx-2">|</span>
+      <a href={privacyUrl} class="hover:text-teal-300 underline">Privacy Policy</a>
+    </p>
+  </div>
+</footer>

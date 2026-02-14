@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import PageCta from '../components/PageCta.astro';
+import FeaturedTestimonial from '../components/FeaturedTestimonial.astro';
+import { formatMarkdown } from '../utils/formatMarkdown';
+
+const allContent = await getCollection('homepage');
+const content = Object.fromEntries(
+  allContent.map(entry => [entry.slug, entry])
+);
+
+const meetAndrea = content['06-bio'].data;
+const finalCta = content['14-cta'].data;
+const footer = content['15-footer'].data;
+
+// Pull testimonials from dedicated collection
+const allTestimonials = await getCollection('testimonials');
+const sorted = allTestimonials.sort((a, b) => a.data.order - b.data.order);
+const featured = sorted.find(t => t.data.featured);
+const others = sorted.filter(t => !t.data.featured);
+---
+
+<Layout title="About Andrea Goulet | Debugging Human Communication" description="Meet Andrea Goulet — 25 years studying the mechanics of human communication, helping technical professionals communicate more effectively.">
+  <SiteHeader currentPath="/about" />
+
+  <main>
+    <!-- Page Hero -->
+    <section class="bg-teal-950 px-6">
+      <div class="container-lg">
+        <div class="py-20 md:py-24 max-w-2xl">
+          <h1 class="heading-hero !text-white mb-6">About Andrea Goulet</h1>
+          <p class="text-xl md:text-2xl text-teal-200" set:html={formatMarkdown(meetAndrea.intro || '')} />
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Bio -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <div>
+          <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-80 rounded-2xl shadow-sm float-right ml-8 mb-6 hidden md:block" />
+          <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-64 rounded-2xl shadow-sm mx-auto mb-8 md:hidden" />
+
+          {meetAndrea.paragraphs?.map((p) => (
+            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Testimonial -->
+    {featured && (
+      <section class="section bg-teal-100">
+        <div class="container-md">
+          <h2 class="heading-section mb-12 text-center">What Others Say</h2>
+          <FeaturedTestimonial
+            quote={featured.data.quote}
+            author={featured.data.author}
+            role={featured.data.role}
+          />
+        </div>
+      </section>
+    )}
+
+    <!-- More Testimonials -->
+    {others.length > 0 && (
+      <section class="section bg-white">
+        <div class="container-md">
+          <div class="grid md:grid-cols-2 gap-8">
+            {others.map((t) => (
+              <blockquote class="bg-teal-50 rounded-xl p-8 border border-teal-200">
+                <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p class="text-lg text-teal-900 italic mb-4" set:html={`"${formatMarkdown(t.data.quote)}"`} />
+                <footer>
+                  <p class="text-teal-950 font-semibold">— {t.data.author}</p>
+                  {t.data.role && <p class="text-teal-700 text-sm">{t.data.role}</p>}
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+
+          <p class="text-center mt-10">
+            <a href="/testimonials" class="text-teal-700 font-semibold hover:text-teal-950 underline">See all testimonials →</a>
+          </p>
+        </div>
+      </section>
+    )}
+
+    <!-- Final CTA -->
+    <PageCta
+      title={finalCta.title || ''}
+      intro={finalCta.intro}
+      paragraphs={finalCta.paragraphs}
+      closing={finalCta.closing}
+      ctaText={finalCta.ctaText}
+      ctaSubtext={finalCta.ctaSubtext}
+    />
+
+    <SiteFooter
+      contactEmail={footer.contactEmail || ''}
+      copyright={footer.copyright || ''}
+      termsUrl={footer.termsUrl || ''}
+      privacyUrl={footer.privacyUrl || ''}
+    />
+  </main>
+</Layout>

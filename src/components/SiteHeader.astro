@@ -1,0 +1,92 @@
+---
+import { CALENDLY_URL } from '../utils/constants';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const navLinks = [
+  { href: '/approach', label: 'The Approach' },
+  { href: '/fit', label: 'Is This For You?' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/testimonials', label: 'Testimonials' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="bg-teal-50 py-4 px-6 sticky top-0 z-50 border-b border-teal-200">
+  <nav class="container-lg flex justify-between items-center">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/logo.svg" alt="Debugging Human Communication" class="h-10 w-auto" />
+      <span class="font-bold text-teal-950 text-lg hidden sm:block">Debugging Human Communication</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-6">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            'text-sm font-medium transition-colors',
+            currentPath === link.href
+              ? 'text-teal-950'
+              : 'text-teal-700 hover:text-teal-950',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href={CALENDLY_URL} class="btn-primary-sm">
+        Book a Session
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <div class="flex items-center gap-3 md:hidden">
+      <a href={CALENDLY_URL} class="btn-primary-sm">
+        Book a Session
+      </a>
+      <button
+        id="mobile-menu-toggle"
+        class="p-2 text-teal-700 hover:text-teal-950"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-teal-200 mt-4 pt-4 pb-2">
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        class:list={[
+          'block py-2 px-2 text-sm font-medium rounded transition-colors',
+          currentPath === link.href
+            ? 'text-teal-950 bg-teal-100'
+            : 'text-teal-700 hover:text-teal-950 hover:bg-teal-100',
+        ]}
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+  });
+</script>

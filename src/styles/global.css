@@ -7,6 +7,7 @@
   --color-teal-800: #05A8A7;
   --color-teal-600: #54D3D8;
   --color-teal-400: #86E0DD;
+  --color-teal-300: #A7E6E0;
   --color-teal-200: #C8EDE4;
   --color-teal-50: #F6F6F6;
 
@@ -133,3 +134,4 @@ h1, h2, h3, h4, h5, h6 {
 .play-overlay:hover svg circle {
   fill: rgba(0, 54, 64, 0.85);
 }
+

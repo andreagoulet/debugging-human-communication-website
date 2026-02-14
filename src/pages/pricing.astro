@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import PageCta from '../components/PageCta.astro';
+import PricingCard from '../components/PricingCard.astro';
+import SessionReportPreview from '../components/SessionReportPreview.astro';
+import SessionReportModal from '../components/SessionReportModal.astro';
+import { CALENDLY_URL } from '../utils/constants';
+import { formatMarkdown } from '../utils/formatMarkdown';
+
+const allContent = await getCollection('homepage');
+const content = Object.fromEntries(
+  allContent.map(entry => [entry.slug, entry])
+);
+
+const pricing = content['10-pricing'].data;
+const finalCta = content['14-cta'].data;
+const footer = content['15-footer'].data;
+---
+
+<Layout title="Pricing | Debugging Human Communication" description="Pricing for communication coaching — discovery sessions, ongoing coaching, and team options for technical professionals.">
+  <SiteHeader currentPath="/pricing" />
+
+  <main>
+    <!-- Page Hero -->
+    <section class="bg-teal-950 px-6">
+      <div class="container-lg">
+        <div class="py-20 md:py-24 max-w-2xl">
+          <h1 class="heading-hero !text-white mb-6" set:html={formatMarkdown(pricing.title || '')} />
+          {pricing.subtitle && (
+            <p class="text-xl md:text-2xl text-teal-200" set:html={formatMarkdown(pricing.subtitle)} />
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Content -->
+    <section class="section bg-white">
+      <div class="container-md">
+        {pricing.pricingIntro && (
+          <p class="text-lg text-teal-900 text-center mb-8 container-sm mx-auto" set:html={formatMarkdown(pricing.pricingIntro)} />
+        )}
+
+        {pricing.journeySteps && pricing.journeySteps.length > 0 && (
+          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-2 mb-12 container-sm mx-auto">
+            {pricing.journeySteps.map((step, i) => (
+              <>
+                <div class="flex flex-col items-center text-center px-3">
+                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-bold text-sm mb-2">{i + 1}</span>
+                  <span class="font-semibold text-teal-950 text-base">{step.label}</span>
+                  <span class="text-teal-700 text-sm mt-0.5">{step.description}</span>
+                </div>
+                {i < pricing.journeySteps!.length - 1 && (
+                  <span class="text-teal-400 text-xl hidden md:block">→</span>
+                )}
+              </>
+            ))}
+          </div>
+        )}
+
+        {pricing.tiers?.filter(tier => tier.featured).map((tier) => (
+          <PricingCard
+            title={tier.title}
+            price={tier.price}
+            period={tier.period}
+            description={tier.description}
+            features={tier.features}
+            featured={true}
+            guarantee={tier.guarantee}
+            ctaText={tier.ctaText}
+            ctaUrl={CALENDLY_URL}
+          >
+            <SessionReportPreview slot="extra" />
+          </PricingCard>
+        ))}
+
+        <h3 class="heading-card mb-8 text-center" set:html={formatMarkdown(pricing.continuationTitle || '')} />
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {pricing.tiers?.filter(tier => !tier.featured).map((tier) => (
+            <PricingCard
+              title={tier.title}
+              price={tier.price}
+              period={tier.period}
+              description={tier.description}
+              features={tier.features}
+              bestFor={tier.bestFor}
+              highlight={tier.highlight}
+            />
+          ))}
+        </div>
+
+        {pricing.teamCallout && (
+          <div class="mt-12 bg-teal-950 rounded-xl p-8 md:py-10 md:px-16 text-center">
+            <p class="text-xl font-semibold text-white mb-2">{pricing.teamCallout.text}</p>
+            <p class="text-teal-200 mb-6">{pricing.teamCallout.description}</p>
+            <a href={`mailto:${footer.contactEmail}`} class="btn-primary">
+              {pricing.teamCallout.linkText} →
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <PageCta
+      title={finalCta.title || ''}
+      intro={finalCta.intro}
+      paragraphs={finalCta.paragraphs}
+      closing={finalCta.closing}
+      ctaText={finalCta.ctaText}
+      ctaSubtext={finalCta.ctaSubtext}
+    />
+
+    <SiteFooter
+      contactEmail={footer.contactEmail || ''}
+      copyright={footer.copyright || ''}
+      termsUrl={footer.termsUrl || ''}
+      privacyUrl={footer.privacyUrl || ''}
+    />
+    <SessionReportModal />
+  </main>
+</Layout>

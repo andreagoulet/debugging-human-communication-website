@@ -1,18 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import MethodologyCard from '../components/MethodologyCard.astro';
-import ChallengeCard from '../components/ChallengeCard.astro';
-import PricingCard from '../components/PricingCard.astro';
-import FAQItem from '../components/FAQItem.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import PageCta from '../components/PageCta.astro';
+import EngagementCard from '../components/EngagementCard.astro';
 import ClarificationCard from '../components/ClarificationCard.astro';
 import FitList from '../components/FitList.astro';
-import FeaturedTestimonial from '../components/FeaturedTestimonial.astro';
-import SessionReportPreview from '../components/SessionReportPreview.astro';
-import SessionReportModal from '../components/SessionReportModal.astro';
+import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
-
-const calendlyUrl = "https://calendly.com/andreagoulet/discovery-session";
 
 // Get all homepage content, sorted by filename
 const allContent = await getCollection('homepage');
@@ -20,359 +16,110 @@ const content = Object.fromEntries(
   allContent.map(entry => [entry.slug, entry])
 );
 
-// Extract each section's data (all from frontmatter now)
 const hero = content['01-hero'].data;
-const openingNarrative = content['02-narrative'].data;
-const realProblem = content['03-problem'].data;
-const answer = content['04-solution'].data;
-const methodology = content['05-methodology'].data;
-const meetAndrea = content['06-bio'].data;
-const framework = content['07-framework'].data;
-const featuredTestimonial = content['08-testimonial'].data;
-const findYourLever = content['09-challenges'].data;
-const pricing = content['10-pricing'].data;
-const faq = content['11-faq'].data;
+const whatThisIs = content['20-what-this-is'].data;
+const whoBrief = content['21-who-brief'].data;
+const methodGlance = content['22-method-glance'].data;
+const howWeWork = content['23-how-we-work'].data;
 const whatThisIsNot = content['12-clarifications'].data;
 const whoThisIsFor = content['13-fit'].data;
+const meetAndrea = content['24-about-coach'].data;
 const finalCta = content['14-cta'].data;
 const footer = content['15-footer'].data;
 
-// Helper to render paragraph with optional emphasis
-const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic' }) => {
-  if (typeof p === 'string') return p;
-  return p;
-};
+// Testimonials from dedicated collection
+const allTestimonials = await getCollection('testimonials');
+const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout title="Debugging Human Communication | Communication Coaching for Engineers">
-  <!-- Header -->
-  <header class="bg-teal-50 py-4 px-6 sticky top-0 z-50 border-b border-teal-200">
-    <nav class="container-lg flex justify-between items-center">
-      <a href="/" class="flex items-center gap-3">
-        <img src="/logo.svg" alt="Debugging Human Communication" class="h-10 w-auto" />
-        <span class="font-bold text-teal-950 text-lg hidden sm:block">Debugging Human Communication</span>
-      </a>
-      <a href={calendlyUrl} class="btn-primary-sm">
-        Book a Session
-      </a>
-    </nav>
-  </header>
+  <SiteHeader currentPath="/" />
 
   <main>
     <!-- Hero Section -->
     <section class="relative bg-teal-950 overflow-hidden px-6">
-      <!-- Full-bleed background image -->
       <div class="absolute inset-0" aria-hidden="true">
         <img src="/images/header-image.jpeg" alt="" role="presentation" class="w-full h-full object-cover object-right" />
         <div class="absolute inset-0 bg-gradient-to-r from-teal-950 via-teal-950/80 md:via-teal-950/60 to-transparent"></div>
       </div>
-      <!-- Text content -->
       <div class="container-lg relative z-10 grid md:grid-cols-2">
         <div class="py-20 md:py-28 md:pr-12 text-center md:text-left">
-          <h1 class="heading-hero !text-white mb-6" set:html={formatMarkdown(hero.headline || '')} />
-          <p class="text-xl md:text-2xl text-teal-200 mb-10" set:html={formatMarkdown(hero.subheadline || '')} />
-          <a href={calendlyUrl} class="btn-primary">
-            {hero.ctaText}
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Opening Narrative -->
-    <section class="py-20 px-6 bg-teal-950">
-      <div class="container-sm">
-        <h2 class="heading-section !text-white mb-8 text-center" set:html={formatMarkdown(openingNarrative.opener || '')} />
-      </div>
-      <div class="container-sm bg-white rounded-2xl p-8 md:p-12 shadow-xl">
-
-        {openingNarrative.paragraphs?.map((p) => (
-          <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
-        ))}
-
-        <div class="bg-teal-50 rounded-2xl p-8 my-10">
-          <p class="text-lg text-teal-950 font-medium mb-5" set:html={formatMarkdown(openingNarrative.painPointsIntro || '')} />
-
-          <ul class="space-y-3 text-lg text-teal-900">
-            {openingNarrative.painPoints?.map((point) => (
-              <li class="flex items-start gap-3">
-                <span class="text-coral mt-1">•</span>
-                <span set:html={formatMarkdown(point)} />
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {openingNarrative.closingParagraphs?.map((p, i) => {
-          const isLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 1;
-          const isSecondToLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 2;
-          return isSecondToLast ? (
-            <p class="text-xl text-teal-950 font-semibold" set:html={formatMarkdown(p)} />
-          ) : isLast ? (
-            <p class="text-xl text-teal-950 font-bold mt-4" set:html={formatMarkdown(p)} />
-          ) : (
-            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(p)} />
-          );
-        })}
-      </div>
-    </section>
-
-    <!-- The Real Problem -->
-    <section class="section bg-teal-200">
-      <div class="container-sm">
-        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(realProblem.title || '')} />
-
-        <div class="bg-white rounded-2xl p-8 md:p-12">
-          {realProblem.paragraphs?.map((p, i) => {
-            const para = typeof p === 'string' ? { text: p } : p;
-            const isLast = i === (realProblem.paragraphs?.length ?? 0) - 1;
-            return isLast ? (
-              <blockquote class="border-l-4 border-coral pl-6 mt-8">
-                <p class="text-xl text-teal-950 italic" set:html={formatMarkdown(para.text)} />
-              </blockquote>
-            ) : para.emphasis === 'bold' ? (
-              <p class="text-xl text-teal-950 font-semibold mb-6" set:html={formatMarkdown(para.text)} />
-            ) : (
-              <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
-            );
-          })}
-        </div>
-      </div>
-    </section>
-
-    <!-- The Answer -->
-    <section class="section bg-white">
-      <div class="container-sm">
-        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(answer.title || '')} />
-
-        <div class="bg-white rounded-2xl p-8 md:p-12 border border-teal-200 shadow-sm">
-          {answer.paragraphs?.map((p) => {
-            const para = typeof p === 'string' ? { text: p } : p;
-            return para.emphasis === 'bold' ? (
-              <p class="text-xl text-teal-950 font-semibold mb-6" set:html={formatMarkdown(para.text)} />
-            ) : (
-              <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
-            );
-          })}
-        </div>
-      </div>
-    </section>
-
-    <!-- What Makes This Different (Methodology) -->
-    <section class="section bg-teal-50">
-      <div class="container-md">
-        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(methodology.title || '')} />
-        <p class="text-xl text-teal-900 text-center mb-16" set:html={formatMarkdown(methodology.subtitle || '')} />
-
-        <div class="space-y-10">
-          {methodology.approaches?.map((approach, index) => (
-            <>
-              <MethodologyCard
-                number={index + 1}
-                title={approach.title}
-                paragraphs={approach.paragraphs}
-              />
-              {approach.testimonial && (
-                <blockquote class="border-l-4 border-purple pl-6 pr-4 py-4 italic text-teal-900 max-w-2xl mx-auto">
-                  "{approach.testimonial.quote}"
-                  <footer class="mt-2 not-italic">
-                    <span class="text-teal-950 font-medium">— {approach.testimonial.author}</span>
-                    {approach.testimonial.role && <span class="text-teal-900 text-sm block mt-1">{approach.testimonial.role}</span>}
-                  </footer>
-                </blockquote>
-              )}
-            </>
-          ))}
-        </div>
-
-        <div class="text-center mt-12">
-          <a href={calendlyUrl} class="btn-primary">
-            Book Your Discovery Session →
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Meet Andrea -->
-    <section class="section bg-white">
-      <div class="container-md">
-        <h2 class="heading-section mb-6 text-center" set:html={formatMarkdown(meetAndrea.title || '')} />
-        <p class="text-xl text-teal-900 text-center mb-10" set:html={formatMarkdown(meetAndrea.intro || '')} />
-
-        <div>
-          <!-- Photo -->
-          <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-80 rounded-2xl shadow-sm float-right ml-8 mb-6 hidden md:block" />
-          <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-64 rounded-2xl shadow-sm mx-auto mb-8 md:hidden" />
-
-          <!-- Bio text -->
-          {meetAndrea.paragraphs?.map((p) => (
-            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Testimonial -->
-    <section class="section bg-teal-100">
-      <div class="container-md">
-        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(featuredTestimonial.title || '')} />
-
-        {featuredTestimonial.testimonial && (
-          <FeaturedTestimonial
-            quote={featuredTestimonial.testimonial.quote}
-            author={featuredTestimonial.testimonial.author}
-            role={featuredTestimonial.testimonial.role}
-          />
-        )}
-      </div>
-    </section>
-
-    <!-- Framework -->
-    <section class="section bg-teal-200">
-      <div class="container-md">
-        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(framework.title || '')} />
-        <p class="text-xl text-teal-900 text-center mb-6" set:html={formatMarkdown(framework.subtitle || '')} />
-        <p class="text-lg text-teal-900 text-center mb-12 container-sm" set:html={formatMarkdown(framework.introText || '')} />
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {framework.steps?.map((step) => (
-            <div class="bg-white rounded-lg p-6 shadow-sm">
-              <div class="text-3xl font-bold text-teal-950 mb-2">{step.number}</div>
-              <h3 class="text-lg font-semibold text-teal-950 mb-3" set:html={formatMarkdown(step.title)} />
-              <p class="text-teal-900 text-sm" set:html={formatMarkdown(step.description)} />
-            </div>
-          ))}
-        </div>
-
-        <p class="text-lg text-teal-950 font-medium text-center mt-12" set:html={formatMarkdown(framework.closingText || '')} />
-      </div>
-    </section>
-
-    <!-- Find Your Lever -->
-    <section class="section bg-teal-950 text-white">
-      <div class="container-md">
-        <h2 class="heading-section !text-white mb-8 text-center" set:html={formatMarkdown(findYourLever.title || '')} />
-
-        {findYourLever.epigraph && (
-          <blockquote class="border-l-4 border-teal-400 pl-6 py-4 mb-10 bg-teal-900/30 rounded-r-lg">
-            <p class="text-2xl text-teal-100 italic mb-2" set:html={`"${formatMarkdown(findYourLever.epigraph.quote)}"`} />
-            <footer class="text-teal-400" set:html={`— ${formatMarkdown(findYourLever.epigraph.author)}`} />
-          </blockquote>
-        )}
-
-        <div class="text-lg text-teal-100 mb-12 space-y-4">
-          {findYourLever.introParagraphs?.map((p) => (
-            <p set:html={formatMarkdown(p)} />
-          ))}
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {findYourLever.challenges?.map((challenge) => (
-            <ChallengeCard
-              title={challenge.title}
-              description={challenge.description}
-              tip={challenge.tip}
-            />
-          ))}
-        </div>
-
-        <div class="text-center mt-12">
-          <p class="text-xl text-teal-200 mb-6" set:html={formatMarkdown(findYourLever.closingText || '')} />
-          <a href={calendlyUrl} class="btn-primary">
-            Book Your Discovery Session →
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="section bg-white">
-      <div class="container-md">
-        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(pricing.title || '')} />
-        {pricing.subtitle && (
-          <p class="text-xl text-teal-900 text-center mb-6 container-sm mx-auto" set:html={formatMarkdown(pricing.subtitle)} />
-        )}
-
-        {pricing.pricingIntro && (
-          <p class="text-lg text-teal-900 text-center mb-8 container-sm mx-auto" set:html={formatMarkdown(pricing.pricingIntro)} />
-        )}
-
-        {pricing.journeySteps && pricing.journeySteps.length > 0 && (
-          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-2 mb-12 container-sm mx-auto">
-            {pricing.journeySteps.map((step, i) => (
-              <>
-                <div class="flex flex-col items-center text-center px-3">
-                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-bold text-sm mb-2">{i + 1}</span>
-                  <span class="font-semibold text-teal-950 text-base">{step.label}</span>
-                  <span class="text-teal-700 text-sm mt-0.5">{step.description}</span>
-                </div>
-                {i < pricing.journeySteps!.length - 1 && (
-                  <span class="text-teal-400 text-xl hidden md:block">→</span>
-                )}
-              </>
-            ))}
-          </div>
-        )}
-
-        {pricing.tiers?.filter(tier => tier.featured).map((tier) => (
-          <PricingCard
-            title={tier.title}
-            price={tier.price}
-            period={tier.period}
-            description={tier.description}
-            features={tier.features}
-            featured={true}
-            guarantee={tier.guarantee}
-            ctaText={tier.ctaText}
-            ctaUrl={calendlyUrl}
-          >
-            <SessionReportPreview slot="extra" />
-          </PricingCard>
-        ))}
-
-        <h3 class="heading-card mb-8 text-center" set:html={formatMarkdown(pricing.continuationTitle || '')} />
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {pricing.tiers?.filter(tier => !tier.featured).map((tier) => (
-            <PricingCard
-              title={tier.title}
-              price={tier.price}
-              period={tier.period}
-              description={tier.description}
-              features={tier.features}
-              bestFor={tier.bestFor}
-              highlight={tier.highlight}
-            />
-          ))}
-        </div>
-
-        {pricing.teamCallout && (
-          <div class="mt-12 bg-teal-950 rounded-xl p-8 md:py-10 md:px-16 text-center">
-            <p class="text-xl font-semibold text-white mb-2">{pricing.teamCallout.text}</p>
-            <p class="text-teal-200 mb-6">{pricing.teamCallout.description}</p>
-            <a href={`mailto:${footer.contactEmail}`} class="btn-primary">
-              {pricing.teamCallout.linkText} →
+          <h1 class="heading-hero !text-white mb-6">{hero.headline}</h1>
+          <p class="text-xl md:text-2xl text-teal-200 mb-6">{hero.subheadline}</p>
+          {hero.heroDescription && (
+            <p class="text-lg md:text-xl text-teal-300 mb-10">{hero.heroDescription}</p>
+          )}
+          <div class="flex flex-row flex-wrap gap-4 justify-center md:justify-start">
+            <a href={CALENDLY_URL} class="btn-primary !bg-teal-600 !text-teal-950 hover:!bg-teal-400">
+              {hero.ctaText}
             </a>
           </div>
-        )}
+        </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section bg-teal-50">
-      <div class="container-sm">
-        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(faq.title || '')} />
-
-        <div class="space-y-8">
-          {faq.questions?.map((item) => (
-            <FAQItem question={item.question} answer={item.answer} />
+    <!-- What This Is -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <div class="bg-white rounded-xl p-8 md:p-12 border-2 border-teal-200">
+          <h2 class="heading-section mb-6 text-center">{whatThisIs.title}</h2>
+          {whatThisIs.paragraphs?.map((p) => (
+            <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
           ))}
+          {whatThisIs.highlights && (
+            <ul class="text-xl text-teal-900 mb-6 list-disc space-y-2 pl-12">
+              {whatThisIs.highlights.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+          {whatThisIs.closingText && (
+            <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(whatThisIs.closingText)} />
+          )}
+          <p class="text-center mt-4">
+            <a href="/approach" class="text-teal-700 font-semibold hover:text-teal-950 underline">See the full approach →</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section bg-teal-200">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">Real Results from Real Engineers</h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {sortedTestimonials.map((t) => (
+            <blockquote class:list={["bg-white rounded-xl p-8 border border-teal-200", t.data.featured && "md:col-span-2"]}>
+              <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              </svg>
+              <p class="text-lg text-teal-900 italic mb-4" set:html={`"${formatMarkdown(t.data.quote)}"`} />
+              <footer>
+                <p class="text-teal-950 font-semibold">&mdash; {t.data.author}</p>
+                {t.data.role && <p class="text-teal-700 text-sm">{t.data.role}</p>}
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Who This Is For -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(whoThisIsFor.title || '')} />
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <FitList type="good" items={whoThisIsFor.goodFit || []} />
+          <FitList type="bad" items={whoThisIsFor.notGoodFit || []} />
         </div>
       </div>
     </section>
 
     <!-- What This Is NOT -->
-    <section class="section bg-white">
-      <div class="container-sm">
+    <section class="section bg-teal-200">
+      <div class="container-md">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(whatThisIsNot.title || '')} />
         <p class="text-lg text-teal-900 text-center mb-12" set:html={formatMarkdown(whatThisIsNot.subtitle || '')} />
 
@@ -384,68 +131,125 @@ const renderParagraph = (p: string | { text: string; emphasis?: 'bold' | 'italic
       </div>
     </section>
 
-    <!-- Who This Is For -->
-    <section class="section bg-teal-200">
-      <div class="container-sm">
-        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(whoThisIsFor.title || '')} />
+    <!-- The Method, at a Glance -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-4 text-center">{methodGlance.title}</h2>
+        <p class="text-lg text-teal-900 mb-10 text-center" set:html={formatMarkdown(methodGlance.subtitle || '')} />
 
-        <div class="grid md:grid-cols-2 gap-8">
-          <FitList type="good" items={whoThisIsFor.goodFit || []} />
-          <FitList type="bad" items={whoThisIsFor.notGoodFit || []} />
+        <!-- Cycle diagram: self-contained SVG with labels + descriptions -->
+        <div class="max-w-2xl mx-auto mb-10" role="img" aria-label="A three-step cycle: Observe, Hypothesize, Experiment — repeating continuously">
+          <svg viewBox="-70 -80 540 343" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-full h-auto">
+            <defs>
+              <marker id="cycle-arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+                <path d="M0 1 L8 4 L0 7 Z" fill="#05A8A7" />
+              </marker>
+            </defs>
+
+            <!-- Arc: Observe → Hypothesize (clockwise, right side) -->
+            <path d="M227 13 A 120 120 0 0 1 315 165" stroke="#C8EDE4" stroke-width="3" fill="none" marker-end="url(#cycle-arrow)" />
+            <!-- Arc: Hypothesize → Experiment (clockwise, bottom) -->
+            <path d="M288 212 A 120 120 0 0 1 112 212" stroke="#C8EDE4" stroke-width="3" fill="none" marker-end="url(#cycle-arrow)" />
+            <!-- Arc: Experiment → Observe (clockwise, left side) -->
+            <path d="M85 165 A 120 120 0 0 1 173 13" stroke="#C8EDE4" stroke-width="3" fill="none" marker-end="url(#cycle-arrow)" />
+
+            <!-- Node 1: Observe (top) — label above -->
+            <circle cx="200" cy="10" r="22" fill="#05A8A7" />
+            <text x="200" y="16" text-anchor="middle" fill="white" font-weight="700" font-size="16" font-family="Montserrat, sans-serif">1</text>
+            <foreignObject x="100" y="-78" width="200" height="66">
+              <div style="text-align: center; font-family: Montserrat, sans-serif; display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
+                <p style="font-size: 14px; font-weight: 700; color: #003640; margin: 0 0 2px;">{methodGlance.steps?.[0]?.title}</p>
+                <p style="font-size: 11px; color: #012B34; line-height: 1.4; margin: 0;">{methodGlance.steps?.[0]?.description}</p>
+              </div>
+            </foreignObject>
+
+            <!-- Node 2: Hypothesize (bottom-right) — label to the right -->
+            <circle cx="304" cy="190" r="22" fill="#05A8A7" />
+            <text x="304" y="196" text-anchor="middle" fill="white" font-weight="700" font-size="16" font-family="Montserrat, sans-serif">2</text>
+            <foreignObject x="332" y="158" width="135" height="70">
+              <div style="text-align: left; font-family: Montserrat, sans-serif;">
+                <p style="font-size: 14px; font-weight: 700; color: #003640; margin: 0 0 2px;">{methodGlance.steps?.[1]?.title}</p>
+                <p style="font-size: 11px; color: #012B34; line-height: 1.4; margin: 0;">{methodGlance.steps?.[1]?.description}</p>
+              </div>
+            </foreignObject>
+
+            <!-- Node 3: Experiment (bottom-left) — label to the left -->
+            <circle cx="96" cy="190" r="22" fill="#05A8A7" />
+            <text x="96" y="196" text-anchor="middle" fill="white" font-weight="700" font-size="16" font-family="Montserrat, sans-serif">3</text>
+            <foreignObject x="-67" y="158" width="135" height="70">
+              <div style="text-align: right; font-family: Montserrat, sans-serif;">
+                <p style="font-size: 14px; font-weight: 700; color: #003640; margin: 0 0 2px;">{methodGlance.steps?.[2]?.title}</p>
+                <p style="font-size: 11px; color: #012B34; line-height: 1.4; margin: 0;">{methodGlance.steps?.[2]?.description}</p>
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
+
+        <p class="text-lg text-teal-900 text-center" set:html={formatMarkdown(methodGlance.closingText || '')} />
+        <p class="text-center mt-4">
+          <a href="/approach" class="text-teal-700 font-semibold hover:text-teal-950 underline">See the full methodology →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- How We Work Together -->
+    <section class="section bg-teal-50">
+      <div class="container-md">
+        <h2 class="heading-section mb-6 text-center">{howWeWork.title}</h2>
+        <p class="text-lg text-teal-900 mb-8 text-center" set:html={formatMarkdown(howWeWork.subtitle || '')} />
+
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          {howWeWork.engagements?.map((engagement) => (
+            <EngagementCard
+              icon={engagement.icon}
+              title={engagement.title}
+              description={engagement.description}
+            />
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-900 text-center" set:html={formatMarkdown(howWeWork.closingText || '')} />
+      </div>
+    </section>
+
+    <!-- About the Creator + Featured Testimonial -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-4 text-center">{meetAndrea.subtitle}</h2>
+        <p class="text-lg text-teal-900 mb-8 text-center" set:html={formatMarkdown(meetAndrea.closingText || '')} />
+        <hr class="w-16 mx-auto border-t-2 border-teal-300 mb-10" />
+
+        <div class="flex flex-col md:flex-row md:items-center gap-8 mb-12">
+          <div class="w-64 shrink-0 mx-auto md:mx-0 overflow-hidden shadow-sm" style="aspect-ratio: 3/4; border-radius: 1rem; border: 0.5rem solid #f0fdfa;">
+            <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-full h-full object-cover object-top" style="object-position: top;" />
+          </div>
+          <div>
+            <p class="text-xl font-bold text-teal-950 mb-1">{meetAndrea.title}</p>
+            <p class="text-sm text-teal-700 mb-4">{meetAndrea.intro}</p>
+            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof meetAndrea.paragraphs?.[0] === 'string' ? meetAndrea.paragraphs[0] : meetAndrea.paragraphs?.[0]?.text || '')} />
+            <p class="text-center md:text-left">
+              <a href="/about" class="text-teal-700 font-semibold hover:text-teal-950 underline">Read Andrea's full story →</a>
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Final CTA -->
-    <section class="section bg-teal-950 text-white">
-      <div class="container-sm">
-        <h2 class="heading-section !text-white mb-10 text-center" set:html={formatMarkdown(finalCta.title || '')} />
+    <PageCta
+      title={finalCta.title || ''}
+      intro={finalCta.intro}
+      paragraphs={finalCta.paragraphs}
+      closing={finalCta.closing}
+      ctaText={finalCta.ctaText}
+      ctaSubtext={finalCta.ctaSubtext}
+    />
 
-        <div class="bg-white rounded-xl p-8 md:p-10 shadow-lg">
-          {finalCta.intro && (
-            <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(finalCta.intro)} />
-          )}
-
-          {finalCta.paragraphs?.map((p) => {
-            const para = typeof p === 'string' ? { text: p } : p;
-            return para.emphasis === 'bold' ? (
-              <p class="text-2xl text-teal-950 font-bold mb-6" set:html={formatMarkdown(para.text)} />
-            ) : (
-              <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
-            );
-          })}
-
-          {finalCta.closing && (
-            <p class="text-xl text-teal-950 font-medium mb-8" set:html={formatMarkdown(finalCta.closing)} />
-          )}
-
-          <div class="text-center">
-            <a href={calendlyUrl} class="btn-primary-lg">
-              {finalCta.ctaText}
-            </a>
-          </div>
-        </div>
-
-        <p class="text-teal-200 text-sm text-center mt-6" set:html={formatMarkdown(finalCta.ctaSubtext || '')} />
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 px-6 bg-teal-950 border-t border-teal-900">
-      <div class="container-md text-center">
-        <p class="text-teal-400 mb-4">
-          Questions before booking? Email <a href={`mailto:${footer.contactEmail}`} class="text-teal-200 hover:text-white underline">{footer.contactEmail}</a>
-        </p>
-        <p class="text-teal-400 text-sm mb-2">
-          {footer.copyright}
-        </p>
-        <p class="text-teal-500 text-sm">
-          <a href={footer.termsUrl} class="hover:text-teal-300 underline">Terms & Conditions</a>
-          <span class="mx-2">|</span>
-          <a href={footer.privacyUrl} class="hover:text-teal-300 underline">Privacy Policy</a>
-        </p>
-      </div>
-    </footer>
-    <SessionReportModal />
+    <SiteFooter
+      contactEmail={footer.contactEmail || ''}
+      copyright={footer.copyright || ''}
+      termsUrl={footer.termsUrl || ''}
+      privacyUrl={footer.privacyUrl || ''}
+    />
   </main>
 </Layout>
