@@ -20,7 +20,6 @@ const answer = content['approach/solution.md'].data;
 const methodology = content['approach/methodology.md'].data;
 const framework = content['approach/framework.md'].data;
 const findYourLever = content['approach/leverage.md'].data;
-const finalCta = content['shared/cta.md'].data;
 const footer = content['shared/footer.md'].data;
 ---
 
@@ -211,14 +210,7 @@ const footer = content['shared/footer.md'].data;
     </section>
 
     <!-- Final CTA -->
-    <PageCta
-      title={finalCta.title || ''}
-      intro={finalCta.intro}
-      paragraphs={finalCta.paragraphs}
-      closing={finalCta.closing}
-      ctaText={finalCta.ctaText}
-      ctaSubtext={finalCta.ctaSubtext}
-    />
+    <PageCta />
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}

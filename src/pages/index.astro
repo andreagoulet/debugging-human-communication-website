@@ -6,7 +6,6 @@ import SiteFooter from '../components/SiteFooter.astro';
 import EngagementCard from '../components/EngagementCard.astro';
 import ClarificationCard from '../components/ClarificationCard.astro';
 import FitList from '../components/FitList.astro';
-import FAQItem from '../components/FAQItem.astro';
 import PricingCard from '../components/PricingCard.astro';
 import SessionReportPreview from '../components/SessionReportPreview.astro';
 import SessionReportModal from '../components/SessionReportModal.astro';
@@ -27,7 +26,6 @@ const howWeWork = content['index/services.md'].data;
 const whatThisIsNot = content['index/is-not.md'].data;
 const whoThisIsFor = content['index/fit.md'].data;
 const meetAndrea = content['index/bio-brief.md'].data;
-const faq = content['index/faq.md'].data;
 const ctaSession = content['index/cta-session.md'].data;
 const pricing = content['shared/pricing.md'].data;
 const discoveryTier = pricing.tiers?.find(tier => tier.title === ctaSession.featuredTier);
@@ -244,19 +242,6 @@ const sortedTestimonials = featuredSlugs.length > 0
               <a href="/about" class="text-teal-700 font-semibold hover:text-teal-950 underline">Read Andrea's full story →</a>
             </p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section bg-white">
-      <div class="container-md">
-        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(faq.title || '')} />
-
-        <div class="space-y-8">
-          {faq.questions?.map((item) => (
-            <FAQItem question={item.question} answer={item.answer} />
-          ))}
         </div>
       </div>
     </section>

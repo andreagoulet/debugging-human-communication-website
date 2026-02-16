@@ -16,8 +16,7 @@ const content = Object.fromEntries(
 
 const whatThisIsNot = content['index/is-not.md'].data;
 const whoThisIsFor = content['index/fit.md'].data;
-const faq = content['index/faq.md'].data;
-const finalCta = content['shared/cta.md'].data;
+const faq = content['about/faq.md'].data;
 const footer = content['shared/footer.md'].data;
 ---
 
@@ -75,14 +74,7 @@ const footer = content['shared/footer.md'].data;
     </section>
 
     <!-- Final CTA -->
-    <PageCta
-      title={finalCta.title || ''}
-      intro={finalCta.intro}
-      paragraphs={finalCta.paragraphs}
-      closing={finalCta.closing}
-      ctaText={finalCta.ctaText}
-      ctaSubtext={finalCta.ctaSubtext}
-    />
+    <PageCta />
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}

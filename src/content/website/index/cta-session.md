@@ -1,5 +1,5 @@
 ---
 title: ""
 subtitle: ""
-featuredTier: "Discovery Session"
+featuredTier: "Debug Your First Challenge"
 ---

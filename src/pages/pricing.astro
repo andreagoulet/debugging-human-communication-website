@@ -6,7 +6,6 @@ import SiteFooter from '../components/SiteFooter.astro';
 import PageCta from '../components/PageCta.astro';
 import PricingCard from '../components/PricingCard.astro';
 import SessionReportPreview from '../components/SessionReportPreview.astro';
-import SessionReportModal from '../components/SessionReportModal.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
@@ -16,7 +15,6 @@ const content = Object.fromEntries(
 );
 
 const pricing = content['shared/pricing.md'].data;
-const finalCta = content['shared/cta.md'].data;
 const footer = content['shared/footer.md'].data;
 ---
 
@@ -105,14 +103,7 @@ const footer = content['shared/footer.md'].data;
     </section>
 
     <!-- Final CTA -->
-    <PageCta
-      title={finalCta.title || ''}
-      intro={finalCta.intro}
-      paragraphs={finalCta.paragraphs}
-      closing={finalCta.closing}
-      ctaText={finalCta.ctaText}
-      ctaSubtext={finalCta.ctaSubtext}
-    />
+    <PageCta />
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}
@@ -120,6 +111,5 @@ const footer = content['shared/footer.md'].data;
       termsUrl={footer.termsUrl || ''}
       privacyUrl={footer.privacyUrl || ''}
     />
-    <SessionReportModal />
   </main>
 </Layout>
