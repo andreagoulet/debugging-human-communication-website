@@ -1,0 +1,98 @@
+---
+/**
+ * Lead magnet email capture form for the experiments workbook.
+ * Submits to /api/subscribe which proxies to ActiveCampaign.
+ */
+---
+
+<section class="section bg-teal-950" id="workbook">
+  <div class="container-md text-center">
+    <h2 class="heading-section !text-white mb-2">Design Your Communication Experiment</h2>
+    <p class="text-lg text-teal-600 mb-8">Get the free 8-step workbook our coaching clients use</p>
+
+    <ul class="text-left inline-block mb-10 space-y-2">
+      <li class="flex items-start gap-2 text-teal-200">
+        <span class="text-green font-bold mt-0.5">&#10003;</span>
+        Identify the conversation patterns that aren't working
+      </li>
+      <li class="flex items-start gap-2 text-teal-200">
+        <span class="text-green font-bold mt-0.5">&#10003;</span>
+        Form a testable hypothesis (not just good intentions)
+      </li>
+      <li class="flex items-start gap-2 text-teal-200">
+        <span class="text-green font-bold mt-0.5">&#10003;</span>
+        Design a concrete experiment you can run this week
+      </li>
+    </ul>
+
+    <form class="max-w-lg mx-auto" id="lead-magnet-form">
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First name"
+          autocomplete="given-name"
+          class="flex-1 px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/50 border border-teal-600 focus:outline-2 focus:outline-teal-600"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email address"
+          required
+          autocomplete="email"
+          class="flex-1 px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/50 border border-teal-600 focus:outline-2 focus:outline-teal-600"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn-primary w-full mt-3"
+      >
+        Send Me the Workbook
+      </button>
+      <p class="text-teal-400 text-sm mt-3">No spam. Unsubscribe anytime.</p>
+      <p class="text-sm mt-2 min-h-[1.4em]" id="form-status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('lead-magnet-form') as HTMLFormElement;
+  const status = document.getElementById('form-status')!;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const button = form.querySelector('button') as HTMLButtonElement;
+    const data = new FormData(form);
+
+    button.disabled = true;
+    button.textContent = 'Sending\u2026';
+    status.textContent = '';
+    status.className = 'text-sm mt-2 min-h-[1.4em]';
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: data.get('email'),
+          firstName: data.get('firstName'),
+        }),
+      });
+
+      if (res.ok) {
+        status.textContent = 'Check your inbox \u2014 your workbook is on the way!';
+        status.classList.add('text-green');
+        form.reset();
+        button.textContent = 'Sent!';
+      } else {
+        const { error } = await res.json();
+        throw new Error(error || 'Something went wrong');
+      }
+    } catch (err: any) {
+      status.textContent = err.message || 'Something went wrong. Please try again.';
+      status.classList.add('text-coral');
+      button.disabled = false;
+      button.textContent = 'Send Me the Workbook';
+    }
+  });
+</script>

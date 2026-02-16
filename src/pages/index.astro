@@ -9,6 +9,7 @@ import FitList from '../components/FitList.astro';
 import PricingCard from '../components/PricingCard.astro';
 import SessionReportPreview from '../components/SessionReportPreview.astro';
 import SessionReportModal from '../components/SessionReportModal.astro';
+import LeadMagnetForm from '../components/LeadMagnetForm.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
@@ -91,6 +92,9 @@ const sortedTestimonials = featuredSlugs.length > 0
         </div>
       </div>
     </section>
+
+    <!-- Lead Magnet: Free Workbook -->
+    <LeadMagnetForm />
 
     <!-- Testimonials -->
     <section class="section bg-teal-950">
