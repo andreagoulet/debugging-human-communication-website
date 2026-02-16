@@ -10,7 +10,7 @@ journeySteps:
   - label: "Get Results"
     description: "See what works, then decide your next step"
 tiers:
-  - title: "Discovery Session"
+  - title: "Debug Your First Challenge"
     price: 129
     period: one-time
     description: "A 30-minute 1:1 session where we dig into your specific challenge and design your first experiment together."

@@ -9,16 +9,15 @@ import FitList from '../components/FitList.astro';
 import FAQItem from '../components/FAQItem.astro';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const allContent = await getCollection('homepage');
+const allContent = await getCollection('website');
 const content = Object.fromEntries(
-  allContent.map(entry => [entry.slug, entry])
+  allContent.map(entry => [entry.id, entry])
 );
 
-const whatThisIsNot = content['12-clarifications'].data;
-const whoThisIsFor = content['13-fit'].data;
-const faq = content['11-faq'].data;
-const finalCta = content['14-cta'].data;
-const footer = content['15-footer'].data;
+const whatThisIsNot = content['index/is-not.md'].data;
+const whoThisIsFor = content['index/fit.md'].data;
+const faq = content['about/faq.md'].data;
+const footer = content['shared/footer.md'].data;
 ---
 
 <Layout title="Is This Right For You? | Debugging Human Communication" description="Find out if Debugging Human Communication is right for you. See who it's for, what it's not, and answers to frequently asked questions.">
@@ -75,14 +74,7 @@ const footer = content['15-footer'].data;
     </section>
 
     <!-- Final CTA -->
-    <PageCta
-      title={finalCta.title || ''}
-      intro={finalCta.intro}
-      paragraphs={finalCta.paragraphs}
-      closing={finalCta.closing}
-      ctaText={finalCta.ctaText}
-      ctaSubtext={finalCta.ctaSubtext}
-    />
+    <PageCta />
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}

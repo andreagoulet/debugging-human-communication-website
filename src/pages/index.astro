@@ -6,35 +6,39 @@ import SiteFooter from '../components/SiteFooter.astro';
 import EngagementCard from '../components/EngagementCard.astro';
 import ClarificationCard from '../components/ClarificationCard.astro';
 import FitList from '../components/FitList.astro';
-import FAQItem from '../components/FAQItem.astro';
 import PricingCard from '../components/PricingCard.astro';
 import SessionReportPreview from '../components/SessionReportPreview.astro';
 import SessionReportModal from '../components/SessionReportModal.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-// Get all homepage content, sorted by filename
-const allContent = await getCollection('homepage');
+// Get all website content, sorted by filename
+const allContent = await getCollection('website');
 const content = Object.fromEntries(
-  allContent.map(entry => [entry.slug, entry])
+  allContent.map(entry => [entry.id, entry])
 );
 
-const hero = content['01-hero'].data;
-const whatThisIs = content['20-what-this-is'].data;
-const whoBrief = content['21-who-brief'].data;
-const methodGlance = content['22-method-glance'].data;
-const howWeWork = content['23-how-we-work'].data;
-const whatThisIsNot = content['12-clarifications'].data;
-const whoThisIsFor = content['13-fit'].data;
-const meetAndrea = content['24-about-coach'].data;
-const faq = content['11-faq'].data;
-const pricing = content['10-pricing'].data;
-const discoveryTier = pricing.tiers?.find(tier => tier.featured);
-const footer = content['15-footer'].data;
+const hero = content['index/hero.md'].data;
+const programIntro = content['index/program-intro.md'].data;
+const testimonialsSection = content['index/testimonials.md'].data;
+const methodGlance = content['index/method-glance.md'].data;
+const howWeWork = content['index/services.md'].data;
+const whatThisIsNot = content['index/is-not.md'].data;
+const whoThisIsFor = content['index/fit.md'].data;
+const meetAndrea = content['index/bio-brief.md'].data;
+const ctaSession = content['index/cta-session.md'].data;
+const pricing = content['shared/pricing.md'].data;
+const discoveryTier = pricing.tiers?.find(tier => tier.title === ctaSession.featuredTier);
+const footer = content['shared/footer.md'].data;
 
-// Testimonials from dedicated collection
+// Testimonials from dedicated collection, filtered/ordered by featured slugs
 const allTestimonials = await getCollection('testimonials');
-const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order);
+const featuredSlugs = testimonialsSection.featuredSlugs || [];
+const sortedTestimonials = featuredSlugs.length > 0
+  ? featuredSlugs
+      .map(slug => allTestimonials.find(t => t.id === `${slug}.md`))
+      .filter((t): t is NonNullable<typeof t> => t != null)
+  : allTestimonials.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout title="Debugging Human Communication | Communication Coaching for Engineers">
@@ -67,19 +71,19 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
     <section class="section bg-white">
       <div class="container-md">
         <div class="bg-white rounded-xl p-8 md:p-12 border-2 border-teal-200">
-          <h2 class="heading-section mb-6 text-center">{whatThisIs.title}</h2>
-          {whatThisIs.paragraphs?.map((p) => (
+          <h2 class="heading-section mb-6 text-center">{programIntro.title}</h2>
+          {programIntro.paragraphs?.map((p) => (
             <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
           ))}
-          {whatThisIs.highlights && (
+          {programIntro.highlights && (
             <ul class="text-xl text-teal-900 mb-6 list-disc space-y-2 pl-12">
-              {whatThisIs.highlights.map((item) => (
+              {programIntro.highlights.map((item) => (
                 <li>{item}</li>
               ))}
             </ul>
           )}
-          {whatThisIs.closingText && (
-            <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(whatThisIs.closingText)} />
+          {programIntro.closingText && (
+            <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(programIntro.closingText)} />
           )}
           <p class="text-center mt-4">
             <a href="/approach" class="text-teal-700 font-semibold hover:text-teal-950 underline">See the full approach →</a>
@@ -91,7 +95,7 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
     <!-- Testimonials -->
     <section class="section bg-teal-950">
       <div class="container-md">
-        <h2 class="heading-section !text-white mb-10 text-center">Real Results from Real Engineers</h2>
+        <h2 class="heading-section !text-white mb-10 text-center">{testimonialsSection.title}</h2>
 
         <div class="grid md:grid-cols-2 gap-8">
           {sortedTestimonials.map((t) => (
@@ -113,7 +117,10 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
     <!-- Who This Is For -->
     <section class="section bg-teal-50">
       <div class="container-md">
-        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(whoThisIsFor.title || '')} />
+        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(whoThisIsFor.title || '')} />
+        {whoThisIsFor.subtitle && (
+          <p class="text-lg text-teal-900 text-center mb-12" set:html={formatMarkdown(whoThisIsFor.subtitle)} />
+        )}
 
         <div class="grid md:grid-cols-2 gap-8">
           <FitList type="good" items={whoThisIsFor.goodFit || []} />
@@ -125,8 +132,7 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
     <!-- What This Is NOT -->
     <section class="section bg-teal-200">
       <div class="container-md">
-        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(whatThisIsNot.title || '')} />
-        <p class="text-lg text-teal-900 text-center mb-12" set:html={formatMarkdown(whatThisIsNot.subtitle || '')} />
+        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(whatThisIsNot.title || '')} />
 
         <div class="grid sm:grid-cols-2 gap-6">
           {whatThisIsNot.items?.map((item) => (
@@ -240,23 +246,16 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section bg-white">
-      <div class="container-md">
-        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(faq.title || '')} />
-
-        <div class="space-y-8">
-          {faq.questions?.map((item) => (
-            <FAQItem question={item.question} answer={item.answer} />
-          ))}
-        </div>
-      </div>
-    </section>
-
     <!-- Discovery Session CTA -->
     {discoveryTier && (
       <section class="section bg-teal-950">
         <div class="container-md">
+          {ctaSession.title && (
+            <h2 class="heading-section !text-white mb-4 text-center" set:html={formatMarkdown(ctaSession.title)} />
+          )}
+          {ctaSession.subtitle && (
+            <p class="text-lg text-teal-200 text-center mb-10" set:html={formatMarkdown(ctaSession.subtitle)} />
+          )}
           <PricingCard
             title={discoveryTier.title}
             price={discoveryTier.price}

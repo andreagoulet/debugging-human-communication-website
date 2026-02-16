@@ -6,18 +6,16 @@ import SiteFooter from '../components/SiteFooter.astro';
 import PageCta from '../components/PageCta.astro';
 import PricingCard from '../components/PricingCard.astro';
 import SessionReportPreview from '../components/SessionReportPreview.astro';
-import SessionReportModal from '../components/SessionReportModal.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const allContent = await getCollection('homepage');
+const allContent = await getCollection('website');
 const content = Object.fromEntries(
-  allContent.map(entry => [entry.slug, entry])
+  allContent.map(entry => [entry.id, entry])
 );
 
-const pricing = content['10-pricing'].data;
-const finalCta = content['14-cta'].data;
-const footer = content['15-footer'].data;
+const pricing = content['shared/pricing.md'].data;
+const footer = content['shared/footer.md'].data;
 ---
 
 <Layout title="Pricing | Debugging Human Communication" description="Pricing for communication coaching — discovery sessions, ongoing coaching, and team options for technical professionals.">
@@ -105,14 +103,7 @@ const footer = content['15-footer'].data;
     </section>
 
     <!-- Final CTA -->
-    <PageCta
-      title={finalCta.title || ''}
-      intro={finalCta.intro}
-      paragraphs={finalCta.paragraphs}
-      closing={finalCta.closing}
-      ctaText={finalCta.ctaText}
-      ctaSubtext={finalCta.ctaSubtext}
-    />
+    <PageCta />
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}
@@ -120,6 +111,5 @@ const footer = content['15-footer'].data;
       termsUrl={footer.termsUrl || ''}
       privacyUrl={footer.privacyUrl || ''}
     />
-    <SessionReportModal />
   </main>
 </Layout>

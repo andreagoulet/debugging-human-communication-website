@@ -12,12 +12,11 @@ const sorted = allTestimonials.sort((a, b) => a.data.order - b.data.order);
 const featured = sorted.filter(t => t.data.featured);
 const others = sorted.filter(t => !t.data.featured);
 
-const allHomepage = await getCollection('homepage');
+const allHomepage = await getCollection('website');
 const homepageContent = Object.fromEntries(
-  allHomepage.map(entry => [entry.slug, entry])
+  allHomepage.map(entry => [entry.id, entry])
 );
-const finalCta = homepageContent['14-cta'].data;
-const footer = homepageContent['15-footer'].data;
+const footer = homepageContent['shared/footer.md'].data;
 ---
 
 <Layout title="Testimonials | Debugging Human Communication" description="Hear from technical professionals who've used Debugging Human Communication to improve their conversations at work.">
@@ -70,14 +69,7 @@ const footer = homepageContent['15-footer'].data;
     </section>
 
     <!-- Final CTA -->
-    <PageCta
-      title={finalCta.title || ''}
-      intro={finalCta.intro}
-      paragraphs={finalCta.paragraphs}
-      closing={finalCta.closing}
-      ctaText={finalCta.ctaText}
-      ctaSubtext={finalCta.ctaSubtext}
-    />
+    <PageCta />
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}

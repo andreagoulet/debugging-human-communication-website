@@ -9,19 +9,18 @@ import ChallengeCard from '../components/ChallengeCard.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const allContent = await getCollection('homepage');
+const allContent = await getCollection('website');
 const content = Object.fromEntries(
-  allContent.map(entry => [entry.slug, entry])
+  allContent.map(entry => [entry.id, entry])
 );
 
-const openingNarrative = content['02-narrative'].data;
-const realProblem = content['03-problem'].data;
-const answer = content['04-solution'].data;
-const methodology = content['05-methodology'].data;
-const framework = content['07-framework'].data;
-const findYourLever = content['09-challenges'].data;
-const finalCta = content['14-cta'].data;
-const footer = content['15-footer'].data;
+const openingNarrative = content['approach/narrative.md'].data;
+const realProblem = content['approach/problem.md'].data;
+const answer = content['approach/solution.md'].data;
+const methodology = content['approach/methodology.md'].data;
+const framework = content['approach/framework.md'].data;
+const findYourLever = content['approach/leverage.md'].data;
+const footer = content['shared/footer.md'].data;
 ---
 
 <Layout title="The Approach | Debugging Human Communication" description="A systematic method for improving communication — the full narrative, methodology, and framework behind Debugging Human Communication.">
@@ -40,10 +39,10 @@ const footer = content['15-footer'].data;
 
     <!-- Opening Narrative -->
     <section class="py-20 px-6 bg-teal-50">
-      <div class="container-sm">
+      <div class="container-md">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(openingNarrative.opener || '')} />
       </div>
-      <div class="container-sm bg-white rounded-2xl p-8 md:p-12 shadow-xl">
+      <div class="container-md bg-white rounded-2xl p-8 md:p-12 shadow-xl">
 
         {openingNarrative.paragraphs?.map((p) => (
           <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
@@ -78,7 +77,7 @@ const footer = content['15-footer'].data;
 
     <!-- The Real Problem -->
     <section class="section bg-teal-200">
-      <div class="container-sm">
+      <div class="container-md">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(realProblem.title || '')} />
 
         <div class="bg-white rounded-2xl p-8 md:p-12">
@@ -101,7 +100,7 @@ const footer = content['15-footer'].data;
 
     <!-- The Answer -->
     <section class="section bg-white">
-      <div class="container-sm">
+      <div class="container-md">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(answer.title || '')} />
 
         <div class="bg-white rounded-2xl p-8 md:p-12 border border-teal-200 shadow-sm">
@@ -157,7 +156,7 @@ const footer = content['15-footer'].data;
       <div class="container-md">
         <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(framework.title || '')} />
         <p class="text-xl text-teal-900 text-center mb-6" set:html={formatMarkdown(framework.subtitle || '')} />
-        <p class="text-lg text-teal-900 text-center mb-12 container-sm" set:html={formatMarkdown(framework.introText || '')} />
+        <p class="text-lg text-teal-900 text-center mb-12 container-md" set:html={formatMarkdown(framework.introText || '')} />
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {framework.steps?.map((step) => (
@@ -211,14 +210,7 @@ const footer = content['15-footer'].data;
     </section>
 
     <!-- Final CTA -->
-    <PageCta
-      title={finalCta.title || ''}
-      intro={finalCta.intro}
-      paragraphs={finalCta.paragraphs}
-      closing={finalCta.closing}
-      ctaText={finalCta.ctaText}
-      ctaSubtext={finalCta.ctaSubtext}
-    />
+    <PageCta />
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}
