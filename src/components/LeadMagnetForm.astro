@@ -86,9 +86,13 @@
         status.classList.add('text-green');
         form.reset();
         button.textContent = 'Sent!';
+      } else if (res.status === 401) {
+        throw new Error('Auth error \u2014 Vercel deployment protection is blocking the API. Disable it in project settings to test on preview.');
       } else {
-        const { error } = await res.json();
-        throw new Error(error || 'Something went wrong');
+        const text = await res.text();
+        let message = 'Something went wrong';
+        try { message = JSON.parse(text).error || message; } catch {}
+        throw new Error(message);
       }
     } catch (err: any) {
       status.textContent = err.message || 'Something went wrong. Please try again.';
