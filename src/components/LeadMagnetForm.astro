@@ -74,7 +74,10 @@
     try {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-vercel-protection-bypass': 'TxMWUJWJSBjKN6LZGQuztA4y6SRXecO6',
+        },
         body: JSON.stringify({
           email: data.get('email'),
           firstName: data.get('firstName'),
