@@ -7,7 +7,8 @@
       "Skill(generate-marketing-copy)",
       "Skill(generate-marketing-copy:*)",
       "Bash(git mv:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)"
     ]
   },
   "hooks": {

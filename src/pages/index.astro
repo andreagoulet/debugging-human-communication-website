@@ -3,10 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import PageCta from '../components/PageCta.astro';
 import EngagementCard from '../components/EngagementCard.astro';
 import ClarificationCard from '../components/ClarificationCard.astro';
 import FitList from '../components/FitList.astro';
+import FAQItem from '../components/FAQItem.astro';
+import PricingCard from '../components/PricingCard.astro';
+import SessionReportPreview from '../components/SessionReportPreview.astro';
+import SessionReportModal from '../components/SessionReportModal.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
@@ -24,7 +27,9 @@ const howWeWork = content['23-how-we-work'].data;
 const whatThisIsNot = content['12-clarifications'].data;
 const whoThisIsFor = content['13-fit'].data;
 const meetAndrea = content['24-about-coach'].data;
-const finalCta = content['14-cta'].data;
+const faq = content['11-faq'].data;
+const pricing = content['10-pricing'].data;
+const discoveryTier = pricing.tiers?.find(tier => tier.featured);
 const footer = content['15-footer'].data;
 
 // Testimonials from dedicated collection
@@ -84,9 +89,9 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
     </section>
 
     <!-- Testimonials -->
-    <section class="section bg-teal-200">
+    <section class="section bg-teal-950">
       <div class="container-md">
-        <h2 class="heading-section mb-10 text-center">Real Results from Real Engineers</h2>
+        <h2 class="heading-section !text-white mb-10 text-center">Real Results from Real Engineers</h2>
 
         <div class="grid md:grid-cols-2 gap-8">
           {sortedTestimonials.map((t) => (
@@ -106,7 +111,7 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
     </section>
 
     <!-- Who This Is For -->
-    <section class="section bg-white">
+    <section class="section bg-teal-50">
       <div class="container-md">
         <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(whoThisIsFor.title || '')} />
 
@@ -193,7 +198,7 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
     </section>
 
     <!-- How We Work Together -->
-    <section class="section bg-teal-50">
+    <section class="section bg-teal-200">
       <div class="container-md">
         <h2 class="heading-section mb-6 text-center">{howWeWork.title}</h2>
         <p class="text-lg text-teal-900 mb-8 text-center" set:html={formatMarkdown(howWeWork.subtitle || '')} />
@@ -213,7 +218,7 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
     </section>
 
     <!-- About the Creator + Featured Testimonial -->
-    <section class="section bg-white">
+    <section class="section bg-teal-50">
       <div class="container-md">
         <h2 class="heading-section mb-4 text-center">{meetAndrea.subtitle}</h2>
         <p class="text-lg text-teal-900 mb-8 text-center" set:html={formatMarkdown(meetAndrea.closingText || '')} />
@@ -235,15 +240,39 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <PageCta
-      title={finalCta.title || ''}
-      intro={finalCta.intro}
-      paragraphs={finalCta.paragraphs}
-      closing={finalCta.closing}
-      ctaText={finalCta.ctaText}
-      ctaSubtext={finalCta.ctaSubtext}
-    />
+    <!-- FAQ -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(faq.title || '')} />
+
+        <div class="space-y-8">
+          {faq.questions?.map((item) => (
+            <FAQItem question={item.question} answer={item.answer} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Discovery Session CTA -->
+    {discoveryTier && (
+      <section class="section bg-teal-950">
+        <div class="container-md">
+          <PricingCard
+            title={discoveryTier.title}
+            price={discoveryTier.price}
+            period={discoveryTier.period}
+            description={discoveryTier.description}
+            features={discoveryTier.features}
+            featured={true}
+            guarantee={discoveryTier.guarantee}
+            ctaText={discoveryTier.ctaText}
+            ctaUrl={CALENDLY_URL}
+          >
+            <SessionReportPreview slot="extra" />
+          </PricingCard>
+        </div>
+      </section>
+    )}
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}
@@ -251,5 +280,6 @@ const sortedTestimonials = allTestimonials.sort((a, b) => a.data.order - b.data.
       termsUrl={footer.termsUrl || ''}
       privacyUrl={footer.privacyUrl || ''}
     />
+    <SessionReportModal />
   </main>
 </Layout>
