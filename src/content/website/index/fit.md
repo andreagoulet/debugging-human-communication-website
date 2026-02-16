@@ -1,5 +1,6 @@
 ---
 title: "Who This Is For"
+subtitle: "Let's be direct about fit."
 goodFit:
   - "You've built your career on technical excellence and now need communication skills to match"
   - "You're looking for a peer-support community where you will actively contribute"

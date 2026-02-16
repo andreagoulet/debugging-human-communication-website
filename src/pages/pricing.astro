@@ -10,14 +10,14 @@ import SessionReportModal from '../components/SessionReportModal.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const allContent = await getCollection('homepage');
+const allContent = await getCollection('website');
 const content = Object.fromEntries(
-  allContent.map(entry => [entry.slug, entry])
+  allContent.map(entry => [entry.id, entry])
 );
 
-const pricing = content['10-pricing'].data;
-const finalCta = content['14-cta'].data;
-const footer = content['15-footer'].data;
+const pricing = content['shared/pricing.md'].data;
+const finalCta = content['shared/cta.md'].data;
+const footer = content['shared/footer.md'].data;
 ---
 
 <Layout title="Pricing | Debugging Human Communication" description="Pricing for communication coaching — discovery sessions, ongoing coaching, and team options for technical professionals.">

@@ -9,19 +9,19 @@ import ChallengeCard from '../components/ChallengeCard.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const allContent = await getCollection('homepage');
+const allContent = await getCollection('website');
 const content = Object.fromEntries(
-  allContent.map(entry => [entry.slug, entry])
+  allContent.map(entry => [entry.id, entry])
 );
 
-const openingNarrative = content['02-narrative'].data;
-const realProblem = content['03-problem'].data;
-const answer = content['04-solution'].data;
-const methodology = content['05-methodology'].data;
-const framework = content['07-framework'].data;
-const findYourLever = content['09-challenges'].data;
-const finalCta = content['14-cta'].data;
-const footer = content['15-footer'].data;
+const openingNarrative = content['approach/narrative.md'].data;
+const realProblem = content['approach/problem.md'].data;
+const answer = content['approach/solution.md'].data;
+const methodology = content['approach/methodology.md'].data;
+const framework = content['approach/framework.md'].data;
+const findYourLever = content['approach/leverage.md'].data;
+const finalCta = content['shared/cta.md'].data;
+const footer = content['shared/footer.md'].data;
 ---
 
 <Layout title="The Approach | Debugging Human Communication" description="A systematic method for improving communication — the full narrative, methodology, and framework behind Debugging Human Communication.">

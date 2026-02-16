@@ -10,8 +10,8 @@ const allContent = await getCollection('booked-page');
 const page = allContent[0].data;
 
 // Pull pricing tiers from the homepage so they stay in sync
-const homepageContent = await getCollection('homepage');
-const pricingEntry = homepageContent.find(entry => entry.slug === '10-pricing');
+const homepageContent = await getCollection('website');
+const pricingEntry = homepageContent.find(entry => entry.id === 'shared/pricing.md');
 const continuationTiers = pricingEntry?.data.tiers?.filter(tier => !tier.featured) ?? [];
 ---
 

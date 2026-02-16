@@ -234,6 +234,12 @@ const homepageCollection = defineCollection({
     // Bullet highlights (e.g. "what this is" section)
     highlights: z.array(z.string()).optional(),
 
+    // Testimonials section (references slugs from testimonials collection)
+    featuredSlugs: z.array(z.string()).optional(),
+
+    // CTA section (references a pricing tier by title)
+    featuredTier: z.string().optional(),
+
     // Who this is for (brief homepage version)
     traits: z.array(z.string()).optional(),
     situations: z.array(z.string()).optional(),
@@ -265,7 +271,7 @@ const testimonialsCollection = defineCollection({
 });
 
 export const collections = {
-  homepage: homepageCollection,
+  website: homepageCollection,
   testimonials: testimonialsCollection,
   'hallway-track-page': hallwayTrackCollection,
   'booked-page': bookedPageCollection,

@@ -7,14 +7,14 @@ import PageCta from '../components/PageCta.astro';
 import FeaturedTestimonial from '../components/FeaturedTestimonial.astro';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const allContent = await getCollection('homepage');
+const allContent = await getCollection('website');
 const content = Object.fromEntries(
-  allContent.map(entry => [entry.slug, entry])
+  allContent.map(entry => [entry.id, entry])
 );
 
-const meetAndrea = content['06-bio'].data;
-const finalCta = content['14-cta'].data;
-const footer = content['15-footer'].data;
+const meetAndrea = content['about/bio.md'].data;
+const finalCta = content['shared/cta.md'].data;
+const footer = content['shared/footer.md'].data;
 
 // Pull testimonials from dedicated collection
 const allTestimonials = await getCollection('testimonials');
