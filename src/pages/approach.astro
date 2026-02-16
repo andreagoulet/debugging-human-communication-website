@@ -40,10 +40,10 @@ const footer = content['shared/footer.md'].data;
 
     <!-- Opening Narrative -->
     <section class="py-20 px-6 bg-teal-50">
-      <div class="container-sm">
+      <div class="container-md">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(openingNarrative.opener || '')} />
       </div>
-      <div class="container-sm bg-white rounded-2xl p-8 md:p-12 shadow-xl">
+      <div class="container-md bg-white rounded-2xl p-8 md:p-12 shadow-xl">
 
         {openingNarrative.paragraphs?.map((p) => (
           <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
@@ -78,7 +78,7 @@ const footer = content['shared/footer.md'].data;
 
     <!-- The Real Problem -->
     <section class="section bg-teal-200">
-      <div class="container-sm">
+      <div class="container-md">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(realProblem.title || '')} />
 
         <div class="bg-white rounded-2xl p-8 md:p-12">
@@ -101,7 +101,7 @@ const footer = content['shared/footer.md'].data;
 
     <!-- The Answer -->
     <section class="section bg-white">
-      <div class="container-sm">
+      <div class="container-md">
         <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(answer.title || '')} />
 
         <div class="bg-white rounded-2xl p-8 md:p-12 border border-teal-200 shadow-sm">
@@ -157,7 +157,7 @@ const footer = content['shared/footer.md'].data;
       <div class="container-md">
         <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(framework.title || '')} />
         <p class="text-xl text-teal-900 text-center mb-6" set:html={formatMarkdown(framework.subtitle || '')} />
-        <p class="text-lg text-teal-900 text-center mb-12 container-sm" set:html={formatMarkdown(framework.introText || '')} />
+        <p class="text-lg text-teal-900 text-center mb-12 container-md" set:html={formatMarkdown(framework.introText || '')} />
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {framework.steps?.map((step) => (
