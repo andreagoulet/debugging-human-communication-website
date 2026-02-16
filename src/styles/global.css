@@ -110,6 +110,10 @@ h1, h2, h3, h4, h5, h6 {
   @apply font-extrabold text-teal-950;
 }
 
+.heading-hero br {
+  @apply hidden md:inline;
+}
+
 .heading-section {
   font-size: clamp(1.875rem, 3vw + 0.5rem, 2.25rem);
   @apply font-bold text-teal-950;

@@ -1,14 +1,14 @@
 ---
-title: "Bring a challenge.<br>Design an experiment.<br>Get results."
+title: "Stop guessing. <br>Start experimenting."
 subtitle: "One conversation can change everything."
 pricingIntro: "Every engagement starts with a single session — try the method, try working with me, and see if it's a fit before you commit to anything."
 journeySteps:
-  - label: "Discovery Session"
-    description: "Bring a challenge, get an experiment"
-  - label: "Got what you need?"
-    description: "Keep your recording + report"
-  - label: "Want more?"
-    description: "Group Coaching or Private Coaching"
+  - label: "Bring a Challenge"
+    description: "A real situation you're facing right now"
+  - label: "Design an Experiment"
+    description: "A concrete behavior change to try"
+  - label: "Get Results"
+    description: "See what works, then decide your next step"
 tiers:
   - title: "Discovery Session"
     price: 129

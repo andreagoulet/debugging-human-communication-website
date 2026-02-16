@@ -27,7 +27,7 @@ const footer = content['15-footer'].data;
     <!-- Page Hero -->
     <section class="bg-teal-950 px-6">
       <div class="container-lg">
-        <div class="py-20 md:py-24 max-w-2xl">
+        <div class="py-20 md:py-24 max-w-3xl">
           <h1 class="heading-hero !text-white mb-6" set:html={formatMarkdown(pricing.title || '')} />
           {pricing.subtitle && (
             <p class="text-xl md:text-2xl text-teal-200" set:html={formatMarkdown(pricing.subtitle)} />
@@ -44,16 +44,16 @@ const footer = content['15-footer'].data;
         )}
 
         {pricing.journeySteps && pricing.journeySteps.length > 0 && (
-          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-2 mb-12 container-sm mx-auto">
+          <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 mb-12 container-md mx-auto">
             {pricing.journeySteps.map((step, i) => (
               <>
-                <div class="flex flex-col items-center text-center px-3">
-                  <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-bold text-sm mb-2">{i + 1}</span>
-                  <span class="font-semibold text-teal-950 text-base">{step.label}</span>
-                  <span class="text-teal-700 text-sm mt-0.5">{step.description}</span>
+                <div class="flex flex-col items-center text-center px-4">
+                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal-100 text-teal-700 font-bold text-lg mb-2">{i + 1}</span>
+                  <span class="font-semibold text-teal-950 text-lg">{step.label}</span>
+                  <span class="text-teal-700 text-base mt-1">{step.description}</span>
                 </div>
                 {i < pricing.journeySteps!.length - 1 && (
-                  <span class="text-teal-400 text-xl hidden md:block">→</span>
+                  <span class="text-teal-400 text-2xl hidden md:block">→</span>
                 )}
               </>
             ))}
