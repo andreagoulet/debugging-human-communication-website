@@ -4,22 +4,18 @@
 
 <article class="session-report">
   <header class="report-header">
-    <h3 class="report-title">Session Notes</h3>
-    <div class="report-meta">
-      <p><strong>Date:</strong> January 5, 2026</p>
-      <p><strong>Duration:</strong> ~59 min</p>
-      <p><strong>Attendees:</strong> Andrea Goulet, Alex</p>
-    </div>
+    <h3 class="report-title">Session Notes: Alex</h3>
+    <p class="report-meta">
+      <strong>Date:</strong> January 5, 2026 |
+      <strong>Duration:</strong> ~59 min
+      <strong>Attendees:</strong> Andrea Goulet, Alex
+    </p>
   </header>
-
-  <hr class="report-divider" />
 
   <section>
     <h4 class="report-section-title">Overview</h4>
     <p>Alex spent ~15–16 hours on his blog during the holiday break and feels proud of the progress. The session explored why budgeting 20 hours (vs. 1 hour) shifted his emotional experience from embarrassment to pride, identified a sunk cost fallacy pattern around rabbit holes, and established experiments for estimation and context capture.</p>
   </section>
-
-  <hr class="report-divider" />
 
   <section>
     <h4 class="report-section-title">Experimental Design</h4>
@@ -250,8 +246,6 @@
     </div>
   </section>
 
-  <hr class="report-divider" />
-
   <section>
     <h4 class="report-section-title">Action Items</h4>
     <div class="report-subsection">
@@ -273,8 +267,6 @@
       </ul>
     </div>
   </section>
-
-  <hr class="report-divider" />
 
   <section>
     <h4 class="report-section-title">Planning</h4>
@@ -312,8 +304,6 @@
     </div>
   </section>
 
-  <hr class="report-divider" />
-
   <section>
     <h4 class="report-section-title">References</h4>
     <ul>
@@ -322,8 +312,6 @@
       <li>AWS S3 + CloudFront — hosting approach for redirect support</li>
     </ul>
   </section>
-
-  <hr class="report-divider" />
 
   <section>
     <h4 class="report-section-title">Next Session</h4>
@@ -344,32 +332,32 @@
   }
 
   .report-header {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
 
   .report-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-teal-950);
-    margin-bottom: 0.5rem;
-  }
-
-  .report-meta p {
-    font-size: 0.875rem;
     color: var(--color-teal-800);
-    margin: 0.125rem 0;
+    margin-bottom: 0.375rem;
+    letter-spacing: 0.3px;
   }
 
-  .report-divider {
-    border: none;
-    border-top: 1px solid var(--color-teal-200);
-    margin: 1.25rem 0;
+  .report-meta {
+    font-size: 0.875rem;
+    color: var(--color-teal-950);
+    line-height: 1.5;
   }
 
   .report-section-title {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--color-teal-950);
+    color: var(--color-teal-800);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid var(--color-teal-800);
+    padding-bottom: 0.25rem;
+    margin-top: 1.75rem;
     margin-bottom: 0.75rem;
   }
 
@@ -380,7 +368,7 @@
   .report-subsection-title {
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--color-teal-800);
+    color: #333;
     margin-bottom: 0.5rem;
   }
 
@@ -414,20 +402,23 @@
   .session-report th {
     text-align: left;
     padding: 0.5rem 0.75rem;
-    background: var(--color-teal-200);
-    color: var(--color-teal-950);
+    background: var(--color-teal-900);
+    color: white;
     font-weight: 600;
-    border-bottom: 2px solid var(--color-teal-400);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid #ddd;
   }
 
   .session-report td {
     padding: 0.5rem 0.75rem;
-    border-bottom: 1px solid var(--color-teal-200);
+    border: 1px solid #ddd;
     vertical-align: top;
   }
 
-  .session-report tbody tr:hover {
-    background: rgba(200, 237, 228, 0.3);
+  .session-report tbody tr:nth-child(even) {
+    background: #f8f8fa;
   }
 
   .total-row {
