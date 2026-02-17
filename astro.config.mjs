@@ -7,6 +7,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   output: 'static',
   adapter: vercel(),
+  redirects: {
+    '/community': 'https://app.heartbeat.chat/debugginghumancommunication/invitation?code=J3524G',
+    '/discovery': 'https://calendly.com/andreagoulet/private-coaching',
+  },
   vite: {
     plugins: [tailwindcss()]
   }
