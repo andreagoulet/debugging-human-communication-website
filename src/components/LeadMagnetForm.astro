@@ -33,7 +33,7 @@
             name="firstName"
             placeholder="First name"
             autocomplete="given-name"
-            class="flex-1 px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/50 border border-teal-200 focus:outline-2 focus:outline-teal-800"
+            class="flex-1 px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/70 border border-teal-200 focus:outline-2 focus:outline-teal-800"
           />
           <input
             type="email"
@@ -41,7 +41,7 @@
             placeholder="Email address"
             required
             autocomplete="email"
-            class="flex-1 px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/50 border border-teal-200 focus:outline-2 focus:outline-teal-800"
+            class="flex-1 px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/70 border border-teal-200 focus:outline-2 focus:outline-teal-800"
           />
         </div>
         <button
@@ -86,7 +86,7 @@
 
       if (res.ok) {
         status.textContent = 'Check your inbox \u2014 your workbook is on the way!';
-        status.classList.add('text-green');
+        status.classList.add('text-teal-950');
         form.reset();
         button.textContent = 'Sent!';
       } else if (res.status === 401) {

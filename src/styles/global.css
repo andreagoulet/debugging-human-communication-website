@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Brand Colors */
+/* Brand Colors — source of truth: reference-content/brand/brand-guide.md */
 @theme {
   --color-teal-950: #003640;
   --color-teal-900: #012B34;
