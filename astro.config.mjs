@@ -9,7 +9,7 @@ export default defineConfig({
   adapter: vercel(),
   redirects: {
     '/community': 'https://app.heartbeat.chat/debugginghumancommunication/invitation?code=J3524G',
-    '/discovery': 'https://calendly.com/andreagoulet/private-coaching',
+    '/discovery': 'https://calendly.com/andreagoulet/discovery-session',
   },
   vite: {
     plugins: [tailwindcss()]
