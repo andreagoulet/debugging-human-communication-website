@@ -16,7 +16,7 @@ questions:
   - question: "\"How do I know if I'll like working with you?\""
     answer: "That's what the Discovery Session is for. It's a condensed version of a private coaching session — we'll work on a real challenge you're facing. You get a password-protected recording and the same documentation I create for my private coaching clients. It's a real sample of how we'd work together, not a sales pitch."
   - question: "\"Can I try group coaching before committing?\""
-    answer: "Yes. New members can attend up to 3 group coaching calls to see if it's a good fit before signing up. You'll get a real sense of the format, the people, and whether this is right for you."
+    answer: "Yes. After your discovery call, you can attend one group coaching call to see if it's a good fit before signing up. You'll get a real sense of the format, the people, and whether this is right for you."
   - question: "\"What's the commitment?\""
     answer: "Group coaching has a 3-month minimum, private coaching 6 months. After that, cancel anytime. Both include access to the online community for as long as you're an active coaching member. That's it."
   - question: "\"Can I use my professional development budget?\""
@@ -24,5 +24,5 @@ questions:
   - question: "\"What's up with the moth?\""
     answer: "In 1947, a team working on the Mark II computer couldn't figure out why the heck things weren't working as expected. After hours of searching, they decided to check deeply into the bowels of the computer and soon found the problem. A moth had made its way into the machine.\n\nIn the team's logbook, Grace Murray Hopper taped the bug to the page and commented that it was the \"first actual case of a bug found,\" and we've been fixing bugs ever since.\n\nThis story reminds us that many times the solutions to our challenges aren't always obvious. When we keep an open mind and are willing to look on the inside, that's where we can find the small and often surprising solutions that have a big impact."
   - question: "\"Can I get a discount?\""
-    answer: "You read all the way to the bottom of the FAQ? That's the kind of thoroughness I appreciate. Use code READTHEFAQ for 10% off your discovery call."
+    answer: "You read all the way to the bottom of the FAQ? That's the kind of thoroughness I appreciate. Use code READTHEFAQ for 20% off your discovery session."
 ---
