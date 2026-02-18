@@ -18,7 +18,7 @@ questions:
   - question: "\"Can I try group coaching before committing?\""
     answer: "Yes. After your discovery call, you can attend one group coaching call to see if it's a good fit before signing up. You'll get a real sense of the format, the people, and whether this is right for you."
   - question: "\"What's the commitment?\""
-    answer: "Group coaching has a 3-month minimum, private coaching 6 months. After that, cancel anytime. Both include access to the online community for as long as you're an active coaching member. That's it."
+    answer: "Group coaching has a 3-month minimum, private coaching 6 months. After that, cancel anytime. Both include access lifetime access to the online community.
   - question: "\"Can I use my professional development budget?\""
     answer: "Yes. Communication skills directly impact team effectiveness, stakeholder relationships, and leadership capacity. If your company invests in training, this qualifies. Need help making the case? We can work together to craft documentation you need."
   - question: "\"What's up with the moth?\""
