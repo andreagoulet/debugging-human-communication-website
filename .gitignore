@@ -20,6 +20,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# local reference materials
+reference-content/
+
 # jetbrains setting folder
 .idea/
 .vercel
