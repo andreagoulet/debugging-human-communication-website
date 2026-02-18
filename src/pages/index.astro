@@ -77,9 +77,9 @@ const sortedTestimonials = featuredSlugs.length > 0
             <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
           ))}
           {programIntro.highlights && (
-            <ul class="text-xl text-teal-900 mb-6 list-disc space-y-2 pl-12">
+            <ul class="text-xl text-teal-900 mb-6 list-disc space-y-3 pl-12 leading-relaxed">
               {programIntro.highlights.map((item) => (
-                <li>{item}</li>
+                <li><strong>{item}</strong></li>
               ))}
             </ul>
           )}
