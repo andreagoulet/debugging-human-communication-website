@@ -270,9 +270,15 @@ const testimonialsCollection = defineCollection({
   }),
 });
 
+const sbcCollection = defineCollection({
+  type: 'content',
+  schema: z.any(),
+});
+
 export const collections = {
   website: homepageCollection,
   testimonials: testimonialsCollection,
   'hallway-track-page': hallwayTrackCollection,
   'booked-page': bookedPageCollection,
+  sbc: sbcCollection,
 };

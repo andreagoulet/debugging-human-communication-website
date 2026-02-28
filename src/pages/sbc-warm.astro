@@ -6,7 +6,7 @@ import { formatMarkdown } from '../utils/formatMarkdown';
 
 const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
 
-const warmPage = await import('../../smart-business-mastermind/booking-page-warm.md');
+const warmPage = await import('../content/sbc/booking-page-warm.md');
 const content = warmPage.frontmatter;
 ---
 
