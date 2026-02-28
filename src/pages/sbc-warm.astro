@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getCollection } from 'astro:content';
+import { formatMarkdown } from '../utils/formatMarkdown';
+
+const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
+
+const warmPage = await import('../../smart-business-mastermind/booking-page-warm.md');
+const content = warmPage.frontmatter;
+---
+
+<Layout
+  title="Claim Your Free Guest Pass | Communication Debugging Workshop"
+  description="Get a free guest pass to attend our next live Communication Debugging Workshop. Schedule a quick fit call to get started."
+  noindex={true}
+>
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-teal-950 overflow-hidden px-6">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-950 via-teal-950/95 to-teal-800/30"></div>
+      </div>
+      <div class="container-md relative z-10 py-16 md:py-24 text-center">
+        <img src="/logo.svg" alt="Debugging Human Communication" class="h-16 w-auto mx-auto mb-8" />
+        <h1 class="heading-hero !text-white mb-6">
+          {content.hero.headline}
+        </h1>
+        <p class="text-lg md:text-xl text-teal-200 max-w-3xl mx-auto mb-10" set:html={formatMarkdown(content.hero.subheadline)} />
+
+        <!-- Video Placeholder -->
+        <div class="max-w-2xl mx-auto rounded-xl overflow-hidden border-2 border-teal-600/40 bg-teal-900/60">
+          <div class="aspect-video flex items-center justify-center">
+            <div class="text-center p-8">
+              <svg class="w-16 h-16 text-teal-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-teal-300 text-sm">Video coming soon</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Next Step -->
+    <section class="section bg-white">
+      <div class="container-sm">
+        <h2 class="heading-section mb-8 text-center">{content.nextStep.title}</h2>
+
+        <div class="prose-custom">
+          {content.nextStep.paragraphs.map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Not a Sales Call -->
+    <section class="section bg-teal-50">
+      <div class="container-sm">
+        <h2 class="heading-section mb-8 text-center">{content.notASalesCall.title}</h2>
+
+        <div class="prose-custom">
+          <p set:html={formatMarkdown(content.notASalesCall.paragraphs[0])} />
+
+          <p class="bg-white rounded-lg p-4 border border-teal-200 text-teal-950 font-medium">{content.notASalesCall.callout}</p>
+
+          {content.notASalesCall.paragraphs.slice(1).map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+        </div>
+
+        <!-- Calendar Embed Placeholder -->
+        <div class="mt-10 rounded-xl border-2 border-dashed border-teal-300 bg-white p-12 text-center">
+          <svg class="w-12 h-12 text-teal-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <p class="text-teal-700 font-medium text-lg">Calendar booking widget will be embedded here</p>
+          <p class="text-teal-600 text-sm mt-1">Replace this placeholder with your scheduling tool embed code</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section bg-white">
+      <div class="container-sm">
+        <h2 class="heading-section mb-10 text-center">{content.faq.title}</h2>
+
+        <div class="space-y-6">
+          {content.faq.questions.map((item: { question: string; answer: string }) => (
+            <details class="group bg-teal-50 rounded-xl border border-teal-200 open:shadow-sm">
+              <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-bold text-teal-950 text-lg select-none">
+                {item.question}
+                <svg class="w-5 h-5 text-teal-800 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div class="px-6 pb-5 text-lg text-teal-900">
+                {item.answer}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter
+    copyright={footer.copyright || ''}
+    termsUrl={footer.termsUrl || ''}
+    privacyUrl={footer.privacyUrl || ''}
+  />
+</Layout>
+
+<style>
+  .prose-custom p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: var(--color-teal-900);
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-custom strong {
+    color: var(--color-teal-950);
+  }
+</style>

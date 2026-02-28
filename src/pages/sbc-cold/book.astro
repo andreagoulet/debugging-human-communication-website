@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { getCollection } from 'astro:content';
+import { formatMarkdown } from '../../utils/formatMarkdown';
+
+const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
+
+const coldPage = await import('../../../smart-business-mastermind/booking-page.md');
+const content = coldPage.frontmatter.bookingPage;
+---
+
+<Layout
+  title="Complete Your Registration | Full-Stack Communication Upgrade Workshop"
+  description="Complete your workshop registration by booking a short confirmation call."
+  noindex={true}
+>
+  <main>
+    <!-- Attention Banner -->
+    <section class="bg-coral px-6 py-12 text-center">
+      <div class="container-sm">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+          {content.banner.headline}
+        </h1>
+        <p class="text-lg text-white/90 font-medium">{content.banner.subtitle}</p>
+        <p class="text-lg text-white font-bold mt-1">{content.banner.warning}</p>
+      </div>
+    </section>
+
+    <!-- Booking Copy -->
+    <section class="section bg-white">
+      <div class="container-sm">
+        <p class="text-teal-900 text-sm italic mb-8 text-center">{content.disclaimer}</p>
+
+        <div class="prose-custom">
+          {content.introSection.map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+
+          <hr />
+
+          {content.motivationSection.map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+
+          <hr />
+
+          {content.commitmentSection.map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+
+          <p class="bg-teal-50 rounded-lg p-4 border border-teal-200 text-teal-950 font-medium">{content.callout}</p>
+
+          {content.afterCallout.map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+
+          <hr />
+
+          {content.closingSection.map((p: string) => (
+            <p class="text-xl font-semibold text-teal-950">{p}</p>
+          ))}
+        </div>
+
+        <!-- Calendar Embed Placeholder -->
+        <div class="mt-10 rounded-xl border-2 border-dashed border-teal-300 bg-teal-50 p-12 text-center">
+          <svg class="w-12 h-12 text-teal-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <p class="text-teal-700 font-medium text-lg">Calendar booking widget will be embedded here</p>
+          <p class="text-teal-600 text-sm mt-1">Replace this placeholder with your scheduling tool embed code</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter
+    copyright={footer.copyright || ''}
+    termsUrl={footer.termsUrl || ''}
+    privacyUrl={footer.privacyUrl || ''}
+  />
+</Layout>
+
+<style>
+  .prose-custom p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: var(--color-teal-900);
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-custom strong {
+    color: var(--color-teal-950);
+  }
+
+  .prose-custom hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--color-teal-200);
+  }
+</style>

@@ -1,0 +1,178 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { getCollection } from 'astro:content';
+import { formatMarkdown } from '../../utils/formatMarkdown';
+
+const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
+
+const coldPage = await import('../../../smart-business-mastermind/booking-page.md');
+const content = coldPage.frontmatter.landingPage;
+
+const allTestimonials = await getCollection('testimonials');
+const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout
+  title="The Full-Stack Communication Upgrade Workshop | Debugging Human Communication"
+  description="A free 4-hour virtual workshop for technical professionals. Diagnose, debug, and upgrade your communication system with frameworks built for how you think."
+  noindex={true}
+>
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-teal-950 overflow-hidden px-6">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-950 via-teal-950/95 to-teal-800/30"></div>
+      </div>
+      <div class="container-md relative z-10 py-16 md:py-24 text-center">
+        <img src="/logo.svg" alt="Debugging Human Communication" class="h-16 w-auto mx-auto mb-8" />
+        <h1 class="heading-hero !text-white mb-4" set:html={formatMarkdown(content.hero.headline)} />
+        <p class="text-lg md:text-xl text-teal-200 max-w-3xl mx-auto mb-10" set:html={formatMarkdown(content.hero.subheadline)} />
+
+        <!-- Video Placeholder -->
+        <div class="max-w-2xl mx-auto mb-10 rounded-xl overflow-hidden border-2 border-teal-600/40 bg-teal-900/60">
+          <div class="aspect-video flex items-center justify-center">
+            <div class="text-center p-8">
+              <svg class="w-16 h-16 text-teal-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-teal-300 text-sm">Video coming soon</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="/sbc-cold/book" class="btn-primary-lg">
+          {content.ctaText}
+        </a>
+      </div>
+    </section>
+
+    <!-- What Will You Learn? -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-8 text-center">{content.whatYoullLearn.title}</h2>
+        <p class="text-lg text-teal-900 mb-8 text-center">{content.whatYoullLearn.intro}</p>
+
+        <div class="space-y-6 mb-8">
+          {content.whatYoullLearn.items.map((item: { title: string; description: string }) => (
+            <div class="flex gap-4 items-start">
+              <div class="w-2 h-2 rounded-full bg-teal-800 mt-3 shrink-0"></div>
+              <p class="text-lg text-teal-900"><strong class="text-teal-950">{item.title}:</strong> {item.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-900 italic text-center font-medium">
+          {content.whatYoullLearn.closing}
+        </p>
+      </div>
+    </section>
+
+    <!-- What You'll Do -->
+    <section class="section bg-teal-50">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">{content.workshopDetails.title}</h2>
+
+        <div class="bg-white rounded-xl p-8 md:p-12 border-2 border-teal-200 mb-10">
+          <h3 class="text-xl font-bold text-teal-800 mb-6 uppercase tracking-wide">{content.workshopDetails.sessionTitle}</h3>
+          <ul class="space-y-4">
+            {content.workshopDetails.items.map((item: string) => (
+              <li class="flex gap-3 items-start">
+                <svg class="w-6 h-6 text-teal-800 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                <p class="text-lg text-teal-900">{item}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Date/Time Placeholder -->
+        <div class="text-center mb-10">
+          <div class="inline-block bg-teal-200 rounded-lg px-8 py-4">
+            <p class="text-teal-950 font-bold text-lg">{content.workshopDetails.date}</p>
+            <p class="text-teal-900">{content.workshopDetails.duration}</p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="/sbc-cold/book" class="btn-primary-lg">
+            {content.ctaText}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Makes Our Event Different? -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">{content.differentiators.title}</h2>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+          {content.differentiators.items.map((item: string) => (
+            <div class="bg-teal-50 rounded-xl p-6 border border-teal-200">
+              <p class="text-lg text-teal-900">{item}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="text-center">
+          <a href="/sbc-cold/book" class="btn-primary-lg">
+            {content.ctaText}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Host -->
+    <section class="section bg-teal-50">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">{content.host.title}</h2>
+
+        <div class="flex flex-col md:flex-row md:items-start gap-8">
+          <div class="w-64 shrink-0 mx-auto md:mx-0 overflow-hidden shadow-sm" style="aspect-ratio: 3/4; border-radius: 1rem; border: 0.5rem solid white;">
+            <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-full h-full object-cover object-top" />
+          </div>
+          <div>
+            <p class="text-lg text-teal-900 leading-relaxed">
+              {content.host.bio}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section bg-teal-950">
+      <div class="container-md">
+        <h2 class="heading-section !text-white mb-10 text-center">{content.testimonials.title}</h2>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-10">
+          {testimonials.map((t) => (
+            <blockquote class:list={["bg-white rounded-xl p-8 border border-teal-200", t.data.featured && "md:col-span-2"]}>
+              <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              </svg>
+              <p class="text-lg text-teal-900 italic mb-4" set:html={`"${formatMarkdown(t.data.quote)}"`} />
+              <footer>
+                <p class="text-teal-950 font-semibold">&mdash; {t.data.author}</p>
+                {t.data.role && <p class="text-teal-700 text-sm">{t.data.role}</p>}
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+
+        <div class="text-center">
+          <a href="/sbc-cold/book" class="btn-primary-lg">
+            {content.ctaText}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter
+    copyright={footer.copyright || ''}
+    termsUrl={footer.termsUrl || ''}
+    privacyUrl={footer.privacyUrl || ''}
+  />
+</Layout>
