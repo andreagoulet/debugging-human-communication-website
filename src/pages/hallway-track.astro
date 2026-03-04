@@ -4,26 +4,7 @@ import { getCollection } from 'astro:content';
 import { formatMarkdown } from '../utils/formatMarkdown';
 import FitList from '../components/FitList.astro';
 
-const emailSubject = "Founding Member Application";
-const emailBody = `Hi Andrea,
-
-I'd like to apply to become a founding member of the Debugging Human Communication community. I understand that founding members commit to active participation for at least 6 months.
-
-Name:
-
-LinkedIn:
-
-Who referred me:
-
-Why I'm interested in participating:
-
-
-
-
-
-Looking forward to hearing from you!`;
-
-const ctaUrl = `mailto:andrea@debugginghumancommunication.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+const ctaUrl = 'https://app.heartbeat.chat/debugginghumancommunication/invitation?code=9C4F66';
 
 const allContent = await getCollection('hallway-track-page');
 const page = allContent[0].data;
