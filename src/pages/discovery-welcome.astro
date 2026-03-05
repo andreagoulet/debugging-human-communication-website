@@ -6,8 +6,8 @@ import ReflectionCard from '../components/ReflectionCard.astro';
 import SessionReportPreview from '../components/SessionReportPreview.astro';
 import SessionReportModal from '../components/SessionReportModal.astro';
 
-const allContent = await getCollection('booked-page');
-const page = allContent[0].data;
+const allContent = await getCollection('landing-pages');
+const page = allContent.find(e => e.id === 'discovery-booked.md')!.data;
 
 // Pull pricing tiers from the homepage so they stay in sync
 const homepageContent = await getCollection('website');

@@ -33,11 +33,12 @@ const discoveryTier = pricing.tiers?.find(tier => tier.title === ctaSession.feat
 const footer = content['shared/footer.md'].data;
 
 // Testimonials from dedicated collection, filtered/ordered by featured slugs
-const allTestimonials = await getCollection('testimonials');
+const allShared = await getCollection('shared');
+const allTestimonials = allShared.filter(e => e.id.startsWith('testimonials/'));
 const featuredSlugs = testimonialsSection.featuredSlugs || [];
 const sortedTestimonials = featuredSlugs.length > 0
   ? featuredSlugs
-      .map(slug => allTestimonials.find(t => t.id === `${slug}.md`))
+      .map(slug => allTestimonials.find(t => t.id === `testimonials/${slug}.md`))
       .filter((t): t is NonNullable<typeof t> => t != null)
   : allTestimonials.sort((a, b) => a.data.order - b.data.order);
 ---

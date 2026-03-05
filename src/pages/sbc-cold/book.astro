@@ -6,8 +6,8 @@ import { formatMarkdown } from '../../utils/formatMarkdown';
 
 const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
 
-const coldPage = await import('../../content/sbc/booking-page-cold.md');
-const content = coldPage.frontmatter.bookingPage;
+const allLandingPages = await getCollection('landing-pages');
+const content = allLandingPages.find(e => e.id === 'sbc-cold-booking.md')!.data;
 ---
 
 <Layout

@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const allContent = await getCollection('community-agreement');
-const page = allContent[0].data;
+const allContent = await getCollection('shared');
+const page = allContent.find(e => e.id === 'community-agreement/agreement.md')!.data;
 ---
 
 <Layout

@@ -6,8 +6,8 @@ import FitList from '../components/FitList.astro';
 
 const ctaUrl = 'https://app.heartbeat.chat/debugginghumancommunication/invitation?code=9C4F66';
 
-const allContent = await getCollection('hallway-track-page');
-const page = allContent[0].data;
+const allContent = await getCollection('landing-pages');
+const page = allContent.find(e => e.id === 'hallway-track-landing.md')!.data;
 ---
 
 <Layout

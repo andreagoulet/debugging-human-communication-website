@@ -7,7 +7,8 @@ import PageCta from '../components/PageCta.astro';
 import FeaturedTestimonial from '../components/FeaturedTestimonial.astro';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const allTestimonials = await getCollection('testimonials');
+const allShared = await getCollection('shared');
+const allTestimonials = allShared.filter(e => e.id.startsWith('testimonials/'));
 const sorted = allTestimonials.sort((a, b) => a.data.order - b.data.order);
 const featured = sorted.filter(t => t.data.featured);
 const others = sorted.filter(t => !t.data.featured);
