@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { formatMarkdown } from '../utils/formatMarkdown';
+
+const allContent = await getCollection('community-agreement');
+const page = allContent[0].data;
+---
+
+<Layout
+  title="Community Agreement | Debugging Human Communication"
+  description="Our community agreement outlines the expectations, values, and boundaries for participating in the Debugging Human Communication community."
+>
+  <main>
+    <!-- Hero -->
+    <section class="section bg-gradient-to-b from-teal-200 to-teal-50">
+      <div class="container-md text-center">
+        <h1 class="heading-hero mb-6">{page.hero.headline}</h1>
+        <p class="text-xl md:text-2xl text-teal-900 container-xs" set:html={formatMarkdown(page.hero.intro)} />
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section bg-white">
+      <div class="container-sm space-y-12">
+        {page.values.map((value) => (
+          <div>
+            <h2 class="text-2xl font-bold text-teal-950 mt-4 mb-3">{value.title}</h2>
+            <p class="text-lg text-teal-900" set:html={formatMarkdown(value.description)} />
+
+            {(value.notOkay || value.encouraged) && (
+              <div class="grid gap-6 md:grid-cols-2 mt-6 mb-8">
+                {value.notOkay && (
+                  <div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
+                    <h3 class="font-bold text-teal-900 mb-3">Not okay</h3>
+                    <ul class="space-y-2 text-teal-900">
+                      {value.notOkay.map((item) => (
+                        <li class="flex items-baseline gap-2">
+                          <span class="text-coral font-bold">&times;</span>
+                          <span set:html={formatMarkdown(item)} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {value.encouraged && (
+                  <div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
+                    <h3 class="font-bold text-teal-900 mb-3">Encouraged</h3>
+                    <ul class="space-y-2 text-teal-900">
+                      {value.encouraged.map((item) => (
+                        <li class="flex items-baseline gap-2">
+                          <span class="text-teal-800 font-bold">&#10003;</span>
+                          <span set:html={formatMarkdown(item)} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {value.examples && (
+              <div class="bg-teal-50 rounded-lg p-6">
+                <h3 class="font-bold text-teal-900 mb-3">In practice</h3>
+                <div class="space-y-3 text-teal-900">
+                  {value.examples.map((example) => (
+                    <p>
+                      <span class={`font-bold ${example.type === 'bad' ? 'text-coral' : 'text-teal-800'}`}>
+                        {example.type === 'bad' ? '\u00D7' : '\u2713'}
+                      </span>
+                      {' '}
+                      <span set:html={formatMarkdown(`"${example.text}"`)} />
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Grounds for Removal -->
+    <section class="section bg-teal-50">
+      <div class="container-sm">
+        <h2 class="text-2xl font-bold text-teal-950 mb-4">Grounds for Removal</h2>
+        <p class="text-lg text-teal-900 mb-8" set:html={formatMarkdown(page.groundsForRemoval.intro)} />
+
+        <div class="space-y-6 mb-8">
+          {page.groundsForRemoval.categories.map((category) => (
+            <div class="bg-white border border-teal-200 rounded-lg p-6">
+              <h3 class="font-bold text-teal-900 mb-2">{category.title}</h3>
+              <p class="text-teal-900" set:html={formatMarkdown(category.description)} />
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-900">
+          <span set:html={formatMarkdown(page.groundsForRemoval.reportText)} />
+          {' '}
+          <a href={page.groundsForRemoval.reportUrl} class="text-teal-800 underline hover:text-teal-900">message Andrea directly</a>. Moderators will investigate promptly.
+        </p>
+      </div>
+    </section>
+
+    <!-- Scope & Attribution -->
+    <section class="section bg-white">
+      <div class="container-sm">
+        <h2 class="text-2xl font-bold text-teal-950 mb-4">Scope</h2>
+        <p class="text-lg text-teal-900 mb-12" set:html={formatMarkdown(page.scope)} />
+
+        <h2 class="text-2xl font-bold text-teal-950 mb-4">Attribution</h2>
+        <p class="text-lg text-teal-900">
+          <a href={page.attribution.url} class="text-teal-800 underline hover:text-teal-900">{page.attribution.text}</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-teal-950 border-t border-teal-900">
+      <div class="container-md text-center">
+        <p class="text-teal-400 text-sm mb-2">
+          {page.footer.copyright}
+        </p>
+      </div>
+    </footer>
+  </main>
+</Layout>

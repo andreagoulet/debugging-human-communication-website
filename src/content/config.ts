@@ -270,6 +270,43 @@ const testimonialsCollection = defineCollection({
   }),
 });
 
+const communityAgreementCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    hero: z.object({
+      headline: z.string(),
+      intro: z.string(),
+    }),
+    values: z.array(z.object({
+      title: z.string(),
+      description: z.string(),
+      notOkay: z.array(z.string()).optional(),
+      encouraged: z.array(z.string()).optional(),
+      examples: z.array(z.object({
+        type: z.enum(['bad', 'good']),
+        text: z.string(),
+      })).optional(),
+    })),
+    groundsForRemoval: z.object({
+      intro: z.string(),
+      categories: z.array(z.object({
+        title: z.string(),
+        description: z.string(),
+      })),
+      reportText: z.string(),
+      reportUrl: z.string(),
+    }),
+    scope: z.string(),
+    attribution: z.object({
+      text: z.string(),
+      url: z.string(),
+    }),
+    footer: z.object({
+      copyright: z.string(),
+    }),
+  }),
+});
+
 const sbcCollection = defineCollection({
   type: 'content',
   schema: z.any(),
@@ -281,4 +318,5 @@ export const collections = {
   'hallway-track-page': hallwayTrackCollection,
   'booked-page': bookedPageCollection,
   sbc: sbcCollection,
+  'community-agreement': communityAgreementCollection,
 };
