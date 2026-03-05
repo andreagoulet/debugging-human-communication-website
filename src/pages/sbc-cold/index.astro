@@ -103,15 +103,37 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
       </div>
     </section>
 
+    <!-- Contrast Section -->
+    <section class="section bg-teal-200">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">What This Is <span class="uppercase">Not</span></h2>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+          {content.contrast.notItems.map((item: string) => (
+            <div class="bg-white rounded-xl p-6 border border-teal-200 flex gap-4 items-center">
+              <svg class="w-8 h-8 text-coral shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              <p class="text-lg font-semibold text-teal-950">{item}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-950 italic text-center font-medium mb-4" set:html={formatMarkdown(content.contrast.isStatement)} />
+        <p class="text-lg text-teal-950 text-center">
+          {content.contrast.whyItMatters}
+        </p>
+      </div>
+    </section>
+
     <!-- What Makes Our Event Different? -->
     <section class="section bg-white">
       <div class="container-md">
         <h2 class="heading-section mb-10 text-center">{content.differentiators.title}</h2>
 
         <div class="grid md:grid-cols-2 gap-6 mb-10">
-          {content.differentiators.items.map((item: string) => (
+          {content.differentiators.items.map((item: { title: string; description: string }) => (
             <div class="bg-teal-50 rounded-xl p-6 border border-teal-200">
-              <p class="text-lg text-teal-900">{item}</p>
+              <h3 class="text-lg font-bold text-teal-950 mb-2">{item.title}</h3>
+              <p class="text-teal-900">{item.description}</p>
             </div>
           ))}
         </div>
@@ -154,9 +176,16 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
               <p class="text-lg text-teal-900 italic mb-4" set:html={`"${formatMarkdown(t.data.quote)}"`} />
-              <footer>
-                <p class="text-teal-950 font-semibold">&mdash; {t.data.author}</p>
-                {t.data.role && <p class="text-teal-700 text-sm">{t.data.role}</p>}
+              <footer class="flex items-center gap-3">
+                {t.data.headshot ? (
+                  <img src={t.data.headshot} alt={t.data.author} class="w-10 h-10 rounded-full object-cover shrink-0" />
+                ) : (
+                  <div class="w-10 h-10 rounded-full bg-teal-800 flex items-center justify-center text-white font-bold text-xs shrink-0" aria-hidden="true">{t.data.author.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}</div>
+                )}
+                <div>
+                  <p class="text-teal-950 font-semibold">{t.data.author}</p>
+                  {t.data.role && <p class="text-teal-700 text-sm">{t.data.role}</p>}
+                </div>
               </footer>
             </blockquote>
           ))}

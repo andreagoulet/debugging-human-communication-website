@@ -87,17 +87,12 @@ const content = allLandingPages.find(e => e.id === 'sbc-warm-landing.md')!.data;
       <div class="container-sm">
         <h2 class="heading-section mb-10 text-center">{content.faq.title}</h2>
 
-        <div class="space-y-6">
+        <div class="space-y-8">
           {content.faq.questions.map((item: { question: string; answer: string }) => (
-            <details class="group bg-teal-50 rounded-xl border border-teal-200 open:shadow-sm">
-              <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-bold text-teal-950 text-lg select-none">
-                {item.question}
-                <svg class="w-5 h-5 text-teal-800 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-              </summary>
-              <div class="px-6 pb-5 text-lg text-teal-900">
-                {item.answer}
-              </div>
-            </details>
+            <div>
+              <h3 class="font-bold text-teal-950 text-lg mb-2">{item.question}</h3>
+              <p class="text-lg text-teal-900">{item.answer}</p>
+            </div>
           ))}
         </div>
       </div>
