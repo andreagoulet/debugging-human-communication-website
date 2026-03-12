@@ -1,11 +1,11 @@
 ---
 hero:
   headline: "Master the Hidden Patterns of Human Communication"
-  subheadline: "A 4-Hour Virtual Workshop for Technical Professionals who want to communicate with impact, so they can get promoted, get buy-in, and get heard **WITHOUT** feeling like they have to become a different person!"
+  subheadline: "A 3-Hour Virtual Workshop for software professionals who want to communicate with impact, so they can get promoted, get buy-in, and get heard **WITHOUT** feeling like they have to become a different person!"
 ctaText: "Reserve Your Seat Now!"
 whatYoullLearn:
   title: "What Will You Learn?"
-  intro: "What you can expect to learn in 4 hours:"
+  intro: "What you can expect to learn in 3 hours:"
   items:
     - title: "Communication Diagnostic"
       description: "Pinpoint exactly where your communication system is breaking down — no more vague \"I'm bad with people\""
@@ -26,7 +26,7 @@ workshopDetails:
     - "Run a full diagnostic across 9 communication milestones so you can name the specific friction points holding you back"
     - "Build a custom game plan with a 3-month roadmap so you can stop guessing and start systematically improving"
   date: "Date & Time TBD"
-  duration: "4-hour virtual workshop"
+  duration: "3-hour virtual workshop"
 contrast:
   notItems:
     - "Surface-level communication tips"
