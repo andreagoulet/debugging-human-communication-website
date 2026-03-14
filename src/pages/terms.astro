@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getCollection } from 'astro:content';
+
+const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
+---
+
+<Layout
+  title="Terms & Conditions | Debugging Human Communication"
+  description="Terms and conditions for Debugging Human Communication services provided by Lovelace Communications, LLC."
+>
+  <main>
+    <section class="section bg-gradient-to-b from-teal-200 to-teal-50">
+      <div class="container-md text-center">
+        <h1 class="heading-hero mb-6">Terms & Conditions</h1>
+        <p class="text-lg text-teal-900">Effective Date: January 22, 2026</p>
+        <p class="text-teal-800">Company: Lovelace Communications, LLC (DBA Andrea Goulet)</p>
+        <p class="text-teal-800">Contact: <a href="mailto:hello@lovelacecommunications.com" class="underline hover:text-teal-950">hello@lovelacecommunications.com</a></p>
+      </div>
+    </section>
+
+    <section class="section bg-white">
+      <div class="container-sm prose prose-teal max-w-none">
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">1. Overview</h2>
+        <p class="text-teal-900 mb-4">These Terms of Use ("Terms") govern all access to and use of the services, programs, digital products, and community spaces provided by Lovelace Communications, LLC, doing business as Andrea Goulet ("the Company"). By purchasing, accessing, or participating in any Company service, including Coaching Services, Consulting Services, Training Services, Speaking Services, Digital Products, Community Membership, or use of andreagoulet.com ("the Website"), the Client or Community Member ("the Client") agrees to be bound by these Terms.</p>
+        <p class="text-teal-900 mb-4">These Terms apply in addition to any platform-specific terms (such as Heartbeat's terms of service), Community Guidelines, the Company's Code of Conduct, and the Company's separate Privacy Policy.</p>
+        <p class="text-teal-900 mb-4">If the Client does not agree to these Terms, they should not purchase or use any Company services or access any Company community or content.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">2. Definitions</h2>
+        <p class="text-teal-900 mb-4"><strong>Company</strong> means Lovelace Communications, LLC (DBA Andrea Goulet).</p>
+        <p class="text-teal-900 mb-4"><strong>Client</strong> means any individual or organization purchasing or accessing services or digital products.</p>
+        <p class="text-teal-900 mb-4"><strong>Community Member</strong> means any individual granted access to the Company's community platform.</p>
+        <p class="text-teal-900 mb-4"><strong>Services</strong> include all Coaching Services, Consulting Services, Training Services, Speaking Services, Programs, Community Membership, and any other offerings provided by the Company.</p>
+        <p class="text-teal-900 mb-4"><strong>Coaching Services</strong> include private coaching, group coaching, monthly coaching subscriptions, and any developmental or skills-focused coaching offered by the Company.</p>
+        <p class="text-teal-900 mb-4"><strong>Consulting Services</strong> include strategic guidance, assessments, frameworks, reports, recommendations, and other expert advisory work that may involve deliverables.</p>
+        <p class="text-teal-900 mb-4"><strong>Training Services</strong> include workshops, corporate training, and programmatic instructional engagements.</p>
+        <p class="text-teal-900 mb-4"><strong>Speaking Services</strong> include keynote presentations, talks, and related speaking engagements.</p>
+        <p class="text-teal-900 mb-4"><strong>Digital Products</strong> include downloadable or recorded content, templates, e-books, and any digital media sold or provided by the Company.</p>
+        <p class="text-teal-900 mb-4"><strong>Programs</strong> means custom or multi-service engagements combining any of the above service types.</p>
+        <p class="text-teal-900 mb-4"><strong>Deliverables</strong> means documents, strategic materials, reports, slide decks, assessments, or other tangible outputs produced as part of Consulting Services or Programs.</p>
+        <p class="text-teal-900 mb-4"><strong>Platform</strong> refers to any online system used to deliver services or community access, including Heartbeat, Zoom, Stripe, or andreagoulet.com.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">3. Eligibility & Account Responsibility</h2>
+        <p class="text-teal-900 mb-4">Clients must be at least 18 years old to purchase or access Company Services.</p>
+        <p class="text-teal-900 mb-4">Clients are responsible for providing accurate information and maintaining the confidentiality of their login credentials. The Client is responsible for all activity under their account.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">4. Payments, Billing, Cancellations & Refunds</h2>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">4.1 Coaching Services</h3>
+        <p class="text-teal-900 mb-4"><strong>Payment Structure:</strong> Coaching Services may be purchased as monthly subscriptions or prepaid packages. Payment is required before access to Coaching Services is granted.</p>
+        <p class="text-teal-900 mb-4"><strong>Monthly Billing:</strong> Monthly coaching subscriptions renew automatically until canceled. The Client may cancel at any time with 30 days written notice.</p>
+        <p class="text-teal-900 mb-4"><strong>Missed Sessions:</strong> Missed sessions do not roll over or qualify for refunds.</p>
+        <p class="text-teal-900 mb-4"><strong>Minimum Commitments:</strong> Coaching services may require a minimum commitment of 3–6 months. Once purchased, the client agrees to pay the entire minimum commitment before cancellation.</p>
+        <p class="text-teal-900 mb-4"><strong>Rescheduling:</strong> The Company may allow limited rescheduling at its discretion.</p>
+        <p class="text-teal-900 mb-4"><strong>Refunds:</strong> Coaching fees are nonrefundable once a billing cycle begins.</p>
+        <p class="text-teal-900 mb-4"><strong>No Guarantees:</strong> Coaching Services support personal and professional development but cannot and do not guarantee results or outcomes.</p>
+        <p class="text-teal-900 mb-4"><strong>Not a Substitute for Professional Advice:</strong> Coaching Services are not therapy, mental health treatment, medical advice, legal advice, financial advice, or any form of licensed professional service. The Client is solely responsible for all decisions and actions resulting from coaching.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">4.2 Consulting Services</h3>
+        <p class="text-teal-900 mb-4"><strong>Statement of Work:</strong> Consulting Services are governed by a separate written Statement of Work ("SOW"). The SOW outlines the scope, deliverables, timelines, pricing, milestones, communication expectations, and any additional terms specific to the engagement.</p>
+        <p class="text-teal-900 mb-4"><strong>Payment:</strong> Fees must be paid according to the schedule outlined in the SOW or invoice.</p>
+        <p class="text-teal-900 mb-4"><strong>Changes in Scope:</strong> Changes to the scope of work require mutual written agreement and may result in additional fees.</p>
+        <p class="text-teal-900 mb-4"><strong>Refunds:</strong> Fees for Consulting Services are nonrefundable once work has begun.</p>
+        <p class="text-teal-900 mb-4"><strong>Client Responsibilities:</strong> The Client agrees to provide timely access to information, personnel, and resources necessary for completing the engagement, as outlined in the SOW.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">4.3 Training Services</h3>
+        <p class="text-teal-900 mb-4"><strong>Statement of Work:</strong> Training Services, including workshops, corporate training, and custom instructional programs, are governed by a separate SOW or event agreement. The SOW outlines the program structure, deliverables, training dates, preparation requirements, pricing, and applicable travel or logistical terms.</p>
+        <p class="text-teal-900 mb-4"><strong>Payment:</strong> Payment must be made according to the schedule established in the SOW or invoice.</p>
+        <p class="text-teal-900 mb-4"><strong>Changes or Cancellations:</strong> Any changes to training dates, participant capacity, location, or program scope must be agreed to in writing and may incur additional fees.</p>
+        <p class="text-teal-900 mb-4"><strong>Intellectual Property:</strong> All training materials remain the intellectual property of the Company. The Client receives only the license described in the SOW.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">4.4 Speaking Services</h3>
+        <p class="text-teal-900 mb-4"><strong>Statement of Work / Engagement Agreement:</strong> Speaking Services are governed by a separate SOW, engagement agreement, or event contract. This agreement outlines the presentation topic, event date, recording permissions, deliverables (if any), travel requirements, and pricing.</p>
+        <p class="text-teal-900 mb-4"><strong>Payment:</strong> Fees for Speaking Services must be paid according to the SOW or invoice schedule.</p>
+        <p class="text-teal-900 mb-4"><strong>Changes or Cancellations:</strong> Any changes or cancellations by the Client must comply with the terms of the SOW and may incur additional fees.</p>
+        <p class="text-teal-900 mb-4"><strong>Intellectual Property:</strong> The Company retains ownership of all speaking content. Recording or distributing the presentation requires prior written permission as specified in the SOW.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">4.5 Digital Products</h3>
+        <p class="text-teal-900 mb-4"><strong>License:</strong> Digital Products are licensed, not sold. Clients receive a non-transferable license for personal or internal business use.</p>
+        <p class="text-teal-900 mb-4"><strong>All Sales Final:</strong> Digital Product purchases are nonrefundable.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">4.6 Community Membership</h3>
+        <p class="text-teal-900 mb-4"><strong>Billing:</strong> Community Memberships may be billed through Heartbeat, Stripe, or other platforms.</p>
+        <p class="text-teal-900 mb-4"><strong>Automatic Renewal:</strong> Memberships can be structured as one-time payments or subscriptions that renew automatically unless canceled.</p>
+        <p class="text-teal-900 mb-4"><strong>Cancellation:</strong> The Client may cancel subscriptions at any time via the Platform. Access continues until the end of the billing period.</p>
+        <p class="text-teal-900 mb-4"><strong>No Refunds:</strong> With the exception of the initial Discovery Session, membership fees are nonrefundable. If client requests a refund for their Discovery Session, community access will be revoked.</p>
+        <p class="text-teal-900 mb-4"><strong>Nonpayment:</strong> If payment fails or is reversed, Community access may be suspended.</p>
+        <p class="text-teal-900 mb-4"><strong>Code of Conduct Violations:</strong> The Company may suspend or terminate Community access immediately if the Client or Community Member violates the Company's Code of Conduct, Community Guidelines, these Terms, or any applicable platform policies. No refunds will be issued for termination based on conduct violations.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">5. Community Participation</h2>
+        <p class="text-teal-900 mb-4">By accessing or participating in the Company's community, the Community Member agrees to comply with:</p>
+        <ul class="list-disc pl-6 text-teal-900 mb-4 space-y-2">
+          <li>Code of Conduct</li>
+          <li>Community Guidelines</li>
+          <li>Platform-specific rules (such as Heartbeat's policies)</li>
+        </ul>
+        <p class="text-teal-900 mb-4">Failure to follow these guidelines may result in removal or suspension at the Company's discretion.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">6. Intellectual Property</h2>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">6.1 Company Intellectual Property</h3>
+        <p class="text-teal-900 mb-4">All original content created by the Company, including coaching materials, training content, consulting frameworks, speaking content, digital products, videos, and community resources, remains the exclusive property of the Company.</p>
+        <p class="text-teal-900 mb-4">Clients receive only the licenses explicitly granted in these Terms or in a separate written agreement.</p>
+        <p class="text-teal-900 mb-4">Redistribution, resale, public posting, or external use of Company materials is prohibited without written permission.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">6.2 Client Intellectual Property</h3>
+        <p class="text-teal-900 mb-4">For Consulting Services, Deliverables created specifically for the Client are considered "work made for hire" and become the Client's property upon final payment.</p>
+        <p class="text-teal-900 mb-4">The Company retains ownership of all pre-existing frameworks, methods, tools, and intellectual capital used to create the Deliverables.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">6.3 Community-Contributed Content</h3>
+        <p class="text-teal-900 mb-4">Community Members retain ownership of their own posts and contributions. By posting within the community, they grant other members a limited license to view and engage with their content within the Platform.</p>
+        <p class="text-teal-900 mb-4">Members may not copy, screenshot, distribute, or share other members' content outside the Platform without explicit written permission from the content owner.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">7. Confidentiality</h2>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">7.1 Confidentiality in Coaching, Consulting, Training, and Speaking Services</h3>
+        <p class="text-teal-900 mb-4">The Company and the Client agree to maintain the confidentiality of any sensitive, proprietary, or non-public information shared during Coaching Services, Consulting Services, Training Services, or Speaking Services ("Confidential Information").</p>
+        <p class="text-teal-900 mb-4">Confidential Information includes business strategies, personal experiences, internal documents, proprietary data, and any other information that a reasonable person would understand to be confidential.</p>
+        <p class="text-teal-900 mb-4">The Company may use anonymized or aggregated insights for teaching, writing, research, or marketing purposes.</p>
+        <p class="text-teal-900 mb-4">Confidentiality obligations do not apply where disclosure is required by law, court order, or is necessary to prevent imminent harm.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">7.2 Confidentiality in the Community</h3>
+        <p class="text-teal-900 mb-4">The Community is designed to be a private space for learning and reflection. Community Members agree not to disclose or distribute other members' posts, comments, discussions, or personal information outside the Platform without explicit permission from the content owner.</p>
+        <p class="text-teal-900 mb-4">The Company may summarize or anonymize themes, insights, or trends from the Community for educational or marketing purposes, but will not reveal member identities or personal details without permission.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">7.3 Limited Exceptions to Confidentiality</h3>
+        <p class="text-teal-900 mb-4">The following subsections describe narrow circumstances in which the Company may share identifying information for legitimate business purposes. These exceptions apply only as stated and do not override the confidentiality protections in Sections 7.1 and 7.2.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">7.4 Publicity & Social Proof</h3>
+        <p class="text-teal-900 mb-4">Unless the Client or Community Member opts out in writing, the Company may use their name, company name, logo, likeness, community profile photo, and general description of their participation in the Company's Services or community for marketing, portfolio, or promotional purposes.</p>
+        <p class="text-teal-900 mb-4">Permitted uses include, but are not limited to, display on the Company's website, presentations, proposals, marketing materials, and social media channels.</p>
+        <p class="text-teal-900 mb-4">The Company will not disclose any confidential, sensitive, or proprietary details related to the Client's engagement or participation without explicit written consent.</p>
+        <p class="text-teal-900 mb-4">Clients and Community Members may opt out at any time by emailing <a href="mailto:hello@lovelacecommunications.com" class="text-teal-800 underline hover:text-teal-950">hello@lovelacecommunications.com</a>.</p>
+
+        <h3 class="text-xl font-bold text-teal-950 mt-8 mb-3">7.5 Testimonials</h3>
+        <p class="text-teal-900 mb-4">If a Client or Community Member voluntarily provides feedback, a review, a survey response, or a statement of experience ("Testimonial"), the Client grants the Company a perpetual, worldwide, royalty-free license to use, reproduce, publish, edit for length or clarity (without altering meaning), and distribute the Testimonial for marketing, educational, or promotional purposes.</p>
+        <p class="text-teal-900 mb-4">Unless the Client opts out in writing, the Company may attribute Testimonials using the Client's name, title, company name, and profile photo.</p>
+        <p class="text-teal-900 mb-4">The Company will not publish confidential information or materially alter the meaning or intent of the Client's words.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">8. Use of Generative AI</h2>
+        <p class="text-teal-900 mb-4">The Company may use generative AI tools to support content development, analysis, or the creation of deliverables. These tools are configured not to train public models on Client data.</p>
+        <p class="text-teal-900 mb-4">Clients may request human-only analysis, which may require additional fees.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">9. Force Majeure</h2>
+        <p class="text-teal-900 mb-4">Neither the Company nor the Client will be liable for any delay or failure to perform their obligations under these Terms (other than payment obligations) if that delay or failure results from events, circumstances, or causes beyond their reasonable control ("Force Majeure Event").</p>
+        <p class="text-teal-900 mb-4">Force Majeure Events include, but are not limited to: natural disasters; acts of God; epidemics or pandemics; war; terrorism; civil unrest; government orders or restrictions; labor disputes; strikes; lockouts; power outages; failure of third-party hosting or communication services; or other events of a similar nature that are outside the affected party's reasonable control.</p>
+        <p class="text-teal-900 mb-4">The affected party will:</p>
+        <ul class="list-disc pl-6 text-teal-900 mb-4 space-y-2">
+          <li>Make reasonable efforts to notify the other party of the Force Majeure Event and its expected impact; and</li>
+          <li>Use commercially reasonable efforts to resume performance as soon as reasonably practicable.</li>
+        </ul>
+        <p class="text-teal-900 mb-4">If a Force Majeure Event continues for more than thirty (30) days in a way that materially impacts the delivery of Services, either party may terminate the affected Services or Statement of Work upon written notice to the other party, without liability, except for fees owed for Services already performed.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">10. Limitation of Liability</h2>
+        <p class="text-teal-900 mb-4">To the fullest extent permitted by law, the Company is not liable for indirect, incidental, special, consequential, or punitive damages, including lost profits, data loss, business interruption, or reputational harm.</p>
+        <p class="text-teal-900 mb-4">The Company's total liability under these Terms is limited to the total fees paid by the Client for the specific Service giving rise to the claim.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">11. Dispute Resolution & Governing Law</h2>
+        <p class="text-teal-900 mb-4">The Company and the Client agree to attempt to resolve any concern through good-faith communication. If a resolution cannot be reached, disputes will be governed by the laws of the Commonwealth of Virginia and resolved through mediation or arbitration before either party pursues legal action.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">12. Service Specific Agreements</h2>
+        <p class="text-teal-900 mb-4">Certain Services—including Consulting Services, Training Services, Speaking Services, and Programs—are governed by a separate Statement of Work ("SOW") or engagement agreement. In the event of a conflict between these Terms and the applicable SOW, the SOW will control with respect to that engagement, and these Terms will govern all other aspects of the relationship.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">13. Changes</h2>
+        <p class="text-teal-900 mb-4">These Terms may be updated periodically. The most current version will always be posted at andreagoulet.com. Continued use of the Company's Services constitutes acceptance of any updated Terms.</p>
+
+        <h2 class="text-2xl font-bold text-teal-950 mt-10 mb-4">14. Contact</h2>
+        <p class="text-teal-900 mb-4">
+          Lovelace Communications, LLC<br />
+          405 E Laburnum Ave Ste 3<br />
+          Richmond, VA 23222<br />
+          <a href="mailto:hello@lovelacecommunications.com" class="text-teal-800 underline hover:text-teal-950">hello@lovelacecommunications.com</a>
+        </p>
+
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter
+    copyright={footer.copyright || ''}
+    termsUrl="/terms"
+    privacyUrl="/privacy"
+  />
+</Layout>
