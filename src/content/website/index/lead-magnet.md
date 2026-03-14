@@ -1,11 +1,10 @@
 ---
-title: "Get the Free Workbook"
-subtitle: "Design Your Communication Experiment"
-description: "An 8-step workbook that walks you through the same framework our coaching clients use — from identifying a friction point to running your first experiment."
+title: "Free 3-Hour Virtual Workshop"
+subtitle: "The Full-Stack Communication Upgrade"
+description: "Diagnose, debug, and upgrade your communication system with frameworks built for how you think. Walk away with a personalized roadmap across 9 communication milestones."
 highlights:
-  - "Identify the conversation patterns that aren't working"
-  - "Form a testable hypothesis (not just good intentions)"
-  - "Design a concrete experiment you can run this week"
-ctaText: "Send Me the Workbook"
-privacyNote: "No spam. Unsubscribe anytime."
+  - "Pinpoint exactly where your communication system is breaking down"
+  - "Map communication as a system with patterns you can debug"
+  - "Build a custom 3-month game plan you can start using immediately"
+ctaText: "Reserve Your Seat"
 ---
