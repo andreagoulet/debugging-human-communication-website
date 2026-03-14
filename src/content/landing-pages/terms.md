@@ -133,7 +133,16 @@ sections:
     content:
       - "The Company may use generative AI tools to support content development, analysis, or the creation of deliverables. These tools are configured not to train public models on Client data."
       - "Clients may request human-only analysis, which may require additional fees."
-  - heading: "9. Force Majeure"
+  - heading: "9. SMS & Text Message Communications"
+    content:
+      - "Debugging Human Communication (operated by Lovelace Communications, LLC) may send text messages to Clients who provide their phone number and explicitly consent to receiving them."
+      - "**SMS Program Description:** Text messages may include appointment reminders, scheduling confirmations, service updates, account notifications, and, with separate optional consent, promotional or marketing messages about Company services, programs, and events."
+      - "**Opt-Out:** You may opt out of text messages at any time by replying STOP to any message. You may also contact us at hello@lovelacecommunications.com or 804.223.4530 to request removal."
+      - "**Message & Data Rates:** Message and data rates may apply. Please contact your wireless carrier for details about your text messaging plan."
+      - "**Carrier Liability Disclaimer:** The Company and mobile carriers are not liable for delayed or undelivered messages. Delivery of text messages is subject to effective transmission by your mobile carrier."
+      - "**Help:** Reply HELP to any message for assistance, or contact us at hello@lovelacecommunications.com."
+      - "**Consent Not Required:** Consent to receive SMS messages is not a condition of purchasing any goods or services from the Company."
+  - heading: "10. Force Majeure"
     content:
       - "Neither the Company nor the Client will be liable for any delay or failure to perform their obligations under these Terms (other than payment obligations) if that delay or failure results from events, circumstances, or causes beyond their reasonable control (\"Force Majeure Event\")."
       - "Force Majeure Events include, but are not limited to: natural disasters; acts of God; epidemics or pandemics; war; terrorism; civil unrest; government orders or restrictions; labor disputes; strikes; lockouts; power outages; failure of third-party hosting or communication services; or other events of a similar nature that are outside the affected party's reasonable control."
@@ -143,20 +152,20 @@ sections:
       - "Use commercially reasonable efforts to resume performance as soon as reasonably practicable."
     afterList:
       - "If a Force Majeure Event continues for more than thirty (30) days in a way that materially impacts the delivery of Services, either party may terminate the affected Services or Statement of Work upon written notice to the other party, without liability, except for fees owed for Services already performed."
-  - heading: "10. Limitation of Liability"
+  - heading: "11. Limitation of Liability"
     content:
       - "To the fullest extent permitted by law, the Company is not liable for indirect, incidental, special, consequential, or punitive damages, including lost profits, data loss, business interruption, or reputational harm."
       - "The Company's total liability under these Terms is limited to the total fees paid by the Client for the specific Service giving rise to the claim."
-  - heading: "11. Dispute Resolution & Governing Law"
+  - heading: "12. Dispute Resolution & Governing Law"
     content:
       - "The Company and the Client agree to attempt to resolve any concern through good-faith communication. If a resolution cannot be reached, disputes will be governed by the laws of the Commonwealth of Virginia and resolved through mediation or arbitration before either party pursues legal action."
-  - heading: "12. Service Specific Agreements"
+  - heading: "13. Service Specific Agreements"
     content:
       - "Certain Services\u2014including Consulting Services, Training Services, Speaking Services, and Programs\u2014are governed by a separate Statement of Work (\"SOW\") or engagement agreement. In the event of a conflict between these Terms and the applicable SOW, the SOW will control with respect to that engagement, and these Terms will govern all other aspects of the relationship."
-  - heading: "13. Changes"
+  - heading: "14. Changes"
     content:
       - "These Terms may be updated periodically. The most current version will always be posted at debugginghumancommunication.com. Continued use of the Company's Services constitutes acceptance of any updated Terms."
-  - heading: "14. Contact"
+  - heading: "15. Contact"
     address:
       name: "Lovelace Communications, LLC"
       street: "405 E Laburnum Ave Ste 3"
