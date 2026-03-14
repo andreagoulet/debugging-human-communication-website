@@ -24,7 +24,7 @@ commitmentSection:
   - "But in order for this to work, I need everyone who attends to be **serious about showing up and doing the work.**"
   - "I'm not going to ask you to invest any money."
   - "But I am going to need a quick verbal confirmation that you'll show up and participate fully."
-  - "So to attend the workshop, you'll just need to set up a **short 10–15 minute call** with me."
+  - "So to attend the workshop, you'll just need to set up a **short 15 minute call** with me."
 callout: "It's not a sales call. I won't try to sell you anything."
 afterCallout:
   - "On the call, you'll give a verbal \"yes\" to showing up and doing the work, and then I'll send you the link for the workshop."
@@ -32,5 +32,5 @@ afterCallout:
 closingSection:
   - "So if you want to start systematically debugging your communication,"
   - "And you're serious about showing up and doing the work,"
-  - "Pick a time for your 10–15 minute call here:"
+  - "Pick a time for your 15 minute call here:"
 ---
