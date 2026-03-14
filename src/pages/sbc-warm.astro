@@ -72,14 +72,10 @@ const content = allLandingPages.find(e => e.id === 'sbc-warm-landing.md')!.data;
           ))}
         </div>
 
-        <!-- Calendar Embed Placeholder -->
-        <div class="mt-10 rounded-xl border-2 border-dashed border-teal-300 bg-white p-12 text-center">
-          <svg class="w-12 h-12 text-teal-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <p class="text-teal-700 font-medium text-lg">Calendar booking widget will be embedded here</p>
-          <p class="text-teal-600 text-sm mt-1">Replace this placeholder with your scheduling tool embed code</p>
-        </div>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget mt-10" data-url="https://calendly.com/andreagoulet/prep-call-debugging-human-communication-workshop?hide_gdpr_banner=1" style="min-width:320px;height:1200px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
       </div>
     </section>
 
