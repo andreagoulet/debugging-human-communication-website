@@ -90,5 +90,6 @@ sections:
       name: "Lovelace Communications, LLC"
       street: "405 E Laburnum Ave Ste 3"
       cityStateZip: "Richmond, VA 23222"
+      phone: "804.223.4530"
       email: "hello@lovelacecommunications.com"
 ---

@@ -64,6 +64,7 @@ const content = allLandingPages.find(e => e.id === 'terms.md')!.data;
                   {section.address.name}<br />
                   {section.address.street}<br />
                   {section.address.cityStateZip}<br />
+                  {section.address.phone && <><a href={`tel:${section.address.phone.replace(/\./g, '')}`} class="legal-link">{section.address.phone}</a><br /></>}
                   <a href={`mailto:${section.address.email}`} class="legal-link">{section.address.email}</a>
                 </p>
               )}
