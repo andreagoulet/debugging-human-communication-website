@@ -10,6 +10,9 @@ export default defineConfig({
   redirects: {
     '/community': 'https://app.heartbeat.chat/debugginghumancommunication/invitation?code=J3524G',
     '/discovery': 'https://calendly.com/andreagoulet/discovery-session',
+    '/sbc-cold': '/workshop/new',
+    '/sbc-cold/book': '/workshop/new/book',
+    '/sbc-warm': '/workshop/referred',
   },
   vite: {
     plugins: [tailwindcss()]
