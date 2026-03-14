@@ -71,8 +71,14 @@ sections:
       - "From time to time, the Company may contact you via email for the purpose of providing announcements, promotional offers, alerts, confirmations, surveys, and/or other general communication. In order to improve our services, we may receive a notification when you open an email from the Company or click on a link therein. If you would like to stop receiving marketing or promotional communications via email from the Company, you may opt out of such communications by clicking on the unsubscribe button."
   - heading: "SMS & Text Message Communications"
     content:
-      - "By providing your phone number to the Company, you consent to receiving text messages related to appointment reminders, service updates, and other communications related to Services you have requested or enrolled in. Message and data rates may apply."
-      - "You may opt out of text message communications at any time by replying STOP to any message or by contacting us at hello@lovelacecommunications.com. Opting out of SMS communications will not affect your ability to use Company Services, though you may miss time-sensitive reminders."
+      - "Debugging Human Communication (operated by Lovelace Communications, LLC) may send you text messages if you provide your phone number and explicitly consent to receiving them. Consent to receive SMS messages is not a condition of purchasing any goods or services."
+      - "**Transactional Messages:** With your consent, we may send transactional text messages such as appointment reminders, service updates, account alerts, and other notifications related to Services you have requested or enrolled in."
+      - "**Marketing Messages:** With your separate, optional consent, we may send promotional or marketing text messages about our services, programs, and offers. Marketing consent is always optional and is not required to use our Services."
+      - "**Message Frequency:** Message frequency may vary depending on the type of messages and your interactions with our Services."
+      - "**Message & Data Rates:** Message and data rates may apply. Please contact your wireless carrier for details about your messaging plan."
+      - "**Opt-Out:** You may opt out of text message communications at any time by replying STOP to any message or by contacting us at hello@lovelacecommunications.com. Opting out of SMS communications will not affect your ability to use Company Services, though you may miss time-sensitive reminders."
+      - "**Help:** Reply HELP to any message for assistance, or contact us at hello@lovelacecommunications.com."
+      - "**No Sharing of SMS Consent:** Your consent to receive SMS messages is not shared with any third parties, except as required by our SMS service providers (such as Go High Level) to deliver messages on our behalf."
   - heading: "External Data Storage Sites"
     content:
       - "We may store your data on servers provided by third-party hosting vendors with whom we have contracted."
