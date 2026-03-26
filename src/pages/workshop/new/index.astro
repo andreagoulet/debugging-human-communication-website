@@ -26,7 +26,14 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
         <div class="absolute inset-0 bg-gradient-to-br from-teal-950 via-teal-950/95 to-teal-800/30"></div>
       </div>
       <div class="container-md relative z-10 py-16 md:py-24 text-center">
-        <img src="/logo.svg" alt="Debugging Human Communication" class="h-16 w-auto mx-auto mb-8" />
+        <!-- Event badge -->
+        <div class="inline-flex flex-col items-center gap-2 mb-8">
+          <span class="inline-block bg-teal-600 text-teal-950 text-base md:text-lg font-bold uppercase tracking-wider px-6 py-3 rounded-full">{content.hero.badge}</span>
+          <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-teal-300 text-base">
+            <span>{content.hero.badgeDetails}</span>
+          </div>
+        </div>
+
         <h1 class="heading-hero !text-white mb-4" set:html={formatMarkdown(content.hero.headline)} />
         <p class="text-lg md:text-xl text-teal-200 max-w-3xl mx-auto mb-10" set:html={formatMarkdown(content.hero.subheadline)} />
 
@@ -75,10 +82,10 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
         <p class="text-lg text-teal-900 mb-8 text-center">{content.whatYoullLearn.intro}</p>
 
         <div class="space-y-6 mb-8">
-          {content.whatYoullLearn.items.map((item: { title: string; description: string }) => (
+          {content.whatYoullLearn.items.map((item: string) => (
             <div class="flex gap-4 items-start">
               <div class="w-2 h-2 rounded-full bg-teal-800 mt-3 shrink-0"></div>
-              <p class="text-lg text-teal-900"><strong class="text-teal-950">{item.title}:</strong> {item.description}</p>
+              <p class="text-lg text-teal-900" set:html={formatMarkdown(item)} />
             </div>
           ))}
         </div>
@@ -89,13 +96,48 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
       </div>
     </section>
 
+    <!-- What the Upgrade Looks Like -->
+    <section class="section bg-teal-950">
+      <div class="container-md">
+        <h2 class="heading-section !text-white mb-4 text-center">{content.imagine.title}</h2>
+        <p class="text-teal-300 text-lg text-center mb-10">{content.imagine.subtitle}</p>
+
+        <div class="max-w-3xl mx-auto mb-10 bg-white rounded-2xl overflow-hidden shadow-xl">
+          {content.imagine.items.map((item: { before: string; after: string }, index: number) => (
+            <div class:list={["grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 px-6 py-5", index < content.imagine.items.length - 1 && "border-b border-teal-200"]}>
+              <p class="text-teal-900 text-lg">{item.before}</p>
+              <svg class="w-6 h-6 text-coral shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" role="img" aria-label="becomes"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+              <p class="text-teal-950 font-bold text-lg">{item.after}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-teal-300 text-lg font-medium max-w-2xl mx-auto text-center">{content.imagine.closing}</p>
+      </div>
+    </section>
+
     <!-- What You'll Do -->
     <section class="section bg-teal-50">
       <div class="container-md">
         <h2 class="heading-section mb-10 text-center">{content.workshopDetails.title}</h2>
 
+        <p class="text-lg text-teal-900 mb-6 max-w-2xl mx-auto text-center">{content.workshopDetails.intro}</p>
+
+        <p class="text-xl font-bold text-teal-950 text-center mb-8 max-w-2xl mx-auto">{content.workshopDetails.costStatement}</p>
+
+        <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10">
+          {content.workshopDetails.painPoints.map((point: string) => (
+            <div class="bg-white rounded-xl p-5 border border-teal-200 shadow-sm">
+              <p class="text-teal-900 italic">{point}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-xl font-bold text-teal-950 text-center mb-4">{content.workshopDetails.reframe}</p>
+        <p class="text-lg text-teal-900 text-center max-w-2xl mx-auto mb-10">{content.workshopDetails.transition}</p>
+
         <div class="bg-white rounded-xl p-8 md:p-12 border-2 border-teal-200 mb-10">
-          <h3 class="text-xl font-bold text-teal-800 mb-6 uppercase tracking-wide">{content.workshopDetails.sessionTitle}</h3>
+          <h3 class="text-xl font-bold text-teal-800 mb-6">{content.workshopDetails.itemsTitle}</h3>
           <ul class="space-y-4">
             {content.workshopDetails.items.map((item: string) => (
               <li class="flex gap-3 items-start">
@@ -106,19 +148,7 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
           </ul>
         </div>
 
-        <!-- Date/Time Placeholder -->
-        <div class="text-center mb-10">
-          <div class="inline-block bg-teal-200 rounded-lg px-8 py-4">
-            <p class="text-teal-950 font-bold text-lg">{content.workshopDetails.date}</p>
-            <p class="text-teal-900">{content.workshopDetails.duration}</p>
-          </div>
-        </div>
 
-        <div class="text-center">
-          <a href="#register" class="btn-primary-lg">
-            {content.ctaText}
-          </a>
-        </div>
       </div>
     </section>
 
@@ -157,11 +187,6 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
           ))}
         </div>
 
-        <div class="text-center">
-          <a href="#register" class="btn-primary-lg">
-            {content.ctaText}
-          </a>
-        </div>
       </div>
     </section>
 
@@ -209,6 +234,34 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
             </blockquote>
           ))}
         </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">{content.faq.title}</h2>
+        <div class="max-w-2xl mx-auto space-y-6">
+          {content.faq.items.map((item: { question: string; answer: string }) => (
+            <details class="group border border-teal-200 rounded-xl">
+              <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none text-lg font-semibold text-teal-950 group-open:border-b group-open:border-teal-200">
+                {item.question}
+                <svg class="w-5 h-5 text-teal-600 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <p class="p-6 pt-4 text-teal-900">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section bg-teal-950">
+      <div class="container-md">
+        {content.finalCta && (
+          <p class="text-teal-200 text-lg text-center mb-8 font-medium">{content.finalCta}</p>
+        )}
 
         <div class="max-w-xl mx-auto w-full">
           <iframe
