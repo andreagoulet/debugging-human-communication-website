@@ -45,16 +45,16 @@ contrast:
   isStatement: "I'm not going to give you empty advice you can't implement like \"read the room.\" I'm going to show you how to **refactor human conversations the exact same way you refactor code.**"
   whyItMatters: "So the next time a stakeholder pushes back, a 1:1 goes sideways, or you're replaying a conversation at 2am — you'll have a systematic way to figure out what happened and what to try next."
 differentiators:
-  title: "What Makes Our Event Different?"
+  title: "What Makes This Event Different?"
   items:
-    - title: "Systems-Based Approach"
-      description: "We treat communication like a system — with patterns, rules, and logic. No hype, no \"just be more confident\" advice. Actual frameworks you can learn and apply."
-    - title: "Built for Technical Minds"
-      description: "You'll be in a room where you don't have to dumb things down or pretend to be someone you're not. Connect with other technical professionals who think the way you do."
-    - title: "Tools You'll Actually Use"
-      description: "You'll leave with diagnostic tools and frameworks you can reference long after the workshop is over."
-    - title: "Research-Backed, Field-Tested"
-      description: "Everything we teach is grounded in research and tested with real technical professionals — not recycled from a generic leadership seminar."
+    - title: "Software Thinking, Applied to Humans"
+      description: "You already think in systems, patterns, and logic. I teach communication the same way — because the skills that made you a great developer are the same ones that make you a great communicator."
+    - title: "Geek Out With People Who Get It"
+      description: "This room is full of people who care about the same things you do. Talk about technical debt, code quality, or your latest refactor and people will light up — not glaze over. This is your crowd."
+    - title: "Leave With a Plan, Not a Pep Talk"
+      description: "You'll walk out with diagnostic tools and a concrete game plan you can use in your very next conversation — not a notebook full of inspiration."
+    - title: "Every Attendee Is Personally Vetted"
+      description: "I personally talk to every attendee before the workshop. It's a curated experience so that it's as much about human connection as it is about learning."
 host:
   title: "Your Host"
   bio: "Andrea Goulet is a communication coach who speaks fluent developer. She co-founded Corgibytes, a software company specializing in legacy code, where she spent over 15 years working alongside technical professionals. She noticed the same pattern over and over: brilliant, compassionate people who kept saying \"I'm bad with people.\" They weren't bad with people — they just didn't have the right framework. So she built one. Andrea created Debugging Human Communication to give technical professionals a systematic, experiment-driven approach to communication — because if you can debug code, you can debug a conversation. She's helped engineers get promoted, secure budget during hiring freezes, and speak at conferences they never thought they'd attend."
@@ -75,22 +75,10 @@ imagine:
     - before: "You share your expertise"
       after: "You become a trusted voice"
   closing: "Even one of those shifts could change your trajectory. This workshop gives you the framework to make it happen."
-faq:
-  title: "Questions You Might Have"
-  items:
-    - question: "Is this really free?"
-      answer: "Yes. This workshop is 100% free. It's how I build trust — by giving you results in advance. If the frameworks click for you, there's a chance you might want to explore my coaching program afterward. But there's no obligation."
-    - question: "Will there be a sales pitch?"
-      answer: "I'll briefly share how my coaching program works at the end for anyone who wants to go deeper. But the workshop itself is designed to stand on its own — you'll leave with real tools and a concrete plan, pitch or no pitch."
-    - question: "What if I can't make it live?"
-      answer: "This is an implementation-based workshop with exercises and real-time feedback, so attending live is strongly recommended. A recording will be available, but you'll get the most value by being in the room."
-    - question: "How is this different from a webinar?"
-      answer: "Webinars talk at you. This workshop works with you. You'll do exercises, get feedback, and leave with a personalized game plan — not a slide deck full of theory."
-    - question: "I've read all the communication books. Will this be different?"
-      answer: "Books give you concepts. This gives you a system for applying those concepts to your actual conversations — with a diagnostic to pinpoint where you're stuck and an experiment to try this week."
-    - question: "Do I need to be 'bad' at communication to benefit?"
-      answer: "Not at all. Most people in this workshop communicate well in many contexts but hit friction in specific situations — a difficult stakeholder, a promotion conversation, networking events. This is about getting precise about where your system breaks down and fixing that."
-finalCta: "Even one conversation going differently could change your whole trajectory. This workshop is limited in size so everyone gets personal attention."
+finalCta:
+  title: "Your Full-Stack Upgrade Starts Now"
+  body: "You already have the skills. You already have the drive. This workshop gives you the missing piece — a systematic way to make your communication match the quality of your work."
+  cta: "Space is limited to 30 attendees. Request your invitation."
 testimonials:
   title: "What Others Are Saying"
 ---
