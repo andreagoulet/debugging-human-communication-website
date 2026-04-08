@@ -13,6 +13,7 @@ export default defineConfig({
     '/sbc-cold': '/workshop/new',
     '/sbc-cold/book': '/workshop/new/book',
     '/sbc-warm': '/workshop/referred',
+    '/guest-pass': '/workshop/referred',
   },
   vite: {
     plugins: [tailwindcss()]
