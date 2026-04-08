@@ -21,25 +21,43 @@ const content = allLandingPages.find(e => e.id === 'sbc-warm-landing.md')!.data;
       <div class="absolute inset-0" aria-hidden="true">
         <div class="absolute inset-0 bg-gradient-to-br from-teal-950 via-teal-950/95 to-teal-800/30"></div>
       </div>
-      <div class="container-md relative z-10 py-16 md:py-24 text-center">
+      <div class="container-lg relative z-10 py-16 md:py-24 text-center">
         <img src="/logo.svg" alt="Debugging Human Communication" class="h-16 w-auto mx-auto mb-8" />
-        <h1 class="heading-hero !text-white mb-6">
-          {content.hero.headline}
-        </h1>
+        <!-- Event badge -->
+        <div class="inline-flex flex-col items-center gap-2 mb-8">
+          <span class="inline-block bg-teal-600 text-teal-950 text-base md:text-lg font-bold uppercase tracking-wider px-6 py-3 rounded-full">{content.hero.badge}</span>
+          <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-teal-300 text-lg md:text-xl">
+            <span>{content.hero.badgeDetails}</span>
+          </div>
+        </div>
+
+        <h1 class="heading-hero !text-white mb-4" set:html={formatMarkdown(content.hero.headline)} />
+
         <p class="text-lg md:text-xl text-teal-200 max-w-3xl mx-auto mb-10" set:html={formatMarkdown(content.hero.subheadline)} />
 
-        <!-- Intro Video -->
-        <div class="max-w-2xl mx-auto rounded-xl overflow-hidden border-2 border-teal-600/40 bg-teal-900/60">
-          <video
-            class="w-full aspect-video"
-            controls
-            preload="metadata"
-            poster="/videos/dhc-workshop-warm-poster.png"
-          >
-            <source src="/videos/dhc-intro-warm.mp4" type="video/mp4" />
-            <track src="/videos/dhc-intro-warm.vtt" kind="subtitles" srclang="en" label="English" default />
-            Your browser does not support the video tag.
-          </video>
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <!-- Intro Video -->
+          <div>
+            <div class="rounded-xl overflow-hidden border-2 border-teal-600/40 bg-teal-900/60">
+              <video
+                class="w-full aspect-video"
+                controls
+                preload="metadata"
+                poster="/videos/dhc-workshop-warm-poster.png"
+              >
+                <source src="/videos/dhc-intro-warm.mp4" type="video/mp4" />
+                <track src="/videos/dhc-intro-warm.vtt" kind="subtitles" srclang="en" label="English" default />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p class="mt-3 text-center text-teal-400 text-sm">Having trouble seeing the calendar? <a href="https://links.debugginghumancommunication.com/widget/booking/AtiyMWERWdg3TT1IQwVh" target="_blank" rel="noopener noreferrer" class="underline hover:text-teal-300">Book directly here</a>.</p>
+          </div>
+
+          <!-- Booking Widget -->
+          <div class="rounded-xl overflow-hidden bg-white">
+            <iframe src="https://links.debugginghumancommunication.com/widget/booking/AtiyMWERWdg3TT1IQwVh" class="w-full border-none" style="min-height:420px;" scrolling="no" title="Book a workshop prep call"></iframe>
+            <script type="text/javascript" src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
+          </div>
         </div>
       </div>
     </section>
@@ -72,9 +90,6 @@ const content = allLandingPages.find(e => e.id === 'sbc-warm-landing.md')!.data;
           ))}
         </div>
 
-        <iframe src="https://links.debugginghumancommunication.com/widget/booking/AtiyMWERWdg3TT1IQwVh" class="mt-10 w-full border-none" style="min-height:1200px;" scrolling="no" title="Book a workshop prep call"></iframe>
-        <script type="text/javascript" src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
-        <p class="mt-4 text-center text-teal-700 text-sm">Having trouble seeing the calendar? <a href="https://links.debugginghumancommunication.com/widget/booking/AtiyMWERWdg3TT1IQwVh" target="_blank" rel="noopener noreferrer" class="underline hover:text-teal-900">Book directly here</a>.</p>
       </div>
     </section>
 
@@ -91,6 +106,15 @@ const content = allLandingPages.find(e => e.id === 'sbc-warm-landing.md')!.data;
             </div>
           ))}
         </div>
+      </div>
+    </section>
+
+    <!-- Bottom Booking Widget -->
+    <section class="section bg-teal-50">
+      <div class="container-sm">
+        <iframe src="https://links.debugginghumancommunication.com/widget/booking/AtiyMWERWdg3TT1IQwVh" class="w-full border-none" style="min-height:700px;" scrolling="no" title="Book a workshop prep call"></iframe>
+        <script type="text/javascript" src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
+        <p class="mt-4 text-center text-teal-700 text-sm">Having trouble seeing the calendar? <a href="https://links.debugginghumancommunication.com/widget/booking/AtiyMWERWdg3TT1IQwVh" target="_blank" rel="noopener noreferrer" class="underline hover:text-teal-900">Book directly here</a>.</p>
       </div>
     </section>
   </main>

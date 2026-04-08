@@ -1,17 +1,19 @@
 ---
 hero:
-  headline: "Claim Your Free Guest Pass To Attend Our Next Communication Debugging Workshop"
-  subheadline: 'In order to access your Guest Pass, you must first schedule a "Communication Fit Call" to see if you''re a good fit for the group. This is **NOT** a sales call. It''s a 15-minute conversation to see if we''re a good fit for each other.'
+  badge: "Virtual Workshop with Andrea Goulet"
+  badgeDetails: Request your FREE Guest Pass below.
+  headline: "Master the Hidden Patterns of Human Communication"
+  subheadline: 'In order to access your Guest Pass, you must first schedule a quick call to see if you''re a good fit for the group. This is **NOT** a sales call. It''s a 15-minute conversation to see if this is the right event for you.'
 
 nextStep:
-  title: 'The Next Step is to Schedule a "Communication Fit Call"'
+  title: "The Next Step is to Schedule a Fit Call"
   paragraphs:
     - "Before letting you attend the workshop, I want to do two things."
-    - "**First,** I want to get to know you better and make sure the content's going to be relevant to you."
+    - "**First, I want to get to know you better and make sure the content's going to be relevant to you.**"
     - "While I do offer this invitation to many, I don't allow everyone to join."
     - "I like to keep my workshop groups as focused as possible and I only allow technical professionals with the right curiosity, openness, and commitment to attend."
     - "That's why I'd like to get to know you better and make sure you're a fit."
-    - "**Second,** I want to learn about your communication challenges and goals so I can have you sit in on the session that's going to be most valuable to you."
+    - "**Second, I want to learn about your communication challenges and goals so I can have you sit in on the session that's going to be most valuable to you.**"
     - "Once I've determined that you'd be a good fit, I also want to make sure that this experience is going to be the most valuable for you."
     - "That's why I want to learn about your current situation so I can have you join us in the session that would be best suited for you."
 
@@ -28,11 +30,11 @@ faq:
   title: "Other Frequently Asked Questions"
   questions:
     - question: "When is the workshop?"
-      answer: "We have several different session times, so during the Communication Fit Call we'll get you connected with the one that works best for you."
+      answer: "We have several different session times, so during the fit call we'll get you connected with the one that works best for you."
     - question: "Is this virtual or in-person?"
       answer: "This is a virtual workshop on Zoom."
     - question: "Who is this workshop for?"
-      answer: "This workshop is designed for technical professionals — software developers, engineers, and technical leaders who want a systematic approach to improving their communication. If you've ever thought \"I'm bad with people\" but you know there must be a better framework, this is for you."
+      answer: "This workshop is designed for technical professionals who want a systematic approach to improving their communication."
     - question: "What makes this workshop unique?"
       answer: "This is an implementation-based workshop — you'll actually do the work in the room, not just take notes. You'll run your own communication diagnostic, get feedback, and leave with a personalized game plan. Plus, you'll connect with other technical professionals in small-group breakout sessions."
     - question: "Will I need to pay to attend?"
@@ -42,5 +44,5 @@ faq:
     - question: "How do I know this isn't just another \"webinar\"?"
       answer: "This is an implementation-based workshop with exercises. You'll actually do the work during the session — running your own communication diagnostic and building your game plan — and you'll get my feedback on what you create."
     - question: "Why are you offering this for free?"
-      answer: "This is a way for me to build your trust by getting you \"results in advance.\" If the workshop helps you, there's a chance you might want to go deeper with my paid coaching — but that's entirely up to you."
+      answer: "This is a way for me to build your trust by getting you results in advance. If the workshop helps you, there's a chance you might want to go deeper with my paid coaching — but that's entirely up to you."
 ---

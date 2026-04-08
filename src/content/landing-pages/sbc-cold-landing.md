@@ -1,9 +1,9 @@
 ---
 hero:
-  badge: "Virtual Workshop: Full-Stack Communication Upgrade"
+  badge: "Virtual Workshop with Andrea Goulet"
   badgeDetails: Request your invitation below.
   headline: "Master the Hidden Patterns of Human Communication"
-  subheadline: "For software professionals who want to transform their technical expertise into influence that earns buy-in, opens doors, and accelerates careers."
+  subheadline: "For professionals who want to transform their technical expertise into influence that earns buy-in, opens doors, and accelerates careers."
 ctaText: "Reserve Your Seat Now!"
 whatYoullLearn:
   title: "After This Workshop, You'll Be Able To..."
@@ -50,7 +50,7 @@ differentiators:
     - title: "Software Thinking, Applied to Humans"
       description: "You already think in systems, patterns, and logic. I teach communication the same way — because the skills that made you a great developer are the same ones that make you a great communicator."
     - title: "Geek Out With People Who Get It"
-      description: "This room is full of people who care about the same things you do. Talk about technical debt, code quality, or your latest refactor and people will light up — not glaze over. This is your crowd."
+      description: "You'll be in a room with other technical professionals who care deeply about science, evidence, and experimentation and are actively working on becoming more influencial communicators, too. This is your crowd."
     - title: "Leave With a Plan, Not a Pep Talk"
       description: "You'll walk out with diagnostic tools and a concrete game plan you can use in your very next conversation — not a notebook full of inspiration."
     - title: "Every Attendee Is Personally Vetted"
