@@ -44,6 +44,32 @@ All components and content must conform to WCAG 2.1 AA standards:
 
 When creating or modifying any component, verify accessibility before considering the task complete.
 
+## Two-repo architecture
+
+This website repo has a sibling **backend repo** at `/Users/Andrea/src/debugging-human-communication/` containing:
+
+- Client data, session notes, coaching skills
+- Cloudflare Workers (webhook receivers, form backends, scheduled jobs)
+- Automation scripts (Drive delivery, transcript processing, etc.)
+- Business planning docs
+
+**Routing tasks by repo:**
+
+| Work type | Repo |
+|---|---|
+| Landing pages, Astro components, styling, marketing copy | this repo |
+| Cloudflare Workers, form backends, automation scripts | coaching repo |
+| Skills, session notes, client data, coaching content | coaching repo |
+| Planning docs for anything business-wide | coaching repo |
+
+**Cross-repo coordination rules:**
+
+- When a task spans both repos (e.g., a new landing page + Worker backend), make changes in both in the same session.
+- **Commit separately in each repo** — never try to commit cross-repo changes as one. `git` in this repo only sees this repo's working tree.
+- For coaching-repo changes, `cd /Users/Andrea/src/debugging-human-communication && git ...`.
+- In end-of-task summaries, name which commit landed in which repo.
+- When a task is ambiguous ("build a fit-call form"), state which repo(s) you're touching before starting.
+
 ## Rules
 - Follow instructions in each skill's `SKILL.md`
 - Never manually read files in `.claude/skills/`. If a task matches a skill's description, invoke it via the Skill tool. If you find yourself reading `SKILL.md` directly, stop and use the Skill tool instead.
