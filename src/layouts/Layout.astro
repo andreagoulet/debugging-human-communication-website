@@ -5,9 +5,11 @@ interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
+  ogImage?: string;
 }
 
-const { title, description = "Communication coaching for engineers. Learn to navigate conversations with the same systematic confidence you bring to technical problems.", noindex = false } = Astro.props;
+const { title, description = "Communication coaching for engineers. Learn to navigate conversations with the same systematic confidence you bring to technical problems.", noindex = false, ogImage = '/og-image.png' } = Astro.props;
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -27,12 +29,13 @@ const { title, description = "Communication coaching for engineers. Learn to nav
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content={ogImageUrl} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
   </head>
   <body class="bg-teal-50 antialiased">
     <slot />
