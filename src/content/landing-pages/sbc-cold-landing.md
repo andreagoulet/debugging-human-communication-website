@@ -3,7 +3,7 @@ hero:
   badge: "Virtual Workshop with Andrea Goulet"
   badgeDetails: Request your invitation below.
   headline: "Master the Hidden Patterns of Human Communication"
-  subheadline: "For professionals who want to transform their technical expertise into influence that earns buy-in, opens doors, and accelerates careers."
+  subheadline: "Transform your technical expertise into influence that earns buy-in, opens doors, and accelerates your career."
 ctaText: "Reserve Your Seat Now!"
 whatYoullLearn:
   title: "After This Workshop, You'll Be Able To..."
