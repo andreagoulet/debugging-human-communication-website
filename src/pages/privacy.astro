@@ -5,9 +5,9 @@ import SiteFooter from '../components/SiteFooter.astro';
 import { getCollection } from 'astro:content';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
-const allLandingPages = await getCollection('landing-pages');
-const content = allLandingPages.find(e => e.id === 'privacy.md')!.data;
+const shared = await getCollection('website');
+const footer = shared.find(e => e.id === 'shared/footer.md')!.data;
+const content = shared.find(e => e.id === 'shared/privacy.md')!.data;
 ---
 
 <Layout
