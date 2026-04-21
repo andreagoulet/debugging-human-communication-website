@@ -1,0 +1,492 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AgendaSection from '../components/AgendaSection.astro';
+
+const schedule = [
+  { start: '10:00 AM', end: '10:05 AM', min: 5, topic: 'Introduction', anchor: 'introduction' },
+  { start: '10:05 AM', end: '10:10 AM', min: 5, topic: 'Set the Stage', anchor: 'set-the-stage' },
+  { start: '10:10 AM', end: '10:15 AM', min: 5, topic: 'Share Your Back Story', anchor: 'back-story' },
+  { start: '10:15 AM', end: '10:20 AM', min: 5, topic: "Share the Attendee's Journey", anchor: 'attendees-journey' },
+  { start: '10:20 AM', end: '10:32 AM', min: 12, topic: 'Breakout Rooms', anchor: 'breakout-rooms' },
+  { start: '10:32 AM', end: '10:40 AM', min: 8, topic: 'Breakout Room Debrief', anchor: 'breakout-debrief' },
+  { start: '10:40 AM', end: '10:41 AM', min: 1, topic: 'Exercise: Amplification Goal', anchor: 'amplification-goal' },
+  { start: '10:41 AM', end: '11:20 AM', min: 39, topic: 'First Teaching Moment: Three Futures + Self-Assessment', anchor: 'first-teaching' },
+  { start: '11:20 AM', end: '11:30 AM', min: 10, topic: 'Ah-Ha! Moment Share', anchor: 'aha-1' },
+  { start: '11:30 AM', end: '11:33 AM', min: 3, topic: 'Quick Break', anchor: 'break' },
+  { start: '11:33 AM', end: '11:35 AM', min: 2, topic: 'Exercise: Self-Assessment Scoring', anchor: 'self-assessment' },
+  { start: '11:35 AM', end: '11:40 AM', min: 5, topic: 'Share and Tell', anchor: 'share-and-tell' },
+  { start: '11:40 AM', end: '12:03 PM', min: 23, topic: 'Second Teaching Moment: The Membership + Method', anchor: 'second-teaching' },
+  { start: '12:03 PM', end: '12:06 PM', min: 3, topic: 'Ah-Ha Moment Share', anchor: 'aha-2' },
+  { start: '12:06 PM', end: '12:36 PM', min: 30, topic: 'The Pitch: The Membership', anchor: 'pitch' },
+  { start: '12:36 PM', end: '12:51 PM', min: 15, topic: 'Wrap Up Teaching Moment', anchor: 'wrap-up' },
+  { start: '12:51 PM', end: '12:55 PM', min: 4, topic: "Last Aha's / Comments", anchor: 'last-ahas' },
+  { start: '12:55 PM', end: '1:00 PM', min: 5, topic: 'Closing Story', anchor: 'closing' },
+];
+---
+
+<Layout
+  title="Event Agenda — Marketing Workshop | Debugging Human Communication"
+  description="Facilitator agenda for the Debugging Human Communication marketing workshop."
+  noindex={true}
+>
+  <main class="bg-teal-50 min-h-screen">
+    <!-- Header -->
+    <section class="bg-teal-950 px-6 py-10 md:py-14">
+      <div class="container-lg">
+        <p class="text-teal-300 text-sm font-semibold uppercase tracking-wider mb-2">Facilitator Agenda</p>
+        <h1 class="heading-hero !text-white mb-4">Marketing Workshop — Triangle Model</h1>
+        <p class="text-teal-200 text-lg md:text-xl max-w-3xl">
+          <strong class="text-white">Runs 10:00 AM – 1:00 PM (3 hours).</strong> Click any section to expand. Use the controls below to expand or collapse everything.
+        </p>
+
+        <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-teal-900/60 border border-teal-800 rounded-lg p-4">
+            <p class="text-teal-300 text-xs uppercase font-semibold tracking-wider mb-1">Offer pitched</p>
+            <p class="text-teal-100">Debugging Human Communication Membership — $8,000 PIF first year → $450/month continuation. 12-month rolling.</p>
+          </div>
+          <div class="bg-teal-900/60 border border-teal-800 rounded-lg p-4">
+            <p class="text-teal-300 text-xs uppercase font-semibold tracking-wider mb-1">Audience</p>
+            <p class="text-teal-100">Analytical professionals with thought-leadership ambitions — engineers, CTOs, entrepreneurs, agency founders, technical consultants.</p>
+          </div>
+          <div class="bg-teal-900/60 border border-teal-800 rounded-lg p-4">
+            <p class="text-teal-300 text-xs uppercase font-semibold tracking-wider mb-1">Core transformation</p>
+            <p class="text-teal-100 italic">How would your life change if you could consistently get the right message to the right person?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule + Controls -->
+    <section class="bg-white border-b border-teal-200 sticky top-0 z-40 shadow-sm">
+      <div class="container-lg px-6 py-4">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <button type="button" id="expand-all" class="btn-primary-sm">Expand all</button>
+          <button type="button" id="collapse-all" class="inline-block bg-teal-200 text-teal-950 font-semibold px-5 py-2.5 rounded-lg hover:bg-teal-300 transition-colors">Collapse all</button>
+          <details class="ml-auto">
+            <summary class="cursor-pointer text-teal-800 hover:text-teal-950 font-medium text-sm">Jump to section ▾</summary>
+            <div class="absolute right-6 mt-2 bg-white border border-teal-200 rounded-lg shadow-lg p-3 max-w-md z-50 max-h-96 overflow-y-auto">
+              <ul class="text-sm space-y-1">
+                {schedule.map((s) => (
+                  <li>
+                    <a href={`#${s.anchor}`} class="block px-2 py-1 rounded hover:bg-teal-50 text-teal-900">
+                      <span class="font-mono text-xs text-teal-700 mr-2">{s.start}</span>
+                      {s.topic}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <details class="bg-teal-50 rounded-lg border border-teal-200">
+          <summary class="cursor-pointer px-4 py-3 font-semibold text-teal-950 select-none">Full schedule</summary>
+          <div class="px-4 pb-4 overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="text-left text-teal-700 border-b border-teal-200">
+                  <th class="py-2 pr-4 font-semibold">Start</th>
+                  <th class="py-2 pr-4 font-semibold">End</th>
+                  <th class="py-2 pr-4 font-semibold">Min</th>
+                  <th class="py-2 font-semibold">Topic</th>
+                </tr>
+              </thead>
+              <tbody>
+                {schedule.map((s) => (
+                  <tr class="border-b border-teal-100 last:border-0">
+                    <td class="py-2 pr-4 font-mono text-teal-800">{s.start}</td>
+                    <td class="py-2 pr-4 font-mono text-teal-800">{s.end}</td>
+                    <td class="py-2 pr-4 text-teal-700">{s.min}</td>
+                    <td class="py-2"><a href={`#${s.anchor}`} class="text-teal-900 hover:text-coral underline decoration-teal-300">{s.topic}</a></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Sections -->
+    <section class="py-10 px-6">
+      <div class="container-lg">
+
+        <AgendaSection id="introduction" title="Introduction" timing="5 minutes — end by 10:05 AM">
+          <h3>Welcome & Participant Introduction</h3>
+          <p>Greet everyone by name as they join. Invite each participant to introduce themselves.</p>
+          <blockquote>"Hey [Name], great to have you with us! Go ahead and share where you're joining from, what you work on, and what you're building or speaking about publicly right now."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="set-the-stage" title="Set the Stage" timing="5 minutes — end by 10:10 AM">
+          <h3>This is a working laboratory</h3>
+          <blockquote>"This isn't a lecture and it's not a pep talk. For the next three hours, think of this as a laboratory — a place where you experiment on your own communication system, try new things, and walk out with something you didn't have when you walked in. Real clarity on how to get the right message to the right person, every time."</blockquote>
+
+          <h3>How to get the most out of this</h3>
+          <blockquote>"Give yourself permission to really think today — no distractions, no multitasking. This is your time to go deep the way you love to. Take notes, share in the chat, whatever helps you get the most out of our time together."</blockquote>
+
+          <h3>What you'll leave with</h3>
+          <blockquote>"By the end of today, you'll have a clear picture of where your communication has the most untapped leverage — and your first experiment to run this week. Not theory. Not a reading list. Something you can try in a real conversation and see what changes."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="back-story" title="Share Your Back Story" timing="5 minutes — end by 10:15 AM">
+          <h3>The Origin</h3>
+          <blockquote>"I want to tell you how I got here. I got my degree in marketing, and I spent the first part of my career in business communication and sales. So the communication piece is what you'd expect. The part you might not expect is how I ended up doing this work with engineers.<br /><br />I reconnected with my friend Scott at our high school reunion. He'd been building a software company and he asked me to come on as CEO. I was confused — I said, 'Scott, I'm not a programmer.' And he said, 'You may not think you're a programmer, but you definitely think like one.'<br /><br />So we co-founded Corgibytes together. We fell in love, got married, had kids. And here's what I kept noticing: Scott was one of the most compassionate people I'd ever met. But he kept saying he was 'bad with people.'"</blockquote>
+
+          <h3>The Discovery</h3>
+          <blockquote>"That didn't add up to me. So I started digging. I saw communication the way he saw code — as a system with patterns, rules, and logic. And when I got into the research on human communication, the overlap was enormous.<br /><br />Once we started treating communication as a system and not a personal flaw... emotions as data and not a distraction... interactions as tiny experiments instead of personal failings — everything unlocked. Scott didn't just get 'better with people' — he became the person other people cite. He speaks. He's referenced. His ideas move through the industry."</blockquote>
+
+          <h3>The Pattern</h3>
+          <blockquote>"Over 15 years, I kept seeing the same thing — in engineers, in entrepreneurs, in founders, in technical leaders. Smart people with important ideas — ideas that their industries <em>need</em> — and those ideas weren't getting the traction they deserved. Not because the ideas were bad. Because the communication system around the ideas wasn't optimized for scale."</blockquote>
+
+          <h3>The Bridge</h3>
+          <blockquote>"That's why I do this work. I'm a person who understands business, but I also understand you. I speak your language. I've built this work for people whose ideas deserve to be heard by bigger rooms than they're currently reaching."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="attendees-journey" title="Share the Attendee's Journey" timing="5 minutes — end by 10:20 AM">
+          <p class="stage-direction">Narrate their journey back to them so they feel seen. This is for analytical professionals who want to scale their influence — not for people who feel broken.</p>
+
+          <h4>1. Transition from your story to theirs</h4>
+          <blockquote>"So that's my story — but here's what I know about you..."</blockquote>
+
+          <h4>2. Reflect who they are</h4>
+          <blockquote>"You're good at what you do. You've put in the years. You've built the systems, solved the hard problems, delivered when it mattered. People come to you when they need a real answer. Your expertise is not in question."</blockquote>
+
+          <h4>3. The ambition</h4>
+          <blockquote>"And now you want more than expertise. You want your ideas to move — in whatever form moving looks like for you. Maybe it's getting the complex idea you've been trying to explain turned into something your organization actually acts on. Maybe it's closing the client, the deal, the opportunity you keep almost-landing. Maybe it's moving into the role you've been ready for — staff engineer, director, VP, founder. Maybe it's speaking at the conferences you've been attending, writing the book, or growing the consultancy. Maybe it's just being heard at the leadership table — not because you're the loudest, but because your thinking deserves to be there."</blockquote>
+
+          <h4>4. The friction</h4>
+          <blockquote>"But there's a gap between how good your work is and how widely it's reaching. You create real business value in the technical details. Maybe you fixed a bug that prevented a huge outage. Or were able to make one tiny tweak to a process that ended up having an outsized impact, but when it comes time for performance reviews, none of it seems to be noticed. You pay attention to the tiny details of how things will be implemented, taking the time to guard against every edge case, but then when you go to explain it to your client their eyes glaze over. You can tell you're overwhelming them and losing their interest. Or you have ideas that you know are industry changing and have ambitions of being on stages, writing books, and collaborating with the people you admire, but you just can't find the words that land. You over explain. The ideas that are crystal clear in your mind get jumbled when you try to speak or write. You know you've got so much potential that is being held back because you haven't figured out the communication patterns that make everything click."</blockquote>
+
+          <h4>5. Acknowledge their frustration</h4>
+          <blockquote>"And the frustrating part is — you KNOW there's a system here. You can feel it. You can almost see the patterns, the rules, the structure — but every time you try to pin them down, they slip. You've tried to reverse-engineer it the way you'd reverse-engineer any other system. And it keeps not quite resolving. Not because you're not smart enough. Because the patterns are real, but the framework to make them visible isn't one you've encountered yet."</blockquote>
+
+          <h4>6. Acknowledge their efforts</h4>
+          <blockquote>"You've tried. You don't sit there and complain. You've put in the work — reading books, taking courses, watching talks. You've taken away some pretty decent tips and tricks, but haven't figured out how they all fit together. When you try to implement it, it doesn't quite click. You can't quite figure out how to adapt it to your specific situation. You're craving a system, not a collection of tactics. You want to know exactly what to do and what will work with confidence."</blockquote>
+
+          <h4>7. Their current desire</h4>
+          <blockquote>"Right now, you're ready to work on this the way you'd work on any hard technical problem. Form hypotheses. Run experiments. Measure results. Iterate. You don't need inspiration. You need a method."</blockquote>
+
+          <h4>8. The good news</h4>
+          <blockquote>"And here's the good news — that's exactly how we're going to work today. Not with checklists you'll never use. Not with generic frameworks. You're going to leave with a diagnostic of where your communication system has the most leverage — and a clear sense of what to experiment with next."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="breakout-rooms" title="Breakout Rooms" timing="12 minutes — end by 10:32 AM">
+          <h3>Instructions</h3>
+          <blockquote>"We're going to do a quick breakout room so you can meet the other people in this session. First thing — assign a group leader. The leader's job is to set a timer and make sure everyone gets a turn."</blockquote>
+
+          <h3>Prompt</h3>
+          <blockquote>"Share your name, what you work on, and one place where your work deserves to be reaching more people than it currently is."<br /><br />"It could be a complex idea you can't get people to act on, a plan you've proposed that leadership won't fund, a client you keep almost-closing, a promotion or role you're ready for but haven't been offered, a consultancy you're trying to grow, a talk or book or post you've been meaning to put out, an argument your organization needs but can't quite hear yet. Keep it specific."</blockquote>
+
+          <p><strong>Time:</strong> 12 minutes total. ~3 minutes per person in groups of 4.</p>
+
+          <h3>Send-off</h3>
+          <blockquote>"This is your first chance to connect with people who get it — people who think like you do, at the stage you're at. I'll see you back here in just a few minutes."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="breakout-debrief" title="Breakout Room Debrief" timing="8 minutes — end by 10:40 AM">
+          <blockquote>"Welcome back! Who met someone great in their breakout room?"</blockquote>
+          <p>Invite 3–4 people to share what they discussed — specifically, what they said they wanted to reach more people with.</p>
+          <p>Acknowledge each share and connect across the room: <em>"Notice how many of you said something similar about [theme]. That's not a coincidence — that's a pattern in this niche."</em></p>
+          <p><strong>Bridge:</strong> <em>"Now let's look at the framework that's going to show you exactly where in your communication system you're leaving impact on the table."</em></p>
+        </AgendaSection>
+
+        <AgendaSection id="amplification-goal" title="Exercise: Amplification Goal" timing="1 minute — end by 10:41 AM">
+          <blockquote>"In the chat, type your answer to this question: <em>How would your life change if you could consistently get the right message to the right person?</em>"<br /><br />"Maybe it's closing the client you've been chasing. Landing the keynote. Getting the budget approved. Securing the investor. Publishing the book. Finally being heard at the leadership table."</blockquote>
+          <p>Read responses aloud, identify patterns.</p>
+          <blockquote>"Sounds like the common theme in this room is [closing deals / getting buy-in / reaching bigger audiences / being recognized for what you actually know]. That's exactly what we're going to work on."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="first-teaching" title="First Teaching Moment: Three Futures + Self-Assessment" timing="39 minutes — end by 11:20 AM">
+
+          <h3>Pitch Part 1 — Today and the Future</h3>
+          <p>Paint three futures for analytical professionals with thought-leadership ambitions:</p>
+
+          <h4>GREEN (amplifying)</h4>
+          <ul>
+            <li>You translate complex thinking into words that make people act — the direction you set gets followed, the plan you proposed gets funded, the decision you recommended gets made. No more re-explaining. No more "let's circle back."</li>
+            <li>You're closing the clients, deals, and opportunities you used to almost-close — the right message hits the right person the first time.</li>
+            <li>You've moved into the role you've been ready for — staff, director, VP, founder, leadership table — because the value of your work is finally visible.</li>
+            <li>You're getting invited to speak, publish, or consult on work you actually care about — and saying yes or no on your terms.</li>
+            <li>You have a community of other analytical minds who ship work into the world together.</li>
+            <li>Your ideas are cited, referenced, built on by others — inside your org and across your field.</li>
+          </ul>
+
+          <h4>YELLOW (plateaued)</h4>
+          <ul>
+            <li>You're respected for your expertise but your public presence has stalled.</li>
+            <li>You get local wins but can't replicate them beyond your immediate team.</li>
+            <li>You wrote the post, gave the talk, pitched the idea — and it did fine, not great.</li>
+            <li>You're not sure why some of your ideas land and others disappear.</li>
+            <li>You've read the books, watched the talks — you can't quite apply what you learned to your specific situation.</li>
+          </ul>
+
+          <h4>RED (stuck below your level)</h4>
+          <ul>
+            <li>You have the expertise but your reputation, revenue, and audience don't reflect it.</li>
+            <li>You lose deals, opportunities, or budget — not because your thinking is wrong, but because your message didn't land.</li>
+            <li>You know you're underselling what you do — clients, investors, or leadership don't understand the full value of what you're offering.</li>
+            <li>The ideas that are crystal clear in your mind get jumbled when you try to explain them to someone who thinks differently than you.</li>
+            <li>You've stopped proposing things because you can't tell what gets through and what doesn't.</li>
+          </ul>
+
+          <blockquote><strong>Transition:</strong> "The gap between green and red isn't a skill gap. It's a system gap. Nobody plans to end up plateaued — they end up there because they never had the right framework, community, or experimental method for how communication actually scales. What I want to share with you is how I help people like you close that gap — and how we're going to do it through a specific experimental practice. Can I share that with you?"</blockquote>
+
+          <h3>Pitch Part 2 — The Model (Self-Assessment)</h3>
+
+          <blockquote>"The way we approach this is the same way you'd diagnose any system. First, you identify what's actually going on — find the root cause, not the symptom. Then, you interact with the system — run experiments, test what works, gather data. Then, you refine what's working into patterns you can influence with consistently. Identify. Interact. Influence."</blockquote>
+
+          <blockquote>"I'm going to walk you through a framework I developed: Identify, Interact, Influence. Three pillars, nine milestones. It's a diagnostic. Rate yourself 1–10 on each as we go — your scores are going to tell you exactly where your highest-leverage experiments live."</blockquote>
+
+          <p class="stage-direction">For each milestone, give red/yellow/green examples so attendees can rate themselves 1–10.</p>
+
+          <h3>Pillar 1: Identify — Find the Root Cause</h3>
+
+          <h4>Locus of Control Shifted</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "When my ideas don't land, it's because the audience wasn't ready, the org is dysfunctional, my boss doesn't get it."</li>
+            <li><strong>Yellow (4–6):</strong> "I know intellectually that I own my half of every interaction, but I still catch myself blaming context."</li>
+            <li><strong>Green (7–10):</strong> "I take full accountability for my communication outcomes. If my idea didn't land, I own that and I can iterate on it."</li>
+          </ul>
+
+          <h4>Communication System Mapped</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "Communication is intuition. You either have it or you don't."</li>
+            <li><strong>Yellow (4–6):</strong> "I know there are patterns but I can't describe them precisely enough to teach someone else."</li>
+            <li><strong>Green (7–10):</strong> "I can draw the system — sender, message, channel, receiver, noise, feedback loop — and point to where it breaks down in a given interaction."</li>
+          </ul>
+
+          <h4>Problem Decomposed</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "When something goes wrong, it feels like one giant blob — 'that meeting sucked' — and I don't know how to pull it apart."</li>
+            <li><strong>Yellow (4–6):</strong> "I can identify broad areas (like 'I talk too much' or 'I lose people who think differently than me') but can't isolate the specific component that's failing."</li>
+            <li><strong>Green (7–10):</strong> "I can break a communication problem into its smallest testable parts — word choice, timing, framing, audience model — and run a targeted experiment on the one that matters most."</li>
+          </ul>
+
+          <h3>Pillar 2: Interact — Test What Works</h3>
+
+          <h4>Patterns Discovered</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "Every conversation feels novel. I can't see what's driving outcomes."</li>
+            <li><strong>Yellow (4–6):</strong> "I notice patterns after the fact in hindsight, but I can't use them in real-time."</li>
+            <li><strong>Green (7–10):</strong> "I can identify the heuristics driving a conversation as it's happening — mine and theirs — and adjust my approach on the fly."</li>
+          </ul>
+
+          <h4>Properties Defined</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "I talk the same way to everyone — my CEO, my team, my board, my customers."</li>
+            <li><strong>Yellow (4–6):</strong> "I know I should adapt to different audiences, but I don't know what each one actually needs."</li>
+            <li><strong>Green (7–10):</strong> "I can profile an audience — their priors, vocabulary, goals, pressures — before I say a word, and tailor my message so it lands for them specifically."</li>
+          </ul>
+
+          <h4>Hypothesis Tested</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "I think about conversations afterward, but I don't go into the next one with a specific thing I'm trying differently."</li>
+            <li><strong>Yellow (4–6):</strong> "I try different approaches, but I can't tell what caused the different result."</li>
+            <li><strong>Green (7–10):</strong> "I design key conversations as experiments. Clear hypothesis, one variable changed, measurable outcome. I iterate on what I learn."</li>
+          </ul>
+
+          <h3>Pillar 3: Influence — Make It Scalable</h3>
+
+          <h4>Clarity Refined</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "I lose people who don't share my expertise within the first two sentences."</li>
+            <li><strong>Yellow (4–6):</strong> "I can explain concepts to peers, but translating to people who think differently — executives, clients, investors, the public — is a struggle."</li>
+            <li><strong>Green (7–10):</strong> "I can explain complex concepts to any audience — executives, customers, investors, a stranger on a plane — in a way that lands. I have reusable patterns, not just one-off translations."</li>
+          </ul>
+
+          <h4>Persuasion Sharpened</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "I present my case and hope it wins on its own merits. It usually doesn't."</li>
+            <li><strong>Yellow (4–6):</strong> "I sometimes advocate successfully but can't replicate it. It feels like luck."</li>
+            <li><strong>Green (7–10):</strong> "I can negotiate, navigate conflict, build coalitions, and steer outcomes reliably — not by being louder, but by understanding what moves people."</li>
+          </ul>
+
+          <h4>Impact Expanded</h4>
+          <ul>
+            <li><strong>Red (1–3):</strong> "My influence is limited to my immediate team. I'm unknown outside my company."</li>
+            <li><strong>Yellow (4–6):</strong> "I'm respected internally but my public presence is thin or inconsistent."</li>
+            <li><strong>Green (7–10):</strong> "I'm the person whose ideas are heard, referenced, and acted on — inside my company, in my industry, on stages."</li>
+          </ul>
+
+          <blockquote><strong>Close:</strong> "Remember the question I asked earlier — how would your life change if you could consistently get the right message to the right person? These nine milestones are the system behind that. Our goal is to help you turn all of these green — not through a curriculum you work through alone, but through a specific experimental practice we run together. Let me show you how that works."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="aha-1" title="Ah-Ha! Moment Share" timing="10 minutes — end by 11:30 AM">
+          <blockquote>"How many of you had some big aha moments during that self-assessment? Who wants to share?"</blockquote>
+          <p>Invite verbal shares + chat engagement. Specifically ask: <em>"Which milestone surprised you — where you scored higher OR lower than you expected?"</em></p>
+          <p>Affirm each share: <em>"That's powerful — and that's a specific, testable thing you can actually work on."</em></p>
+          <p><strong>Bridge:</strong> <em>"Those are exactly the kind of observations that turn into your first experiments."</em></p>
+        </AgendaSection>
+
+        <AgendaSection id="break" title="Quick Break" timing="3 minutes — end by 11:33 AM">
+          <blockquote>"Take a few minutes to stretch, grab water, reset. We'll be back at [time]."<br /><br />"While you're up, look at your self-assessment. Notice which milestone has the biggest gap between where you are and where you want to be. That's your highest-leverage experiment."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="self-assessment" title="Exercise: Self-Assessment Scoring" timing="2 minutes — end by 11:35 AM">
+          <p>Have attendees total their scores across all 9 milestones.</p>
+          <p><strong>Prompt:</strong> <em>"Write down your three lowest-scoring milestones. Those are where your highest-leverage experiments live. A small move on one of those is worth more than a big move on something you're already green on."</em></p>
+        </AgendaSection>
+
+        <AgendaSection id="share-and-tell" title="Share and Tell" timing="5 minutes — end by 11:40 AM">
+          <p>Call on people to share their biggest gap areas.</p>
+          <p><strong>Normalize:</strong> <em>"Nobody in this room is green on everything — and you shouldn't be. Anyone claiming green across all 9 would be overstating. The point is to know <strong>specifically</strong> where you are, so you know specifically where to experiment."</em></p>
+        </AgendaSection>
+
+        <AgendaSection id="second-teaching" title="Second Teaching Moment: The Membership + Method" timing="23 minutes — end by 12:03 PM">
+
+          <h3>Pitch Part 3 — The Method</h3>
+
+          <blockquote>"Here's the core insight that shapes how we work together: you don't learn communication by reading about it. You learn it the same way you've learned everything that matters in your career — by running experiments, measuring what happens, and iterating."</blockquote>
+
+          <blockquote>"What I've built is a practice, not a curriculum. The method has three parts that fit together."</blockquote>
+
+          <blockquote>"First, <strong>Thought Experiments</strong> — twice a month, 2 hours, live with me. These are where I teach you patterns I've spotted across hundreds of communication situations, paired with the behavioral science and research that explain why those patterns exist. You leave each Thought Experiment with a hypothesis you want to test — something to try in your real work between sessions. The topics are responsive to what's live with members that month — not a pre-planned syllabus."</blockquote>
+
+          <blockquote>"Second, <strong>Field Experiments</strong> — the hypothesis you test in your real life. A meeting, a pitch, a conversation that matters. This is where the learning actually happens. The field is wherever your real communication happens."</blockquote>
+
+          <blockquote>"Third, <strong>Labs</strong> — twice a week, drop-in. Open sessions where you bring what you tried, what happened, what surprised you. We look at the data together. Members observe each other's experiments, compare patterns, and iterate. This is where the compounding lives."</blockquote>
+
+          <blockquote>"Every Thought Experiment is recorded and stored in a members-only archive, so the library of patterns grows over time and you can revisit any session when you need it."</blockquote>
+
+          <h3>Pitch Part 4 — Small Wins That Compound</h3>
+
+          <blockquote>"The membership isn't a curriculum you march through. It's a practice you run. Here's how it works."</blockquote>
+
+          <h4>You start with an ambition.</h4>
+          <blockquote>"Something big you're trying to reach — a keynote, a book, a promotion, an idea that needs to travel further than it's traveling now. Something that matters, and that you keep almost-reaching."</blockquote>
+
+          <h4>I help you get clear on what success looks like.</h4>
+          <blockquote>"Before anything else, you fill out a goal-setting exercise I've built for this work, and then we meet 1:1. That session turns your ambition into something concrete. Not vague ('I want to be heard') — specific. What does success look like for <em>you</em>? How will you know when you're there? Without this clarity, experiments are just activity."</blockquote>
+
+          <h4>Thought Experiments give you the hidden patterns.</h4>
+          <blockquote>"Twice a month, we run Thought Experiments together — 2-hour sessions where I teach you patterns I've spotted across hundreds of communication situations, alongside the behavioral science and research that explain why those patterns exist. You leave each Thought Experiment with a hypothesis you want to test: 'If I try X, then Y will happen.'"</blockquote>
+
+          <h4>Labs hold you accountable and give you data.</h4>
+          <blockquote>"Then you run the experiment in your real work — a meeting, a pitch, a conversation that matters. Twice a week, you come to a Lab. You bring what you tried, what happened, what surprised you. We look at the data. What's working? What's not? What's the next experiment?"</blockquote>
+
+          <h4>The wins are small. The compounding is real.</h4>
+          <blockquote>"No single experiment is going to rewire your career. But a year of running experiments — small, specific, measurable — is how you get from where you are to where you're trying to go. Members don't suddenly 'have communication skills.' They build a practice. And the practice compounds — because every experiment teaches you something, and the lessons stack."</blockquote>
+
+          <div class="callout-note"><strong>[INSERT: one specific client story — a member whose small experiments compounded into something bigger. — TODO before April 24]</strong></div>
+
+          <h4>Where this lands after twelve months.</h4>
+          <blockquote>"A library of experiments you've run. Frameworks you've internalized. A community of peers who've been running experiments alongside you. And measurable movement toward the ambition you named on day one."<br /><br />"And this is non-linear. Some members start in Influence and work backwards to Identify when they realize the real constraint is upstream. You follow the evidence, not a syllabus."</blockquote>
+
+          <blockquote><strong>Close:</strong> "The membership is twelve months. The compounding is for the rest of your career."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="aha-2" title="Ah-Ha Moment Share" timing="3 minutes — end by 12:06 PM">
+          <blockquote>"What was one insight or shift in perspective that really hit home for you about this method?"</blockquote>
+          <p>Quick shares from 2–3 people + chat engagement.</p>
+        </AgendaSection>
+
+        <AgendaSection id="pitch" title="The Pitch: The Membership" timing="30 minutes — end by 12:36 PM">
+
+          <h3>Pitch Part 5 — What's Included</h3>
+
+          <blockquote>"Here's what the membership includes over twelve months:"</blockquote>
+
+          <ul>
+            <li><strong>One goal-setting 1:1 session with me</strong> at the start. Before we meet, you'll work through a goal-setting exercise I've built for this work — a document that turns your long-term ambition into something specific. Then we meet live to sharpen it together. This session is the foundation every experiment builds on.</li>
+            <li><strong>Thought Experiments</strong> — twice a month, 2 hours each, live with me. I teach the patterns I've spotted across hundreds of communication situations alongside the behavioral science behind them. You leave with a hypothesis to test in your real work. Topics respond to what's live with members that month — not a pre-planned syllabus.</li>
+            <li><strong>Labs</strong> — twice a week, drop-in. Open sessions where you debrief your active experiments, observe what's working for other members, and design your next experiment. Come to one a week, come to both, come when your calendar allows.</li>
+            <li><strong>A growing archive</strong> — every Thought Experiment is recorded and added to a members-only library. Whenever you need to revisit a pattern, the archive is there.</li>
+            <li><strong>24/7 community access</strong> — async channel with the other members. Prepping for a hard conversation, stuck drafting a post, debriefing a meeting that just happened? The community is there between sessions.</li>
+          </ul>
+
+          <blockquote>"What's NOT in here, on purpose: there's no 20-hour course to slog through. There's no certificate. There's no pre-planned curriculum to march through. This is a working practice built around real experiments in your real career — not a product you consume."</blockquote>
+
+          <h3>Pitch Part 6 — Pricing</h3>
+
+          <blockquote>"The membership is <strong>$8,000 for your first year. After that, $450 a month to continue</strong>."</blockquote>
+
+          <p class="stage-direction">Let that land. Pause.</p>
+
+          <blockquote>"Here's what I want you to compare that to. Think about what changes when you can consistently get the right message to the right person."</blockquote>
+
+          <p><strong>Context for the room:</strong></p>
+          <ul>
+            <li>A client you close because your pitch finally landed: $10K–$100K+ in revenue</li>
+            <li>A promotion you've been passed over for: $30–50K raise, compounding every year</li>
+            <li>An investor conversation where the right message hit the right person the first time: the difference between funded and "interesting, keep us posted"</li>
+            <li>A complex recommendation that turns into action the first time you make it: no more re-pitching, no more "let's discuss next quarter" — the work moves on your timeline, not the org's default</li>
+            <li>The career trajectory shift from "respected expert" to "recognized leader": incalculable over 10 years</li>
+          </ul>
+
+          <blockquote>"Executive communication coaching typically runs $500+ per hour. For what this membership costs in your first year, you'd get about 16 hours of 1:1 coaching elsewhere — that's it. No Thought Experiments, no community, no Labs, no archive of patterns to return to. Just the hours you happened to book."<br /><br />"If even one of the outcomes we talked about today happens — the promotion, the talk, the project that gets funded — the membership pays for itself many times over."</blockquote>
+
+          <div class="callout-note">
+            <p><strong>Internal notes (not for stage):</strong></p>
+            <ul>
+              <li>Stated from stage: $8,000 for first year (12-month membership), then $450/month to continue.</li>
+              <li>Payment plan: NONE — PIF only. Do not offer installment plans.</li>
+              <li>Scholarship floor (feedback call only, never stated from stage): $6,000. Requires explicit acknowledgment.</li>
+              <li>Secret tiers (Founder $225/mo, Experimenter $0) are for the named pre-April-24 list only — not relevant for this event's prospects.</li>
+              <li>The goal-setting 1:1 is a one-time onboarding session at the start, not ongoing 1:1 coaching.</li>
+            </ul>
+          </div>
+
+          <h3>Pitch Part 7 — The Feedback Call</h3>
+
+          <blockquote>"You already have a feedback call scheduled with me — that's the next step, and it's why I could approve you for today's session in the first place. That call isn't a sales call. It's a conversation. I want to hear about your specific situation, understand what you're trying to amplify, and help you figure out if this is the right fit right now. If it is, great — I'll walk you through how to get started. If it's not, I'll tell you that too, and I'll point you toward what might work better."<br /><br />"Even if you already know this isn't the right season, I'd still love to get your feedback on today's session. That's a huge gift to us."</blockquote>
+
+          <div class="callout-note"><strong>Note:</strong> "You can't buy anything today" framing works well — reduces pressure, increases trust with technical audience. Every paying member so far has come through a feedback call, not a stage pitch. Feedback calls are already scheduled per the funnel gate — remind attendees of theirs; don't create a new one on-stage.</div>
+
+          <p><strong>CTA:</strong> Remind attendees of their scheduled feedback call.</p>
+        </AgendaSection>
+
+        <AgendaSection id="wrap-up" title="Wrap Up Teaching Moment" timing="15 minutes — end by 12:51 PM">
+          <h3>Closing Thoughts — Your First Experiment</h3>
+
+          <blockquote>"Before we wrap up, I want to leave you with something you can use immediately — not homework, not a checklist. Just one small experiment you can run this week.<br /><br />Look at your self-assessment. Find the milestone where you scored lowest, or the one that surprised you. Pick one — not all three.<br /><br />Now think of one real conversation, meeting, or piece of content you have coming up in the next seven days. Not a made-up scenario — a specific, scheduled thing.<br /><br />Form one hypothesis. 'If I try [specific thing], then [specific outcome] will happen.' Write it down. Then run it. Then notice what actually happened.<br /><br />That's the whole practice. One observation. One hypothesis. One experiment. One debrief.<br /><br />If you do that once a week, on your own, you'll see movement. If you do it with proprietary frameworks, a community of people like you running experiments alongside you, and a coach helping you design them — that's the membership. That's the compounding version.<br /><br />Either way: one experiment, this week. You don't redesign the whole system on day one. You observe one thing. You watch what happens. You gather data.<br /><br />Communication works the same way. The skills you already have as a problem-solver — observe, hypothesize, test, iterate — are exactly the skills this practice is built on. You already know how to do this. You just haven't been given permission to do it with your conversations."</blockquote>
+        </AgendaSection>
+
+        <AgendaSection id="last-ahas" title="Last Aha's / Comments" timing="4 minutes — end by 12:55 PM">
+          <blockquote>"Before we close, I'd love to hear any last takeaways or comments — especially: what's the one experiment you're going to run this week?"</blockquote>
+          <p>Invite unmuting or chat. Acknowledge each share warmly. When someone names a specific experiment, reinforce it: <em>"That's a great one. Write it down. Run it. Let me know what happens."</em></p>
+        </AgendaSection>
+
+        <AgendaSection id="closing" title="Closing Story" timing="5 minutes — end by 1:00 PM">
+          <h3>Closing Story — You're Already Doing This</h3>
+
+          <blockquote>"I want to leave you with something that might shift how you see yourself.<br /><br />Think about what you do every day. When you simplify a complex system so the next person can understand it. When you write documentation that saves someone else hours of confusion. When you build a process that works so well people don't even notice it's there. When you clean something up — not because you have to, but because you know someone else will inherit it.<br /><br />Who is that for? Not the machine. Not the system. The system doesn't care if it's elegant. It'll run ugly just fine.<br /><br />You're doing it for people. You've always been doing it for people.<br /><br />That's communication. You just haven't called it that — because it doesn't look like a presentation or a pitch or a LinkedIn post. It looks like a well-organized system. A clear process. A clean handoff. A decision that aged well because you thought about who it would affect.<br /><br />You are not as far away from your next level as you think you are.<br /><br />The thinking is already there. The discipline is already there. The care for the people who come after you — that's already there. We just need to help you translate what you already do into a practice that scales — to executives, to investors, to customers, to conference audiences, to the broader world that needs to hear what you're thinking.<br /><br />That's what this membership is built for. That's what the feedback call is for.<br /><br />Thank you for being here today. I can't wait to hear what experiment you run this week."</blockquote>
+        </AgendaSection>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const expandAll = document.getElementById('expand-all');
+    const collapseAll = document.getElementById('collapse-all');
+    const sections = document.querySelectorAll<HTMLDetailsElement>('details.agenda-section');
+
+    expandAll?.addEventListener('click', () => {
+      sections.forEach(d => { d.open = true; });
+    });
+    collapseAll?.addEventListener('click', () => {
+      sections.forEach(d => { d.open = false; });
+    });
+
+    // If URL has a hash, open that section and scroll to it
+    if (window.location.hash) {
+      const target = document.querySelector<HTMLDetailsElement>(window.location.hash);
+      if (target && target.tagName === 'DETAILS') {
+        target.open = true;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // When any in-page anchor is clicked, open that target section
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => {
+        const href = a.getAttribute('href');
+        if (!href) return;
+        const target = document.querySelector<HTMLDetailsElement>(href);
+        if (target && target.tagName === 'DETAILS') {
+          target.open = true;
+        }
+      });
+    });
+  </script>
+</Layout>
