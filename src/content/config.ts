@@ -137,6 +137,15 @@ const homepageCollection = defineCollection({
     copyright: z.string().optional(),
     termsUrl: z.string().optional(),
     privacyUrl: z.string().optional(),
+
+    // Legal pages (privacy, terms) — nested hero + free-form sections
+    hero: z.object({
+      headline: z.string(),
+      effectiveDate: z.string().optional(),
+      company: z.string().optional(),
+      contactEmail: z.string().optional(),
+    }).optional(),
+    sections: z.array(z.any()).optional(),
   }),
 });
 
