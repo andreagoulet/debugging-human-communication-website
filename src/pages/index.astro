@@ -1,121 +1,195 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import EngagementCard from '../components/EngagementCard.astro';
-import ClarificationCard from '../components/ClarificationCard.astro';
-import FitList from '../components/FitList.astro';
-import PricingCard from '../components/PricingCard.astro';
-import SessionReportPreview from '../components/SessionReportPreview.astro';
-import SessionReportModal from '../components/SessionReportModal.astro';
-
-import { CALENDLY_URL } from '../utils/constants';
+import { getCollection } from 'astro:content';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
-// Get all website content, sorted by filename
-const allContent = await getCollection('website');
-const content = Object.fromEntries(
-  allContent.map(entry => [entry.id, entry])
-);
+const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
 
-const hero = content['index/hero.md'].data;
-const programIntro = content['index/program-intro.md'].data;
-const testimonialsSection = content['index/testimonials.md'].data;
-const methodGlance = content['index/method-glance.md'].data;
-const howWeWork = content['index/services.md'].data;
-const whatThisIsNot = content['index/is-not.md'].data;
-const whoThisIsFor = content['index/fit.md'].data;
-const meetAndrea = content['index/bio-brief.md'].data;
-const ctaSession = content['index/cta-session.md'].data;
-const workshopPromo = content['index/lead-magnet.md'].data;
-const pricing = content['shared/pricing.md'].data;
-const discoveryTier = pricing.tiers?.find(tier => tier.title === ctaSession.featuredTier);
-const footer = content['shared/footer.md'].data;
+const allLandingPages = await getCollection('landing-pages');
+const content = allLandingPages.find(e => e.id === 'sbc-cold-landing.md')!.data;
 
-// Testimonials from dedicated collection, filtered/ordered by featured slugs
 const allShared = await getCollection('shared');
 const allTestimonials = allShared.filter(e => e.id.startsWith('testimonials/'));
-const featuredSlugs = testimonialsSection.featuredSlugs || [];
-const sortedTestimonials = featuredSlugs.length > 0
-  ? featuredSlugs
-      .map(slug => allTestimonials.find(t => t.id === `testimonials/${slug}.md`))
-      .filter((t): t is NonNullable<typeof t> => t != null)
-  : allTestimonials.sort((a, b) => a.data.order - b.data.order);
+const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Layout title="Communication Coaching for Software Developers & Tech Professionals | Andrea Goulet">
-  <SiteHeader currentPath="/" />
-
+<Layout
+  title="Master the Hidden Patterns of Human Communication Workshop | Transform Technical Expertise into Influence | Andrea Goulet"
+  description="Transform your technical expertise into influence that earns buy-in, opens doors, and accelerates your career. A free 3-hour virtual workshop for software developers and tech professionals."
+  ogImage="/og-workshop.png"
+>
   <main>
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="relative bg-teal-950 overflow-hidden px-6">
       <div class="absolute inset-0" aria-hidden="true">
-        <img src="/images/header-image.jpeg" alt="" role="presentation" class="w-full h-full object-cover object-right" />
-        <div class="absolute inset-0 bg-gradient-to-r from-teal-950 via-teal-950/80 md:via-teal-950/60 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-950 via-teal-950/95 to-teal-800/30"></div>
       </div>
-      <div class="container-lg relative z-10 grid md:grid-cols-2">
-        <div class="py-24 md:py-36 md:pr-12 text-center md:text-left">
-          <h1 class="heading-hero !text-white mb-6">{hero.headline}</h1>
-          <p class="text-xl md:text-2xl text-teal-200 mb-6">{hero.subheadline}</p>
-          {hero.heroDescription && (
-            <p class="text-lg md:text-xl text-teal-300 mb-10">{hero.heroDescription}</p>
-          )}
-          <div class="flex flex-row flex-wrap gap-4 justify-center md:justify-start">
-            <a href={CALENDLY_URL} class="btn-primary !bg-teal-600 !text-teal-950 hover:!bg-teal-400">
-              {hero.ctaText}
-            </a>
+      <div class="container-md relative z-10 py-16 md:py-24 text-center">
+        <!-- Event badge -->
+        <div class="inline-flex flex-col items-center gap-2 mb-8">
+          <span class="inline-block bg-teal-600 text-teal-950 text-base md:text-lg font-bold uppercase tracking-wider px-6 py-3 rounded-full">{content.hero.badge}</span>
+          <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-teal-300 text-base">
+            <span>{content.hero.badgeDetails}</span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- What This Is -->
-    <section class="section bg-white">
-      <div class="container-md">
-        <div class="bg-white rounded-xl p-8 md:p-12 border-2 border-teal-200">
-          <h2 class="heading-section mb-6 text-center">{programIntro.title}</h2>
-          {programIntro.paragraphs?.map((p) => (
-            <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
-          ))}
-          {programIntro.highlights && (
-            <ul class="text-xl text-teal-900 mb-6 list-disc space-y-3 pl-12 leading-relaxed">
-              {programIntro.highlights.map((item) => (
-                <li><strong>{item}</strong></li>
-              ))}
-            </ul>
-          )}
-          {programIntro.closingText && (
-            <p class="text-xl text-teal-900 mb-6" set:html={formatMarkdown(programIntro.closingText)} />
-          )}
-          <p class="text-center mt-4">
-            <a href="/approach" class="text-teal-700 font-semibold hover:text-teal-950 underline">See the full approach →</a>
-          </p>
+        <h1 class="heading-hero !text-white mb-4" set:html={formatMarkdown(content.hero.headline)} />
+        <p class="text-lg md:text-xl text-teal-200 max-w-3xl mx-auto mb-10" set:html={formatMarkdown(content.hero.subheadline)} />
+
+        <!-- Intro Video -->
+        <div class="max-w-2xl mx-auto mb-10 rounded-xl overflow-hidden border-2 border-teal-600/40 bg-teal-900/60">
+          <video
+            class="w-full aspect-video"
+            controls
+            preload="metadata"
+            poster="/videos/dhc-workshop-intro-poster.png"
+          >
+            <source src="/videos/dhc-workshop-intro.mp4" type="video/mp4" />
+            <track src="/videos/dhc-workshop-intro-subtitles.vtt" kind="subtitles" srclang="en" label="English" default />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="register" class="max-w-xl mx-auto w-full">
+          <iframe
+            src="https://links.debugginghumancommunication.com/widget/form/NYwRPefOL3oR7u5vVQi9"
+            style="width:100%;height:700px;border:none;border-radius:3px"
+            id="inline-NYwRPefOL3oR7u5vVQi9"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Workshop-Cold"
+            data-height="517"
+            data-layout-iframe-id="inline-NYwRPefOL3oR7u5vVQi9"
+            data-form-id="NYwRPefOL3oR7u5vVQi9"
+            title="Workshop registration form"
+          ></iframe>
+          <script src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
         </div>
       </div>
     </section>
 
-    <!-- Workshop Promo -->
+    <!-- What Will You Learn? -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-8 text-center">{content.whatYoullLearn.title}</h2>
+        <p class="text-lg text-teal-900 mb-8 text-center">{content.whatYoullLearn.intro}</p>
+
+        <div class="space-y-6 mb-8">
+          {content.whatYoullLearn.items.map((item: string) => (
+            <div class="flex gap-4 items-start">
+              <div class="w-2 h-2 rounded-full bg-teal-800 mt-3 shrink-0"></div>
+              <p class="text-lg text-teal-900" set:html={formatMarkdown(item)} />
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-900 italic text-center font-medium">
+          {content.whatYoullLearn.closing}
+        </p>
+      </div>
+    </section>
+
+    <!-- Work Through Your Real Challenges -->
     <section class="section bg-teal-50">
       <div class="container-md">
-        <div class="bg-white rounded-2xl p-8 md:p-12 text-center border-l-4 border-teal-800 shadow-lg">
-          <p class="text-sm font-bold text-coral uppercase tracking-wide mb-2">{workshopPromo.title}</p>
-          <h2 class="heading-section mb-4">{workshopPromo.subtitle}</h2>
-          <p class="text-lg text-teal-900 mb-8 max-w-2xl mx-auto">{workshopPromo.description}</p>
+        <h2 class="heading-section mb-10 text-center">{content.workshopDetails.title}</h2>
 
-          <ul class="text-left inline-block mb-10 space-y-2">
-            {workshopPromo.highlights.map((item: string) => (
-              <li class="flex items-start gap-2 text-teal-950">
-                <span class="text-green font-bold mt-0.5" aria-hidden="true">&#10003;</span>
-                {item}
-              </li>
-            ))}
-          </ul>
+        <p class="text-lg text-teal-900 mb-6 max-w-2xl mx-auto text-center">{content.workshopDetails.intro}</p>
 
+        <p class="text-xl font-bold text-teal-950 text-center mb-8 max-w-2xl mx-auto">{content.workshopDetails.costStatement}</p>
+
+        <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10">
+          {content.workshopDetails.painPoints.map((point: string) => (
+            <div class="bg-white rounded-xl p-5 border border-teal-200 shadow-sm">
+              <p class="text-teal-900 italic">{point}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-xl font-bold text-teal-950 text-center mb-4">{content.workshopDetails.reframe}</p>
+        <p class="text-lg text-teal-900 text-center max-w-2xl mx-auto mb-10">{content.workshopDetails.transition}</p>
+
+      </div>
+    </section>
+
+    <!-- What the Upgrade Looks Like -->
+    <section class="section bg-teal-950">
+      <div class="container-md">
+        <h2 class="heading-section !text-white mb-4 text-center">{content.imagine.title}</h2>
+        <p class="text-teal-300 text-lg text-center mb-10">{content.imagine.subtitle}</p>
+
+        <div class="max-w-3xl mx-auto mb-10 bg-white rounded-2xl overflow-hidden shadow-xl">
+          {content.imagine.items.map((item: { before: string; after: string }, index: number) => (
+            <div class:list={["grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 px-6 py-5", index < content.imagine.items.length - 1 && "border-b border-teal-200"]}>
+              <p class="text-teal-900 text-lg">{item.before}</p>
+              <svg class="w-6 h-6 text-coral shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" role="img" aria-label="becomes"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+              <p class="text-teal-950 font-bold text-lg">{item.after}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-teal-300 text-lg font-medium max-w-2xl mx-auto text-center">{content.imagine.closing}</p>
+      </div>
+    </section>
+
+    <!-- Contrast Section -->
+    <section class="section bg-teal-200">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">What This Is <span class="uppercase">Not</span></h2>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+          {content.contrast.notItems.map((item: string) => (
+            <div class="bg-white rounded-xl p-6 border border-teal-200 flex gap-4 items-center">
+              <svg class="w-8 h-8 text-coral shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              <p class="text-lg font-semibold text-teal-950">{item}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-950 italic text-center font-medium mb-4" set:html={formatMarkdown(content.contrast.isStatement)} />
+        <p class="text-lg text-teal-950 text-center">
+          {content.contrast.whyItMatters}
+        </p>
+      </div>
+    </section>
+
+    <!-- What Makes Our Event Different? -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">{content.differentiators.title}</h2>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+          {content.differentiators.items.map((item: { title: string; description: string }) => (
+            <div class="bg-teal-50 rounded-xl p-6 border border-teal-200">
+              <h3 class="text-lg font-bold text-teal-950 mb-2">{item.title}</h3>
+              <p class="text-teal-900">{item.description}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Your Host -->
+    <section class="section bg-teal-50">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">{content.host.title}</h2>
+
+        <div class="flex flex-col md:flex-row md:items-start gap-8">
+          <div class="w-64 shrink-0 mx-auto md:mx-0 overflow-hidden shadow-sm" style="aspect-ratio: 3/4; border-radius: 1rem; border: 0.5rem solid white;">
+            <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-full h-full object-cover object-top" />
+          </div>
           <div>
-            <a href="/workshop/new" class="btn-primary-lg">
-              {workshopPromo.ctaText}
-            </a>
+            <p class="text-lg text-teal-900 leading-relaxed">
+              {content.host.bio}
+            </p>
           </div>
         </div>
       </div>
@@ -124,10 +198,10 @@ const sortedTestimonials = featuredSlugs.length > 0
     <!-- Testimonials -->
     <section class="section bg-teal-950">
       <div class="container-md">
-        <h2 class="heading-section !text-white mb-10 text-center">{testimonialsSection.title}</h2>
+        <h2 class="heading-section !text-white mb-10 text-center">{content.testimonials.title}</h2>
 
-        <div class="grid md:grid-cols-2 gap-8">
-          {sortedTestimonials.map((t) => (
+        <div class="grid md:grid-cols-2 gap-8 mb-10">
+          {testimonials.map((t) => (
             <blockquote class:list={["bg-white rounded-xl p-8 border border-teal-200", t.data.featured && "md:col-span-2"]}>
               <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
@@ -147,174 +221,45 @@ const sortedTestimonials = featuredSlugs.length > 0
             </blockquote>
           ))}
         </div>
+
       </div>
     </section>
 
-    <!-- Who This Is For -->
-    <section class="section bg-teal-50">
-      <div class="container-md">
-        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(whoThisIsFor.title || '')} />
-        {whoThisIsFor.subtitle && (
-          <p class="text-lg text-teal-900 text-center mb-12" set:html={formatMarkdown(whoThisIsFor.subtitle)} />
-        )}
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <FitList type="good" items={whoThisIsFor.goodFit || []} />
-          <FitList type="bad" items={whoThisIsFor.notGoodFit || []} />
-        </div>
-      </div>
-    </section>
-
-    <!-- What This Is NOT -->
-    <section class="section bg-teal-200">
-      <div class="container-md">
-        <h2 class="heading-section mb-12 text-center" set:html={formatMarkdown(whatThisIsNot.title || '')} />
-
-        <div class="grid sm:grid-cols-2 gap-6">
-          {whatThisIsNot.items?.map((item) => (
-            <ClarificationCard title={item.title} description={item.description} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- The Method, at a Glance -->
+    <!-- Final CTA -->
     <section class="section bg-white">
       <div class="container-md">
-        <h2 class="heading-section mb-4 text-center">{methodGlance.title}</h2>
-        <p class="text-lg text-teal-900 mb-10 text-center" set:html={formatMarkdown(methodGlance.subtitle || '')} />
-
-        <!-- Cycle diagram: self-contained SVG with labels + descriptions -->
-        <div class="max-w-2xl mx-auto mb-10" role="img" aria-label="A three-step cycle: Observe, Hypothesize, Experiment — repeating continuously">
-          <svg viewBox="-70 -80 540 343" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-full h-auto">
-            <defs>
-              <marker id="cycle-arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
-                <path d="M0 1 L8 4 L0 7 Z" fill="#05A8A7" />
-              </marker>
-            </defs>
-
-            <!-- Arc: Observe → Hypothesize (clockwise, right side) -->
-            <path d="M227 13 A 120 120 0 0 1 315 165" stroke="#C8EDE4" stroke-width="3" fill="none" marker-end="url(#cycle-arrow)" />
-            <!-- Arc: Hypothesize → Experiment (clockwise, bottom) -->
-            <path d="M288 212 A 120 120 0 0 1 112 212" stroke="#C8EDE4" stroke-width="3" fill="none" marker-end="url(#cycle-arrow)" />
-            <!-- Arc: Experiment → Observe (clockwise, left side) -->
-            <path d="M85 165 A 120 120 0 0 1 173 13" stroke="#C8EDE4" stroke-width="3" fill="none" marker-end="url(#cycle-arrow)" />
-
-            <!-- Node 1: Observe (top) — label above -->
-            <circle cx="200" cy="10" r="22" fill="#05A8A7" />
-            <text x="200" y="16" text-anchor="middle" fill="white" font-weight="700" font-size="16" font-family="Montserrat, sans-serif">1</text>
-            <foreignObject x="100" y="-78" width="200" height="66">
-              <div style="text-align: center; font-family: Montserrat, sans-serif; display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                <p style="font-size: 14px; font-weight: 700; color: #003640; margin: 0 0 2px;">{methodGlance.steps?.[0]?.title}</p>
-                <p style="font-size: 11px; color: #012B34; line-height: 1.4; margin: 0;">{methodGlance.steps?.[0]?.description}</p>
-              </div>
-            </foreignObject>
-
-            <!-- Node 2: Hypothesize (bottom-right) — label to the right -->
-            <circle cx="304" cy="190" r="22" fill="#05A8A7" />
-            <text x="304" y="196" text-anchor="middle" fill="white" font-weight="700" font-size="16" font-family="Montserrat, sans-serif">2</text>
-            <foreignObject x="332" y="158" width="135" height="70">
-              <div style="text-align: left; font-family: Montserrat, sans-serif;">
-                <p style="font-size: 14px; font-weight: 700; color: #003640; margin: 0 0 2px;">{methodGlance.steps?.[1]?.title}</p>
-                <p style="font-size: 11px; color: #012B34; line-height: 1.4; margin: 0;">{methodGlance.steps?.[1]?.description}</p>
-              </div>
-            </foreignObject>
-
-            <!-- Node 3: Experiment (bottom-left) — label to the left -->
-            <circle cx="96" cy="190" r="22" fill="#05A8A7" />
-            <text x="96" y="196" text-anchor="middle" fill="white" font-weight="700" font-size="16" font-family="Montserrat, sans-serif">3</text>
-            <foreignObject x="-67" y="158" width="135" height="70">
-              <div style="text-align: right; font-family: Montserrat, sans-serif;">
-                <p style="font-size: 14px; font-weight: 700; color: #003640; margin: 0 0 2px;">{methodGlance.steps?.[2]?.title}</p>
-                <p style="font-size: 11px; color: #012B34; line-height: 1.4; margin: 0;">{methodGlance.steps?.[2]?.description}</p>
-              </div>
-            </foreignObject>
-          </svg>
-        </div>
-
-        <p class="text-lg text-teal-900 text-center" set:html={formatMarkdown(methodGlance.closingText || '')} />
-        <p class="text-center mt-4">
-          <a href="/approach" class="text-teal-700 font-semibold hover:text-teal-950 underline">See the full methodology →</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- How We Work Together -->
-    <section class="section bg-teal-200">
-      <div class="container-md">
-        <h2 class="heading-section mb-6 text-center">{howWeWork.title}</h2>
-        <p class="text-lg text-teal-900 mb-8 text-center" set:html={formatMarkdown(howWeWork.subtitle || '')} />
-
-        <div class="grid md:grid-cols-3 gap-6 mb-8">
-          {howWeWork.engagements?.map((engagement) => (
-            <EngagementCard
-              icon={engagement.icon}
-              title={engagement.title}
-              description={engagement.description}
-            />
-          ))}
-        </div>
-
-        <p class="text-lg text-teal-900 text-center" set:html={formatMarkdown(howWeWork.closingText || '')} />
-      </div>
-    </section>
-
-    <!-- About the Creator + Featured Testimonial -->
-    <section class="section bg-teal-50">
-      <div class="container-md">
-        <h2 class="heading-section mb-4 text-center">{meetAndrea.subtitle}</h2>
-        <p class="text-lg text-teal-900 mb-8 text-center" set:html={formatMarkdown(meetAndrea.closingText || '')} />
-        <hr class="w-16 mx-auto border-t-2 border-teal-300 mb-10" />
-
-        <div class="flex flex-col md:flex-row md:items-center gap-8 mb-12">
-          <div class="w-64 shrink-0 mx-auto md:mx-0 overflow-hidden shadow-sm" style="aspect-ratio: 3/4; border-radius: 1rem; border: 0.5rem solid #f0fdfa;">
-            <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-full h-full object-cover object-top" style="object-position: top;" />
+        {content.finalCta && (
+          <div class="text-center mb-10">
+            <h2 class="heading-section mb-4">{content.finalCta.title}</h2>
+            <p class="text-teal-900 text-lg max-w-2xl mx-auto mb-4">{content.finalCta.body}</p>
+            <p class="text-teal-950 text-lg font-semibold max-w-2xl mx-auto">{content.finalCta.cta}</p>
           </div>
-          <div>
-            <p class="text-xl font-bold text-teal-950 mb-1">{meetAndrea.title}</p>
-            <p class="text-sm text-teal-700 mb-4">{meetAndrea.intro}</p>
-            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof meetAndrea.paragraphs?.[0] === 'string' ? meetAndrea.paragraphs[0] : meetAndrea.paragraphs?.[0]?.text || '')} />
-            <p class="text-center md:text-left">
-              <a href="/about" class="text-teal-700 font-semibold hover:text-teal-950 underline">Read Andrea's full story →</a>
-            </p>
-          </div>
+        )}
+
+        <div class="max-w-xl mx-auto w-full bg-teal-50 rounded-2xl border-2 border-teal-200 p-6 md:p-8 shadow-sm">
+          <iframe
+            src="https://links.debugginghumancommunication.com/widget/form/NYwRPefOL3oR7u5vVQi9"
+            style="width:100%;height:700px;border:none;border-radius:3px"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Workshop-Cold"
+            data-height="517"
+            data-form-id="NYwRPefOL3oR7u5vVQi9"
+            title="Workshop registration form"
+          ></iframe>
         </div>
       </div>
     </section>
-
-    <!-- Discovery Session CTA -->
-    {discoveryTier && (
-      <section class="section bg-teal-950">
-        <div class="container-md">
-          {ctaSession.title && (
-            <h2 class="heading-section !text-white mb-4 text-center" set:html={formatMarkdown(ctaSession.title)} />
-          )}
-          {ctaSession.subtitle && (
-            <p class="text-lg text-teal-200 text-center mb-10" set:html={formatMarkdown(ctaSession.subtitle)} />
-          )}
-          <PricingCard
-            title={discoveryTier.title}
-            price={discoveryTier.price}
-            period={discoveryTier.period}
-            description={discoveryTier.description}
-            features={discoveryTier.features}
-            featured={true}
-            guarantee={discoveryTier.guarantee}
-            ctaText={discoveryTier.ctaText}
-            ctaUrl={CALENDLY_URL}
-          >
-            <SessionReportPreview slot="extra" />
-          </PricingCard>
-        </div>
-      </section>
-    )}
-
-    <SiteFooter
-      contactEmail={footer.contactEmail || ''}
-      copyright={footer.copyright || ''}
-      termsUrl={footer.termsUrl || ''}
-      privacyUrl={footer.privacyUrl || ''}
-    />
-    <SessionReportModal />
   </main>
+
+  <SiteFooter
+    copyright={footer.copyright || ''}
+    termsUrl={footer.termsUrl || ''}
+    privacyUrl={footer.privacyUrl || ''}
+  />
 </Layout>

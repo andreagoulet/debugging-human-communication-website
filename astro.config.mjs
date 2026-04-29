@@ -11,10 +11,12 @@ export default defineConfig({
   redirects: {
     '/community': 'https://app.heartbeat.chat/debugginghumancommunication/invitation?code=J3524G',
     '/discovery': 'https://calendly.com/andreagoulet/discovery-session',
-    '/sbc-cold': '/workshop/new',
-    '/sbc-cold/book': '/workshop/new/book',
+    '/sbc-cold': '/',
+    '/sbc-cold/book': '/book',
     '/sbc-warm': '/workshop/referred',
     '/guest-pass': '/workshop/referred',
+    '/workshop/new': '/',
+    '/workshop/new/book': '/book',
   },
   vite: {
     plugins: [tailwindcss()]
