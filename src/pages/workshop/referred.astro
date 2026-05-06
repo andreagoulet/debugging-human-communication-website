@@ -43,10 +43,10 @@ const content = allLandingPages.find(e => e.id === 'referred-landing.md')!.data;
                 class="w-full aspect-video"
                 controls
                 preload="metadata"
-                poster="/videos/dhc-workshop-warm-poster.png"
+                poster="/videos/dhc-workshop-intro-poster.png"
               >
-                <source src="/videos/dhc-intro-warm.mp4" type="video/mp4" />
-                <track src="/videos/dhc-intro-warm.vtt" kind="subtitles" srclang="en" label="English" default />
+                <source src="/videos/dhc-workshop-intro.mp4" type="video/mp4" />
+                <track src="/videos/dhc-workshop-intro-subtitles.vtt" kind="subtitles" srclang="en" label="English" default />
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -62,6 +62,102 @@ const content = allLandingPages.find(e => e.id === 'referred-landing.md')!.data;
       </div>
     </section>
 
+    <!-- What Will You Learn? -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-8 text-center">{content.whatYoullLearn.title}</h2>
+        <p class="text-lg text-teal-900 mb-8 text-center">{content.whatYoullLearn.intro}</p>
+
+        <div class="space-y-6 mb-8">
+          {content.whatYoullLearn.items.map((item: string) => (
+            <div class="flex gap-4 items-start">
+              <div class="w-2 h-2 rounded-full bg-teal-800 mt-3 shrink-0"></div>
+              <p class="text-lg text-teal-900" set:html={formatMarkdown(item)} />
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-900 italic text-center font-medium">
+          {content.whatYoullLearn.closing}
+        </p>
+      </div>
+    </section>
+
+    <!-- What the Upgrade Looks Like -->
+    <section class="section bg-teal-950">
+      <div class="container-md">
+        <h2 class="heading-section !text-white mb-4 text-center">{content.imagine.title}</h2>
+        <p class="text-teal-300 text-lg text-center mb-10">{content.imagine.subtitle}</p>
+
+        <div class="max-w-3xl mx-auto mb-10 bg-white rounded-2xl overflow-hidden shadow-xl">
+          {content.imagine.items.map((item: { before: string; after: string }, index: number) => (
+            <div class:list={["grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 px-6 py-5", index < content.imagine.items.length - 1 && "border-b border-teal-200"]}>
+              <p class="text-teal-900 text-lg">{item.before}</p>
+              <svg class="w-6 h-6 text-coral shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" role="img" aria-label="becomes"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+              <p class="text-teal-950 font-bold text-lg">{item.after}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-teal-300 text-lg font-medium max-w-2xl mx-auto text-center">{content.imagine.closing}</p>
+      </div>
+    </section>
+
+    <!-- What Makes This Event Different? -->
+    <section class="section bg-white">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">{content.differentiators.title}</h2>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-10">
+          {content.differentiators.items.map((item: { title: string; description: string }) => (
+            <div class="bg-teal-50 rounded-xl p-6 border border-teal-200">
+              <h3 class="text-lg font-bold text-teal-950 mb-2">{item.title}</h3>
+              <p class="text-teal-900">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Host -->
+    <section class="section bg-teal-50">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center">{content.host.title}</h2>
+
+        <div class="flex flex-col md:flex-row md:items-start gap-8">
+          <div class="w-64 shrink-0 mx-auto md:mx-0 overflow-hidden shadow-sm" style="aspect-ratio: 3/4; border-radius: 1rem; border: 0.5rem solid white;">
+            <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-full h-full object-cover object-top" />
+          </div>
+          <div>
+            <p class="text-lg text-teal-900 leading-relaxed">
+              {content.host.bio}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section bg-teal-100">
+      <div class="container-sm">
+        <h2 class="heading-section mb-10 text-center">{content.faq.title}</h2>
+
+        <div class="space-y-3">
+          {content.faq.questions.map((item: { question: string; answer: string }) => (
+            <details class="bg-white rounded-lg border border-teal-200 group overflow-hidden">
+              <summary class="cursor-pointer p-5 font-bold text-teal-950 text-lg flex items-center justify-between gap-4 list-none">
+                <span>{item.question}</span>
+                <svg class="w-5 h-5 text-teal-700 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p class="px-5 pb-5 pt-1 text-lg text-teal-900">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- The Next Step -->
     <section class="section bg-white">
       <div class="container-sm">
@@ -72,40 +168,27 @@ const content = allLandingPages.find(e => e.id === 'referred-landing.md')!.data;
             <p set:html={formatMarkdown(p)} />
           ))}
         </div>
-      </div>
-    </section>
 
-    <!-- Not a Sales Call -->
-    <section class="section bg-teal-50">
-      <div class="container-sm">
-        <h2 class="heading-section mb-8 text-center">{content.notASalesCall.title}</h2>
-
-        <div class="prose-custom">
-          <p set:html={formatMarkdown(content.notASalesCall.paragraphs[0])} />
-
-          <p class="bg-white rounded-lg p-4 border border-teal-200 text-teal-950 font-medium">{content.notASalesCall.callout}</p>
-
-          {content.notASalesCall.paragraphs.slice(1).map((p: string) => (
-            <p set:html={formatMarkdown(p)} />
+        <ul class="space-y-6 mt-6 max-w-2xl mx-auto">
+          {content.nextStep.bullets.map((b: string) => (
+            <li class="flex gap-4 items-start">
+              <div class="w-2 h-2 rounded-full bg-teal-800 mt-3 shrink-0"></div>
+              <p class="text-lg text-teal-900" set:html={formatMarkdown(b)} />
+            </li>
           ))}
-        </div>
+        </ul>
 
-      </div>
-    </section>
+        {content.nextStep.callout && (
+          <p class="bg-teal-50 rounded-lg p-4 border border-teal-200 text-teal-950 font-medium mt-8 max-w-2xl mx-auto" set:html={formatMarkdown(content.nextStep.callout)} />
+        )}
 
-    <!-- FAQ -->
-    <section class="section bg-white">
-      <div class="container-sm">
-        <h2 class="heading-section mb-10 text-center">{content.faq.title}</h2>
-
-        <div class="space-y-8">
-          {content.faq.questions.map((item: { question: string; answer: string }) => (
-            <div>
-              <h3 class="font-bold text-teal-950 text-lg mb-2">{item.question}</h3>
-              <p class="text-lg text-teal-900">{item.answer}</p>
-            </div>
-          ))}
-        </div>
+        {content.nextStep.closingParagraphs && (
+          <div class="prose-custom mt-8">
+            {content.nextStep.closingParagraphs.map((p: string) => (
+              <p set:html={formatMarkdown(p)} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
 
