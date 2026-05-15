@@ -10,14 +10,14 @@ min: 8
 
 ### Pillar 3: Influence — Make It Scalable
 
-#### Clarity Refined
+#### Clarity Attained
 
 _FIDELITY_
 
 **Properties**
 
-- [ ] _[Property 1]_
-- [ ] _[Property 2]_
+- [ ] _Speed_
+- [ ] _Signal / Noise_
 - [ ] _[Property 3]_
 
 **Self-assessment**
@@ -26,9 +26,9 @@ _FIDELITY_
 - **Yellow:** "It takes a lot of time and energy to explain my ideas, especially to diverse audiences."
 - **Green:** "I can generally explain complex concepts to any audience — executives, customers, investors, a stranger on a plane — in a way that lands."
 
-#### Persuasion Sharpened
+#### Ideas Adopted 
 
-_[Short description of Persuasion Sharpened]_
+_CHANGE_
 
 **Properties**
 
@@ -44,7 +44,7 @@ _[Short description of Persuasion Sharpened]_
 
 #### Impact Expanded
 
-_[Short description of Impact Expanded]_
+_REACH_
 
 **Properties**
 
