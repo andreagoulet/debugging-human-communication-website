@@ -164,8 +164,24 @@ const landingPagesCollection = defineCollection({
   schema: z.any(),
 });
 
+// Agenda collection: one entry per facilitator-script section.
+// Frontmatter holds the schedule metadata; the markdown body holds the prose.
+const agendaCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    order: z.number(),
+    title: z.string(),
+    timing: z.string(),
+    anchor: z.string(),
+    start: z.string(),
+    end: z.string(),
+    min: z.number(),
+  }),
+});
+
 export const collections = {
   website: homepageCollection,
   shared: sharedCollection,
   'landing-pages': landingPagesCollection,
+  agenda: agendaCollection,
 };
