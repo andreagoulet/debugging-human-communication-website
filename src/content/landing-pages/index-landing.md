@@ -72,6 +72,9 @@ differentiators:
 host:
   title: "Work Directly with Andrea Goulet"
   bio: "Andrea Goulet is a communication coach who speaks fluent developer. She co-founded Corgibytes, a software company specializing in legacy code, where she spent over 15 years working alongside technical professionals. She noticed the same pattern over and over: brilliant, compassionate people who kept saying \"I'm bad with people.\" They weren't bad with people — they just didn't have the right framework. So she built one. Andrea created Debugging Human Communication to give technical professionals a systematic, experiment-driven approach to communication — because if you can debug code, you can debug a conversation. She's helped engineers get promoted, secure budget during hiring freezes, and speak at conferences they never thought they'd attend."
+testimonials:
+  title: "What Others Are Saying"
+  # The quotes and authors above the heading are edited in src/content/shared/testimonials/ (one .md file per testimonial). This block only sets the section heading.
 process:
   title: "Your Feedback Is The Value Exchange"
   intro: "People often ask me why I deliver a no-cost version of a masterclass I typically get paid thousands of dollars for. The answer is simple — high quality feedback. In order to secure your seat, here's what you'll need to do:"
@@ -89,6 +92,4 @@ finalCta:
   title: "Request Your Invitation Now"
   body: "If you've read this whole page, you're exactly the type of person I want in the room. Fill out the form below. Schedule your fit call. Secure your seat. Master the hidden patterns of human communication."
   cta: "Space is limited to 30 attendees. Book your call with Andrea now."
-testimonials:
-  title: "What Others Are Saying"
 ---
