@@ -234,6 +234,27 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
       </div>
     </section>
 
+    <!-- What to Expect -->
+    {content.process && (
+      <section class="section bg-teal-50">
+        <div class="container-md">
+          <h2 class="heading-section mb-2 text-center">{content.process.title}</h2>
+          {content.process.intro && (
+            <p class="text-lg text-teal-900 text-center mb-10 max-w-2xl mx-auto">{content.process.intro}</p>
+          )}
+          <ol class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {content.process.steps.map((step: { number: number; title: string; description: string }) => (
+              <li class="bg-white border border-teal-200 rounded-xl p-6 shadow-sm">
+                <span class="flex items-center justify-center w-10 h-10 rounded-full bg-teal-950 text-white font-extrabold mb-4" aria-hidden="true">{step.number}</span>
+                <h3 class="text-teal-950 font-bold text-lg mb-2">{step.title}</h3>
+                <p class="text-teal-900 leading-relaxed">{step.description}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )}
+
     <!-- Final CTA -->
     <section class="section bg-white">
       <div class="container-md">
