@@ -6,10 +6,66 @@ interface Props {
   description?: string;
   noindex?: boolean;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: string;
+  /** Page-specific JSON-LD objects appended to the site-wide @graph. */
+  structuredData?: Record<string, unknown>[];
 }
 
-const { title, description = "Transform your technical expertise into influence that earns buy-in, opens doors, and accelerates your career. Communication coaching for software developers and tech professionals.", noindex = false, ogImage = '/og-workshop.png' } = Astro.props;
+const {
+  title,
+  description = "Transform your technical expertise into influence that earns buy-in, opens doors, and accelerates your career. Communication coaching for software developers and tech professionals.",
+  noindex = false,
+  ogImage = '/og-workshop.png',
+  ogImageAlt = title,
+  ogType = 'website',
+  structuredData = [],
+} = Astro.props;
+
 const ogImageUrl = new URL(ogImage, Astro.site).toString();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const siteName = 'Debugging Human Communication';
+
+// Site-wide structured data: Organization, founder Person, and WebSite.
+// Page-specific schema (e.g. Course on the homepage) is appended via the prop.
+const orgId = new URL('#organization', Astro.site).toString();
+const personId = new URL('#andrea-goulet', Astro.site).toString();
+const websiteId = new URL('#website', Astro.site).toString();
+
+const baseGraph = [
+  {
+    '@type': 'Organization',
+    '@id': orgId,
+    name: siteName,
+    legalName: 'Lovelace Communications, LLC',
+    url: Astro.site?.toString(),
+    logo: new URL('/logo.svg', Astro.site).toString(),
+    description: 'Communication coaching for software developers and technical professionals, using a systematic, experiment-driven approach.',
+    founder: { '@id': personId },
+  },
+  {
+    '@type': 'Person',
+    '@id': personId,
+    name: 'Andrea Goulet',
+    jobTitle: 'Communication Coach',
+    description: 'Andrea Goulet helps scientific and technical people strengthen their communication through an experiment-driven approach rooted in systems thinking.',
+    url: 'https://www.andreagoulet.com',
+    sameAs: ['https://www.andreagoulet.com'],
+    worksFor: { '@id': orgId },
+  },
+  {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: Astro.site?.toString(),
+    name: siteName,
+    publisher: { '@id': orgId },
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [...baseGraph, ...structuredData],
+};
 ---
 
 <!doctype html>
@@ -18,6 +74,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,14 +85,24 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1254" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="bg-teal-50 antialiased">
     <slot />

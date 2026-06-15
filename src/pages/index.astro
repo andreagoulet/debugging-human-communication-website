@@ -12,12 +12,36 @@ const content = allLandingPages.find(e => e.id === 'index-landing.md')!.data;
 const allShared = await getCollection('shared');
 const allTestimonials = allShared.filter(e => e.id.startsWith('testimonials/'));
 const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order);
+
+// Course structured data for the free live masterclass.
+const courseSchema = {
+  '@type': 'Course',
+  name: 'Master the Hidden Patterns of Human Communication',
+  description: 'A free, live 3-hour virtual masterclass that teaches software developers and technical professionals a systematic, experiment-driven approach to communication — how to diagnose where conversations break down and fix them.',
+  provider: { '@id': new URL('#organization', Astro.site).toString() },
+  inLanguage: 'en',
+  isAccessibleForFree: true,
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    name: 'Live Virtual Masterclass',
+    courseMode: 'Online',
+    courseWorkload: 'PT3H',
+    instructor: { '@id': new URL('#andrea-goulet', Astro.site).toString() },
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+};
 ---
 
 <Layout
-  title="Master the Hidden Patterns of Human Communication Masterclass | Transform Technical Expertise into Influence | Andrea Goulet"
+  title="Communication Masterclass for Software Developers | Andrea Goulet"
   description="Transform your technical expertise into influence that earns buy-in, opens doors, and accelerates your career. A free 3-hour virtual masterclass for software developers and tech professionals."
   ogImage="/og-workshop.png"
+  structuredData={[courseSchema]}
 >
   <main>
     <!-- Hero -->

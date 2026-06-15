@@ -1,0 +1,24 @@
+# Debugging Human Communication
+# AI crawlers are explicitly welcome — see the grouped allow block below.
+
+User-agent: *
+Allow: /
+Disallow: /agenda
+Disallow: /book
+Disallow: /discovery-welcome
+Disallow: /workshop/referred
+
+# Explicitly welcome AI search & assistant crawlers for AI-engine visibility
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Claude-Web
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.debugginghumancommunication.com/sitemap-index.xml
