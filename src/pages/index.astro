@@ -195,10 +195,10 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
           <div class="w-64 shrink-0 mx-auto md:mx-0 overflow-hidden shadow-sm" style="aspect-ratio: 3/4; border-radius: 1rem; border: 0.5rem solid white;">
             <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-full h-full object-cover object-top" />
           </div>
-          <div>
-            <p class="text-lg text-teal-900 leading-relaxed">
-              {content.host.bio}
-            </p>
+          <div class="space-y-4">
+            {content.host.bio.map((paragraph: string) => (
+              <p class="text-lg text-teal-900 leading-relaxed">{paragraph}</p>
+            ))}
           </div>
         </div>
       </div>

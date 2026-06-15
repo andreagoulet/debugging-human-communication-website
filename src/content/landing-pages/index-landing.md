@@ -71,7 +71,9 @@ differentiators:
       description: "I personally talk to every attendee before the masterclass. It's a curated experience so that it's as much about human connection as it is about learning."
 host:
   title: "Work Directly with Andrea Goulet"
-  bio: "Andrea Goulet is a communication coach who speaks fluent developer. She co-founded Corgibytes, a software company specializing in legacy code, where she spent over 15 years working alongside technical professionals. She noticed the same pattern over and over: brilliant, compassionate people who kept saying \"I'm bad with people.\" They weren't bad with people — they just didn't have the right framework. So she built one. Andrea created Debugging Human Communication to give technical professionals a systematic, experiment-driven approach to communication — because if you can debug code, you can debug a conversation. She's helped engineers get promoted, secure budget during hiring freezes, and speak at conferences they never thought they'd attend."
+  bio:
+    - "Andrea Goulet helps scientific and technical people strengthen their communication through an experiment-driven approach rooted in systems thinking. Her work gives analytical minds a structured way to test, refine, and trust their communication skills in complex, real-world environments."
+    - "Over the past 25 years, Andrea has co-founded and scaled a multimillion-dollar software company, built communication systems that generated billions in revenue, taught more than 100,000 learners worldwide, and delivered keynotes at conferences and companies around the globe. She specializes in translating complex human dynamics into practical tools technical minds can use to communicate clearly, influence effectively, and collaborate with confidence."
 testimonials:
   title: "What Others Are Saying"
   # The quotes and authors above the heading are edited in src/content/shared/testimonials/ (one .md file per testimonial). This block only sets the section heading.
