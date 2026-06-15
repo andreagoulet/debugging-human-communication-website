@@ -15,8 +15,8 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
 ---
 
 <Layout
-  title="Master the Hidden Patterns of Human Communication Workshop | Transform Technical Expertise into Influence | Andrea Goulet"
-  description="Transform your technical expertise into influence that earns buy-in, opens doors, and accelerates your career. A free 3-hour virtual workshop for software developers and tech professionals."
+  title="Master the Hidden Patterns of Human Communication Masterclass | Transform Technical Expertise into Influence | Andrea Goulet"
+  description="Transform your technical expertise into influence that earns buy-in, opens doors, and accelerates your career. A free 3-hour virtual masterclass for software developers and tech professionals."
   ogImage="/og-workshop.png"
 >
   <main>
@@ -25,52 +25,62 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
       <div class="absolute inset-0" aria-hidden="true">
         <div class="absolute inset-0 bg-gradient-to-br from-teal-950 via-teal-950/95 to-teal-800/30"></div>
       </div>
-      <div class="container-md relative z-10 py-16 md:py-24 text-center">
-        <!-- Event badge -->
-        <div class="inline-flex flex-col items-center gap-2 mb-8">
-          <span class="inline-block bg-teal-600 text-teal-950 text-base md:text-lg font-bold uppercase tracking-wider px-6 py-3 rounded-full">{content.hero.badge}</span>
-          <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-teal-300 text-base">
-            <span>{content.hero.badgeDetails}</span>
-          </div>
-        </div>
-
+      <div class="container-lg relative z-10 py-16 md:py-24 text-center">
         <h1 class="heading-hero !text-white mb-4" set:html={formatMarkdown(content.hero.headline)} />
-        <p class="text-lg md:text-xl text-teal-200 max-w-3xl mx-auto mb-10" set:html={formatMarkdown(content.hero.subheadline)} />
+        <p class="text-xl md:text-2xl text-teal-200 max-w-3xl mx-auto mb-10" set:html={formatMarkdown(content.hero.subheadline)} />
 
-        <!-- Intro Video -->
-        <div class="max-w-2xl mx-auto mb-10 rounded-xl overflow-hidden border-2 border-teal-600/40 bg-teal-900/60">
-          <video
-            class="w-full aspect-video"
-            controls
-            preload="metadata"
-            poster="/videos/dhc-workshop-intro-poster.png"
-          >
-            <source src="/videos/dhc-workshop-intro.mp4" type="video/mp4" />
-            <track src="/videos/dhc-workshop-intro-subtitles.vtt" kind="subtitles" srclang="en" label="English" default />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <!-- Intro Video + Workshop Details -->
+          <div>
+            <div class="rounded-xl overflow-hidden border-2 border-teal-600/40 bg-teal-900/60">
+              <video
+                class="w-full aspect-video"
+                controls
+                preload="metadata"
+                poster="/videos/dhc-workshop-intro-poster.png"
+              >
+                <source src="/videos/dhc-workshop-intro.mp4" type="video/mp4" />
+                <track src="/videos/dhc-workshop-intro-subtitles.vtt" kind="subtitles" srclang="en" label="English" default />
+                Your browser does not support the video tag.
+              </video>
+            </div>
 
-        <!-- Registration Form -->
-        <div id="register" class="max-w-xl mx-auto w-full">
-          <iframe
-            src="https://links.debugginghumancommunication.com/widget/form/NYwRPefOL3oR7u5vVQi9"
-            style="width:100%;height:700px;border:none;border-radius:3px"
-            id="inline-NYwRPefOL3oR7u5vVQi9"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Workshop-Cold"
-            data-height="517"
-            data-layout-iframe-id="inline-NYwRPefOL3oR7u5vVQi9"
-            data-form-id="NYwRPefOL3oR7u5vVQi9"
-            title="Workshop registration form"
-          ></iframe>
-          <script src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
+            {content.hero.about && (
+              <ul class="mt-8 space-y-3 text-left">
+                {content.hero.about.points.map((point: string) => (
+                  <li class="flex gap-3 items-start">
+                    <svg class="w-5 h-5 text-teal-300 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <span class="text-teal-100" set:html={formatMarkdown(point)} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <!-- Registration Form -->
+          <div id="register" class="w-full">
+            {content.ctaText && (
+              <h2 class="text-2xl font-bold text-white mb-4">{content.ctaText}</h2>
+            )}
+            <iframe
+              src="https://links.debugginghumancommunication.com/widget/form/NYwRPefOL3oR7u5vVQi9"
+              style="width:100%;height:700px;border:none;border-radius:3px"
+              id="inline-NYwRPefOL3oR7u5vVQi9"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Workshop-Cold"
+              data-height="517"
+              data-layout-iframe-id="inline-NYwRPefOL3oR7u5vVQi9"
+              data-form-id="NYwRPefOL3oR7u5vVQi9"
+              title="Masterclass registration form"
+            ></iframe>
+            <script src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
+          </div>
         </div>
       </div>
     </section>
@@ -79,7 +89,6 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
     <section class="section bg-white">
       <div class="container-md">
         <h2 class="heading-section mb-8 text-center">{content.whatYoullLearn.title}</h2>
-        <p class="text-lg text-teal-900 mb-8 text-center">{content.whatYoullLearn.intro}</p>
 
         <div class="space-y-6 mb-8">
           {content.whatYoullLearn.items.map((item: string) => (
@@ -107,8 +116,8 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
 
         <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10">
           {content.workshopDetails.painPoints.map((point: string) => (
-            <div class="bg-white rounded-xl p-5 border border-teal-200 shadow-sm">
-              <p class="text-teal-900 italic">{point}</p>
+            <div class="bg-white rounded-xl p-5 border border-teal-200 border-l-4 border-l-teal-600 shadow-sm">
+              <p class="text-lg text-teal-950 font-medium">{point}</p>
             </div>
           ))}
         </div>
@@ -142,7 +151,7 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
     <!-- Contrast Section -->
     <section class="section bg-teal-200">
       <div class="container-md">
-        <h2 class="heading-section mb-10 text-center">What This Is <span class="uppercase">Not</span></h2>
+        <h2 class="heading-section mb-10 text-center" set:html={formatMarkdown(content.contrast.title)} />
 
         <div class="grid md:grid-cols-2 gap-6 mb-10">
           {content.contrast.notItems.map((item: string) => (
@@ -250,7 +259,7 @@ const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order)
             data-form-name="Workshop-Cold"
             data-height="517"
             data-form-id="NYwRPefOL3oR7u5vVQi9"
-            title="Workshop registration form"
+            title="Masterclass registration form"
           ></iframe>
         </div>
       </div>
