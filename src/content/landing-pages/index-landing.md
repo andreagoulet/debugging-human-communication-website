@@ -86,9 +86,9 @@ process:
       title: "Give Andrea Feedback"
       description: "Finally, we'll have a one-on-one call where you commit to sharing your experience. This helps me deliver the highest-quality content possible. I'll also give you feedback on your experiment. If you're interested in working with me, we can discuss it at this time."
 finalCta:
-  title: "Your Full-Stack Upgrade Starts Now"
-  body: "You already have the skills. You already have the drive. This masterclass gives you the missing piece — a systematic way to make your communication match the quality of your work."
-  cta: "Space is limited to 30 attendees. Request your invitation."
+  title: "Request Your Invitation Now"
+  body: "If you've read this whole page, you're exactly the type of person I want in the room. Fill out the form below. Schedule your fit call. Secure your seat. Master the hidden patterns of human communication."
+  cta: "Space is limited to 30 attendees. Book your call with Andrea now."
 testimonials:
   title: "What Others Are Saying"
 ---
