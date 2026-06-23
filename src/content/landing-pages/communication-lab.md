@@ -39,7 +39,7 @@ whatYouGet:
 
 howLab:
   title: "Software-Specific Group Coaching Sessions"
-  image: "/images/group-coaching.jpeg"
+  image: "/images/group-coaching.webp"
   imageAlt: "A Lab member taking notes during a live virtual group coaching session, with other participants on a video call grid"
   steps:
     - "**Post a problem in the chat.** Don't worry. Each session starts with a few minutes of silence so you can pause and think first."
