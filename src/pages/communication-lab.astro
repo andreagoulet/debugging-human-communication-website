@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getCollection } from 'astro:content';
+import { formatMarkdown } from '../utils/formatMarkdown';
+
+const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
+
+const allLandingPages = await getCollection('landing-pages');
+const content = allLandingPages.find(e => e.id === 'communication-lab.md')!.data;
+
+// Curated testimonials for the Lab — experiment + community stories, in display order.
+const featuredTestimonialIds = [
+  'testimonials/lada-kesseler.md',
+  'testimonials/ted-young.md',
+  'testimonials/soumya-kulkarni.md',
+  'testimonials/ellis-lempriere.md',
+];
+const allShared = await getCollection('shared');
+const testimonials = featuredTestimonialIds
+  .map(id => allShared.find(e => e.id === id))
+  .filter((e): e is NonNullable<typeof e> => Boolean(e));
+
+const BOOKING_URL = 'https://links.debugginghumancommunication.com/widget/booking/AtiyMWERWdg3TT1IQwVh';
+---
+
+<Layout
+  title={content.title}
+  description={content.description}
+  ogImage="/og-workshop.png"
+>
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 pt-12 lg:pt-16 grid items-stretch gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+        <!-- Text column -->
+        <div class="max-w-2xl lg:pt-1">
+          <h1 class="hero-headline mb-5" set:html={formatMarkdown(content.hero.headline)} />
+
+          <p class="text-lg md:text-xl text-teal-900 leading-relaxed mb-6" set:html={formatMarkdown(content.hero.subheadline)} />
+
+          <div class="rounded-xl border border-teal-200 shadow-sm bg-teal-50 p-5 md:p-6">
+            <h2 class="text-xl font-bold text-teal-950 mb-4">{content.hero.ctaHeading}</h2>
+            <div class="rounded-lg overflow-hidden bg-white border border-teal-200">
+              <iframe src={BOOKING_URL} class="w-full border-none" style="min-height:420px;" scrolling="no" title="Schedule a call with Andrea Goulet"></iframe>
+              <script type="text/javascript" src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
+            </div>
+            <p class="mt-3 text-teal-900 text-sm">
+              Having trouble seeing the calendar?
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="underline hover:text-teal-950">Book directly here</a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Portrait column (desktop): fills the row so head meets the headline
+             and feet reach the section bottom; w-auto preserves aspect ratio. -->
+        <div class="relative hidden lg:flex lg:items-end lg:justify-center">
+          <img
+            src={content.hero.image}
+            alt={content.hero.imageAlt}
+            class="h-full w-auto object-contain object-bottom"
+          />
+        </div>
+      </div>
+
+      <!-- Portrait (mobile) -->
+      <div class="lg:hidden px-6 pt-10 pb-2">
+        <img
+          src={content.hero.faceImage}
+          alt={content.hero.faceImageAlt}
+          class="aspect-square w-full max-w-[20rem] mx-auto rounded-2xl object-cover object-top"
+        />
+      </div>
+    </section>
+
+    <!-- The premise: communication as a system you can debug -->
+    <section class="section bg-teal-50">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-8 text-center">{content.premise.title}</h2>
+
+        <div class="prose-custom max-w-2xl mx-auto mb-12 text-center">
+          {content.premise.paragraphs.map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+        </div>
+
+        <!-- Stage descriptions (the accessible, indexable content) -->
+        <ol class="grid md:grid-cols-3 gap-6 list-none max-w-5xl mx-auto">
+          {content.premise.loop.stages.map((stage: { name: string; description: string }, index: number) => (
+            <li class="bg-white rounded-xl p-6 border border-teal-200">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-950 text-white font-bold text-sm shrink-0" aria-hidden="true">{index + 1}</span>
+                <h3 class="text-lg font-bold text-teal-950">{stage.name}</h3>
+              </div>
+              <p class="text-teal-900">{stage.description}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section bg-white">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-10 text-center">{content.testimonials.title}</h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {testimonials.map((t) => (
+            <blockquote class="bg-teal-50 rounded-xl p-8 border border-teal-200">
+              <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              </svg>
+              <p class="text-lg text-teal-900 italic mb-4" set:html={`&ldquo;${formatMarkdown(t.data.quote)}&rdquo;`} />
+              <footer class="flex items-center gap-3">
+                {t.data.headshot ? (
+                  <img src={t.data.headshot} alt={t.data.author} class="w-10 h-10 rounded-full object-cover shrink-0" />
+                ) : (
+                  <div class="w-10 h-10 rounded-full bg-teal-950 flex items-center justify-center text-white font-bold text-xs shrink-0" aria-hidden="true">{t.data.author.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}</div>
+                )}
+                <div>
+                  <p class="text-teal-950 font-semibold">{t.data.author}</p>
+                  {t.data.role && <p class="text-teal-700 text-sm">{t.data.role}</p>}
+                </div>
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- What you get inside the Lab -->
+    <section class="section bg-teal-50">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-4 text-center" set:html={content.whatYouGet.title}></h2>
+        <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-12 text-center" set:html={formatMarkdown(content.whatYouGet.intro)} />
+
+        <div class="grid md:grid-cols-3 gap-6">
+          {content.whatYouGet.items.map((item: { title: string; description: string; schedule?: string }, index: number) => (
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-teal-200 flex flex-col">
+              <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center mb-5 text-teal-950" aria-hidden="true">
+                {index === 0 && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                )}
+                {index === 1 && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l3.586-3.586z" /></svg>
+                )}
+                {index === 2 && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                )}
+              </div>
+              <h3 class="text-xl font-bold text-teal-950 mb-3">{item.title}</h3>
+              {item.schedule && (
+                <p class="inline-flex items-center gap-2 self-start bg-teal-100 text-teal-950 font-semibold text-sm rounded-full px-3 py-1.5 mb-3">
+                  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  {item.schedule}
+                </p>
+              )}
+              <p class="text-teal-900">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How a Lab works -->
+    <section class="section bg-white">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-10 text-center">{content.howLab.title}</h2>
+
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <img
+            src={content.howLab.image}
+            alt={content.howLab.imageAlt}
+            width="1500"
+            height="1000"
+            loading="lazy"
+            class="w-full rounded-2xl shadow-md object-cover"
+          />
+
+          <ol class="space-y-5 list-none">
+            {content.howLab.steps.map((step: string, index: number) => (
+              <li class="flex gap-4 items-start">
+                <span class="flex items-center justify-center w-9 h-9 rounded-full bg-coral text-white font-bold shrink-0" aria-hidden="true">{index + 1}</span>
+                <p class="text-lg text-teal-900 pt-1" set:html={formatMarkdown(step)} />
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- What starts to change -->
+    <section class="section bg-teal-50">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-4 text-center">{content.imagine.title}</h2>
+        <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-10 text-center">{content.imagine.subtitle}</p>
+
+        <div class="max-w-3xl mx-auto mb-10 bg-white rounded-2xl overflow-hidden shadow-sm border border-teal-200">
+          {content.imagine.items.map((item: { before: string; after: string }, index: number) => (
+            <div class:list={["grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 px-6 py-5", index < content.imagine.items.length - 1 && "border-b border-teal-200"]}>
+              <p class="text-teal-900 text-lg">{item.before}</p>
+              <svg class="w-6 h-6 text-coral shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" role="img" aria-label="becomes"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+              <p class="text-teal-950 font-bold text-lg">{item.after}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-900 font-medium max-w-2xl mx-auto text-center">{content.imagine.closing}</p>
+      </div>
+    </section>
+
+    <!-- Two other ways to work with me -->
+    <section class="section bg-teal-950">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section !text-white mb-10 text-center">{content.alsoAvailable.title}</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          {content.alsoAvailable.items.map((item: { title: string; description: string; link?: string; linkText?: string }) => (
+            <div class="bg-white rounded-2xl p-8 shadow-sm flex flex-col">
+              <h3 class="text-xl font-bold text-teal-950 mb-3">{item.title}</h3>
+              <p class="text-teal-900 mb-4 grow">{item.description}</p>
+              {item.link && item.linkText && (
+                <a href={item.link} class="text-coral font-semibold underline underline-offset-2 hover:text-teal-950 self-start">
+                  {item.linkText}
+                  <span aria-hidden="true">&nbsp;&rarr;</span>
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule a call -->
+    <section id="schedule" class="section bg-teal-50 scroll-mt-4">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-6 text-center">{content.cta.title}</h2>
+
+        <div class="prose-custom max-w-2xl mx-auto text-center mb-6">
+          {content.cta.paragraphs.map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+        </div>
+
+        <p class="bg-white rounded-lg p-4 border border-teal-200 text-teal-950 font-medium mb-8 max-w-2xl mx-auto text-center" set:html={formatMarkdown(content.cta.callout)} />
+
+        <div class="rounded-xl overflow-hidden bg-white max-w-3xl mx-auto">
+          <iframe src={BOOKING_URL} class="w-full border-none" style="min-height:700px;" scrolling="no" title="Schedule a call with Andrea Goulet"></iframe>
+          <script type="text/javascript" src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
+        </div>
+        <p class="mt-4 text-center text-teal-900 text-sm">
+          Having trouble seeing the calendar?
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="underline hover:text-teal-950">Book directly here</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter
+    copyright={footer.copyright || ''}
+    termsUrl={footer.termsUrl || ''}
+    privacyUrl={footer.privacyUrl || ''}
+  />
+</Layout>
+
+<style>
+  /* True trademark superscript: smaller, raised, and not bolded.
+     :global because it lives inside a set:html string (not scoped). */
+  :global(.tm) {
+    font-size: 0.5em;
+    font-weight: 400;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 0.08em;
+  }
+
+  /* Hero headline: a touch smaller than .heading-hero so the longer copy
+     wraps to balanced lines and aligns with the top of the portrait. */
+  .hero-headline {
+    font-size: clamp(2rem, 1.1rem + 2.6vw, 2.875rem);
+    line-height: 1.1;
+    text-wrap: balance;
+    font-weight: 800;
+    color: var(--color-teal-950);
+  }
+
+  .prose-custom p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: var(--color-teal-900);
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-custom strong {
+    color: var(--color-teal-950);
+  }
+</style>
