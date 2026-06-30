@@ -39,6 +39,15 @@ const BOOKING_URL = 'https://links.debugginghumancommunication.com/widget/bookin
 
           <p class="text-lg md:text-xl text-teal-900 leading-relaxed mb-6" set:html={formatMarkdown(content.hero.subheadline)} />
 
+          <!-- Portrait (mobile): shown before the calendar on small screens -->
+          <div class="lg:hidden mb-6">
+            <img
+              src={content.hero.faceImage}
+              alt={content.hero.faceImageAlt}
+              class="aspect-square w-full max-w-[20rem] mx-auto rounded-2xl object-cover object-top"
+            />
+          </div>
+
           <div class="rounded-xl border border-teal-200 shadow-sm bg-teal-50 p-5 md:p-6">
             <h2 class="text-xl font-bold text-teal-950 mb-4">{content.hero.ctaHeading}</h2>
             <div class="rounded-lg overflow-hidden bg-white border border-teal-200">
@@ -61,15 +70,6 @@ const BOOKING_URL = 'https://links.debugginghumancommunication.com/widget/bookin
             class="h-full w-auto object-contain object-bottom"
           />
         </div>
-      </div>
-
-      <!-- Portrait (mobile) -->
-      <div class="lg:hidden px-6 pt-10 pb-2">
-        <img
-          src={content.hero.faceImage}
-          alt={content.hero.faceImageAlt}
-          class="aspect-square w-full max-w-[20rem] mx-auto rounded-2xl object-cover object-top"
-        />
       </div>
     </section>
 
