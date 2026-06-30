@@ -21,7 +21,7 @@ const testimonials = featuredTestimonialIds
   .map(id => allShared.find(e => e.id === id))
   .filter((e): e is NonNullable<typeof e> => Boolean(e));
 
-const BOOKING_URL = 'https://links.debugginghumancommunication.com/widget/booking/AtiyMWERWdg3TT1IQwVh';
+const BOOKING_URL = 'https://calendly.com/andreagoulet/communication-lab?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=049bd2';
 ---
 
 <Layout
@@ -51,8 +51,7 @@ const BOOKING_URL = 'https://links.debugginghumancommunication.com/widget/bookin
           <div class="rounded-xl border border-teal-200 shadow-sm bg-teal-50 p-5 md:p-6">
             <h2 class="text-xl font-bold text-teal-950 mb-4">{content.hero.ctaHeading}</h2>
             <div class="rounded-lg overflow-hidden bg-white border border-teal-200">
-              <iframe src={BOOKING_URL} class="w-full border-none" style="min-height:420px;" scrolling="no" title="Schedule a call with Andrea Goulet"></iframe>
-              <script type="text/javascript" src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
+              <div class="calendly-inline-widget" data-url={BOOKING_URL} style="min-width:320px;height:680px;"></div>
             </div>
             <p class="mt-3 text-teal-900 text-sm">
               Having trouble seeing the calendar?
@@ -245,9 +244,9 @@ const BOOKING_URL = 'https://links.debugginghumancommunication.com/widget/bookin
         <p class="bg-white rounded-lg p-4 border border-teal-200 text-teal-950 font-medium mb-8 max-w-2xl mx-auto text-center" set:html={formatMarkdown(content.cta.callout)} />
 
         <div class="rounded-xl overflow-hidden bg-white max-w-3xl mx-auto">
-          <iframe src={BOOKING_URL} class="w-full border-none" style="min-height:700px;" scrolling="no" title="Schedule a call with Andrea Goulet"></iframe>
-          <script type="text/javascript" src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
+          <div class="calendly-inline-widget" data-url={BOOKING_URL} style="min-width:320px;height:700px;"></div>
         </div>
+        <script is:inline type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         <p class="mt-4 text-center text-teal-900 text-sm">
           Having trouble seeing the calendar?
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="underline hover:text-teal-950">Book directly here</a>.
