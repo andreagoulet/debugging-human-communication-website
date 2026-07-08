@@ -35,7 +35,7 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
     <section class="relative bg-white overflow-hidden">
       <div class="max-w-7xl mx-auto px-6 pt-12 lg:pt-16 grid items-stretch gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
         <!-- Text column -->
-        <div class="max-w-2xl flex flex-col justify-center">
+        <div class="max-w-2xl pb-12">
           <h1 class="hero-headline mb-5" set:html={formatMarkdown(content.hero.headline)} />
 
           <p class="text-lg md:text-xl text-teal-900 leading-relaxed mb-6" set:html={formatMarkdown(content.hero.subheadline)} />
@@ -55,13 +55,14 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
           </a>
         </div>
 
-        <!-- Portrait column (desktop): bottom-anchored so the feet meet the
-             section bottom; text is centered beside it (no tall gap under the buttons). -->
-        <div class="relative hidden lg:flex lg:items-end lg:justify-center">
+        <!-- Portrait column (desktop): the image is absolutely positioned so it
+             fills the text-driven row height exactly — head at the top of the
+             content, feet at the section bottom — without adding its own height. -->
+        <div class="relative hidden lg:block">
           <img
             src={content.hero.image}
             alt={content.hero.imageAlt}
-            class="w-auto h-auto max-h-[34rem] object-contain object-bottom"
+            class="absolute bottom-0 left-1/2 -translate-x-1/2 h-full w-auto max-w-none"
           />
         </div>
       </div>
