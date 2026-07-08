@@ -4,14 +4,21 @@
  * Client verifies with reCAPTCHA v3, then POSTs to /api/lead, which verifies
  * the token server-side and creates a Person + Lead in Pipedrive.
  *
+ * Multi-instance safe: pass a unique `formId` when using more than one on a
+ * page, and set `loadRecaptcha={false}` on all but the first so the reCAPTCHA
+ * script is only loaded once.
+ *
  * Env: PUBLIC_RECAPTCHA_SITE_KEY (client), plus RECAPTCHA_SECRET_KEY and
  * PIPEDRIVE_API_TOKEN on the server (used by /api/lead).
  */
 interface Props {
   heading: string;
   text: string;
+  formId?: string;
+  loadRecaptcha?: boolean;
 }
-const { heading, text } = Astro.props;
+const { heading, text, formId = "lead-form", loadRecaptcha = true } = Astro.props;
+const statusId = `${formId}-status`;
 const siteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 
@@ -19,7 +26,7 @@ const siteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   <h2 class="text-lg font-bold text-teal-950 mb-1">{heading}</h2>
   <p class="text-teal-900 text-sm mb-4">{text}</p>
 
-  <form id="lead-form" class="space-y-3" novalidate>
+  <form id={formId} class="space-y-3" novalidate>
     <input
       type="text"
       name="name"
@@ -39,21 +46,23 @@ const siteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     <!-- Honeypot: hidden from people; bots tend to fill it. -->
     <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
-    <button type="submit" class="btn-primary w-full text-center">Send it to me</button>
+    <button type="submit" class="btn-primary w-full text-center">Subscribe</button>
 
     <p class="text-teal-900 text-xs leading-relaxed">
       By submitting, you agree to receive emails from Andrea Goulet. Unsubscribe anytime.
       See our <a href="/privacy" class="underline hover:text-teal-950">Privacy Policy</a>.
       This site is protected by reCAPTCHA.
     </p>
-    <p id="lead-status" class="text-sm min-h-[1.25em]" aria-live="polite"></p>
+    <p id={statusId} class="text-sm min-h-[1.25em]" aria-live="polite"></p>
   </form>
 </div>
 
-<script is:inline src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}></script>
-<script define:vars={{ siteKey }}>
-  const form = document.getElementById('lead-form');
-  const status = document.getElementById('lead-status');
+{loadRecaptcha && (
+  <script is:inline src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}></script>
+)}
+<script define:vars={{ siteKey, formId, statusId }}>
+  const form = document.getElementById(formId);
+  const status = document.getElementById(statusId);
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -106,7 +115,7 @@ const siteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       status.textContent = err.message || 'Something went wrong. Please try again.';
       status.classList.add('text-coral');
       btn.disabled = false;
-      btn.textContent = 'Send it to me';
+      btn.textContent = 'Subscribe';
     }
   });
 </script>

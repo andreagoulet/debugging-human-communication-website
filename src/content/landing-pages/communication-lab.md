@@ -6,18 +6,20 @@ description: "You can debug your human communication the same way you debug your
 hero:
   headline: "Communication Coaching for Software Professionals"
   subheadline: "You can debug your human communication the same way you debug your code. Andrea Goulet provides group and private coaching programs that use software development principles to help you level up your influence and impact."
-  emailHeading: "Design your first experiment"
-  emailText: "Get a free email series that walks you through debugging your first real conversation — one small experiment at a time."
+  emailHeading: "Improve Your Influence and Impact"
+  emailText: "Get practical communication experiments to try today."
   image: "/images/andrea-hero.webp"
-  imageAlt: "Andrea Goulet, communication coach and host of the Communication Lab, holding a laptop"
+  imageAlt: "Andrea Goulet, communication coach for software professionals, holding a laptop"
   faceImage: "/images/andrea-headshot.jpg"
-  faceImageAlt: "Andrea Goulet, communication coach and host of the Communication Lab"
+  faceImageAlt: "Andrea Goulet, communication coach for software professionals"
 
 premise:
-  title: "Your Software Skills Are an Asset"
+  title: "Use the Language of Software to Level Up Your Communication"
+  image: "/images/group-coaching.webp"
+  imageAlt: "Software professionals in a live virtual group coaching session on a video call"
   paragraphs:
     - "**Emotions as classes? Refactoring is an act of compassion? Interactions as test-driven development? Metaphors as abstractions? Yes.**"
-    - "Andrea Goulet is unlike any communication coach you've ever met. She uses the language of software to help you decompose problems, design experiments, and discover the hidden patterns of human communication."
+    - "Andrea Goulet is unlike any communication coach you've ever met. She uses software principles to help you decompose problems, design experiments, and discover the hidden patterns of human communication."
   loop:
     stages:
       - name: "Decompose Problems"
@@ -27,8 +29,38 @@ premise:
       - name: "Measure Results"
         description: "Compare the results against benchmarks for clarity, behavior, and impact. Then run the next experiment."
 
+audience:
+  title: "Connect with Software Professionals Like You"
+  intro: "Collaborate with peers who understand tech, such as:"
+  domains:
+    - "Software Development"
+    - "DevOps & Infrastructure"
+    - "Data & Analytics"
+    - "Machine Learning & AI"
+    - "Security & Testing"
+    - "System Architecture"
+    - "Developer Experience"
+    - "Tech Leadership"
+    - "Product & Design"
+    - "Founders & CTO"
+    - "Agile"
+    - "Code Quality"
+
+challenges:
+  title: "Reach Your Goals with Group Coaching"
+  intro: "Join other software professionals who are working on:"
+  items:
+    - "Navigating disruptive industry changes"
+    - "Making technical nuance business-friendly"
+    - "Giving feedback and reviewing code"
+    - "Dealing with difficult colleagues and bosses"
+    - "Launching businesses and consultancies"
+    - "Sharing ideas to bigger audiences"
+    - "Delivering powerful presentations"
+    - "Moving into management"
+
 whatYouGet:
-  title: "Join the Communication Lab<sup class='tm'>™</sup> Community"
+  title: "Grow Your Communication Skills in Community"
   intro: "Andrea's group coaching program is all about experiments, peer support, and improvements you can implement immediately."
   items:
     - title: "Weekly Coaching Sessions"
@@ -38,19 +70,9 @@ whatYouGet:
     - title: "Member Book Clubs"
       description: "Curated content and conversations to support your communication experiments."
 
-howLab:
-  title: "Software-Specific Group Coaching Sessions"
-  image: "/images/group-coaching.webp"
-  imageAlt: "A Lab member taking notes during a live virtual group coaching session, with other participants on a video call grid"
-  steps:
-    - "**Post a problem in the chat.** Don't worry. Each session starts with a few minutes of silence so you can pause and think first."
-    - "**Vote on priority.** Use emojis to indicate your preference. Andrea also keeps track of who's had time in each session."
-    - "**Discuss in order.** Andrea facilitates a discussion so each problem gets about 10 minutes of focus."
-    - "**Design your experiment.** This is where things get concrete: you define a specific hypothesis that you can measure and test."
-
 imagine:
   title: "Expand Your Impact and Influence"
-  subtitle: "The Communication Lab is designed specifically to help software professionals reach their communication goals."
+  subtitle: "This group coaching program is designed specifically to help software professionals reach their communication goals."
   items:
     - before: "You explain your idea"
       after: "Your idea gets implemented"
@@ -64,23 +86,38 @@ imagine:
       after: "You walk out with real connections"
     - before: "You share your expertise"
       after: "You become a trusted voice"
-  closing: "One small shift could change your career. Join the Communication Lab to get the concrete advice and peer community you've been craving."
+  closing: "One small shift could change your career."
 
 testimonials:
-  title: "Real Results from Real Software Developers"
+  title: "Real Results from Real Software Professionals"
   # Quotes are edited in src/content/shared/testimonials/. This block only sets the section heading.
 
-alsoAvailable:
-  title: "Private and Team Coaching Available"
-  items:
-    - title: "Individual Attention for Faster Results"
-      description: "Get even more out of the Communication Lab by adding on monthly one-on-one sessions with Andrea. Private coaching clients receive all of the group coaching benefits plus a communication style assessment, recording links, and detailed reports documenting your progress."
-    - title: "Bring the Communication Lab to Your Company"
-      description: "What's better than solving problems as an individual? Solving problems as a team. Andrea's experiment-driven coaching style can be perfectly adapted to organizations who want to remove roadblocks and operate more effectively. Workshops, training, and weekly labs available."
+privateCoaching:
+  eyebrow: "One-on-One Coaching"
+  title: "Private Coaching"
+  description: "Add monthly one-on-one sessions with Andrea on top of the group coaching program — focused, confidential attention on your specific goals."
+  benefits:
+    - "Monthly 1:1 sessions with Andrea"
+    - "Everything in the group coaching program"
+    - "A personal communication style assessment"
+    - "Recording links for every session"
+    - "Detailed reports documenting your progress"
+    - "A plan tailored to your specific goals"
+
+teamCoaching:
+  eyebrow: "Coaching for Teams"
+  title: "Team & Corporate Training"
+  description: "What's better than solving problems as an individual? Solving problems as a team. Andrea's experiment-driven coaching adapts to your organization — helping your team remove roadblocks and operate more effectively."
+  offerings:
+    - title: "Workshops"
+      description: "Surface and solve challenges with Andrea's experiment-driven approach that's perfect for tech teams."
+    - title: "Keynotes"
+      description: "Inspire your organization with Andrea's engaging presentation style that resonates with software professionals."
+    - title: "Facilitated Labs"
+      description: "Improve your team's communication with ongoing sessions designed to bring significant organizational value."
 
 cta:
   title: "Next Step? Schedule a Conversation."
   paragraphs:
-    - "Chances are, you've got questions. If you're interested in learning more about how the Communication Lab works and whether it's the right fit for you, book a call to chat with Andrea directly."
-  callout: "Don't be shy. Start your first experiment by booking your call now."
+    - "Chances are, you've got questions. If you're interested in learning more about how the group coaching works and whether it's the right fit for you, book a call to chat with Andrea directly."
 ---

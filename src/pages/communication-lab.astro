@@ -50,8 +50,8 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
           </div>
 
           <EmailSignupForm heading={content.hero.emailHeading} text={content.hero.emailText} />
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-teal-950 font-semibold underline underline-offset-2 hover:text-coral">
-            Already know you want to talk? Book a discovery call &rarr;
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-teal-950 underline underline-offset-2 hover:text-coral">
+            Book a discovery call &rarr;
           </a>
         </div>
 
@@ -68,40 +68,14 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
       </div>
     </section>
 
-    <!-- The premise: communication as a system you can debug -->
-    <section class="section bg-teal-50">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="heading-section mb-8 text-center">{content.premise.title}</h2>
-
-        <div class="prose-custom max-w-2xl mx-auto mb-12 text-center">
-          {content.premise.paragraphs.map((p: string) => (
-            <p set:html={formatMarkdown(p)} />
-          ))}
-        </div>
-
-        <!-- Stage descriptions (the accessible, indexable content) -->
-        <ol class="grid md:grid-cols-3 gap-6 list-none max-w-5xl mx-auto">
-          {content.premise.loop.stages.map((stage: { name: string; description: string }, index: number) => (
-            <li class="bg-white rounded-xl p-6 border border-teal-200">
-              <div class="flex items-center gap-3 mb-3">
-                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-950 text-white font-bold text-sm shrink-0" aria-hidden="true">{index + 1}</span>
-                <h3 class="text-lg font-bold text-teal-950">{stage.name}</h3>
-              </div>
-              <p class="text-teal-900">{stage.description}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-
     <!-- Testimonials -->
-    <section class="section bg-white">
+    <section class="section bg-teal-50">
       <div class="max-w-7xl mx-auto">
         <h2 class="heading-section mb-10 text-center">{content.testimonials.title}</h2>
 
         <div class="grid md:grid-cols-2 gap-8">
           {testimonials.map((t) => (
-            <blockquote class="bg-teal-50 rounded-xl p-8 border border-teal-200">
+            <blockquote class="bg-white rounded-xl p-8 border border-teal-200">
               <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
@@ -123,10 +97,75 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
       </div>
     </section>
 
+    <!-- The premise: communication as a system you can debug -->
+    <section class="section bg-white">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-10 text-center">{content.premise.title}</h2>
+
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-14 max-w-5xl mx-auto">
+          <div class="prose-custom">
+            {content.premise.paragraphs.map((p: string) => (
+              <p set:html={formatMarkdown(p)} />
+            ))}
+          </div>
+          <img
+            src={content.premise.image}
+            alt={content.premise.imageAlt}
+            width="1500"
+            height="1000"
+            loading="lazy"
+            class="rounded-2xl shadow-md w-full"
+          />
+        </div>
+
+        <!-- Stage descriptions (the accessible, indexable content) -->
+        <ol class="grid md:grid-cols-3 gap-6 list-none max-w-5xl mx-auto">
+          {content.premise.loop.stages.map((stage: { name: string; description: string }, index: number) => (
+            <li class="bg-teal-50 rounded-xl p-6 border border-teal-200">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-950 text-white font-bold text-sm shrink-0" aria-hidden="true">{index + 1}</span>
+                <h3 class="text-lg font-bold text-teal-950">{stage.name}</h3>
+              </div>
+              <p class="text-teal-900">{stage.description}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Who this is for: roles you'll identify with -->
+    <section class="section bg-teal-950">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section !text-white mb-4 text-center">{content.audience.title}</h2>
+        <p class="text-lg text-teal-200 max-w-2xl mx-auto mb-10 text-center">{content.audience.intro}</p>
+        <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-teal-200 rounded-xl overflow-hidden border border-teal-200 shadow-sm max-w-5xl mx-auto list-none">
+          {content.audience.domains.map((domain: string) => (
+            <li class="bg-white px-4 py-4 text-center text-teal-950 font-medium">{domain}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- What you're working on: common challenges -->
+    <section class="section bg-white">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-4 text-center">{content.challenges.title}</h2>
+        <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-10 text-center">{content.challenges.intro}</p>
+        <ul class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto list-none">
+          {content.challenges.items.map((item: string) => (
+            <li class="flex gap-3 items-start bg-teal-50 rounded-xl p-5 border border-teal-200">
+              <svg class="w-5 h-5 text-coral shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span class="text-teal-900">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
     <!-- What you get inside the Lab -->
     <section class="section bg-teal-50">
       <div class="max-w-7xl mx-auto">
-        <h2 class="heading-section mb-4 text-center" set:html={content.whatYouGet.title}></h2>
+        <h2 class="heading-section mb-4 text-center">{content.whatYouGet.title}</h2>
         <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-12 text-center" set:html={formatMarkdown(content.whatYouGet.intro)} />
 
         <div class="grid md:grid-cols-3 gap-6">
@@ -157,40 +196,13 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
       </div>
     </section>
 
-    <!-- How a Lab works -->
-    <section class="section bg-white">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="heading-section mb-10 text-center">{content.howLab.title}</h2>
-
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <img
-            src={content.howLab.image}
-            alt={content.howLab.imageAlt}
-            width="1500"
-            height="1000"
-            loading="lazy"
-            class="w-full rounded-2xl shadow-md object-cover"
-          />
-
-          <ol class="space-y-5 list-none">
-            {content.howLab.steps.map((step: string, index: number) => (
-              <li class="flex gap-4 items-start">
-                <span class="flex items-center justify-center w-9 h-9 rounded-full bg-coral text-white font-bold shrink-0" aria-hidden="true">{index + 1}</span>
-                <p class="text-lg text-teal-900 pt-1" set:html={formatMarkdown(step)} />
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-    </section>
-
     <!-- What starts to change -->
-    <section class="section bg-teal-50">
+    <section class="section bg-white">
       <div class="max-w-7xl mx-auto">
         <h2 class="heading-section mb-4 text-center">{content.imagine.title}</h2>
         <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-10 text-center">{content.imagine.subtitle}</p>
 
-        <div class="max-w-3xl mx-auto mb-10 bg-white rounded-2xl overflow-hidden shadow-sm border border-teal-200">
+        <div class="max-w-3xl mx-auto mb-10 bg-teal-50 rounded-2xl overflow-hidden shadow-sm border border-teal-200">
           {content.imagine.items.map((item: { before: string; after: string }, index: number) => (
             <div class:list={["grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 px-6 py-5", index < content.imagine.items.length - 1 && "border-b border-teal-200"]}>
               <p class="text-teal-900 text-lg">{item.before}</p>
@@ -204,44 +216,61 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
       </div>
     </section>
 
-    <!-- Two other ways to work with me -->
-    <section class="section bg-teal-950">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="heading-section !text-white mb-10 text-center">{content.alsoAvailable.title}</h2>
-
-        <div class="grid md:grid-cols-2 gap-6">
-          {content.alsoAvailable.items.map((item: { title: string; description: string; link?: string; linkText?: string }) => (
-            <div class="bg-white rounded-2xl p-8 shadow-sm flex flex-col">
-              <h3 class="text-xl font-bold text-teal-950 mb-3">{item.title}</h3>
-              <p class="text-teal-900 mb-4 grow">{item.description}</p>
-              {item.link && item.linkText && (
-                <a href={item.link} class="text-coral font-semibold underline underline-offset-2 hover:text-teal-950 self-start">
-                  {item.linkText}
-                  <span aria-hidden="true">&nbsp;&rarr;</span>
-                </a>
-              )}
-            </div>
-          ))}
+    <!-- Private coaching -->
+    <section class="section bg-teal-50">
+      <div class="max-w-5xl mx-auto">
+        <div class="max-w-2xl mx-auto text-center mb-10">
+          <p class="text-sm font-bold uppercase tracking-wider text-coral mb-3">{content.privateCoaching.eyebrow}</p>
+          <h2 class="heading-section mb-4">{content.privateCoaching.title}</h2>
+          <p class="text-lg text-teal-900">{content.privateCoaching.description}</p>
         </div>
+        <ul class="grid sm:grid-cols-2 gap-4 list-none">
+          {content.privateCoaching.benefits.map((benefit: string) => (
+            <li class="flex gap-3 items-start bg-white rounded-xl p-5 border border-teal-200">
+              <svg class="w-5 h-5 text-coral shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span class="text-teal-900">{benefit}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Team coaching -->
+    <section class="section bg-teal-950">
+      <div class="max-w-5xl mx-auto">
+        <div class="max-w-2xl mx-auto text-center mb-10">
+          <p class="text-sm font-bold uppercase tracking-wider text-teal-300 mb-3">{content.teamCoaching.eyebrow}</p>
+          <h2 class="heading-section !text-white mb-4">{content.teamCoaching.title}</h2>
+          <p class="text-lg text-teal-200">{content.teamCoaching.description}</p>
+        </div>
+        <ul class="grid md:grid-cols-3 gap-6 list-none">
+          {content.teamCoaching.offerings.map((offering: { title: string; description: string }) => (
+            <li class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="text-lg font-bold text-teal-950 mb-2">{offering.title}</h3>
+              <p class="text-teal-900">{offering.description}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 
     <!-- Closing call-to-action -->
     <section id="schedule" class="section bg-white scroll-mt-4">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="heading-section mb-6 text-center">{content.cta.title}</h2>
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="heading-section mb-4">{content.cta.title}</h2>
 
-        <div class="prose-custom max-w-2xl mx-auto text-center mb-6">
+        <div class="prose-custom mb-8">
           {content.cta.paragraphs.map((p: string) => (
             <p set:html={formatMarkdown(p)} />
           ))}
         </div>
 
-        <p class="bg-white rounded-lg p-4 border border-teal-200 text-teal-950 font-medium mb-8 max-w-2xl mx-auto text-center" set:html={formatMarkdown(content.cta.callout)} />
-
-        <div class="flex justify-center">
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary-lg text-center">Book a Discovery Call</a>
+        <div class="max-w-lg mx-auto text-left">
+          <EmailSignupForm heading={content.hero.emailHeading} text={content.hero.emailText} formId="closing-lead" loadRecaptcha={false} />
         </div>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-teal-950 underline underline-offset-2 hover:text-coral">
+          Book a discovery call &rarr;
+        </a>
       </div>
     </section>
   </main>
@@ -254,16 +283,6 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
 </Layout>
 
 <style>
-  /* True trademark superscript: smaller, raised, and not bolded.
-     :global because it lives inside a set:html string (not scoped). */
-  :global(.tm) {
-    font-size: 0.5em;
-    font-weight: 400;
-    vertical-align: super;
-    line-height: 0;
-    margin-left: 0.08em;
-  }
-
   /* Hero headline: a touch smaller than .heading-hero so the longer copy
      wraps to balanced lines and aligns with the top of the portrait. */
   .hero-headline {
