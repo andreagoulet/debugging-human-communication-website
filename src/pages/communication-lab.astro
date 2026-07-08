@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import EmailSignupForm from '../components/EmailSignupForm.astro';
 import { getCollection } from 'astro:content';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
@@ -22,7 +23,6 @@ const testimonials = featuredTestimonialIds
   .filter((e): e is NonNullable<typeof e> => Boolean(e));
 
 const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
-const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/6zha0rRtiusaBpk5wVbc1PSqwTW9xWWTLfx0MunOQkDpuUmULid7fvqt0qyVa2lRK3';
 ---
 
 <Layout
@@ -35,7 +35,7 @@ const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/6zha0rRtiusaBpk5wVb
     <section class="relative bg-white overflow-hidden">
       <div class="max-w-7xl mx-auto px-6 pt-12 lg:pt-16 grid items-stretch gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
         <!-- Text column -->
-        <div class="max-w-2xl lg:pt-1 pb-12">
+        <div class="max-w-2xl flex flex-col justify-center">
           <h1 class="hero-headline mb-5" set:html={formatMarkdown(content.hero.headline)} />
 
           <p class="text-lg md:text-xl text-teal-900 leading-relaxed mb-6" set:html={formatMarkdown(content.hero.subheadline)} />
@@ -49,19 +49,19 @@ const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/6zha0rRtiusaBpk5wVb
             />
           </div>
 
-          <div class="flex flex-col sm:flex-row gap-3">
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary text-center">Book a call with Andrea</a>
-            <a href={PIPEDRIVE_FORM_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center border-2 border-teal-800 text-teal-950 font-bold text-lg px-8 py-4 rounded-lg hover:bg-teal-50 transition-colors">Prefer email? Stay in touch</a>
-          </div>
+          <EmailSignupForm heading={content.hero.emailHeading} text={content.hero.emailText} />
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-teal-950 font-semibold underline underline-offset-2 hover:text-coral">
+            Already know you want to talk? Book a discovery call &rarr;
+          </a>
         </div>
 
-        <!-- Portrait column (desktop): fills the row so head meets the headline
-             and feet reach the section bottom; w-auto preserves aspect ratio. -->
+        <!-- Portrait column (desktop): bottom-anchored so the feet meet the
+             section bottom; text is centered beside it (no tall gap under the buttons). -->
         <div class="relative hidden lg:flex lg:items-end lg:justify-center">
           <img
             src={content.hero.image}
             alt={content.hero.imageAlt}
-            class="h-full w-auto object-contain object-bottom"
+            class="w-auto h-auto max-h-[34rem] object-contain object-bottom"
           />
         </div>
       </div>
@@ -238,9 +238,8 @@ const PIPEDRIVE_FORM_URL = 'https://webforms.pipedrive.com/f/6zha0rRtiusaBpk5wVb
 
         <p class="bg-white rounded-lg p-4 border border-teal-200 text-teal-950 font-medium mb-8 max-w-2xl mx-auto text-center" set:html={formatMarkdown(content.cta.callout)} />
 
-        <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto">
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary text-center">Book a call with Andrea</a>
-          <a href={PIPEDRIVE_FORM_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center border-2 border-teal-800 text-teal-950 font-bold text-lg px-8 py-4 rounded-lg hover:bg-teal-50 transition-colors">Prefer email? Stay in touch</a>
+        <div class="flex justify-center">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary-lg text-center">Book a Discovery Call</a>
         </div>
       </div>
     </section>

@@ -6,8 +6,8 @@ description: "You can debug your human communication the same way you debug your
 hero:
   headline: "Communication Coaching for Software Professionals"
   subheadline: "You can debug your human communication the same way you debug your code. Andrea Goulet provides group and private coaching programs that use software development principles to help you level up your influence and impact."
-  emailHeading: "Not ready to book? Stay in touch."
-  emailText: "Get occasional emails about communication experiments — no pressure, unsubscribe anytime."
+  emailHeading: "Design your first experiment"
+  emailText: "Get a free email series that walks you through debugging your first real conversation — one small experiment at a time."
   image: "/images/andrea-hero.webp"
   imageAlt: "Andrea Goulet, communication coach and host of the Communication Lab, holding a laptop"
   faceImage: "/images/andrea-headshot.jpg"
