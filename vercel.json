@@ -1,12 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "(www\\.)?communicationlab\\.io" }],
-      "destination": "https://www.debugginghumancommunication.com/",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
