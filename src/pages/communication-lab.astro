@@ -254,6 +254,31 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
       </div>
     </section>
 
+    <!-- Meet Andrea (bio) -->
+    <section class="section bg-teal-50">
+      <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
+          <img
+            src={content.bio.image}
+            alt={content.bio.imageAlt}
+            width="1500"
+            height="2249"
+            loading="lazy"
+            class="w-56 mx-auto md:mx-0 rounded-2xl shadow-md"
+          />
+          <div>
+            <p class="text-sm font-bold uppercase tracking-wider text-coral mb-3">{content.bio.eyebrow}</p>
+            <h2 class="heading-section mb-5">{content.bio.title}</h2>
+            <div class="prose-custom">
+              {content.bio.paragraphs.map((p: string) => (
+                <p set:html={formatMarkdown(p)} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Closing call-to-action -->
     <section id="schedule" class="section bg-white scroll-mt-4">
       <div class="max-w-2xl mx-auto text-center">

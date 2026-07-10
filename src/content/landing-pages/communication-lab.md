@@ -116,6 +116,15 @@ teamCoaching:
     - title: "Facilitated Labs"
       description: "Improve your team's communication with ongoing sessions designed to bring significant organizational value."
 
+bio:
+  eyebrow: "Your Coach"
+  title: "Meet Andrea Goulet"
+  image: "/images/andrea-goulet-sitting-bg.webp"
+  imageAlt: "Andrea Goulet, communication coach, sitting with a laptop"
+  paragraphs:
+    - "Andrea Goulet is a communication coach who speaks fluent developer. She co-founded Corgibytes, a software consultancy specializing in legacy code, and spent over 15 years alongside engineers — where she kept meeting brilliant people convinced they were \"bad with people.\" They weren't. They just didn't have a framework that fit how they think, so she built one."
+    - "Over 25 years, Andrea has scaled a multimillion-dollar software company, taught more than 100,000 learners, and delivered keynotes around the world. Her experiment-driven approach gives technical professionals a systematic way to test, refine, and trust their communication — because if you can debug code, you can debug a conversation."
+
 cta:
   title: "Next Step? Schedule a Conversation."
   paragraphs:

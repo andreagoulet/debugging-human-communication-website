@@ -3,6 +3,8 @@ import type { APIRoute } from "astro";
 export const prerender = false;
 
 const PIPEDRIVE_BASE = "https://api.pipedrive.com/v1";
+// Pipedrive "webform" lead label — lets automations filter to these signups.
+const LEAD_LABEL_ID = "3041fd30-7bc9-11f1-b64c-b3729d261594";
 const RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 // reCAPTCHA v3 returns a 0.0–1.0 score; 0.5 is Google's suggested default threshold.
 const MIN_RECAPTCHA_SCORE = 0.5;
@@ -85,8 +87,12 @@ export const POST: APIRoute = async ({ request }) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        title: `Communication Lab signup${name ? ` — ${name}` : ""}`,
+        // Lead title is just the person's name (falls back to email if no name
+        // was given, since Pipedrive requires a non-empty title). The "webform"
+        // label identifies the source.
+        title: name || email,
         person_id: personId,
+        label_ids: [LEAD_LABEL_ID],
       }),
     });
     if (!leadRes.ok) {
