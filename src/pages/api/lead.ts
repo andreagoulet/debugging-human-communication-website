@@ -17,8 +17,10 @@ function json(data: unknown, status: number) {
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const PIPEDRIVE_API_TOKEN = import.meta.env.PIPEDRIVE_API_TOKEN;
-  const RECAPTCHA_SECRET_KEY = import.meta.env.RECAPTCHA_SECRET_KEY;
+  // Names match the Vercel env vars exactly (case-sensitive). Read at runtime
+  // from process.env on Vercel; fall back to import.meta.env for local dev.
+  const PIPEDRIVE_API_TOKEN = process.env.Pipedrive_API ?? import.meta.env.Pipedrive_API;
+  const RECAPTCHA_SECRET_KEY = process.env.reCAPTCHA_secret_key ?? import.meta.env.reCAPTCHA_secret_key;
 
   if (!PIPEDRIVE_API_TOKEN || !RECAPTCHA_SECRET_KEY) {
     return json({ error: "Server configuration error" }, 500);

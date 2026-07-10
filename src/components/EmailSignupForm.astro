@@ -19,7 +19,10 @@ interface Props {
 }
 const { heading, text, formId = "lead-form", loadRecaptcha = true } = Astro.props;
 const statusId = `${formId}-status`;
-const siteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+// The reCAPTCHA v3 *site* key is public by design — it's rendered into the page
+// and locked to your domains in the reCAPTCHA admin — so it's safe to hardcode.
+// (The secret key stays server-side, in env vars, in /api/lead.)
+const siteKey = "6LeBmkotAAAAAMuTrXuPGH9M3KWeFAZC4rvauaAz";
 ---
 
 <div class="rounded-xl border border-teal-200 shadow-sm bg-teal-50 p-4 md:p-5">
