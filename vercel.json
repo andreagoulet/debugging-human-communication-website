@@ -3,7 +3,7 @@
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "(www\\.)?communicationlab\\.io" }],
-      "destination": "https://www.debugginghumancommunication.com/communication-lab",
+      "destination": "https://www.debugginghumancommunication.com/",
       "permanent": true
     }
   ],

@@ -20,11 +20,14 @@ export default defineConfig({
   redirects: {
     '/community': 'https://app.heartbeat.chat/debugginghumancommunication/invitation?code=J3524G',
     '/discovery': 'https://calendly.com/andreagoulet/discovery-session',
-    '/sbc-cold': '/',
+    // The Communication Lab is now the homepage; keep the old URL working.
+    '/communication-lab': '/',
+    // Masterclass moved off the root to /masterclass — keep its funnels pointed at it.
+    '/sbc-cold': '/masterclass',
     '/sbc-cold/book': '/book',
     '/sbc-warm': '/workshop/referred',
     '/guest-pass': '/workshop/referred',
-    '/workshop/new': '/',
+    '/workshop/new': '/masterclass',
     '/workshop/new/book': '/book',
   },
   vite: {

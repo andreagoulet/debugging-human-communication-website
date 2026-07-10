@@ -1,250 +1,90 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import EmailSignupForm from '../components/EmailSignupForm.astro';
 import { getCollection } from 'astro:content';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
 const footer = (await getCollection('website')).find(e => e.id === 'shared/footer.md')!.data;
 
 const allLandingPages = await getCollection('landing-pages');
-const content = allLandingPages.find(e => e.id === 'index-landing.md')!.data;
+const content = allLandingPages.find(e => e.id === 'communication-lab.md')!.data;
 
+// Curated testimonials for the Lab — experiment + community stories, in display order.
+const featuredTestimonialIds = [
+  'testimonials/lada-kesseler.md',
+  'testimonials/ted-young.md',
+  'testimonials/soumya-kulkarni.md',
+  'testimonials/ellis-lempriere.md',
+];
 const allShared = await getCollection('shared');
-const allTestimonials = allShared.filter(e => e.id.startsWith('testimonials/'));
-const testimonials = allTestimonials.sort((a, b) => a.data.order - b.data.order);
+const testimonials = featuredTestimonialIds
+  .map(id => allShared.find(e => e.id === id))
+  .filter((e): e is NonNullable<typeof e> => Boolean(e));
 
-// Course structured data for the free live masterclass.
-const courseSchema = {
-  '@type': 'Course',
-  name: 'Master the Hidden Patterns of Human Communication',
-  description: 'A free, live 3-hour virtual masterclass that teaches software developers and technical professionals a systematic, experiment-driven approach to communication — how to diagnose where conversations break down and fix them.',
-  provider: { '@id': new URL('#organization', Astro.site).toString() },
-  inLanguage: 'en',
-  isAccessibleForFree: true,
-  hasCourseInstance: {
-    '@type': 'CourseInstance',
-    name: 'Live Virtual Masterclass',
-    courseMode: 'Online',
-    courseWorkload: 'PT3H',
-    instructor: { '@id': new URL('#andrea-goulet', Astro.site).toString() },
-  },
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
-    availability: 'https://schema.org/InStock',
-  },
-};
+const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
 ---
 
 <Layout
-  title="Communication Masterclass for Software Developers | Andrea Goulet"
-  description="Transform your technical expertise into influence that earns buy-in, opens doors, and accelerates your career. A free 3-hour virtual masterclass for software developers and tech professionals."
+  title={content.title}
+  description={content.description}
   ogImage="/og-workshop.png"
-  structuredData={[courseSchema]}
 >
   <main>
     <!-- Hero -->
-    <section class="relative bg-teal-950 overflow-hidden px-6">
-      <div class="absolute inset-0" aria-hidden="true">
-        <div class="absolute inset-0 bg-gradient-to-br from-teal-950 via-teal-950/95 to-teal-800/30"></div>
-      </div>
-      <div class="container-lg relative z-10 py-16 md:py-24 text-center">
-        <h1 class="heading-hero !text-white mb-4" set:html={formatMarkdown(content.hero.headline)} />
-        <p class="text-xl md:text-2xl text-teal-200 max-w-3xl mx-auto mb-10" set:html={formatMarkdown(content.hero.subheadline)} />
+    <section class="relative bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 pt-12 lg:pt-16 grid items-stretch gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+        <!-- Text column -->
+        <div class="max-w-2xl pb-12">
+          <h1 class="hero-headline mb-5" set:html={formatMarkdown(content.hero.headline)} />
 
-        <div class="grid md:grid-cols-2 gap-8 items-start">
-          <!-- Intro Video + Workshop Details -->
-          <div>
-            <div class="rounded-xl overflow-hidden border-2 border-teal-600/40 bg-teal-900/60">
-              <video
-                class="w-full aspect-video"
-                controls
-                preload="metadata"
-                poster="/videos/dhc-workshop-intro-poster.png"
-              >
-                <source src="/videos/dhc-workshop-intro.mp4" type="video/mp4" />
-                <track src="/videos/dhc-workshop-intro-subtitles.vtt" kind="subtitles" srclang="en" label="English" default />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+          <p class="text-lg md:text-xl text-teal-900 leading-relaxed mb-6" set:html={formatMarkdown(content.hero.subheadline)} />
 
-            {content.hero.about && (
-              <ul class="mt-8 space-y-3 text-left">
-                {content.hero.about.points.map((point: string) => (
-                  <li class="flex gap-3 items-start">
-                    <svg class="w-5 h-5 text-teal-300 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                    <span class="text-teal-100" set:html={formatMarkdown(point)} />
-                  </li>
-                ))}
-              </ul>
-            )}
+          <!-- Portrait (mobile): shown before the calendar on small screens -->
+          <div class="lg:hidden mb-6">
+            <img
+              src={content.hero.faceImage}
+              alt={content.hero.faceImageAlt}
+              class="aspect-square w-full max-w-[20rem] mx-auto rounded-2xl object-cover object-top"
+            />
           </div>
 
-          <!-- Registration Form -->
-          <div id="register" class="w-full">
-            {content.ctaText && (
-              <h2 class="text-2xl font-bold text-white mb-4">{content.ctaText}</h2>
-            )}
-            <iframe
-              src="https://links.debugginghumancommunication.com/widget/form/NYwRPefOL3oR7u5vVQi9"
-              style="width:100%;height:700px;border:none;border-radius:3px"
-              id="inline-NYwRPefOL3oR7u5vVQi9"
-              data-layout="{'id':'INLINE'}"
-              data-trigger-type="alwaysShow"
-              data-trigger-value=""
-              data-activation-type="alwaysActivated"
-              data-activation-value=""
-              data-deactivation-type="neverDeactivate"
-              data-deactivation-value=""
-              data-form-name="Workshop-Cold"
-              data-height="517"
-              data-layout-iframe-id="inline-NYwRPefOL3oR7u5vVQi9"
-              data-form-id="NYwRPefOL3oR7u5vVQi9"
-              title="Masterclass registration form"
-            ></iframe>
-            <script src="https://links.debugginghumancommunication.com/js/form_embed.js"></script>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- What Will You Learn? -->
-    <section class="section bg-white">
-      <div class="container-md">
-        <h2 class="heading-section mb-8 text-center">{content.whatYoullLearn.title}</h2>
-
-        <div class="space-y-6 mb-8">
-          {content.whatYoullLearn.items.map((item: string) => (
-            <div class="flex gap-4 items-start">
-              <div class="w-2 h-2 rounded-full bg-teal-800 mt-3 shrink-0"></div>
-              <p class="text-lg text-teal-900" set:html={formatMarkdown(item)} />
-            </div>
-          ))}
+          <EmailSignupForm heading={content.hero.emailHeading} text={content.hero.emailText} />
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-teal-950 underline underline-offset-2 hover:text-coral">
+            Book a discovery call &rarr;
+          </a>
         </div>
 
-        <p class="text-lg text-teal-900 italic text-center font-medium">
-          {content.whatYoullLearn.closing}
-        </p>
-      </div>
-    </section>
-
-    <!-- Work Through Your Real Challenges -->
-    <section class="section bg-teal-50">
-      <div class="container-md">
-        <h2 class="heading-section mb-10 text-center">{content.workshopDetails.title}</h2>
-
-        <p class="text-lg text-teal-900 mb-6 max-w-2xl mx-auto text-center">{content.workshopDetails.intro}</p>
-
-        <p class="text-xl font-bold text-teal-950 text-center mb-8 max-w-2xl mx-auto">{content.workshopDetails.costStatement}</p>
-
-        <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10">
-          {content.workshopDetails.painPoints.map((point: string) => (
-            <div class="bg-white rounded-xl p-5 border border-teal-200 border-l-4 border-l-teal-600 shadow-sm">
-              <p class="text-lg text-teal-950 font-medium">{point}</p>
-            </div>
-          ))}
-        </div>
-
-        <p class="text-xl font-bold text-teal-950 text-center mb-4">{content.workshopDetails.reframe}</p>
-        <p class="text-lg text-teal-900 text-center max-w-2xl mx-auto mb-10">{content.workshopDetails.transition}</p>
-
-      </div>
-    </section>
-
-    <!-- What the Upgrade Looks Like -->
-    <section class="section bg-teal-950">
-      <div class="container-md">
-        <h2 class="heading-section !text-white mb-4 text-center">{content.imagine.title}</h2>
-        <p class="text-teal-300 text-lg text-center mb-10">{content.imagine.subtitle}</p>
-
-        <div class="max-w-3xl mx-auto mb-10 bg-white rounded-2xl overflow-hidden shadow-xl">
-          {content.imagine.items.map((item: { before: string; after: string }, index: number) => (
-            <div class:list={["grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 px-6 py-5", index < content.imagine.items.length - 1 && "border-b border-teal-200"]}>
-              <p class="text-teal-900 text-lg">{item.before}</p>
-              <svg class="w-6 h-6 text-coral shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" role="img" aria-label="becomes"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-              <p class="text-teal-950 font-bold text-lg">{item.after}</p>
-            </div>
-          ))}
-        </div>
-
-        <p class="text-teal-300 text-lg font-medium max-w-2xl mx-auto text-center">{content.imagine.closing}</p>
-      </div>
-    </section>
-
-    <!-- Contrast Section -->
-    <section class="section bg-teal-200">
-      <div class="container-md">
-        <h2 class="heading-section mb-10 text-center" set:html={formatMarkdown(content.contrast.title)} />
-
-        <div class="grid md:grid-cols-2 gap-6 mb-10">
-          {content.contrast.notItems.map((item: string) => (
-            <div class="bg-white rounded-xl p-6 border border-teal-200 flex gap-4 items-center">
-              <svg class="w-8 h-8 text-coral shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-              <p class="text-lg font-semibold text-teal-950">{item}</p>
-            </div>
-          ))}
-        </div>
-
-        <p class="text-lg text-teal-950 italic text-center font-medium mb-4" set:html={formatMarkdown(content.contrast.isStatement)} />
-        <p class="text-lg text-teal-950 text-center">
-          {content.contrast.whyItMatters}
-        </p>
-      </div>
-    </section>
-
-    <!-- What Makes Our Event Different? -->
-    <section class="section bg-white">
-      <div class="container-md">
-        <h2 class="heading-section mb-10 text-center">{content.differentiators.title}</h2>
-
-        <div class="grid md:grid-cols-2 gap-6 mb-10">
-          {content.differentiators.items.map((item: { title: string; description: string }) => (
-            <div class="bg-teal-50 rounded-xl p-6 border border-teal-200">
-              <h3 class="text-lg font-bold text-teal-950 mb-2">{item.title}</h3>
-              <p class="text-teal-900">{item.description}</p>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Your Host -->
-    <section class="section bg-teal-50">
-      <div class="container-md">
-        <h2 class="heading-section mb-10 text-center">{content.host.title}</h2>
-
-        <div class="flex flex-col md:flex-row md:items-start gap-8">
-          <div class="w-64 shrink-0 mx-auto md:mx-0 overflow-hidden shadow-sm" style="aspect-ratio: 3/4; border-radius: 1rem; border: 0.5rem solid white;">
-            <img src="/images/andrea-with-computer.webp" alt="Andrea Goulet" class="w-full h-full object-cover object-top" />
-          </div>
-          <div class="space-y-4">
-            {content.host.bio.map((paragraph: string) => (
-              <p class="text-lg text-teal-900 leading-relaxed">{paragraph}</p>
-            ))}
-          </div>
+        <!-- Portrait column (desktop): the image is absolutely positioned so it
+             fills the text-driven row height exactly — head at the top of the
+             content, feet at the section bottom — without adding its own height. -->
+        <div class="relative hidden lg:block">
+          <img
+            src={content.hero.image}
+            alt={content.hero.imageAlt}
+            class="absolute bottom-0 left-1/2 -translate-x-1/2 h-full w-auto max-w-none"
+          />
         </div>
       </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="section bg-teal-950">
-      <div class="container-md">
-        <h2 class="heading-section !text-white mb-10 text-center">{content.testimonials.title}</h2>
+    <section class="section bg-teal-50">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-10 text-center">{content.testimonials.title}</h2>
 
-        <div class="grid md:grid-cols-2 gap-8 mb-10">
+        <div class="grid md:grid-cols-2 gap-8">
           {testimonials.map((t) => (
-            <blockquote class:list={["bg-white rounded-xl p-8 border border-teal-200", t.data.featured && "md:col-span-2"]}>
+            <blockquote class="bg-white rounded-xl p-8 border border-teal-200">
               <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
-              <p class="text-lg text-teal-900 italic mb-4" set:html={`"${formatMarkdown(t.data.quote)}"`} />
+              <p class="text-lg text-teal-900 italic mb-4" set:html={`&ldquo;${formatMarkdown(t.data.quote)}&rdquo;`} />
               <footer class="flex items-center gap-3">
                 {t.data.headshot ? (
                   <img src={t.data.headshot} alt={t.data.author} class="w-10 h-10 rounded-full object-cover shrink-0" />
                 ) : (
-                  <div class="w-10 h-10 rounded-full bg-teal-800 flex items-center justify-center text-white font-bold text-xs shrink-0" aria-hidden="true">{t.data.author.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}</div>
+                  <div class="w-10 h-10 rounded-full bg-teal-950 flex items-center justify-center text-white font-bold text-xs shrink-0" aria-hidden="true">{t.data.author.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}</div>
                 )}
                 <div>
                   <p class="text-teal-950 font-semibold">{t.data.author}</p>
@@ -254,59 +94,208 @@ const courseSchema = {
             </blockquote>
           ))}
         </div>
-
       </div>
     </section>
 
-    <!-- What to Expect -->
-    {content.process && (
-      <section class="section bg-teal-50">
-        <div class="container-md">
-          <h2 class="heading-section mb-2 text-center">{content.process.title}</h2>
-          {content.process.intro && (
-            <p class="text-lg text-teal-900 text-center mb-10 max-w-2xl mx-auto">{content.process.intro}</p>
-          )}
-          <ol class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {content.process.steps.map((step: { number: number; title: string; description: string }) => (
-              <li class="bg-white border border-teal-200 rounded-xl p-6 shadow-sm">
-                <span class="flex items-center justify-center w-10 h-10 rounded-full bg-teal-950 text-white font-extrabold mb-4" aria-hidden="true">{step.number}</span>
-                <h3 class="text-teal-950 font-bold text-lg mb-2">{step.title}</h3>
-                <p class="text-teal-900 leading-relaxed">{step.description}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-    )}
-
-    <!-- Final CTA -->
+    <!-- The premise: communication as a system you can debug -->
     <section class="section bg-white">
-      <div class="container-md">
-        {content.finalCta && (
-          <div class="text-center mb-10">
-            <h2 class="heading-section mb-4">{content.finalCta.title}</h2>
-            <p class="text-teal-900 text-lg max-w-2xl mx-auto mb-4">{content.finalCta.body}</p>
-            <p class="text-teal-950 text-lg font-semibold max-w-2xl mx-auto">{content.finalCta.cta}</p>
-          </div>
-        )}
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-10 text-center">{content.premise.title}</h2>
 
-        <div class="max-w-xl mx-auto w-full bg-teal-50 rounded-2xl border-2 border-teal-200 p-6 md:p-8 shadow-sm">
-          <iframe
-            src="https://links.debugginghumancommunication.com/widget/form/NYwRPefOL3oR7u5vVQi9"
-            style="width:100%;height:700px;border:none;border-radius:3px"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Workshop-Cold"
-            data-height="517"
-            data-form-id="NYwRPefOL3oR7u5vVQi9"
-            title="Masterclass registration form"
-          ></iframe>
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-14 max-w-5xl mx-auto">
+          <div class="prose-custom">
+            {content.premise.paragraphs.map((p: string) => (
+              <p set:html={formatMarkdown(p)} />
+            ))}
+          </div>
+          <img
+            src={content.premise.image}
+            alt={content.premise.imageAlt}
+            width="1500"
+            height="1000"
+            loading="lazy"
+            class="rounded-2xl shadow-md w-full"
+          />
         </div>
+
+        <!-- Stage descriptions (the accessible, indexable content) -->
+        <ol class="grid md:grid-cols-3 gap-6 list-none max-w-5xl mx-auto">
+          {content.premise.loop.stages.map((stage: { name: string; description: string }, index: number) => (
+            <li class="bg-teal-50 rounded-xl p-6 border border-teal-200">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-950 text-white font-bold text-sm shrink-0" aria-hidden="true">{index + 1}</span>
+                <h3 class="text-lg font-bold text-teal-950">{stage.name}</h3>
+              </div>
+              <p class="text-teal-900">{stage.description}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Who this is for: roles you'll identify with -->
+    <section class="section bg-teal-950">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section !text-white mb-4 text-center">{content.audience.title}</h2>
+        <p class="text-lg text-teal-200 max-w-2xl mx-auto mb-10 text-center">{content.audience.intro}</p>
+        <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-teal-200 rounded-xl overflow-hidden border border-teal-200 shadow-sm max-w-5xl mx-auto list-none">
+          {content.audience.domains.map((domain: string) => (
+            <li class="bg-white px-4 py-4 text-center text-teal-950 font-medium">{domain}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- What you're working on: common challenges -->
+    <section class="section bg-white">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-4 text-center">{content.challenges.title}</h2>
+        <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-10 text-center">{content.challenges.intro}</p>
+        <ul class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto list-none">
+          {content.challenges.items.map((item: string) => (
+            <li class="flex gap-3 items-start bg-teal-50 rounded-xl p-5 border border-teal-200">
+              <svg class="w-5 h-5 text-coral shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span class="text-teal-900">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- What you get inside the Lab -->
+    <section class="section bg-teal-50">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-4 text-center">{content.whatYouGet.title}</h2>
+        <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-12 text-center" set:html={formatMarkdown(content.whatYouGet.intro)} />
+
+        <div class="grid md:grid-cols-3 gap-6">
+          {content.whatYouGet.items.map((item: { title: string; description: string; schedule?: string }, index: number) => (
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-teal-200 flex flex-col">
+              <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center mb-5 text-teal-950" aria-hidden="true">
+                {index === 0 && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                )}
+                {index === 1 && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l3.586-3.586z" /></svg>
+                )}
+                {index === 2 && (
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                )}
+              </div>
+              <h3 class="text-xl font-bold text-teal-950 mb-3">{item.title}</h3>
+              {item.schedule && (
+                <p class="inline-flex items-center gap-2 self-start bg-teal-100 text-teal-950 font-semibold text-sm rounded-full px-3 py-1.5 mb-3">
+                  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  {item.schedule}
+                </p>
+              )}
+              <p class="text-teal-900">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- What starts to change -->
+    <section class="section bg-white">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-section mb-4 text-center">{content.imagine.title}</h2>
+        <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-10 text-center">{content.imagine.subtitle}</p>
+
+        <div class="max-w-3xl mx-auto mb-10 bg-teal-50 rounded-2xl overflow-hidden shadow-sm border border-teal-200">
+          {content.imagine.items.map((item: { before: string; after: string }, index: number) => (
+            <div class:list={["grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 px-6 py-5", index < content.imagine.items.length - 1 && "border-b border-teal-200"]}>
+              <p class="text-teal-900 text-lg">{item.before}</p>
+              <svg class="w-6 h-6 text-coral shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" role="img" aria-label="becomes"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+              <p class="text-teal-950 font-bold text-lg">{item.after}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-lg text-teal-900 font-medium max-w-2xl mx-auto text-center">{content.imagine.closing}</p>
+      </div>
+    </section>
+
+    <!-- Private coaching -->
+    <section class="section bg-teal-50">
+      <div class="max-w-5xl mx-auto">
+        <div class="max-w-2xl mx-auto text-center mb-10">
+          <p class="text-sm font-bold uppercase tracking-wider text-coral mb-3">{content.privateCoaching.eyebrow}</p>
+          <h2 class="heading-section mb-4">{content.privateCoaching.title}</h2>
+          <p class="text-lg text-teal-900">{content.privateCoaching.description}</p>
+        </div>
+        <ul class="grid sm:grid-cols-2 gap-4 list-none">
+          {content.privateCoaching.benefits.map((benefit: string) => (
+            <li class="flex gap-3 items-start bg-white rounded-xl p-5 border border-teal-200">
+              <svg class="w-5 h-5 text-coral shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span class="text-teal-900">{benefit}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Team coaching -->
+    <section class="section bg-teal-950">
+      <div class="max-w-5xl mx-auto">
+        <div class="max-w-2xl mx-auto text-center mb-10">
+          <p class="text-sm font-bold uppercase tracking-wider text-teal-300 mb-3">{content.teamCoaching.eyebrow}</p>
+          <h2 class="heading-section !text-white mb-4">{content.teamCoaching.title}</h2>
+          <p class="text-lg text-teal-200">{content.teamCoaching.description}</p>
+        </div>
+        <ul class="grid md:grid-cols-3 gap-6 list-none">
+          {content.teamCoaching.offerings.map((offering: { title: string; description: string }) => (
+            <li class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="text-lg font-bold text-teal-950 mb-2">{offering.title}</h3>
+              <p class="text-teal-900">{offering.description}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Meet Andrea (bio) -->
+    <section class="section bg-teal-50">
+      <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
+          <img
+            src={content.bio.image}
+            alt={content.bio.imageAlt}
+            width="1500"
+            height="2249"
+            loading="lazy"
+            class="w-56 mx-auto md:mx-0 rounded-2xl shadow-md"
+          />
+          <div>
+            <p class="text-sm font-bold uppercase tracking-wider text-coral mb-3">{content.bio.eyebrow}</p>
+            <h2 class="heading-section mb-5">{content.bio.title}</h2>
+            <div class="prose-custom">
+              {content.bio.paragraphs.map((p: string) => (
+                <p set:html={formatMarkdown(p)} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing call-to-action -->
+    <section id="schedule" class="section bg-white scroll-mt-4">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="heading-section mb-4">{content.cta.title}</h2>
+
+        <div class="prose-custom mb-8">
+          {content.cta.paragraphs.map((p: string) => (
+            <p set:html={formatMarkdown(p)} />
+          ))}
+        </div>
+
+        <div class="max-w-lg mx-auto text-left">
+          <EmailSignupForm heading={content.hero.emailHeading} text={content.hero.emailText} formId="closing-lead" loadRecaptcha={false} />
+        </div>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-teal-950 underline underline-offset-2 hover:text-coral">
+          Book a discovery call &rarr;
+        </a>
       </div>
     </section>
   </main>
@@ -317,3 +306,26 @@ const courseSchema = {
     privacyUrl={footer.privacyUrl || ''}
   />
 </Layout>
+
+<style>
+  /* Hero headline: a touch smaller than .heading-hero so the longer copy
+     wraps to balanced lines and aligns with the top of the portrait. */
+  .hero-headline {
+    font-size: clamp(2rem, 1.1rem + 2.6vw, 2.875rem);
+    line-height: 1.1;
+    text-wrap: balance;
+    font-weight: 800;
+    color: var(--color-teal-950);
+  }
+
+  .prose-custom p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: var(--color-teal-900);
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-custom strong {
+    color: var(--color-teal-950);
+  }
+</style>
