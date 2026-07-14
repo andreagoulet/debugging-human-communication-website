@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import EmailSignupForm from '../components/EmailSignupForm.astro';
+import FeaturedTestimonial from '../components/FeaturedTestimonial.astro';
 import { getCollection } from 'astro:content';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
@@ -21,6 +22,9 @@ const allShared = await getCollection('shared');
 const testimonials = featuredTestimonialIds
   .map(id => allShared.find(e => e.id === id))
   .filter((e): e is NonNullable<typeof e> => Boolean(e));
+
+// Video testimonial featured above the grid.
+const videoTestimonial = allShared.find(e => e.id === 'testimonials/ray-myers.md');
 
 const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
 ---
@@ -72,6 +76,19 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
     <section class="section bg-teal-50">
       <div class="max-w-7xl mx-auto">
         <h2 class="heading-section mb-10 text-center">{content.testimonials.title}</h2>
+
+        {videoTestimonial && (
+          <div class="mb-8">
+            <FeaturedTestimonial
+              quote={videoTestimonial.data.quote}
+              author={videoTestimonial.data.author}
+              role={videoTestimonial.data.role}
+              headshot={videoTestimonial.data.headshot}
+              video={videoTestimonial.data.video}
+              videoPoster={videoTestimonial.data.videoPoster}
+            />
+          </div>
+        )}
 
         <div class="grid md:grid-cols-2 gap-8">
           {testimonials.map((t) => (

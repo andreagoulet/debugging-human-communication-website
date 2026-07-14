@@ -6,30 +6,73 @@ interface Props {
   author: string;
   role?: string;
   headshot?: string;
+  video?: string; // YouTube video ID
+  videoPoster?: string; // Poster image shown before the player loads
 }
 
-const { quote, author, role, headshot } = Astro.props;
+const { quote, author, role, headshot, video, videoPoster } = Astro.props;
 const initials = author.split(' ').map(n => n[0]).join('').slice(0, 2);
 ---
 
-<div class="bg-white rounded-xl p-8 md:p-12 shadow-lg max-w-4xl mx-auto">
-  <svg class="w-12 h-12 text-teal-300 mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-  </svg>
-
-  <blockquote class="text-xl md:text-2xl text-teal-900 leading-relaxed mb-8" set:html={formatMarkdown(quote)} />
-
-  <footer class="flex items-center gap-4">
-    {headshot ? (
-      <img src={headshot} alt={author} class="w-12 h-12 rounded-full object-cover shrink-0" />
-    ) : (
-      <div class="w-12 h-12 rounded-full bg-teal-800 flex items-center justify-center text-white font-bold text-sm shrink-0" aria-hidden="true">{initials}</div>
-    )}
-    <div>
-      <p class="text-xl font-semibold text-teal-950">{author}</p>
-      {role && (
-        <p class="text-teal-900">{role}</p>
-      )}
+<div class:list={["bg-white rounded-xl p-8 md:p-12 shadow-lg mx-auto", video ? "max-w-6xl lg:grid lg:grid-cols-[1.1fr_1fr] lg:gap-10 lg:items-center" : "max-w-4xl"]}>
+  {video && (
+    <div class="mb-8 lg:mb-0">
+      <div class="video-facade aspect-video rounded-lg overflow-hidden relative bg-teal-950" data-video-id={video}>
+        <button type="button" class="group absolute inset-0 w-full h-full cursor-pointer" aria-label={`Play video testimonial from ${author}`}>
+          {videoPoster && (
+            <img src={videoPoster} alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          )}
+          <span class="absolute inset-0 flex items-center justify-center">
+            <span class="flex items-center justify-center w-[68px] h-12 md:w-20 md:h-14 rounded-[14px] bg-black/70 transition-colors group-hover:bg-black/85">
+              <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+          </span>
+        </button>
+      </div>
+      <p class="mt-3 text-center text-sm text-teal-700">
+        Video not playing? <a href={`https://www.youtube.com/watch?v=${video}`} target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-coral">Watch it on YouTube</a>
+      </p>
     </div>
-  </footer>
+  )}
+  <div>
+    {!video && (
+      <svg class="w-12 h-12 text-teal-300 mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
+    )}
+
+    <blockquote class:list={["text-teal-900 leading-relaxed", video ? "text-lg italic mb-4" : "text-xl md:text-2xl mb-8"]} set:html={video ? `&ldquo;${formatMarkdown(quote)}&rdquo;` : formatMarkdown(quote)} />
+
+    <footer class:list={["flex items-center", video ? "gap-3" : "gap-4"]}>
+      {headshot ? (
+        <img src={headshot} alt={author} class:list={["rounded-full object-cover shrink-0", video ? "w-10 h-10" : "w-12 h-12"]} />
+      ) : (
+        <div class:list={["rounded-full bg-teal-800 flex items-center justify-center text-white font-bold shrink-0", video ? "w-10 h-10 text-xs" : "w-12 h-12 text-sm"]} aria-hidden="true">{initials}</div>
+      )}
+      <div>
+        <p class:list={["font-semibold text-teal-950", !video && "text-xl"]}>{author}</p>
+        {role && (
+          <p class:list={video ? "text-teal-700 text-sm" : "text-teal-900"}>{role}</p>
+        )}
+      </div>
+    </footer>
+  </div>
 </div>
+
+<script>
+  // Click-to-play facade: the YouTube iframe (and its chrome) only loads on demand.
+  document.querySelectorAll<HTMLElement>('.video-facade').forEach((facade) => {
+    const button = facade.querySelector('button');
+    button?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${facade.dataset.videoId}?autoplay=1&rel=0`;
+      iframe.className = 'absolute inset-0 w-full h-full';
+      iframe.title = button.getAttribute('aria-label') ?? 'Video testimonial';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      facade.replaceChildren(iframe);
+    });
+  });
+</script>

@@ -37,13 +37,15 @@ const footer = homepageContent['shared/footer.md'].data;
     <!-- Featured Testimonial(s) -->
     {featured.length > 0 && (
       <section class="section bg-teal-100">
-        <div class="container-md">
+        <div class="container-md space-y-10">
           {featured.map((t) => (
             <FeaturedTestimonial
               quote={t.data.quote}
               author={t.data.author}
               role={t.data.role}
               headshot={t.data.headshot}
+              video={t.data.video}
+              videoPoster={t.data.videoPoster}
             />
           ))}
         </div>
