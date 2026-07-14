@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 2400px; height: 1254px; overflow: hidden; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    background:
+      linear-gradient(112deg, #012b34 0%, #01323c 42%, #05464f 78%, #0a5560 100%);
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(83,210,216,0.055) 0, rgba(83,210,216,0.055) 2px, transparent 2px, transparent 96px),
+      repeating-linear-gradient(90deg, rgba(83,210,216,0.055) 0, rgba(83,210,216,0.055) 2px, transparent 2px, transparent 96px);
+  }
+  .content {
+    position: absolute;
+    left: 150px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1300px;
+    z-index: 2;
+  }
+  .badge {
+    display: inline-block;
+    background: #53D2D8;
+    color: #012b34;
+    font-size: 33px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding: 20px 44px;
+    border-radius: 60px;
+    margin-bottom: 64px;
+  }
+  h1 {
+    color: #ffffff;
+    font-size: 112px;
+    font-weight: 800;
+    line-height: 1.14;
+    margin-bottom: 56px;
+  }
+  h1 .accent { color: #53D2D8; }
+  .subhead {
+    color: #c8e4e7;
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 1.45;
+    max-width: 1150px;
+  }
+  .photo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 1130px;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="content">
+    <div class="badge">Debugging Human Communication</div>
+    <h1>Communication Coaching for <span class="accent">Software&nbsp;Professionals</span></h1>
+    <p class="subhead">Transform your technical expertise into influence that earns buy&#8209;in, opens doors, and accelerates careers.</p>
+  </div>
+  <img class="photo" src="../public/images/andrea-goulet-sitting-tr.png" alt="">
+</body>
+</html>
