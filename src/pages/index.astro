@@ -13,6 +13,7 @@ const content = allLandingPages.find(e => e.id === 'communication-lab.md')!.data
 
 // Curated testimonials for the Lab — experiment + community stories, in display order.
 const featuredTestimonialIds = [
+  'testimonials/poornima-vijayashanker.md',
   'testimonials/lada-kesseler.md',
   'testimonials/ted-young.md',
   'testimonials/soumya-kulkarni.md',
@@ -36,44 +37,66 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
 >
   <main>
     <!-- Hero -->
-    <section class="relative bg-white overflow-hidden">
-      <div class="max-w-7xl mx-auto px-6 pt-12 lg:pt-16 grid items-stretch gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
-        <!-- Text column -->
-        <div class="max-w-2xl pb-12">
-          <h1 class="hero-headline mb-5" set:html={formatMarkdown(content.hero.headline)} />
+    <section class="bg-white">
+      <div class="max-w-4xl mx-auto px-6 pt-12 pb-16 lg:pt-16 text-center">
+        <h1 class="hero-headline mb-5" set:html={formatMarkdown(content.hero.headline)} />
 
-          <p class="text-lg md:text-xl text-teal-900 leading-relaxed mb-6" set:html={formatMarkdown(content.hero.subheadline)} />
+        <p class="text-lg md:text-xl text-teal-900 leading-relaxed max-w-3xl mx-auto mb-8" set:html={formatMarkdown(content.hero.subheadline)} />
 
-          <!-- Portrait (mobile): shown before the calendar on small screens -->
-          <div class="lg:hidden mb-6">
-            <img
-              src={content.hero.faceImage}
-              alt={content.hero.faceImageAlt}
-              class="aspect-square w-full max-w-[20rem] mx-auto rounded-2xl object-cover object-top"
-            />
-          </div>
+        <video
+          class="hero-video w-full max-w-3xl mx-auto rounded-xl shadow-md bg-teal-950"
+          controls
+          preload="metadata"
+          poster="/videos/dhc-program-poster.jpg"
+          aria-label="Andrea Goulet introduces the Debugging Human Communication program"
+        >
+          <source src="/videos/dhc-program.mp4" type="video/mp4" />
+          <track src="/videos/dhc-program.vtt" kind="subtitles" srclang="en" label="English" default />
+          Your browser does not support the video tag.
+        </video>
+        <p class="mt-3 text-center text-sm text-teal-700">
+          Video not playing? <a href="https://share.descript.com/view/c0WKXspZ0JN" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-coral">Watch it online</a>
+        </p>
 
-          <EmailSignupForm heading={content.hero.emailHeading} text={content.hero.emailText} />
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-teal-950 underline underline-offset-2 hover:text-coral">
-            Book a discovery call &rarr;
+        <div class="mt-8">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Book a Call with Andrea
           </a>
+          <p class="mt-4 text-teal-900">
+            Not ready to talk?
+            <a href="#email-signup" class="underline underline-offset-2 text-teal-950 hover:text-coral">Get communication experiments by email</a>
+          </p>
         </div>
+      </div>
+    </section>
 
-        <!-- Portrait column (desktop): the image is absolutely positioned so it
-             fills the text-driven row height exactly — head at the top of the
-             content, feet at the section bottom — without adding its own height. -->
-        <div class="relative hidden lg:block">
+    <!-- Meet Andrea (bio) -->
+    <section class="section bg-teal-50">
+      <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-[1fr_auto] gap-8 md:gap-12 items-center">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-wider text-coral mb-3">{content.bio.eyebrow}</p>
+            <h2 class="heading-section mb-5">{content.bio.title}</h2>
+            <div class="prose-custom">
+              {content.bio.paragraphs.map((p: string) => (
+                <p set:html={formatMarkdown(p)} />
+              ))}
+            </div>
+          </div>
           <img
-            src={content.hero.image}
-            alt={content.hero.imageAlt}
-            class="absolute bottom-0 left-1/2 -translate-x-1/2 h-full w-auto max-w-none"
+            src={content.bio.image}
+            alt={content.bio.imageAlt}
+            width="1500"
+            height="2249"
+            loading="lazy"
+            class="w-56 mx-auto md:mx-0 rounded-2xl shadow-md"
           />
         </div>
       </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="section bg-teal-50">
+    <section class="section bg-white">
       <div class="max-w-7xl mx-auto">
         <h2 class="heading-section mb-10 text-center">{content.testimonials.title}</h2>
 
@@ -92,7 +115,7 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
 
         <div class="grid md:grid-cols-2 gap-8">
           {testimonials.map((t) => (
-            <blockquote class="bg-white rounded-xl p-8 border border-teal-200">
+            <blockquote class="bg-teal-50 rounded-xl p-8 border border-teal-200">
               <svg class="w-8 h-8 text-teal-300 mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
@@ -110,31 +133,6 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
               </footer>
             </blockquote>
           ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Meet Andrea (bio) -->
-    <section class="section bg-white">
-      <div class="max-w-5xl mx-auto">
-        <div class="grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
-          <img
-            src={content.bio.image}
-            alt={content.bio.imageAlt}
-            width="1500"
-            height="2249"
-            loading="lazy"
-            class="w-56 mx-auto md:mx-0 rounded-2xl shadow-md"
-          />
-          <div>
-            <p class="text-sm font-bold uppercase tracking-wider text-coral mb-3">{content.bio.eyebrow}</p>
-            <h2 class="heading-section mb-5">{content.bio.title}</h2>
-            <div class="prose-custom">
-              {content.bio.paragraphs.map((p: string) => (
-                <p set:html={formatMarkdown(p)} />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -271,12 +269,16 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
           ))}
         </div>
 
-        <div class="max-w-lg mx-auto text-left">
-          <EmailSignupForm heading={content.hero.emailHeading} text={content.hero.emailText} formId="closing-lead" loadRecaptcha={false} />
-        </div>
-        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-teal-950 underline underline-offset-2 hover:text-coral">
-          Book a discovery call &rarr;
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Book a Call with Andrea
         </a>
+      </div>
+    </section>
+
+    <!-- Email signup: the "not ready to talk yet" offramp -->
+    <section id="email-signup" class="section bg-teal-950 scroll-mt-4">
+      <div class="max-w-lg mx-auto">
+        <EmailSignupForm heading={content.hero.emailHeading} text={content.hero.emailText} formId="closing-lead" />
       </div>
     </section>
   </main>
@@ -308,5 +310,14 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
 
   .prose-custom strong {
     color: var(--color-teal-950);
+  }
+
+  /* The element is a bit taller than the 16:9 picture, which is pinned to the
+     top — captions render inside the element, so they land in the dark band
+     below the picture instead of over the speaker's face. */
+  .hero-video {
+    aspect-ratio: 16 / 10.4;
+    object-fit: contain;
+    object-position: top center;
   }
 </style>

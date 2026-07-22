@@ -2,10 +2,10 @@
 # Browser tab + search-result title (the <title> tag). Keep it keyword-rich.
 title: "Communication Coaching for Software Development Professionals with Andrea Goulet"
 # Search-result + social-share blurb (meta description / Open Graph / Twitter).
-description: "You can debug your human communication the same way you debug your code. Andrea Goulet provides group and private coaching programs that use software development principles to help you level up your influence and impact."
+description: "Debug your human communication the same way you debug your code. Andrea Goulet provides group and private coaching programs that use software development principles to help you level up your influence and impact."
 hero:
   headline: "Communication Coaching for Software Professionals"
-  subheadline: "You can debug your human communication the same way you debug your code. Andrea Goulet provides group and private coaching programs that use software development principles to help you level up your influence and impact."
+  subheadline: "Debug your human communication the same way you debug your code. In this community coaching program, you'll use software development principles to level up your influence and impact."
   emailHeading: "Improve Your Influence and Impact"
   emailText: "Get practical communication experiments to try today."
   image: "/images/andrea-hero.webp"
@@ -122,8 +122,9 @@ bio:
   image: "/images/andrea-goulet-sitting-bg.webp"
   imageAlt: "Andrea Goulet, communication coach, sitting with a laptop"
   paragraphs:
-    - "Andrea Goulet is a communication coach who speaks fluent developer. She co-founded Corgibytes, a software consultancy specializing in legacy code, and spent over 15 years alongside engineers — where she kept meeting brilliant people convinced they were \"bad with people.\" They weren't. They just didn't have a framework that fit how they think, so she built one."
-    - "Over 25 years, Andrea has scaled a multimillion-dollar software company, taught more than 100,000 learners, and delivered keynotes around the world. Her experiment-driven approach gives technical professionals a systematic way to test, refine, and trust their communication — because if you can debug code, you can debug a conversation."
+    - "Hi! I'm Andrea, and I train technical thinkers to strengthen their communication skills through an experiment-driven approach rooted in information theory and systems thinking. My approach gives analytical minds a structured way to test, refine, and trust their communication skills in complex, real-world environments."
+    - "For 25 years, I’ve operated at the intersection of systems theory and human communication, which gives me a particular set of skills for finding simple solutions to complex communication challenges. I’ve helped a Fortune 50 company turn around from billions in losses to record profits, consulted with the Smithsonian's top scientists, and bootstrapped my own multi-million-dollar software consultancy by making human communication our competitive advantage. I've trained over 100,000 people worldwide and delivered keynotes at conferences and organizations around the globe."
+    - "What sets my work apart? I don't teach \"soft skills.\" I teach communication as a technical skill and bring the rigor and evidence that scientific-minded people need to get results."
 
 cta:
   title: "Next Step? Schedule a Conversation."
