@@ -3,10 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import PageCta from '../components/PageCta.astro';
-import PricingCard from '../components/PricingCard.astro';
-import SessionReportPreview from '../components/SessionReportPreview.astro';
-import { CALENDLY_URL } from '../utils/constants';
+import { CALENDLY_URL, FIT_CALL_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
 const allContent = await getCollection('website');
@@ -16,9 +13,13 @@ const content = Object.fromEntries(
 
 const pricing = content['shared/pricing.md'].data;
 const footer = content['shared/footer.md'].data;
+
+const waysIn = pricing.waysIn;
+const fitCall = waysIn?.fitCall;
+const discoveryTier = pricing.tiers?.find(tier => tier.featured);
 ---
 
-<Layout title="Pricing | Debugging Human Communication" description="Pricing for communication coaching — discovery sessions, ongoing coaching, and team options for technical professionals.">
+<Layout title="Program & Pricing | Debugging Human Communication" description="How the Debugging Human Communication program works and what it costs — a free fit call or a $129 first session to start, ongoing group or private coaching, and training for teams.">
   <SiteHeader currentPath="/pricing" />
 
   <main>
@@ -34,76 +35,218 @@ const footer = content['shared/footer.md'].data;
       </div>
     </section>
 
-    <!-- Pricing Content -->
-    <section class="section bg-white">
-      <div class="container-md">
-        {pricing.pricingIntro && (
-          <p class="text-lg text-teal-900 text-center mb-8 container-sm mx-auto" set:html={formatMarkdown(pricing.pricingIntro)} />
-        )}
-
-        {pricing.journeySteps && pricing.journeySteps.length > 0 && (
-          <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 mb-12 container-md mx-auto">
-            {pricing.journeySteps.map((step, i) => (
-              <>
-                <div class="flex flex-col items-center text-center px-4">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal-100 text-teal-700 font-bold text-lg mb-2">{i + 1}</span>
-                  <span class="font-semibold text-teal-950 text-lg">{step.label}</span>
-                  <span class="text-teal-700 text-base mt-1">{step.description}</span>
-                </div>
-                {i < pricing.journeySteps!.length - 1 && (
-                  <span class="text-teal-400 text-2xl hidden md:block">→</span>
-                )}
-              </>
-            ))}
+    <!-- Two Ways In -->
+    {waysIn && (
+      <section class="section bg-teal-50">
+        <div class="container-lg">
+          <div class="container-sm mx-auto text-center mb-12">
+            <p class="text-sm font-bold uppercase tracking-wide text-coral mb-3">{waysIn.eyebrow}</p>
+            <h2 class="heading-section mb-6">{waysIn.title}</h2>
+            <p class="text-lg text-teal-900" set:html={formatMarkdown(waysIn.description)} />
           </div>
-        )}
 
-        {pricing.tiers?.filter(tier => tier.featured).map((tier) => (
-          <PricingCard
-            title={tier.title}
-            price={tier.price}
-            period={tier.period}
-            description={tier.description}
-            features={tier.features}
-            featured={true}
-            guarantee={tier.guarantee}
-            ctaText={tier.ctaText}
-            ctaUrl={CALENDLY_URL}
-          >
-            <SessionReportPreview slot="extra" />
-          </PricingCard>
-        ))}
+          <div class="grid md:grid-cols-2 gap-8 items-stretch">
+            <!-- Fit Call card -->
+            {fitCall && (
+              <div class="bg-white border-2 border-teal-200 rounded-xl p-8 flex flex-col">
+                <h3 class="text-xl font-bold text-teal-950 mb-1">{fitCall.title}</h3>
+                <p class="text-2xl font-extrabold text-teal-950 mb-3">{fitCall.priceLabel}</p>
+                <p class="text-teal-900 mb-4" set:html={formatMarkdown(fitCall.description)} />
+                {fitCall.features && (
+                  <ul class="space-y-2 mb-6">
+                    {fitCall.features.map((feature) => (
+                      <li class="flex items-start gap-2 text-teal-900">
+                        <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
+                        <span set:html={formatMarkdown(feature)} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div class="mt-auto text-center">
+                  <a href={FIT_CALL_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    {fitCall.ctaText}
+                  </a>
+                </div>
+              </div>
+            )}
 
-        <h3 class="heading-card mb-8 text-center" set:html={formatMarkdown(pricing.continuationTitle || '')} />
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {pricing.tiers?.filter(tier => !tier.featured).map((tier) => (
-            <PricingCard
-              title={tier.title}
-              price={tier.price}
-              period={tier.period}
-              description={tier.description}
-              features={tier.features}
-              bestFor={tier.bestFor}
-              highlight={tier.highlight}
-            />
-          ))}
+            <!-- Discovery Session card -->
+            {discoveryTier && (
+              <div class="bg-white border-2 border-teal-200 rounded-xl p-8 flex flex-col">
+                <h3 class="text-xl font-bold text-teal-950 mb-1">{discoveryTier.title}</h3>
+                <p class="text-2xl font-extrabold text-teal-950 mb-3">{discoveryTier.priceLabel ?? `$${discoveryTier.price}`}</p>
+                <p class="text-teal-900 mb-4" set:html={formatMarkdown(discoveryTier.description)} />
+                {discoveryTier.features && (
+                  <ul class="space-y-2 mb-6">
+                    {discoveryTier.features.map((feature) => (
+                      <li class="flex items-start gap-2 text-teal-900">
+                        <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
+                        <span set:html={formatMarkdown(feature)} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div class="mt-auto text-center">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    {discoveryTier.ctaText}
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+      </section>
+    )}
 
-        {pricing.teamCallout && (
-          <div class="mt-12 bg-teal-950 rounded-xl p-8 md:py-10 md:px-16 text-center">
-            <p class="text-xl font-semibold text-white mb-2">{pricing.teamCallout.text}</p>
-            <p class="text-teal-200 mb-6">{pricing.teamCallout.description}</p>
+    <!-- Community Membership -->
+    {pricing.membership && (
+      <section class="section bg-white">
+        <div class="container-lg">
+          <div class="container-sm mx-auto text-center mb-12">
+            <p class="text-sm font-bold uppercase tracking-wide text-coral mb-3">{pricing.membership.eyebrow}</p>
+            <h2 class="heading-section mb-6">{pricing.membership.title}</h2>
+            {pricing.membership.description && (
+              <p class="text-lg text-teal-900" set:html={formatMarkdown(pricing.membership.description)} />
+            )}
+          </div>
+
+          {pricing.membership.included && (
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+              {pricing.membership.included.map((item, index) => (
+                <div class="bg-teal-50 rounded-2xl p-8 shadow-sm border border-teal-200 flex flex-col">
+                  <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center mb-5 text-teal-950" aria-hidden="true">
+                    {index === 0 && (
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    )}
+                    {index === 1 && (
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l3.586-3.586z" /></svg>
+                    )}
+                    {index === 2 && (
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                    )}
+                  </div>
+                  <h3 class="text-xl font-bold text-teal-950 mb-3">{item.title}</h3>
+                  {item.schedule && (
+                    <p class="inline-flex items-center gap-2 self-start bg-teal-100 text-teal-950 font-semibold text-sm rounded-full px-3 py-1.5 mb-3">
+                      <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                      {item.schedule}
+                    </p>
+                  )}
+                  <p class="text-teal-900">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div class="bg-teal-50 border border-teal-200 rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 md:gap-10 max-w-4xl mx-auto">
+            <div class="text-center md:text-left shrink-0 md:pr-10 md:border-r md:border-teal-200">
+              <p class="text-4xl font-extrabold text-teal-950">
+                ${pricing.membership.price}<span class="text-xl font-normal text-teal-900">{pricing.membership.period}</span>
+              </p>
+              {pricing.membership.terms && (
+                <p class="text-teal-700 mt-2 max-w-56">{pricing.membership.terms}</p>
+              )}
+            </div>
+            <div class="grow">
+              {pricing.membership.bestForTitle && (
+                <p class="font-semibold text-teal-950 mb-3">{pricing.membership.bestForTitle}</p>
+              )}
+              {pricing.membership.bestFor && (
+                <ul class="space-y-2">
+                  {pricing.membership.bestFor.map((item) => (
+                    <li class="flex items-start gap-2 text-teal-900">
+                      <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
+                      <span set:html={formatMarkdown(item)} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Private Coaching -->
+    {pricing.privateCoaching && (
+      <section class="section bg-teal-50">
+        <div class="container-lg">
+          <div class="container-sm mx-auto text-center mb-12">
+            <p class="text-sm font-bold uppercase tracking-wide text-coral mb-3">{pricing.privateCoaching.eyebrow}</p>
+            <h2 class="heading-section mb-6">{pricing.privateCoaching.title}</h2>
+            {pricing.privateCoaching.description && (
+              <p class="text-lg text-teal-900" set:html={formatMarkdown(pricing.privateCoaching.description)} />
+            )}
+          </div>
+
+          <div class="bg-white border border-teal-200 rounded-2xl p-8 md:p-10 grid md:grid-cols-2 gap-8">
+            <div>
+              {pricing.privateCoaching.features && (
+                <ul class="space-y-2">
+                  {pricing.privateCoaching.features.map((feature) => (
+                    <li class="flex items-start gap-2 text-teal-900">
+                      <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
+                      <span set:html={formatMarkdown(feature)} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div>
+              <p class="text-4xl font-extrabold text-teal-950 mb-1">
+                ${pricing.privateCoaching.price}<span class="text-xl font-normal text-teal-900">{pricing.privateCoaching.period}</span>
+              </p>
+              {pricing.privateCoaching.terms && (
+                <p class="text-teal-700 mb-6">{pricing.privateCoaching.terms}</p>
+              )}
+              {pricing.privateCoaching.bestForTitle && (
+                <p class="font-semibold text-teal-950 mb-3">{pricing.privateCoaching.bestForTitle}</p>
+              )}
+              {pricing.privateCoaching.bestFor && (
+                <ul class="space-y-2">
+                  {pricing.privateCoaching.bestFor.map((item) => (
+                    <li class="flex items-start gap-2 text-teal-900">
+                      <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
+                      <span set:html={formatMarkdown(item)} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Teams: Training & Keynotes -->
+    {pricing.teams && (
+      <section class="section bg-teal-950">
+        <div class="container-lg">
+          <div class="container-sm mx-auto text-center mb-12">
+            <p class="text-sm font-bold uppercase tracking-wide text-teal-300 mb-3">{pricing.teams.eyebrow}</p>
+            <h2 class="heading-section !text-white mb-6">{pricing.teams.title}</h2>
+            <p class="text-lg text-teal-200" set:html={formatMarkdown(pricing.teams.description)} />
+          </div>
+
+          {pricing.teams.offerings && (
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+              {pricing.teams.offerings.map((offering) => (
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                  <h3 class="text-lg font-bold text-teal-950 mb-2">{offering.title}</h3>
+                  <p class="text-teal-900" set:html={formatMarkdown(offering.description)} />
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div class="text-center">
             <a href={`mailto:${footer.contactEmail}`} class="btn-primary">
-              {pricing.teamCallout.linkText} →
+              {pricing.teams.ctaText} →
             </a>
           </div>
-        )}
-      </div>
-    </section>
-
-    <!-- Final CTA -->
-    <PageCta />
+        </div>
+      </section>
+    )}
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}

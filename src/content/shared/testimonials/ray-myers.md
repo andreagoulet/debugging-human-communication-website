@@ -1,6 +1,7 @@
 ---
 quote: "Working with Andrea over the past six months has helped me intentionally hone my voice as I shaped conference talks, a podcast launch — and I even landed on the front page of Hacker News.<br><br>Authenticity is at a premium today, and my favorite part of Andrea's approach is also the hardest thing: she doesn't make me sound like her, she helps me figure out how to sound like me."
 author: "Ray Myers"
+outcome: "Conference talks, a podcast launch, and the front page of Hacker News"
 headshot: "/images/testimonials/ray-myers.jpeg"
 role: "Software Quality Advocate & Creator of Craft vs Cruft"
 video: "sPqb02uwhrs"

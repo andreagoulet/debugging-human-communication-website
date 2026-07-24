@@ -1,50 +1,81 @@
 ---
-title: "Stop guessing. <br>Start experimenting."
-subtitle: "One conversation can change everything."
-pricingIntro: "Every engagement starts with a single session — try the method, try working with me, and see if it's a fit before you commit to anything."
-journeySteps:
-  - label: "Bring a Challenge"
-    description: "A real situation you're facing right now"
-  - label: "Design an Experiment"
-    description: "A concrete behavior change to try"
-  - label: "Get Results"
-    description: "See what works, then decide your next step"
+title: "Program & Pricing"
+subtitle: "Let's find the best option for you."
+waysIn:
+  eyebrow: "Start Here"
+  title: "Get to Know Andrea"
+  description: "Some people just want the facts. Others want a demo. Pick whichever suits how you make decisions without a long-term commitment."
+  fitCall:
+    title: "Fit Call"
+    priceLabel: "No Cost · 15 minutes"
+    description: "A short conversation without coaching to discover whether this program is the right next step for you."
+    features:
+      - "Ask anything about the program — how it works, who it's for, what it costs"
+      - "Discover if my energy and personality is a good match for how you like to work"
+      - "Get an honest read on fit — if I'm not the right person to help, I'll tell you, and point you somewhere useful"
+    ctaText: "Book a Fit Call →"
+membership:
+  eyebrow: "For Individuals"
+  title: "Community Membership"
+  description: "Structured practice with people who get it. Every membership includes:"
+  included:
+    - title: "Communication Labs"
+      schedule: "Wed 11 AM & Thu 3 PM ET"
+      description: "Talk through challenges, connect with peers, and design experiments in Andrea's live virtual labs — twice every week."
+    - title: "Private Discord Community"
+      description: "Get feedback, support, and cheers by keeping the conversation going on Discord between labs."
+    - title: "Member Book Clubs"
+      description: "Curated content and conversations to support your communication experiments."
+  price: 225
+  period: "/month"
+  terms: "6-month initial membership, then month-to-month with 30-day notice."
+  bestForTitle: "The membership is a fit if you:"
+  bestFor:
+    - "Enjoy working through problems in a group"
+    - "Find value in building professional relationships"
+    - "Want accountability without the pressure to perform"
+privateCoaching:
+  eyebrow: "One-on-One"
+  title: "Private Coaching"
+  description: "Add monthly one-on-one sessions with Andrea on top of the community membership — focused, confidential attention on your specific goals."
+  features:
+    - "**Everything in the community membership**"
+    - "Monthly private 1-hour session with Andrea"
+    - "Detailed written report and recording after every private session"
+    - "T.E.A.M Communication Styles assessment and a goal-setting session at onboarding"
+    - "Direct messaging with Andrea — unlimited async support when you're stuck, preparing, or celebrating"
+  
+  price: 895
+  period: "/month"
+  terms: "6-month initial commitment, then month-to-month."
+  bestForTitle: "Private coaching is a fit if you:"
+  bestFor:
+    - "Have a specific goal you're ready to crush"
+    - "Value the depth, speed, and privacy of dedicated 1:1 attention"
+    - "Want personalized documentation to reference"
+teams:
+  eyebrow: "For Teams"
+  title: "Training & Keynotes"
+  description: "What's better than solving problems as an individual? Solving problems as a team. Andrea's experiment-driven coaching adapts to your organization — helping your team remove roadblocks and operate more effectively."
+  offerings:
+    - title: "Workshops"
+      description: "Surface and solve challenges with Andrea's experiment-driven approach that's perfect for tech teams."
+    - title: "Keynotes"
+      description: "Inspire your organization with Andrea's engaging presentation style that resonates with software professionals."
+    - title: "Facilitated Labs"
+      description: "Improve your team's communication with ongoing sessions designed to bring significant organizational value."
+  ctaText: "Get in touch"
 tiers:
-  - title: "Debug Your First Challenge"
+  - title: "Coaching Experience"
     price: 129
+    priceLabel: "$129 · 30 minutes"
     period: one-time
-    description: "A 30-minute 1:1 session where we dig into your specific challenge and design your first experiment together."
+    description: "Andrea will help you discover a high-leverage improvement opportunity and design an experiment to start testing now."
     featured: true
     features:
+      - "1:1 virtual session to get a taste of what the standard 1-hour private coaching session would be like"
       - "Password-protected session recording"
       - "Documented experiment report: hypothesis, behavior changes, and your concrete next step"
     guarantee: "If you don't feel you've gotten your money's worth, I'll refund you completely. Keep the recording and the report — no questions asked."
     ctaText: "Book Your Session →"
-  - title: "Group Coaching"
-    price: 225
-    period: "/month"
-    description: "Structured weekly practice with people who get it."
-    features:
-      - "Weekly 1-hour group calls — bring a friction point, vote on what to tackle, and work through 3–4 real challenges together"
-      - "A cohort of ~12 people who build on each other's ideas (experiments don't just come from me)"
-      - "Async access via community platform between sessions"
-      - "All session recordings + documented experiments"
-      - "Community extras: text channels, book clubs, deliberate practice groups"
-    bestFor: "You've read the books, done the trainings, tried the advice. It's helped, but you want less theory and more tactics. You're ready for structured practice and the support of people who share your struggles."
-  - title: "Private Coaching"
-    price: 895
-    period: "/month"
-    description: "Dedicated 1:1 coaching tailored to your situation."
-    features:
-      - "Monthly 1-hour 1:1 session for dedicated, concentrated attention on your challenges"
-      - "Every experiment tailored to your specific situation, your relationships, your goals"
-      - "Unlimited async access — when you're stuck, preparing, or celebrating, you're not alone"
-      - "All group coaching benefits (weekly calls, recordings, community)"
-      - "Support between sessions — low effort to stay involved, high value when you need it"
-    bestFor: "You're focused and have a specific goal you're ready to crush. You want everything in group coaching, plus the depth and speed of dedicated 1:1 attention. You're ready to get results."
-continuationTitle: "Ways to Keep Going"
-teamCallout:
-  text: "Bring your whole team."
-  description: "Private cohorts give your engineering and leadership teams a structured way to problem solve. Run real experiments on real work for real results."
-  linkText: "Get in touch"
 ---

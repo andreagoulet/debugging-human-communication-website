@@ -20,6 +20,8 @@ const { contactEmail, copyright, termsUrl, privacyUrl } = Astro.props;
       {copyright}
     </p>
     <p class="text-teal-500 text-sm">
+      <a href="/contact" class="hover:text-teal-300 underline">Contact</a>
+      <span class="mx-2">|</span>
       <a href={termsUrl} class="hover:text-teal-300 underline">Terms & Conditions</a>
       <span class="mx-2">|</span>
       <a href={privacyUrl} class="hover:text-teal-300 underline">Privacy Policy</a>

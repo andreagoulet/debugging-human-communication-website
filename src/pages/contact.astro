@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { FIT_CALL_URL } from '../utils/constants';
+
+const allContent = await getCollection('website');
+const content = Object.fromEntries(
+  allContent.map(entry => [entry.id, entry])
+);
+
+const footer = content['shared/footer.md'].data;
+---
+
+<Layout title="Contact | Debugging Human Communication" description="Get in touch with Andrea Goulet — book a free fit call about coaching, or email about corporate training and speaking.">
+  <SiteHeader currentPath="/contact" />
+
+  <main>
+    <!-- Page Hero -->
+    <section class="bg-teal-950 px-6">
+      <div class="container-lg">
+        <div class="py-20 md:py-24 max-w-2xl">
+          <h1 class="heading-hero !text-white mb-6">Contact</h1>
+          <p class="text-xl md:text-2xl text-teal-200">Two ways to reach me, depending on what you're looking for.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-white">
+      <div class="container-md">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-teal-50 rounded-xl p-8 border border-teal-200 text-center flex flex-col">
+            <h2 class="heading-card mb-3">Curious about coaching?</h2>
+            <p class="text-teal-900 mb-6 grow">The fastest way to find out whether this program fits is a fit call — free, 15 minutes, and nothing is for sale.</p>
+            <a href={FIT_CALL_URL} target="_blank" rel="noopener noreferrer" class="btn-primary mx-auto">
+              Book a Fit Call →
+            </a>
+          </div>
+
+          <div class="bg-teal-50 rounded-xl p-8 border border-teal-200 text-center flex flex-col">
+            <h2 class="heading-card mb-3">Corporate training or speaking?</h2>
+            <p class="text-teal-900 mb-6 grow">For team workshops, keynotes, and private cohorts, email me directly with a little about your organization and what you're hoping to change.</p>
+            <a href={`mailto:${footer.contactEmail}`} class="btn-primary mx-auto">
+              Email {footer.contactEmail}
+            </a>
+          </div>
+        </div>
+
+        <p class="text-center text-teal-700 mt-10">
+          Anything else — questions, podcast invitations, or a conversation that doesn't fit a box — email <a href={`mailto:${footer.contactEmail}`} class="underline underline-offset-2 hover:text-coral">{footer.contactEmail}</a>.
+        </p>
+      </div>
+    </section>
+
+    <SiteFooter
+      contactEmail={footer.contactEmail || ''}
+      copyright={footer.copyright || ''}
+      termsUrl={footer.termsUrl || ''}
+      privacyUrl={footer.privacyUrl || ''}
+    />
+  </main>
+</Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import EmailSignupForm from '../components/EmailSignupForm.astro';
 import FeaturedTestimonial from '../components/FeaturedTestimonial.astro';
@@ -27,7 +28,9 @@ const testimonials = featuredTestimonialIds
 // Video testimonial featured above the grid.
 const videoTestimonial = allShared.find(e => e.id === 'testimonials/ray-myers.md');
 
-const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
+import { FIT_CALL_URL } from '../utils/constants';
+
+const BOOKING_URL = FIT_CALL_URL;
 ---
 
 <Layout
@@ -35,6 +38,8 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
   description={content.description}
   ogImage="/og-coaching.png"
 >
+  <SiteHeader currentPath="/" />
+
   <main>
     <!-- Hero -->
     <section class="bg-white">
@@ -60,7 +65,7 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
 
         <div class="mt-8">
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
-            Book a Call with Andrea
+            Book a Free Fit Call
           </a>
           <p class="mt-4 text-teal-900">
             Not ready to talk?
@@ -170,75 +175,12 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
       </div>
     </section>
 
-    <!-- What you get inside the Lab -->
-    <section class="section bg-teal-50">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="heading-section mb-4 text-center">{content.whatYouGet.title}</h2>
-        <p class="text-lg text-teal-900 max-w-2xl mx-auto mb-12 text-center" set:html={formatMarkdown(content.whatYouGet.intro)} />
-
-        <div class="grid md:grid-cols-3 gap-6">
-          {content.whatYouGet.items.map((item: { title: string; description: string; schedule?: string }, index: number) => (
-            <div class="bg-white rounded-2xl p-8 shadow-sm border border-teal-200 flex flex-col">
-              <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center mb-5 text-teal-950" aria-hidden="true">
-                {index === 0 && (
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                )}
-                {index === 1 && (
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l3.586-3.586z" /></svg>
-                )}
-                {index === 2 && (
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                )}
-              </div>
-              <h3 class="text-xl font-bold text-teal-950 mb-3">{item.title}</h3>
-              {item.schedule && (
-                <p class="inline-flex items-center gap-2 self-start bg-teal-100 text-teal-950 font-semibold text-sm rounded-full px-3 py-1.5 mb-3">
-                  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                  {item.schedule}
-                </p>
-              )}
-              <p class="text-teal-900">{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Private coaching -->
-    <section class="section bg-white">
-      <div class="max-w-5xl mx-auto">
-        <div class="max-w-2xl mx-auto text-center mb-10">
-          <p class="text-sm font-bold uppercase tracking-wider text-coral mb-3">{content.privateCoaching.eyebrow}</p>
-          <h2 class="heading-section mb-4">{content.privateCoaching.title}</h2>
-          <p class="text-lg text-teal-900">{content.privateCoaching.description}</p>
-        </div>
-        <ul class="grid sm:grid-cols-2 gap-4 list-none">
-          {content.privateCoaching.benefits.map((benefit: string) => (
-            <li class="flex gap-3 items-start bg-teal-50 rounded-xl p-5 border border-teal-200">
-              <svg class="w-5 h-5 text-coral shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-              <span class="text-teal-900">{benefit}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-
-    <!-- Team coaching -->
+    <!-- Program bridge: full details live on /pricing -->
     <section class="section bg-teal-950">
-      <div class="max-w-5xl mx-auto">
-        <div class="max-w-2xl mx-auto text-center mb-10">
-          <p class="text-sm font-bold uppercase tracking-wider text-teal-300 mb-3">{content.teamCoaching.eyebrow}</p>
-          <h2 class="heading-section !text-white mb-4">{content.teamCoaching.title}</h2>
-          <p class="text-lg text-teal-200">{content.teamCoaching.description}</p>
-        </div>
-        <ul class="grid md:grid-cols-3 gap-6 list-none">
-          {content.teamCoaching.offerings.map((offering: { title: string; description: string }) => (
-            <li class="bg-white rounded-2xl p-6 shadow-sm">
-              <h3 class="text-lg font-bold text-teal-950 mb-2">{offering.title}</h3>
-              <p class="text-teal-900">{offering.description}</p>
-            </li>
-          ))}
-        </ul>
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="heading-section !text-white mb-4">{content.programBridge.title}</h2>
+        <p class="text-lg text-teal-200 mb-8">{content.programBridge.description}</p>
+        <a href="/pricing" class="btn-primary">{content.programBridge.ctaText}</a>
       </div>
     </section>
 
@@ -270,7 +212,7 @@ const BOOKING_URL = 'https://calendly.com/andreagoulet/discovery';
         </div>
 
         <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
-          Book a Call with Andrea
+          Book a Free Fit Call
         </a>
       </div>
     </section>

@@ -1,5 +1,5 @@
 ---
-import { CALENDLY_URL } from '../utils/constants';
+import { FIT_CALL_URL } from '../utils/constants';
 
 interface Props {
   currentPath?: string;
@@ -9,7 +9,8 @@ const { currentPath = '/' } = Astro.props;
 
 const navLinks = [
   { href: '/approach', label: 'Approach' },
-  { href: '/pricing', label: 'Pricing' },
+  { href: '/pricing', label: 'Program' },
+  { href: '/results', label: 'Results' },
   { href: '/about', label: 'About' },
 ];
 ---
@@ -36,15 +37,15 @@ const navLinks = [
           {link.label}
         </a>
       ))}
-      <a href={CALENDLY_URL} class="btn-primary-sm">
-        Book a Session
+      <a href={FIT_CALL_URL} class="btn-primary-sm">
+        Book a Fit Call
       </a>
     </div>
 
     <!-- Mobile hamburger -->
     <div class="flex items-center gap-3 md:hidden">
-      <a href={CALENDLY_URL} class="btn-primary-sm">
-        Book a Session
+      <a href={FIT_CALL_URL} class="btn-primary-sm">
+        Book a Fit Call
       </a>
       <button
         id="mobile-menu-toggle"

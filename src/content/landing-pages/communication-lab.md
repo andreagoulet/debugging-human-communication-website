@@ -88,6 +88,11 @@ imagine:
       after: "You become a trusted voice"
   closing: "One small shift could change your career."
 
+programBridge:
+  title: "One Program, Built Around Practice"
+  description: "Group coaching, private coaching, and training for teams — all running on the same experiment-driven engine. See how the program works, what it costs, and which way in fits you."
+  ctaText: "See the Program & Pricing →"
+
 testimonials:
   title: "Real Results from Real Software Professionals"
   # Quotes are edited in src/content/shared/testimonials/. This block only sets the section heading.
