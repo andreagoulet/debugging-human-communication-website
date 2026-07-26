@@ -10,7 +10,7 @@ sections:
   - heading: "1. Overview"
     content:
       - "These Terms of Use (\"Terms\") govern all access to and use of the services, programs, digital products, and community spaces provided by Lovelace Communications, LLC, doing business as Debugging Human Communication (\"the Company\"). By purchasing, accessing, or participating in any Company service, including Coaching Services, Consulting Services, Training Services, Speaking Services, Digital Products, Community Membership, or use of debugginghumancommunication.com (\"the Website\"), the Client or Community Member (\"the Client\") agrees to be bound by these Terms."
-      - "These Terms apply in addition to any platform-specific terms (such as those of Heartbeat, Go High Level, Calendly, or other third-party services), Community Guidelines, the Company's Code of Conduct, and the Company's separate Privacy Policy."
+      - "These Terms apply in addition to any platform-specific terms (such as those of Discord, Pipedrive, Calendly, or other third-party services), Community Guidelines, the Company's Code of Conduct, and the Company's separate Privacy Policy."
       - "If the Client does not agree to these Terms, they should not purchase or use any Company services or access any Company community or content."
   - heading: "2. Definitions"
     content:
@@ -25,7 +25,7 @@ sections:
       - "**Digital Products** include downloadable or recorded content, templates, e-books, and any digital media sold or provided by the Company."
       - "**Programs** means custom or multi-service engagements combining any of the above service types."
       - "**Deliverables** means documents, strategic materials, reports, slide decks, assessments, or other tangible outputs produced as part of Consulting Services or Programs."
-      - "**Platform** refers to any online system used to deliver services or community access, including Heartbeat, Go High Level, Calendly, Zoom, Stripe, or debugginghumancommunication.com."
+      - "**Platform** refers to any online system used to deliver services or community access, including Discord, Pipedrive, Calendly, Zoom, Stripe, or debugginghumancommunication.com."
   - heading: "3. Eligibility & Account Responsibility"
     content:
       - "Clients must be at least 18 years old to purchase or access Company Services."
@@ -73,7 +73,7 @@ sections:
           - "**All Sales Final:** Digital Product purchases are nonrefundable."
       - subheading: "4.7 Community Membership"
         content:
-          - "**Billing:** Community Memberships may be billed through Heartbeat, Go High Level, Stripe, or other platforms."
+          - "**Billing:** Community Memberships may be billed through Stripe or other platforms."
           - "**Automatic Renewal:** Memberships can be structured as one-time payments or subscriptions that renew automatically unless canceled."
           - "**Cancellation:** The Client may cancel subscriptions at any time via the Platform. Access continues until the end of the billing period."
           - "**No Refunds:** With the exception of the initial Discovery Session, membership fees are nonrefundable. If client requests a refund for their Discovery Session, community access will be revoked."
@@ -85,7 +85,7 @@ sections:
     list:
       - "Code of Conduct"
       - "Community Guidelines"
-      - "Platform-specific rules (such as Heartbeat's or Go High Level's policies)"
+      - "Platform-specific rules (such as Discord's or Pipedrive's policies)"
     afterList:
       - "Failure to follow these guidelines may result in removal or suspension at the Company's discretion."
   - heading: "6. Intellectual Property"

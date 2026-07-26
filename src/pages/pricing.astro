@@ -32,69 +32,6 @@ const discoveryTier = pricing.tiers?.find(tier => tier.featured);
       </div>
     </section>
 
-    <!-- Two Ways In -->
-    {waysIn && (
-      <section class="section bg-teal-50">
-        <div class="container-lg">
-          <div class="container-sm mx-auto text-center mb-12">
-            <p class="text-sm font-bold uppercase tracking-wide text-coral mb-3">{waysIn.eyebrow}</p>
-            <h2 class="heading-section mb-6">{waysIn.title}</h2>
-            <p class="text-lg text-teal-900" set:html={formatMarkdown(waysIn.description)} />
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-8 items-stretch">
-            <!-- Fit Call card -->
-            {fitCall && (
-              <div class="bg-white border-2 border-teal-200 rounded-xl p-8 flex flex-col">
-                <h3 class="text-xl font-bold text-teal-950 mb-1">{fitCall.title}</h3>
-                <p class="text-2xl font-extrabold text-teal-950 mb-3">{fitCall.priceLabel}</p>
-                <p class="text-teal-900 mb-4" set:html={formatMarkdown(fitCall.description)} />
-                {fitCall.features && (
-                  <ul class="space-y-2 mb-6">
-                    {fitCall.features.map((feature) => (
-                      <li class="flex items-start gap-2 text-teal-900">
-                        <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
-                        <span set:html={formatMarkdown(feature)} />
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <div class="mt-auto text-center">
-                  <a href={FIT_CALL_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
-                    {fitCall.ctaText}
-                  </a>
-                </div>
-              </div>
-            )}
-
-            <!-- Discovery Session card -->
-            {discoveryTier && (
-              <div class="bg-white border-2 border-teal-200 rounded-xl p-8 flex flex-col">
-                <h3 class="text-xl font-bold text-teal-950 mb-1">{discoveryTier.title}</h3>
-                <p class="text-2xl font-extrabold text-teal-950 mb-3">{discoveryTier.priceLabel ?? `$${discoveryTier.price}`}</p>
-                <p class="text-teal-900 mb-4" set:html={formatMarkdown(discoveryTier.description)} />
-                {discoveryTier.features && (
-                  <ul class="space-y-2 mb-6">
-                    {discoveryTier.features.map((feature) => (
-                      <li class="flex items-start gap-2 text-teal-900">
-                        <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
-                        <span set:html={formatMarkdown(feature)} />
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <div class="mt-auto text-center">
-                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
-                    {discoveryTier.ctaText}
-                  </a>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-    )}
-
     <!-- Community Membership -->
     {pricing.membership && (
       <section class="section bg-white">
@@ -240,6 +177,69 @@ const discoveryTier = pricing.tiers?.find(tier => tier.featured);
             <a href={`mailto:${footer.contactEmail}`} class="btn-primary">
               {pricing.teams.ctaText} →
             </a>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Two Ways In -->
+    {waysIn && (
+      <section class="section bg-teal-50">
+        <div class="container-lg">
+          <div class="container-sm mx-auto text-center mb-12">
+            <p class="text-sm font-bold uppercase tracking-wide text-coral mb-3">{waysIn.eyebrow}</p>
+            <h2 class="heading-section mb-6">{waysIn.title}</h2>
+            <p class="text-lg text-teal-900" set:html={formatMarkdown(waysIn.description)} />
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 items-stretch">
+            <!-- Fit Call card -->
+            {fitCall && (
+              <div class="bg-white border-2 border-teal-200 rounded-xl p-8 flex flex-col">
+                <h3 class="text-xl font-bold text-teal-950 mb-1">{fitCall.title}</h3>
+                <p class="text-2xl font-extrabold text-teal-950 mb-3">{fitCall.priceLabel}</p>
+                <p class="text-teal-900 mb-4" set:html={formatMarkdown(fitCall.description)} />
+                {fitCall.features && (
+                  <ul class="space-y-2 mb-6">
+                    {fitCall.features.map((feature) => (
+                      <li class="flex items-start gap-2 text-teal-900">
+                        <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
+                        <span set:html={formatMarkdown(feature)} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div class="mt-auto text-center">
+                  <a href={FIT_CALL_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    {fitCall.ctaText}
+                  </a>
+                </div>
+              </div>
+            )}
+
+            <!-- Coaching Experience card -->
+            {discoveryTier && (
+              <div class="bg-white border-2 border-teal-200 rounded-xl p-8 flex flex-col">
+                <h3 class="text-xl font-bold text-teal-950 mb-1">{discoveryTier.title}</h3>
+                <p class="text-2xl font-extrabold text-teal-950 mb-3">{discoveryTier.priceLabel ?? `$${discoveryTier.price}`}</p>
+                <p class="text-teal-900 mb-4" set:html={formatMarkdown(discoveryTier.description)} />
+                {discoveryTier.features && (
+                  <ul class="space-y-2 mb-6">
+                    {discoveryTier.features.map((feature) => (
+                      <li class="flex items-start gap-2 text-teal-900">
+                        <span class="text-teal-600 mt-1 shrink-0">&#10003;</span>
+                        <span set:html={formatMarkdown(feature)} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div class="mt-auto text-center">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    {discoveryTier.ctaText}
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

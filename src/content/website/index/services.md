@@ -4,7 +4,7 @@ subtitle: "Continuous support so you keep improving — at the level that fits y
 engagements:
   - icon: "group"
     title: "Private Community"
-    description: "Book clubs, deliberate practice groups, and chat channels — learn alongside peers who get it."
+    description: "Book clubs and chat channels — learn alongside peers who get it."
   - icon: "refresh"
     title: "Weekly Group Coaching"
     description: "Everything in community, plus expert-facilitated small group experimentation sessions and a dedicated group channel."

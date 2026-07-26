@@ -3,9 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import PageCta from '../components/PageCta.astro';
-import MethodologyCard from '../components/MethodologyCard.astro';
-import ChallengeCard from '../components/ChallengeCard.astro';
 import { CALENDLY_URL } from '../utils/constants';
 import { formatMarkdown } from '../utils/formatMarkdown';
 
@@ -14,16 +11,16 @@ const content = Object.fromEntries(
   allContent.map(entry => [entry.id, entry])
 );
 
-const openingNarrative = content['approach/narrative.md'].data;
-const realProblem = content['approach/problem.md'].data;
-const answer = content['approach/solution.md'].data;
-const methodology = content['approach/methodology.md'].data;
-const framework = content['approach/framework.md'].data;
-const findYourLever = content['approach/leverage.md'].data;
+const premise = content['approach/premise.md'].data;
+const premiseParagraphs = (premise.paragraphs ?? []).map((p) =>
+  typeof p === 'string' ? { text: p, emphasis: undefined } : p
+);
+const example = content['approach/example.md'].data.example;
+const together = content['approach/together.md'].data;
 const footer = content['shared/footer.md'].data;
 ---
 
-<Layout title="The Approach | Debugging Human Communication" description="A systematic method for improving communication — the full narrative, methodology, and framework behind Debugging Human Communication.">
+<Layout title="Approach | Debugging Human Communication" description="Andrea Goulet's experiment-driven approach to communication coaching — treat communication as a debuggable system and improve it one small experiment at a time.">
   <SiteHeader currentPath="/approach" />
 
   <main>
@@ -31,185 +28,158 @@ const footer = content['shared/footer.md'].data;
     <section class="bg-teal-950 px-6">
       <div class="container-lg">
         <div class="py-10 md:py-14 max-w-2xl">
-          <h1 class="heading-hero !text-white">The Approach</h1>
+          <h1 class="heading-hero !text-white">Approach</h1>
         </div>
       </div>
     </section>
 
-    <!-- Opening Narrative -->
-    <section class="py-20 px-6 bg-teal-50">
-      <div class="container-md">
-        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(openingNarrative.opener || '')} />
-      </div>
-      <div class="container-md bg-white rounded-2xl p-8 md:p-12 shadow-xl">
-
-        {openingNarrative.paragraphs?.map((p) => (
-          <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(typeof p === 'string' ? p : p.text)} />
+    <!-- Premise -->
+    <section class="section bg-teal-50">
+      <div class="container-sm">
+        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(premise.title || '')} />
+        {premiseParagraphs.map((p) => (
+          <p class:list={["text-lg text-teal-900 mb-6", p.emphasis === 'bold' && 'font-bold text-teal-950 text-center', p.emphasis === 'italic' && 'italic']} set:html={formatMarkdown(p.text)} />
         ))}
 
-        <div class="bg-teal-50 rounded-2xl p-8 my-10">
-          <p class="text-lg text-teal-950 font-medium mb-5" set:html={formatMarkdown(openingNarrative.painPointsIntro || '')} />
-
-          <ul class="space-y-3 text-lg text-teal-900">
-            {openingNarrative.painPoints?.map((point) => (
-              <li class="flex items-start gap-3">
-                <span class="text-coral mt-1">•</span>
-                <span set:html={formatMarkdown(point)} />
-              </li>
-            ))}
-          </ul>
+        <div class="bg-white rounded-2xl p-6 md:p-10 border border-teal-200 shadow-sm mt-10">
+          <img
+            src="/images/impact-influence-loop.webp"
+            alt="The Impact & Influence loop: Identify — describe your communication challenge precisely. Interact — run a communication experiment. Improve — gather data and integrate learnings."
+            class="w-full h-auto"
+            width="1600"
+            height="1075"
+            loading="lazy"
+          />
         </div>
 
-        {openingNarrative.closingParagraphs?.map((p, i) => {
-          const isLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 1;
-          const isSecondToLast = i === (openingNarrative.closingParagraphs?.length ?? 0) - 2;
-          return isSecondToLast ? (
-            <p class="text-xl text-teal-950 font-semibold" set:html={formatMarkdown(p)} />
-          ) : isLast ? (
-            <p class="text-xl text-teal-950 font-bold mt-4" set:html={formatMarkdown(p)} />
-          ) : (
-            <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(p)} />
-          );
-        })}
-      </div>
-    </section>
-
-    <!-- The Real Problem -->
-    <section class="section bg-teal-200">
-      <div class="container-md">
-        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(realProblem.title || '')} />
-
-        <div class="bg-white rounded-2xl p-8 md:p-12">
-          {realProblem.paragraphs?.map((p, i) => {
-            const para = typeof p === 'string' ? { text: p } : p;
-            const isLast = i === (realProblem.paragraphs?.length ?? 0) - 1;
-            return isLast ? (
-              <blockquote class="border-l-4 border-coral pl-6 mt-8">
-                <p class="text-xl text-teal-950 italic" set:html={formatMarkdown(para.text)} />
-              </blockquote>
-            ) : para.emphasis === 'bold' ? (
-              <p class="text-xl text-teal-950 font-semibold mb-6" set:html={formatMarkdown(para.text)} />
-            ) : (
-              <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
-            );
-          })}
-        </div>
-      </div>
-    </section>
-
-    <!-- The Answer -->
-    <section class="section bg-white">
-      <div class="container-md">
-        <h2 class="heading-section mb-8 text-center" set:html={formatMarkdown(answer.title || '')} />
-
-        <div class="bg-white rounded-2xl p-8 md:p-12 border border-teal-200 shadow-sm">
-          {answer.paragraphs?.map((p) => {
-            const para = typeof p === 'string' ? { text: p } : p;
-            return para.emphasis === 'bold' ? (
-              <p class="text-xl text-teal-950 font-semibold mb-6" set:html={formatMarkdown(para.text)} />
-            ) : (
-              <p class="text-lg text-teal-900 mb-6" set:html={formatMarkdown(para.text)} />
-            );
-          })}
-        </div>
-      </div>
-    </section>
-
-    <!-- Methodology -->
-    <section class="section bg-teal-200">
-      <div class="container-md">
-        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(methodology.title || '')} />
-        <p class="text-xl text-teal-900 text-center mb-16" set:html={formatMarkdown(methodology.subtitle || '')} />
-
-        <div class="space-y-10">
-          {methodology.approaches?.map((approach, index) => (
-            <>
-              <MethodologyCard
-                number={index + 1}
-                title={approach.title}
-                paragraphs={approach.paragraphs}
-              />
-              {approach.testimonial && (
-                <blockquote class="border-l-4 border-purple bg-white rounded-r-lg pl-6 pr-4 py-6 italic text-teal-900 max-w-2xl mx-auto shadow-sm">
-                  "{approach.testimonial.quote}"
-                  <footer class="mt-2 not-italic">
-                    <span class="text-teal-950 font-medium">— {approach.testimonial.author}</span>
-                    {approach.testimonial.role && <span class="text-teal-900 text-sm block mt-1">{approach.testimonial.role}</span>}
-                  </footer>
-                </blockquote>
-              )}
-            </>
-          ))}
-        </div>
-
-        <div class="text-center mt-12">
-          <a href={CALENDLY_URL} class="btn-primary">
-            Book Your Discovery Session →
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Framework -->
-    <section id="framework" class="section bg-teal-50">
-      <div class="container-md">
-        <h2 class="heading-section mb-4 text-center" set:html={formatMarkdown(framework.title || '')} />
-        <p class="text-xl text-teal-900 text-center mb-6" set:html={formatMarkdown(framework.subtitle || '')} />
-        <p class="text-lg text-teal-900 text-center mb-12 container-md" set:html={formatMarkdown(framework.introText || '')} />
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {framework.steps?.map((step) => (
-            <div class="bg-white rounded-lg p-6 shadow-sm">
-              <div class="text-3xl font-bold text-teal-950 mb-2">{step.number}</div>
-              <h3 class="text-lg font-semibold text-teal-950 mb-3" set:html={formatMarkdown(step.title)} />
-              <p class="text-teal-900 text-sm" set:html={formatMarkdown(step.description)} />
-            </div>
-          ))}
-        </div>
-
-        <p class="text-lg text-teal-950 font-medium text-center mt-12" set:html={formatMarkdown(framework.closingText || '')} />
-      </div>
-    </section>
-
-    <!-- Find Your Lever -->
-    <section class="section bg-teal-950 text-white">
-      <div class="container-md">
-        <h2 class="heading-section !text-white mb-8 text-center" set:html={formatMarkdown(findYourLever.title || '')} />
-
-        {findYourLever.epigraph && (
-          <blockquote class="border-l-4 border-teal-400 pl-6 py-4 mb-10 bg-teal-900/30 rounded-r-lg">
-            <p class="text-2xl text-teal-100 italic mb-2" set:html={`"${formatMarkdown(findYourLever.epigraph.quote)}"`} />
-            <footer class="text-teal-400" set:html={`— ${formatMarkdown(findYourLever.epigraph.author)}`} />
+        {premise.testimonial && (
+          <blockquote class="border-l-4 border-purple bg-white rounded-r-lg pl-6 pr-4 py-6 italic text-teal-900 mt-10">
+            "{premise.testimonial.quote}"
+            <footer class="mt-2 not-italic">
+              <span class="text-teal-950 font-medium">— {premise.testimonial.author}</span>
+              {premise.testimonial.role && <span class="text-teal-900 text-sm block mt-1">{premise.testimonial.role}</span>}
+            </footer>
           </blockquote>
         )}
-
-        <div class="text-lg text-teal-100 mb-12 space-y-4">
-          {findYourLever.introParagraphs?.map((p) => (
-            <p set:html={formatMarkdown(p)} />
-          ))}
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          {findYourLever.challenges?.map((challenge) => (
-            <ChallengeCard
-              title={challenge.title}
-              description={challenge.description}
-              tip={challenge.tip}
-            />
-          ))}
-        </div>
-
-        <div class="text-center mt-12">
-          <p class="text-xl text-teal-200 mb-6" set:html={formatMarkdown(findYourLever.closingText || '')} />
-          <a href={CALENDLY_URL} class="btn-primary">
-            Book Your Discovery Session →
-          </a>
-        </div>
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <PageCta />
+    <!-- Concrete example: general advice vs. the experiment -->
+    {example && (
+      <section class="section bg-white">
+        <div class="container-lg">
+          <div class="container-sm mx-auto text-center mb-12">
+            <h2 class="heading-section mb-6">{example.title}</h2>
+            <p class="text-lg text-teal-900" set:html={formatMarkdown(example.setup)} />
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 items-stretch mb-10">
+            <div class="bg-teal-50 rounded-xl p-8 border border-teal-200">
+              <h3 class="text-lg font-bold text-teal-800 mb-4">{example.advice.title}</h3>
+              <ul class="space-y-2">
+                {example.advice.bullets.map((bullet) => (
+                  <li class="flex items-start gap-2 text-teal-900">
+                    <span class="text-coral mt-0.5 shrink-0 font-bold">&#10007;</span>
+                    <span set:html={formatMarkdown(bullet)} />
+                  </li>
+                ))}
+              </ul>
+              {example.advice.results && (
+                <>
+                  <h4 class="text-base font-bold text-teal-800 mt-6 mb-3">{example.advice.results.title}</h4>
+                  <ul class="space-y-2">
+                    {example.advice.results.bullets.map((bullet) => (
+                      <li class="flex items-start gap-2 text-teal-900">
+                        <span class="text-teal-400 mt-0.5 shrink-0">&#8594;</span>
+                        <span set:html={formatMarkdown(bullet)} />
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
+
+            <div class="bg-white rounded-xl p-8 border-2 border-teal-600 shadow-sm">
+              <h3 class="text-lg font-bold text-teal-950 mb-4">{example.experiment.title}</h3>
+              <ul class="space-y-3">
+                {example.experiment.bullets.map((bullet) => (
+                  <li class="flex items-start gap-2 text-teal-900">
+                    <span class="text-teal-600 mt-0.5 shrink-0 font-bold">&#10003;</span>
+                    <span>
+                      {bullet.label && <span class="font-bold text-teal-950">{bullet.label} — </span>}
+                      <span set:html={formatMarkdown(bullet.text)} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              {example.experiment.results && (
+                <>
+                  <h4 class="text-base font-bold text-teal-950 mt-6 mb-3">{example.experiment.results.title}</h4>
+                  <ul class="space-y-2">
+                    {example.experiment.results.bullets.map((bullet) => (
+                      <li class="flex items-start gap-2 text-teal-900">
+                        <span class="text-teal-600 mt-0.5 shrink-0">&#8594;</span>
+                        <span set:html={formatMarkdown(bullet)} />
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
+          </div>
+
+          {example.testimonial && (
+            <div class="container-sm mx-auto mt-10">
+              <blockquote class="border-l-4 border-purple bg-teal-50 rounded-r-lg pl-6 pr-4 py-6 italic text-teal-900">
+                "{example.testimonial.quote}"
+                <footer class="mt-2 not-italic">
+                  <span class="text-teal-950 font-medium">— {example.testimonial.author}</span>
+                  {example.testimonial.role && <span class="text-teal-900 text-sm block mt-1">{example.testimonial.role}</span>}
+                </footer>
+              </blockquote>
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    <!-- Working together -->
+    <section class="section bg-teal-50">
+      <div class="container-md">
+        <h2 class="heading-section mb-10 text-center" set:html={formatMarkdown(together.title || '')} />
+
+        {together.items && (
+          <div class="grid md:grid-cols-3 gap-6">
+            {together.items.map((item) => (
+              <div class="bg-white rounded-xl p-6 border border-teal-200">
+                <h3 class="text-lg font-bold text-teal-950 mb-2">{item.title}</h3>
+                <p class="text-teal-900" set:html={formatMarkdown(item.description)} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {together.testimonial && (
+          <blockquote class="border-l-4 border-purple bg-white rounded-r-lg pl-6 pr-4 py-6 italic text-teal-900 mt-10">
+            "{together.testimonial.quote}"
+            <footer class="mt-2 not-italic">
+              <span class="text-teal-950 font-medium">— {together.testimonial.author}</span>
+              {together.testimonial.role && <span class="text-teal-900 text-sm block mt-1">{together.testimonial.role}</span>}
+            </footer>
+          </blockquote>
+        )}
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="section bg-teal-950">
+      <div class="container-sm text-center">
+        <h2 class="heading-section !text-white mb-8" set:html={formatMarkdown(together.closingText || '')} />
+        <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Book Your Coaching Experience →
+        </a>
+      </div>
+    </section>
 
     <SiteFooter
       contactEmail={footer.contactEmail || ''}

@@ -22,8 +22,10 @@ export default defineConfig({
     '/discovery': 'https://calendly.com/andreagoulet/discovery-session',
     // The Communication Lab is now the homepage; keep the old URL working.
     '/communication-lab': '/',
-    // Testimonials became the outcomes-first Results page.
-    '/testimonials': '/results',
+    // Testimonials page was retired; quotes live on the homepage.
+    '/testimonials': '/',
+    // Hallway Track founding-member funnel was retired (2026-07).
+    '/hallway-track': '/',
     // Masterclass moved off the root to /masterclass — keep its funnels pointed at it.
     '/sbc-cold': '/masterclass',
     '/sbc-cold/book': '/book',

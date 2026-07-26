@@ -50,6 +50,36 @@ const homepageCollection = defineCollection({
       description: z.string(),
     })).optional(),
 
+    // Approach: concrete before/after example (general advice vs. the experiment)
+    example: z.object({
+      title: z.string(),
+      setup: z.string(),
+      advice: z.object({
+        title: z.string(),
+        bullets: z.array(z.string()),
+        results: z.object({
+          title: z.string(),
+          bullets: z.array(z.string()),
+        }).optional(),
+      }),
+      experiment: z.object({
+        title: z.string(),
+        bullets: z.array(z.object({
+          label: z.string().optional(),
+          text: z.string(),
+        })),
+        results: z.object({
+          title: z.string(),
+          bullets: z.array(z.string()),
+        }).optional(),
+      }),
+      testimonial: z.object({
+        quote: z.string(),
+        author: z.string(),
+        role: z.string().optional(),
+      }).optional(),
+    }).optional(),
+
     // Find your lever
     epigraph: z.object({
       quote: z.string(),

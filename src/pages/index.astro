@@ -13,12 +13,10 @@ const allLandingPages = await getCollection('landing-pages');
 const content = allLandingPages.find(e => e.id === 'communication-lab.md')!.data;
 
 // Curated testimonials for the Lab — experiment + community stories, in display order.
+// Ted, Lada, and Ellis appear on /approach instead, so they're omitted here.
 const featuredTestimonialIds = [
   'testimonials/poornima-vijayashanker.md',
-  'testimonials/lada-kesseler.md',
-  'testimonials/ted-young.md',
   'testimonials/soumya-kulkarni.md',
-  'testimonials/ellis-lempriere.md',
 ];
 const allShared = await getCollection('shared');
 const testimonials = featuredTestimonialIds

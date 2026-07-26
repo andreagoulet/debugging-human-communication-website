@@ -20,8 +20,8 @@ sections:
       - "The Company uses the following categories of third-party service providers to operate its business and deliver Services. These providers may collect, process, or store your personal information on our behalf in accordance with their own privacy policies:"
     list:
       - "**Scheduling:** Calendly (appointment booking and calendar management)"
-      - "**CRM & Marketing Automation:** Go High Level (contact management, email and SMS communications, forms, funnels, and workflow automation)"
-      - "**Community Platform:** Heartbeat (community hosting, messaging, and member management)"
+      - "**CRM & Marketing Automation:** Pipedrive (contact management, email communications, forms, and workflow automation)"
+      - "**Community Platform:** Discord (community hosting and messaging)"
       - "**Video Conferencing:** Zoom (virtual meetings, workshops, and coaching sessions)"
       - "**Payment Processing:** Stripe (payment collection and subscription management)"
       - "**Website Hosting:** Vercel (website hosting and delivery)"
@@ -78,7 +78,7 @@ sections:
       - "**Message & Data Rates:** Message and data rates may apply. Please contact your wireless carrier for details about your messaging plan."
       - "**Opt-Out:** You may opt out of text message communications at any time by replying STOP to any message or by contacting us at hello@lovelacecommunications.com. Opting out of SMS communications will not affect your ability to use Company Services, though you may miss time-sensitive reminders."
       - "**Help:** Reply HELP to any message for assistance, or contact us at hello@lovelacecommunications.com."
-      - "**No Sharing of SMS Consent:** Your consent to receive SMS messages is not shared with any third parties, except as required by our SMS service providers (such as Go High Level) to deliver messages on our behalf."
+      - "**No Sharing of SMS Consent:** Your consent to receive SMS messages is not shared with any third parties, except as required by our SMS service providers to deliver messages on our behalf."
   - heading: "External Data Storage Sites"
     content:
       - "We may store your data on servers provided by third-party hosting vendors with whom we have contracted."
