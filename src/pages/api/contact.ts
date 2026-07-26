@@ -1,10 +1,12 @@
 import type { APIRoute } from "astro";
+import nodemailer from "nodemailer";
 
 export const prerender = false;
 
-const PIPEDRIVE_BASE = "https://api.pipedrive.com/v1";
-// Same "webform" lead label as /api/lead; the lead title marks these as contact-form messages.
-const LEAD_LABEL_ID = "3041fd30-7bc9-11f1-b64c-b3729d261594";
+// For now the contact form simply forwards to Andrea's inbox via Gmail SMTP.
+// The original Pipedrive integration (Person + Lead + Note) lives in git
+// history (94bf395) if we revive it later.
+const CONTACT_TO = "andrea@andreagoulet.com";
 const RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 // reCAPTCHA v3 returns a 0.0–1.0 score; 0.5 is Google's suggested default threshold.
 const MIN_RECAPTCHA_SCORE = 0.5;
@@ -16,27 +18,25 @@ function json(data: unknown, status: number) {
   });
 }
 
-function escapeHtml(text: string) {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
-
 export const POST: APIRoute = async ({ request }) => {
   // Names match the Vercel env vars exactly (case-sensitive). Read at runtime
   // from process.env on Vercel; fall back to import.meta.env for local dev.
-  const PIPEDRIVE_API_TOKEN = process.env.Pipedrive_API ?? import.meta.env.Pipedrive_API;
   const RECAPTCHA_SECRET_KEY = process.env.reCAPTCHA_secret_key ?? import.meta.env.reCAPTCHA_secret_key;
+  const SMTP_USER = process.env.CONTACT_SMTP_USER ?? import.meta.env.CONTACT_SMTP_USER;
+  const SMTP_PASS = process.env.CONTACT_SMTP_PASS ?? import.meta.env.CONTACT_SMTP_PASS;
 
-  if (!PIPEDRIVE_API_TOKEN || !RECAPTCHA_SECRET_KEY) {
+  if (!RECAPTCHA_SECRET_KEY || !SMTP_USER || !SMTP_PASS) {
+    console.error("Contact form misconfigured: missing env vars", {
+      recaptcha: !!RECAPTCHA_SECRET_KEY,
+      smtpUser: !!SMTP_USER,
+      smtpPass: !!SMTP_PASS,
+    });
     return json({ error: "Server configuration error" }, 500);
   }
 
   let body: {
     name?: string;
     email?: string;
-    topic?: string;
     message?: string;
     token?: string;
     company?: string;
@@ -48,14 +48,13 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   // Honeypot: the hidden "company" field is invisible to humans. If it's filled,
-  // it's a bot — accept silently so the bot gets no signal, but create nothing.
+  // it's a bot — accept silently so the bot gets no signal, but send nothing.
   if (body.company) {
     return json({ success: true }, 200);
   }
 
   const email = body.email?.trim().toLowerCase();
   const name = body.name?.trim() || "";
-  const topic = body.topic?.trim() || "";
   const message = body.message?.trim() || "";
   const token = body.token;
 
@@ -89,58 +88,27 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ error: "Submission failed" }, 502);
   }
 
-  // 2. Create the Pipedrive Person, then a Lead, then attach the message as a
-  //    Note on the lead so the full text is readable in the Leads Inbox.
+  // 2. Forward the message to Andrea's inbox. Reply-To is the visitor, so
+  //    replying in Gmail goes straight back to them.
   try {
-    const personRes = await fetch(`${PIPEDRIVE_BASE}/persons?api_token=${PIPEDRIVE_API_TOKEN}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name || email,
-        email: [{ value: email, primary: true, label: "work" }],
-      }),
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user: SMTP_USER, pass: SMTP_PASS },
     });
-    if (!personRes.ok) {
-      console.error("Pipedrive person create failed:", personRes.status, await personRes.text());
-      return json({ error: "Submission failed" }, 502);
-    }
-    const person: { data?: { id?: number } } = await personRes.json();
-    const personId = person?.data?.id;
 
-    const leadRes = await fetch(`${PIPEDRIVE_BASE}/leads?api_token=${PIPEDRIVE_API_TOKEN}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: `${name || email} — website contact`,
-        person_id: personId,
-        label_ids: [LEAD_LABEL_ID],
-      }),
+    await transporter.sendMail({
+      from: `"Website Contact Form" <${SMTP_USER}>`,
+      to: CONTACT_TO,
+      replyTo: name ? `"${name.replace(/"/g, "")}" <${email}>` : email,
+      subject: `Website contact from ${name || email}`,
+      text: `Name: ${name || "(not given)"}\nEmail: ${email}\n\n${message}`,
     });
-    if (!leadRes.ok) {
-      console.error("Pipedrive lead create failed:", leadRes.status, await leadRes.text());
-      return json({ error: "Submission failed" }, 502);
-    }
-    const lead: { data?: { id?: string } } = await leadRes.json();
-    const leadId = lead?.data?.id;
-
-    const noteContent = [
-      topic ? `<p><b>Topic:</b> ${escapeHtml(topic)}</p>` : "",
-      `<p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
-    ].join("");
-
-    const noteRes = await fetch(`${PIPEDRIVE_BASE}/notes?api_token=${PIPEDRIVE_API_TOKEN}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: noteContent, lead_id: leadId }),
-    });
-    if (!noteRes.ok) {
-      // The lead exists; losing the note is bad but not worth failing the user over.
-      console.error("Pipedrive note create failed:", noteRes.status, await noteRes.text());
-    }
 
     return json({ success: true }, 200);
   } catch (err) {
-    console.error("Pipedrive API error:", err);
+    console.error("Contact email send failed:", err);
     return json({ error: "Submission failed" }, 502);
   }
 };
