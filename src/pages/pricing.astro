@@ -26,11 +26,8 @@ const discoveryTier = pricing.tiers?.find(tier => tier.featured);
     <!-- Page Hero -->
     <section class="bg-teal-950 px-6">
       <div class="container-lg">
-        <div class="py-20 md:py-24 max-w-3xl">
-          <h1 class="heading-hero !text-white mb-6" set:html={formatMarkdown(pricing.title || '')} />
-          {pricing.subtitle && (
-            <p class="text-xl md:text-2xl text-teal-200" set:html={formatMarkdown(pricing.subtitle)} />
-          )}
+        <div class="py-10 md:py-14 max-w-3xl">
+          <h1 class="heading-hero !text-white" set:html={formatMarkdown(pricing.title || '')} />
         </div>
       </div>
     </section>

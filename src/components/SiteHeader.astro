@@ -1,6 +1,4 @@
 ---
-import { FIT_CALL_URL } from '../utils/constants';
-
 interface Props {
   currentPath?: string;
 }
@@ -37,15 +35,15 @@ const navLinks = [
           {link.label}
         </a>
       ))}
-      <a href={FIT_CALL_URL} class="btn-primary-sm">
-        Book a Fit Call
+      <a href="/contact" class="btn-primary-sm">
+        Get in Touch
       </a>
     </div>
 
     <!-- Mobile hamburger -->
     <div class="flex items-center gap-3 md:hidden">
-      <a href={FIT_CALL_URL} class="btn-primary-sm">
-        Book a Fit Call
+      <a href="/contact" class="btn-primary-sm">
+        Get in Touch
       </a>
       <button
         id="mobile-menu-toggle"

@@ -1,0 +1,126 @@
+---
+/**
+ * Brand-styled contact form. Client verifies with reCAPTCHA v3, then POSTs to
+ * /api/contact, which verifies the token server-side and creates a Person +
+ * Lead + Note in Pipedrive.
+ *
+ * Env: same as EmailSignupForm — reCAPTCHA site key below is public by design;
+ * RECAPTCHA_SECRET_KEY and PIPEDRIVE_API_TOKEN live server-side in /api/contact.
+ */
+interface Props {
+  formId?: string;
+  loadRecaptcha?: boolean;
+}
+const { formId = "contact-form", loadRecaptcha = true } = Astro.props;
+const statusId = `${formId}-status`;
+const siteKey = "6LeBmkotAAAAAMuTrXuPGH9M3KWeFAZC4rvauaAz";
+---
+
+<form id={formId} class="space-y-4" novalidate>
+  <div class="grid sm:grid-cols-2 gap-4">
+    <input
+      type="text"
+      name="name"
+      placeholder="Name"
+      autocomplete="name"
+      class="w-full px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/60 border border-teal-200 focus:outline-2 focus:outline-teal-800"
+    />
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="Email"
+      autocomplete="email"
+      class="w-full px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/60 border border-teal-200 focus:outline-2 focus:outline-teal-800"
+    />
+  </div>
+
+  <textarea
+    name="message"
+    required
+    rows="6"
+    placeholder="Your message"
+    class="w-full px-4 py-3 rounded-lg bg-white text-teal-950 placeholder:text-teal-950/60 border border-teal-200 focus:outline-2 focus:outline-teal-800"
+  ></textarea>
+
+  <!-- Honeypot: hidden from people; bots tend to fill it. -->
+  <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+  <button type="submit" class="btn-primary w-full sm:w-auto text-center">Send Message</button>
+
+  <p class="text-teal-900 text-xs leading-relaxed">
+    This site is protected by reCAPTCHA.
+    See our <a href="/privacy" class="underline hover:text-teal-950">Privacy Policy</a>.
+  </p>
+  <p id={statusId} class="text-sm min-h-[1.25em]" aria-live="polite"></p>
+</form>
+
+{loadRecaptcha && (
+  <script is:inline src={`https://www.google.com/recaptcha/api.js?render=${siteKey}`}></script>
+)}
+<script define:vars={{ siteKey, formId, statusId }}>
+  const form = document.getElementById(formId);
+  const status = document.getElementById(statusId);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    const data = new FormData(form);
+    const email = String(data.get('email') || '').trim();
+    const message = String(data.get('message') || '').trim();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      status.textContent = 'Please enter a valid email address.';
+      status.className = 'text-sm min-h-[1.25em] text-coral';
+      return;
+    }
+    if (!message) {
+      status.textContent = 'Please include a message.';
+      status.className = 'text-sm min-h-[1.25em] text-coral';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.textContent = '';
+    status.className = 'text-sm min-h-[1.25em]';
+
+    try {
+      const token = await new Promise((resolve, reject) => {
+        if (!window.grecaptcha) return reject(new Error('Verification unavailable. Please refresh and try again.'));
+        window.grecaptcha.ready(() => {
+          window.grecaptcha.execute(siteKey, { action: 'contact' }).then(resolve).catch(reject);
+        });
+      });
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email,
+          message,
+          company: data.get('company'),
+          token,
+        }),
+      });
+
+      if (res.ok) {
+        status.textContent = 'Message sent — I’ll get back to you soon.';
+        status.classList.add('text-teal-950');
+        form.reset();
+        btn.textContent = 'Sent!';
+      } else {
+        const text = await res.text();
+        let message = 'Something went wrong. Please try again.';
+        try { message = JSON.parse(text).error || message; } catch {}
+        throw new Error(message);
+      }
+    } catch (err) {
+      status.textContent = err.message || 'Something went wrong. Please try again.';
+      status.classList.add('text-coral');
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    }
+  });
+</script>

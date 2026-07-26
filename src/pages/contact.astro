@@ -3,7 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { FIT_CALL_URL } from '../utils/constants';
+import ContactForm from '../components/ContactForm.astro';
+import { CALENDLY_URL, FIT_CALL_URL } from '../utils/constants';
 
 const allContent = await getCollection('website');
 const content = Object.fromEntries(
@@ -11,45 +12,52 @@ const content = Object.fromEntries(
 );
 
 const footer = content['shared/footer.md'].data;
+const experienceTier = content['shared/pricing.md'].data.tiers?.find(tier => tier.featured);
 ---
 
-<Layout title="Contact | Debugging Human Communication" description="Get in touch with Andrea Goulet — book a free fit call about coaching, or email about corporate training and speaking.">
+<Layout title="Contact | Debugging Human Communication" description="Send Andrea Goulet a message about coaching, corporate training, or speaking — or book a free fit call.">
   <SiteHeader currentPath="/contact" />
 
   <main>
     <!-- Page Hero -->
     <section class="bg-teal-950 px-6">
       <div class="container-lg">
-        <div class="py-20 md:py-24 max-w-2xl">
-          <h1 class="heading-hero !text-white mb-6">Contact</h1>
-          <p class="text-xl md:text-2xl text-teal-200">Two ways to reach me, depending on what you're looking for.</p>
+        <div class="py-10 md:py-14 max-w-2xl">
+          <h1 class="heading-hero !text-white">Contact</h1>
         </div>
       </div>
     </section>
 
     <section class="section bg-white">
-      <div class="container-md">
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="bg-teal-50 rounded-xl p-8 border border-teal-200 text-center flex flex-col">
-            <h2 class="heading-card mb-3">Curious about coaching?</h2>
-            <p class="text-teal-900 mb-6 grow">The fastest way to find out whether this program fits is a fit call — free, 15 minutes, and nothing is for sale.</p>
-            <a href={FIT_CALL_URL} target="_blank" rel="noopener noreferrer" class="btn-primary mx-auto">
-              Book a Fit Call →
-            </a>
+      <div class="container-lg">
+        <div class="grid md:grid-cols-[1.4fr_1fr] gap-8 items-stretch">
+          <!-- Message form -->
+          <div class="bg-teal-50 rounded-xl p-8 border border-teal-200">
+            <h2 class="heading-card mb-6">Send a message</h2>
+            <ContactForm />
           </div>
 
-          <div class="bg-teal-50 rounded-xl p-8 border border-teal-200 text-center flex flex-col">
-            <h2 class="heading-card mb-3">Corporate training or speaking?</h2>
-            <p class="text-teal-900 mb-6 grow">For team workshops, keynotes, and private cohorts, email me directly with a little about your organization and what you're hoping to change.</p>
-            <a href={`mailto:${footer.contactEmail}`} class="btn-primary mx-auto">
-              Email {footer.contactEmail}
-            </a>
+          <!-- Alternate routes -->
+          <div class="flex flex-col gap-6">
+            <div class="bg-teal-50 rounded-xl p-8 border border-teal-200 flex-1 flex flex-col">
+              <h2 class="heading-card mb-2">Rather talk it through?</h2>
+              <p class="text-teal-900 mb-5">A fit call is free, 15 minutes, and nothing is for sale.</p>
+              <a href={FIT_CALL_URL} target="_blank" rel="noopener noreferrer" class="btn-secondary-sm self-start mt-auto">
+                Book a Fit Call →
+              </a>
+            </div>
+
+            {experienceTier && (
+              <div class="bg-teal-50 rounded-xl p-8 border border-teal-200 flex-1 flex flex-col">
+                <h2 class="heading-card mb-2">Try a sample session</h2>
+                <p class="text-teal-900 mb-5">Experience what it's like to work with Andrea in this shortened version of a private coaching session. {experienceTier.priceLabel}</p>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" class="btn-secondary-sm self-start mt-auto">
+                  {experienceTier.ctaText}
+                </a>
+              </div>
+            )}
           </div>
         </div>
-
-        <p class="text-center text-teal-700 mt-10">
-          Anything else — questions, podcast invitations, or a conversation that doesn't fit a box — email <a href={`mailto:${footer.contactEmail}`} class="underline underline-offset-2 hover:text-coral">{footer.contactEmail}</a>.
-        </p>
       </div>
     </section>
 

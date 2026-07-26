@@ -55,6 +55,11 @@ h1, h2, h3, h4, h5, h6 {
          px-5 py-2.5 rounded-lg hover:bg-coral/90 transition-colors;
 }
 
+.btn-secondary-sm {
+  @apply inline-block border-2 border-teal-950 text-teal-950 font-semibold
+         px-5 py-2.5 rounded-lg hover:bg-teal-950 hover:text-white transition-colors;
+}
+
 .btn-primary-lg {
   @apply inline-block bg-coral text-white font-bold text-xl
          px-10 py-5 rounded-lg hover:bg-coral/90

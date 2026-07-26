@@ -1,10 +1,9 @@
 ---
 title: "Program & Pricing"
-subtitle: "Let's find the best option for you."
 waysIn:
   eyebrow: "Start Here"
   title: "Get to Know Andrea"
-  description: "Some people just want the facts. Others want a demo. Pick whichever suits how you make decisions without a long-term commitment."
+  description: "Some people just want the facts. Others want the experience. Pick whichever suits how you make decisions without a long-term commitment."
   fitCall:
     title: "Fit Call"
     priceLabel: "No Cost · 15 minutes"
