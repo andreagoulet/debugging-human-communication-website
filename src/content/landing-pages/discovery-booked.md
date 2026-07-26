@@ -1,13 +1,13 @@
 ---
 hero:
   headline: "You're Booked!"
-  subheadline: "Your discovery session is confirmed. Here's how to make the most of our time together."
+  subheadline: "Your Coaching Experience is confirmed. Here's how to make the most of our time together."
   paragraphs:
     - "I'm looking forward to digging into your specific challenge. In the meantime, here's what to expect and a few things you can do to prepare."
 
 whatToExpect:
   title: "What to Expect"
-  intro: "Your discovery session is a focused 30-minute conversation. You'll bring a real challenge, and we'll design an experiment together — something concrete you can start using right away."
+  intro: "Your Coaching Experience is a focused 30-minute conversation. You'll bring a real challenge, and we'll design an experiment together — something concrete you can start using right away."
   items:
     - icon: "clock"
       title: "Show up on time"
@@ -82,7 +82,7 @@ yourReport:
 
 whatsNext:
   title: "What Happens After"
-  intro: "The discovery session is designed to stand on its own. You keep the recording, the report, and the experiment — no strings attached. If you want to keep going, there are two ways to continue working together."
+  intro: "The Coaching Experience is designed to stand on its own. You keep the recording, the report, and the experiment — no strings attached. If you want to keep going, there are two ways to continue working together."
   contactText: "No pressure, no pitch. If you're curious about either option after our session, just ask — I'm happy to talk through what makes sense for you."
 
 footer:

@@ -9,15 +9,34 @@ import SessionReportModal from '../components/SessionReportModal.astro';
 const allContent = await getCollection('landing-pages');
 const page = allContent.find(e => e.id === 'discovery-booked.md')!.data;
 
-// Pull pricing tiers from the homepage so they stay in sync
+// Pull the ongoing-coaching offers from the pricing content so they stay in sync
 const homepageContent = await getCollection('website');
 const pricingEntry = homepageContent.find(entry => entry.id === 'shared/pricing.md');
-const continuationTiers = pricingEntry?.data.tiers?.filter(tier => !tier.featured) ?? [];
+const membership = pricingEntry?.data.membership;
+const privateCoaching = pricingEntry?.data.privateCoaching;
+const continuationTiers = [
+  membership && {
+    title: membership.title,
+    price: membership.price,
+    period: membership.period,
+    description: (membership.description ?? '').replace(' Every membership includes:', ''),
+    features: (membership.included ?? []).map((item) =>
+      item.schedule ? `${item.title} — ${item.schedule}` : item.title
+    ),
+  },
+  privateCoaching && {
+    title: privateCoaching.title,
+    price: privateCoaching.price,
+    period: privateCoaching.period,
+    description: privateCoaching.description,
+    features: privateCoaching.features,
+  },
+].filter(Boolean);
 ---
 
 <Layout
   title="You're Booked! | Debugging Human Communication"
-  description="Your discovery session is confirmed. Here's what to expect and how to prepare for your coaching session."
+  description="Your Coaching Experience is confirmed. Here's what to expect and how to prepare for your session."
   noindex={true}
 >
   <!-- Header -->
